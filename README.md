@@ -45,7 +45,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- has_many :products_image
+- has_many :product_images
 
 
 ## productsテーブル
@@ -94,7 +94,7 @@ Things you may want to cover:
 |name|string|null: false, foreign_key: false|
 
 ### Association
-- has_many :product
+- has_many :products
 
 ## categoryテーブル
 
@@ -103,4 +103,4 @@ Things you may want to cover:
 |name|string|null: false, foreign_key: false|
 
 ### Association
-- has_many :product
+- has_many :products
