@@ -39,7 +39,6 @@ Things you may want to cover:
 |credit_card|string|null: true, foreign_key: false|
 |sales_money|integer|null: false, foreign_key: false|
 |point|integer|null: false, foreign_key: false|
-
 |like_number|string|null: false, foreign_key: false|
 
 
