@@ -37,6 +37,7 @@ Things you may want to cover:
 |email|string|null: false, foreign_key: false|
 |password|string|null: false, foreign_key: false|
 |credit_card|string|null: true, foreign_key: false|
+|account|integer|null:true, foreign_key: false|
 |sales_money|integer|null: false, foreign_key: false|
 |point|integer|null: false, foreign_key: false|
 |like_number|string|null: false, foreign_key: false|
@@ -44,7 +45,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- has_many :messages
+- has_many :products_image
 
 
 ## productsテーブル
@@ -71,18 +72,35 @@ Things you may want to cover:
 
 
 ### Association
-- belongs_to :users
-- has_many :comments
+- belongs_to :user
+- has_many :brands
+- has_many :categories
 
-
-## commentsテーブル
+## product_imageテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
-|text|string|null: false, foreign_key: false|
 
 ### Association
 - belongs_to :user
 - belongs_to :product
+
+## brandテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, foreign_key: false|
+
+### Association
+- has_many :product
+
+## categoryテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, foreign_key: false|
+
+### Association
+- has_many :product
