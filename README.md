@@ -53,7 +53,6 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 
-|id|ingeter|null: false, foreign_key: true| <- ?
 |user_id|ingeter|null: false, foreign_key: true|
 |product_information|string|null: false, foreign_key: false|
 |name|string|null: false, foreign_key: false|
