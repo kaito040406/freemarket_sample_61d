@@ -32,7 +32,7 @@ Things you may want to cover:
 |text|string|null: true, foreign_key: false|
 |like_number|string|null: false, foreign_key: false|
 |name|string|null: false, foreign_key: false|
-|address|string|null: false, foreign_key: false|
+|address_id|integer|null: false, foreign_key: true|
 |tel_number|string|null: false, foreign_key: false|
 |email|string|null: false, foreign_key: false|
 |password|string|null: false, foreign_key: false|
@@ -46,7 +46,33 @@ Things you may want to cover:
 ### Association
 - has_many :products
 - has_many :product_images
+- has_one :address
 
+## addressテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|prefecture|string|null: false, foreign_key: false|
+|below_city_or_ward|string|null: false, foreign_key: false|
+|below_house_number|string|null: true, foreign_key: false|
+|postal_code|integer|null: false, foreign_key: false|
+
+
+### Association
+- belongs_to :user
+
+## credit_cardテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|number|integer|null: false, foreign_key: false|
+|expiration date|date|null: false, foreign_key: false|
+
+
+### Association
+- belongs_to :user
 
 ## productsテーブル
 
