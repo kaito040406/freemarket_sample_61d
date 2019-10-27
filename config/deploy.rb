@@ -6,9 +6,9 @@ set :repo_url, "git@example.com:me/my_repo.git"
 
 lock '3.11.2'
 
-set :application, '自身のアプリケーション名'
+set :application, 'freemarket_sample_61d'
 
-set :repo_url,  'git@github.com:<Githubのユーザー名>/<レポジトリ名>.git'
+set :repo_url,  'git@github.com:kaito040406/freemarket_sample_61d.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
