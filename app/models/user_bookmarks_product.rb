@@ -1,0 +1,2 @@
+class UserBookmarksProduct < ApplicationRecord
+end

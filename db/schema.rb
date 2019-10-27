@@ -10,28 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_073715) do
+ActiveRecord::Schema.define(version: 2019_10_27_084840) do
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "prefecture", null: false
+    t.string "below_city_or_ward", null: false
+    t.string "below_house_number"
+    t.integer "postal_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "number", null: false
+    t.date "expiration_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.text "text"
-    t.integer "price"
-    t.string "category"
-    t.string "brand"
-    t.string "status"
-    t.date "date"
-    t.string "image"
-    t.string "product_size"
-    t.string "delivery_fee"
-    t.string "delivery_method"
-    t.string "delivery_from"
-    t.date "estimated_delivery_date"
+    t.integer "seller_id", null: false
+    t.string "name", null: false
+    t.text "text", null: false
+    t.integer "price", null: false
+    t.integer "categry", null: false
+    t.integer "status", null: false
+    t.integer "brand"
+    t.integer "size", null: false
+    t.date "date", null: false
+    t.integer "delivery_fee", null: false
+    t.integer "delivery_method", null: false
+    t.integer "delivery_from"
+    t.integer "estimated_delivery_date"
+    t.integer "buyer_id"
+    t.integer "finished", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_bookmarks_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_product_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +80,14 @@ ActiveRecord::Schema.define(version: 2019_10_26_073715) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "piyo"
+    t.string "nick_name", null: false
+    t.string "sur_name", null: false
+    t.string "first_name", null: false
+    t.string "sur_name_yomi", null: false
+    t.string "first_name_yomi", null: false
+    t.string "introduction"
+    t.date "birthday", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
