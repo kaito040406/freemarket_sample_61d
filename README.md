@@ -28,19 +28,19 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|nick_name|string|null: false, foreign_key: false|
-|sur_name|string|null: false, foreign_key: false|
-|first_name|string|null: false, foreign_key: false|
-|sur_name_yomi|string|null: false, foreign_key: false|
-|first_name_yomi|string|null: false, foreign_key: false|
-|introduction|string|null: true, foreign_key: false|
-|tel_number|string|null: false, foreign_key: false|
-|email|string|null: false, foreign_key: false|
-|password|string|null: false, foreign_key: false|
-|account|integer|null:false, foreign_key: false|
-|sales_money|integer|null: false, foreign_key: false|
-|point|integer|null: false, foreign_key: false|
-|icon_image|string|null: true, foreign_key: false|
+|nick_name|string|null: false|
+|sur_name|string|null: false|
+|first_name|string|null: false|
+|sur_name_yomi|string|null: false|
+|first_name_yomi|string|null: false|
+|introduction|string|null: true|
+|tel_number|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+|account|integer|null:false|
+|sales_money|integer|null: false|
+|point|integer|null: false|
+|icon_image|string|null: true|
 
 
 ### Association
@@ -56,18 +56,18 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|ingeter|null: false, foreign_key: true|
-|name|string|null: false, foreign_key: false|
-|text|string|null: true, foreign_key: false|
-|price|ingeter|null: false, foreign_key: false|
-|size|string|null: false, foreign_key: false|
-|status|string|null: true, foreign_key: false|
-|date|date|null: false, foreign_key: false|
-|delivery_fee|string|null: false, foreign_key: false|
-|delivery_method|string|null: false, foreign_key: false|
-|delivery_from|string|null: true, foreign_key: false|
-|estimated_delivery_date|date|null: true, foreign_key: false|
+|name|string|null: false|
+|text|string|null: true|
+|price|ingeter|null: false|
+|size|string|null: false|
+|status|string|null: true|
+|date|date|null: false|
+|delivery_fee|string|null: false|
+|delivery_method|string|null: false|
+|delivery_from|string|null: true|
+|estimated_delivery_date|date|null: true|
 |user_id(buiyer)|ingeter|null: true, foreign_key: true|
-|finished|boolian|null: false, foreign_key: false|
+|finished|boolian|null: false|
 
 ### Association
 - belongs_to :user
@@ -83,8 +83,8 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|number|integer|null: false, foreign_key: false|
-|expiration date|date|null: false, foreign_key: false|
+|number|integer|null: false|
+|expiration date|date|null: false|
 
 
 ### Association
@@ -96,10 +96,10 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|prefecture|string|null: false, foreign_key: false|
-|below_city_or_ward|string|null: false, foreign_key: false|
-|below_house_number|string|null: true, foreign_key: false|
-|postal_code|integer|null: false, foreign_key: false|
+|prefecture|string|null: false|
+|below_city_or_ward|string|null: false|
+|below_house_number|string|null: true|
+|postal_code|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -110,7 +110,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
-|count|integer|null: false, foreign_key: false|
+|count|integer|null: false|
 
 ### Association
 - belongs_to :product
@@ -134,7 +134,7 @@ Things you may want to cover:
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
-|text|text|null: false, foreign_key: false|
+|text|text|null: false|
 
 ### Association
 - belongs_to :user
@@ -157,7 +157,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, foreign_key: false|
+|name|string|null: false|
 
 ### Association
 - has_many :category_ms
@@ -167,7 +167,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, foreign_key: false|
+|name|string|null: false|
 |category_l_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -179,7 +179,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, foreign_key: false|
+|name|string|null: false|
 |category_m_id|integer|null: false, foreign_key: true|
 
 ### Association
@@ -191,7 +191,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, foreign_key: false|
+|name|string|null: false|
 
 ### Association
 - has_many :product_brands
