@@ -77,5 +77,6 @@ gem 'pry-rails'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'devise'
+gem 'fog-aws'
 
 
