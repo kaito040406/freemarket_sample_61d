@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_27_084840) do
+ActiveRecord::Schema.define(version: 2019_10_27_100343) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,6 +18,23 @@ ActiveRecord::Schema.define(version: 2019_10_27_084840) do
     t.string "below_city_or_ward", null: false
     t.string "below_house_number"
     t.integer "postal_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "prefecture", null: false
+    t.string "below_city_or_ward", null: false
+    t.string "below_house_number"
+    t.integer "postal_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,7 +97,6 @@ ActiveRecord::Schema.define(version: 2019_10_27_084840) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "piyo"
     t.string "nick_name", null: false
     t.string "sur_name", null: false
     t.string "first_name", null: false
@@ -88,6 +104,11 @@ ActiveRecord::Schema.define(version: 2019_10_27_084840) do
     t.string "first_name_yomi", null: false
     t.string "introduction"
     t.date "birthday", null: false
+    t.string "tel_number", null: false
+    t.integer "account", null: false
+    t.integer "sales_money", null: false
+    t.integer "point", null: false
+    t.string "icon_image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
