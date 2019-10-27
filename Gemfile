@@ -79,5 +79,7 @@ gem 'kaminari'
 gem 'devise'
 gem 'fog-aws'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 
