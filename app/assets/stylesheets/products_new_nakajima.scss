@@ -298,7 +298,7 @@ i[class^='icon-'], i[class*='icon-'] {
 .sell-upload-head {
   font-size: 16px;
 }
-.single-footer {
+.product-new-footer-T {
   width: 456px;
   height: 220px;
   margin: 0 auto;
@@ -311,21 +311,21 @@ i[class^='icon-'], i[class*='icon-'] {
   padding: 40px 0;
   text-align: center;
 }
-.single-footer a {
+.product-new-footer-T a {
   display: block;
   color: #333;
 }
-.single-footer p {
+.product-new-footer-T p {
   margin: 8px 0 0;
 }
-.single-footer small {
+.product-new-footer-T small {
   font-size: 13px;
 }
-.single-footer li{
+.product-new-footer-T li{
   display: inline-block;
   font-size: 12px;
 }
-.single-footer-logo {
+.product-new-footer-T-logo {
   width: 80px;
   height: 65px;
   margin: 40px auto 0;
@@ -353,7 +353,7 @@ i[class^='icon-'], i[class*='icon-'] {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.sell-price-flexcontainer {
+.sell-price-flexcontainer-T {
   display:flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -362,9 +362,6 @@ i[class^='icon-'], i[class*='icon-'] {
   -ms-flex-align: center;
   align-items: center;
 }
-// .sell-price-flexitem{
-
-// }
-// .sell-price-input{
-
-// }
+.sell-price-flexcontainer-T input{
+  width: 50%;
+}
