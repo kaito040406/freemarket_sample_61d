@@ -321,12 +321,15 @@ path[Attributes Style] {
 .kmSGSf {
   margin-right: 10px;
   width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
 }
 img {
   vertical-align: middle;
 }
+
+
 .lcPaSU {
   background-color: rgb(234, 53, 45);
   color: rgb(255, 255, 255);
@@ -605,7 +608,7 @@ padding: 0px 10px;
 .ashhsL{
   height: 390px;
   width: 700px;
-  margin-left: 360px;
+  margin-left: 180px;
 }
 .eUokWJ {
   bottom: 32px;
@@ -708,18 +711,30 @@ padding: 0px 10px;
 }
 .dhItlX{
   height: 68px;
+  width: 420px;
 }
 .jSTnBt{
+display: inline;
 width: 68px;
-height: 68px;
+}
+.lgmdCB{
+  display: inline;
 }
 
 .kDwjrS {
   height: 40px;
   margin-right: 8px;
-  width: 144px;
+  width: 129px;
+  display: inline;
+}
+.fofvah{
+  width: 120px;
+  height: 40px;
+  margin-right: 8px;
+  display: inline;
 }
 figure {
+  width: 250px;
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
