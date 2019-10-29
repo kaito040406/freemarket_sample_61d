@@ -1,0 +1,191 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, 
+img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, 
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, 
+tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, 
+figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, 
+time, mark, audio, video {
+  vertical-align: baseline;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  font: inherit;
+}
+body {
+  position: relative;
+  height: 100%;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
+}
+body {
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+}
+* {
+  font-size: inherit;
+  line-height: inherit;
+}
+*, ::before, ::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+div {
+  display: block;
+}
+
+
+:root {
+  cursor: auto;
+}
+:root {
+  /* background-color: #fff; */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  cursor: default;
+  font: 66.66667% sans-serif;
+}
+html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  color: -internal-root-color;
+}
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+}
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+*, ::before, ::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+}
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+*, ::before, ::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+::selection {
+  color: currentColor;
+}
+::selection {
+  background-color: #b3d4fc;
+  color: #fff;
+  text-shadow: none;
+}
+
+@media screen and (min-width: 1068px) {
+  .l-side {
+    float: left;
+    width: 280px;
+    margin: 0 40px 0 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .l-side {
+    width: 700px;
+  }
+}
+
+.l-side {
+    width: 280px;
+    margin: 40px auto 0;
+}
+
+.mypage-nav-list li:first-child {
+  border: 0;
+}
+.mypage-nav-list li {
+  border-top: 1px solid #eee;
+}
+
+@media screen and (min-width: 768px) {
+  .mypage-nav-head {
+    margin: 40px 0 0;
+  }
+}
+
+.mypage-nav-head {
+    margin: 40px 4% 0;
+    font-size: 16px;
+}
+
+.mypage-nav-head+.mypage-nav-list {
+  margin: 8px 0 0;
+}
+
+.mypage-nav-list-item.active {
+  background: #eee;
+  font-weight: 600;
+}
+.mypage-nav-list-item {
+  position: relative;
+  display: block;
+  min-height: 48px;
+  padding: 16px;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+.mypage-nav-list-item.active .icon-arrow {
+  color: #333;
+}
+.mypage-nav-list-item .icon-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  color: #ccc;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  -webkit-transition: all ease-out .2s;
+  transition: all ease-out .2s;
+}
+i[class^='icon-'], i[class*='icon-'] {
+  display: inline-block;
+  font-family: 'icon-font';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow:before {
+  content: '\e005';
+}
