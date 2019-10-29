@@ -87,3 +87,4 @@ gem 'dotenv-rails'#.env用のgem はせがわ
 gem 'haml-rails'#hamalのgem  長谷川
 
 
+
