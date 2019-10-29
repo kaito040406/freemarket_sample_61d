@@ -3,12 +3,10 @@
   margin: 0;
   padding: 0;
 }
-
 *, ::before, ::after {
   border-style: solid;
   border-width: 0;
 }
-
 body{
   font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
   font-size: 14px;
@@ -16,21 +14,6 @@ body{
 }
 main {
   display: block;
-}
-
-a {
-  color: #0099e8;
-  text-decoration: none;
-}
-h3 {
-  font-size: 1.17em;
-  font-weight: bold;
-}
-label {
-  display: inline-block;
-}
-pre {
-  overflow: auto;
 }
 section {
   vertical-align: baseline;
@@ -58,6 +41,21 @@ input {
   color: #fff;
   text-shadow: none;
 }
+a {
+  text-decoration: none;
+  color: #0099e8;
+}
+h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+label {
+  display: inline-block;
+}
+pre {
+  overflow: auto;
+}
+
 .flexcontainer {
   display: flex;
   -webkit-box-pack: justify;
@@ -67,7 +65,10 @@ input {
 .bold {
   font-weight: 600;
 }
-.form-question{
+.product-new-form {
+  border-top: 1px solid #eee;
+}
+.help-link-icon-t {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -78,8 +79,7 @@ input {
   font-size: 12px;
   text-align: center;
 }
-
-.form-require {
+.must-filled-mark-t {
   margin: 0 0 0 8px;
   padding: 2px 4px;
   border-radius: 2px;
@@ -88,43 +88,43 @@ input {
   vertical-align: top;
   background: #ea352d;
 }
-
-.single-header {
+.form-sub-t {
+  padding: 40px;
+  border-top: 1px solid #eee;
+}
+.sub-title-t {
+  color: #888;
+  font-size: 14px;
+}
+.product-new-header-T {
   height: 128px;
   text-align: center;
   width: 100%;
 }
-
-.single-header a {
+.product-new-header-T a {
   display: inline-block;
   width: 120px;
   height: 33px;
   margin: 0 8px 0 0;
   line-height: 33px;
 }
-.single-header h1 {
+.product-new-header-T h1 {
   margin: 40px 0 0;
   display: inline-block;
 }
-.single-header img {
+.product-new-header-T img {
   width: 185px;
   height: 49px;
 }
-.form-group label+.textarea-default {
-  margin: 8px 0 0;
-}
-.sell-upload-box {
+.img-uploader-box {
   width: 620px;
   padding: 40px;
 }
-.sell-form {
-  border-top: 1px solid #eee;
-}
-.sell-upload-head+p {
+.img-uploader-head+p {
   margin: 8px 0 0;
   line-height: 1.5;
 }
-.sell-upload-drop-box {
+.img-uploader-drop-box {
   position: relative;
   min-height: 162px;
   background: #f5f5f5;
@@ -138,33 +138,33 @@ input {
   cursor: pointer;
   margin-left: 2%;
 }
-.sell-upload-drop-box {
-    width: 620px;
-    padding: 40px;
+.img-uploader-drop-box {
+  width: 620px;
+  padding: 40px;
 }
-.sell-upload-items {
-  display: block;
-}
-.sell-upload-items ul {
-  width: 100%;
-}
-.sell-upload-drop-box.have-item-0 {
+.img-uploader-drop-box.have-item-0 {
   width: 100%;
   margin-left: 0;
 }
-.single-head {
+.img-uploader {
+  display: block;
+}
+.img-uploader ul {
+  width: 100%;
+}
+.product-new-formtitle-T {
   margin: 0;
   line-height: 1.5;
   text-align: center;
   padding: 32px 16px;
   font-size: 22px;
 }
-.single-container {
+.product-new-main-T {
   width: 700px;
   margin: 0 auto;
   background: #fff;
 }
-i[class^='icon-'], i[class*='icon-'] {
+.icon-arrow-bottom, .icon-camera {
   display: inline-block;
   font-family: 'icon-font';
   font-style: normal;
@@ -178,18 +178,25 @@ i[class^='icon-'], i[class*='icon-'] {
 .form-group {
   margin: 40px 0 0;
 }
-.form-group:first-child {
-  margin: 0;
-}
 .form-group label {
   font-weight: 600;
+}
+.form-group select {
+  width: 100%;
 }
 .form-group .input-default {
   width: 100%;
   margin: 8px 0 0;
 }
-.form-group select {
-  width: 100%;
+.form-group:first-child {
+  margin: 0;
+}
+.form-group label+.textarea-default {
+  margin: 8px 0 0;
+}
+.form-box {
+  width: 400px;
+  margin: 0;
 }
 .textarea-default {
   display: block;
@@ -239,87 +246,41 @@ i[class^='icon-'], i[class*='icon-'] {
   background: #ea352d;
   border: 1px solid #ea352d;
   color: #fff;
-}
-.sell-btn-box .btn-red {
   margin: 40px 0 0;
 }
 .btn-gray {
   background: #aaa;
   border: 1px solid #aaa;
   color: #fff;
-}
-.sell-btn-box p {
-  line-height: 1.5;
-}
-.sell-btn-box .btn-gray {
   width: 45%;
   margin: 24px auto 0;
 }
-
-.sell-price-input {
+.btn-box p {
+  line-height: 1.5;
+}
+.price-input {
   text-align: right;
 }
-.sell-price>li {
+.input-default {
+  margin: 0;
+  text-align: right;
+}
+.price>li {
   padding: 24px 0;
   border-top: 1px solid #ccc;
 }
-.sell-price-input .input-default {
-  margin: 0;
-  text-align: right;
-}
-.sell-content {
-  padding: 40px;
-  border-top: 1px solid #eee;
-}
-.sell-sub-head {
-  color: #888;
-  font-size: 14px;
-}
-.sell-form-box {
-  width: 400px;
-  margin: 0;
-}
-.sell-upload-head {
+.img-uploader-head {
   font-size: 16px;
 }
-.product-new-footer-T {
-  width: 456px;
-  height: 220px;
-  margin: 0 auto;
-  z-index: 1;
-  height: 250px;
-  padding: 40px 0;
-  text-align: center;
-}
-.product-new-footer-T a {
-  display: block;
-  color: #333;
-}
-.product-new-footer-T p {
-  margin: 8px 0 0;
-}
-.product-new-footer-T small {
-  font-size: 13px;
-}
-.product-new-footer-T li{
-  display: inline-block;
-  font-size: 12px;
-}
-.product-new-footer-T-logo {
-  width: 80px;
-  height: 65px;
-  margin: 40px auto 0;
-}
-
-.sell-dropbox-container {
+.dropbox-container {
   display: block;
   width: 620px;
   margin: 16px auto 0;
 }
-.sell-dropbox-container .sell-upload-items-container {
+.img-uploader-container {
   display: inline;
 }
-.sell-upload-drop-box pre {
+.img-uploader-drop-box pre {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -333,7 +294,7 @@ i[class^='icon-'], i[class*='icon-'] {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.sell-price-flexcontainer-T {
+.price-flexcontainer-T {
   display:flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -342,16 +303,35 @@ i[class^='icon-'], i[class*='icon-'] {
   -ms-flex-align: center;
   align-items: center;
 }
-.sell-price-flexcontainer-T input{
+.price-flexcontainer-T .price-input{
   width: 50%;
 }
-.single-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+
+.product-new-footer-T {
+  width: 456px;
+  height: 220px;
+  margin: 0 auto;
   z-index: 1;
   height: 250px;
   padding: 40px 0;
   text-align: center;
+}
+.product-new-footer-T p {
+  margin: 8px 0 0;
+}
+.product-new-footer-T small {
+  font-size: 13px;
+}
+.product-new-footer-T li{
+  display: inline-block;
+  font-size: 12px;
+}
+.product-new-footer-T a {
+  display: block;
+  color: #333;
+}
+.product-new-footer-T-logo {
+  width: 80px;
+  height: 65px;
+  margin: 40px auto 0;
 }
