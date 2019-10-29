@@ -80,3 +80,4 @@ gem 'devise'
 gem 'fog-aws'
 gem 'haml-rails'
 
+
