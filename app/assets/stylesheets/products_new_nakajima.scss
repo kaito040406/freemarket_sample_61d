@@ -103,8 +103,8 @@ pre {
 }
 .product-new-header-T a {
   display: inline-block;
-  width: 120px;
-  height: 33px;
+  width: 185px;
+  height: 49px;
   margin: 0 8px 0 0;
   line-height: 33px;
 }
@@ -212,6 +212,7 @@ pre {
 .input-default {
   height: 48px;
   padding: 10px 16px 8px;
+  margin: 0;
   border-radius: 4px;
   border: 1px solid #ccc;
   background: #fff;
@@ -261,10 +262,6 @@ pre {
 .price-input {
   text-align: right;
 }
-.input-default {
-  margin: 0;
-  text-align: right;
-}
 .price>li {
   padding: 24px 0;
   border-top: 1px solid #ccc;
@@ -306,6 +303,12 @@ pre {
 .price-flexcontainer-T .price-input{
   width: 50%;
 }
+.price-input .input-default {
+  text-align: right;
+}
+.price-flexcontainer-T .price-input>div{
+  margin: 0px 0px 0px 3px;
+}
 .product-new-footer-T {
   width: 456px;
   height: 220px;
@@ -324,6 +327,7 @@ pre {
 .product-new-footer-T li{
   display: inline-block;
   font-size: 12px;
+  margin: 0 0 0 16px;
 }
 .product-new-footer-T a {
   display: block;
