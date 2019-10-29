@@ -99,17 +99,15 @@ ActiveRecord::Schema.define(version: 2019_10_28_040143) do
     t.datetime "updated_at", null: false
     t.string "nick_name", null: false
     t.string "sur_name", null: false
-    t.string "fr_name", null: false
+    t.string "first_name", null: false
     t.string "sur_name_yomi", null: false
     t.string "first_name_yomi", null: false
     t.string "introduction"
-    t.string "birthday_year", null: false
-    t.string "birthday_manth", null: false
-    t.string "birthday_day", null: false
+    t.date "birthday", null: false
     t.string "tel_number", null: false
-    t.integer "account"
-    t.integer "sales_money"
-    t.integer "point"
+    t.integer "account", null: false
+    t.integer "sales_money", null: false
+    t.integer "point", null: false
     t.string "icon_image"
     t.string "uid"
     t.string "provider"
