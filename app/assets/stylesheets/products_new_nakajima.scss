@@ -231,7 +231,7 @@ pre {
   cursor: pointer;
 }
 
-.btn-default {
+.button-t {
   display: block;
   width: 100%;
   line-height: 48px;
@@ -242,20 +242,20 @@ pre {
   cursor: pointer;
   text-align: center;
 }
-.btn-red {
+.button-submit-t {
   background: #ea352d;
   border: 1px solid #ea352d;
   color: #fff;
   margin: 40px 0 0;
 }
-.btn-gray {
+.button-cancel-t {
   background: #aaa;
   border: 1px solid #aaa;
   color: #fff;
   width: 45%;
   margin: 24px auto 0;
 }
-.btn-box p {
+.button-container-t p {
   line-height: 1.5;
 }
 .price-input {
@@ -271,11 +271,6 @@ pre {
 }
 .img-uploader-head {
   font-size: 16px;
-}
-.dropbox-container {
-  display: block;
-  width: 620px;
-  margin: 16px auto 0;
 }
 .img-uploader-container {
   display: inline;
@@ -294,6 +289,11 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.dropbox-container {
+  display: block;
+  width: 620px;
+  margin: 16px auto 0;
+}
 .price-flexcontainer-T {
   display:flex;
   -webkit-box-pack: justify;
@@ -306,7 +306,6 @@ pre {
 .price-flexcontainer-T .price-input{
   width: 50%;
 }
-
 .product-new-footer-T {
   width: 456px;
   height: 220px;
@@ -330,7 +329,7 @@ pre {
   display: block;
   color: #333;
 }
-.product-new-footer-T-logo {
+.product-new-footer-LOGO-t {
   width: 80px;
   height: 65px;
   margin: 40px auto 0;
