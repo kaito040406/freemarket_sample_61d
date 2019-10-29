@@ -78,10 +78,11 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'devise'
 gem 'fog-aws'
-gem 'omniauth-rails_csrf_protection'
-gem 'omniauth-facebook'#テーブルを追加します
-gem 'omniauth-twitter'
-gem 'omniauth-google-oauth2'
-gem 'dotenv-rails'
+gem 'omniauth-rails_csrf_protection'#外部認証用のgem はせがわ
+gem 'omniauth-facebook'#facebookログインのgem はせがわ
+gem 'omniauth-twitter'#twitterログインのgem はせがわ
+gem 'omniauth-google-oauth2'#グーグルログインのgem 長谷川
+gem 'dotenv-rails'#.env用のgem はせがわ
+gem 'haml-rails'#hamalのgem  長谷川
 
 

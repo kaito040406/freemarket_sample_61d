@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,  :validatable,
-         :omniauthable
+         :omniauthable, :omniauth_providers => [:facebook]
   
-  def self.from_omniauth(auth) #userがいなかったらfacebookでuserを作成するメソッド
+  def self.find_for_oauth(auth)#userがいなかったらfacebookでuserを作成するメソッド
+    puts "OK"
     user = User.where(email: auth.info.email).first
     if user
       return user
