@@ -175,26 +175,26 @@ pre {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.form-group {
+.form-input-t {
   margin: 40px 0 0;
 }
-.form-group label {
+.form-input-t label {
   font-weight: 600;
 }
-.form-group select {
+.form-input-t select {
   width: 100%;
 }
-.form-group .input-default {
+.form-input-t .input-default {
   width: 100%;
   margin: 8px 0 0;
 }
-.form-group:first-child {
+.form-input-t:first-child {
   margin: 0;
 }
-.form-group label+.textarea-default {
+.form-input-t label+.textarea-default {
   margin: 8px 0 0;
 }
-.form-box {
+.form-input-list-t {
   width: 400px;
   margin: 0;
 }
