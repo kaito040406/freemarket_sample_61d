@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_040143) do
     t.string "birthday_manth", null: false
     t.string "birthday_day", null: false
     t.string "tel_number", null: false
+    t.string "certification", null: false
     t.integer "account"
     t.integer "sales_money"
     t.integer "point"

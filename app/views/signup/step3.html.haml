@@ -1,0 +1,3 @@
+= form_for @user, url: step4_signup_index_path, method: :get, html: {class: 'theard-wrapper__box'} do |f|
+  = f.text_field :certification, placeholder: '認証番号を入力してください'
+  = f.submit 'Send', class: 'submit-btn',method: :post

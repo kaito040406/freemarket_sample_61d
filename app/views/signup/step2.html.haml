@@ -1,0 +1,3 @@
+= form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'second-wrapper__box'} do |f|
+  = f.text_field :tel_number, placeholder: '電話番号を入力'
+  = f.submit 'Send', class: 'submit-btn',method: :post

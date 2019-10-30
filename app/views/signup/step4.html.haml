@@ -1,0 +1,24 @@
+- if @user.present?
+  .nick_name
+    = 'ニックネーム'
+    = @user.nick_name
+  .mail
+    = 'メールアドレス'
+    = @user.email
+  .full_name
+    = '名前'
+    = @user.sur_name
+    = @user.fr_name
+  .full_name_yomi
+    = '名前(ふりがな)'
+    = @user.sur_name_yomi
+    = @user.first_name_yomi
+  .brthday
+    = '生年月日'
+    = @user.birthday_year
+    = @user.birthday_manth
+    = @user.birthday_day
+
+
+= form_for @user, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
+  = f.submit 'Send', class: 'submit-btn',method: :post
