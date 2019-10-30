@@ -40,7 +40,6 @@ class SignupController < ApplicationController
     session[:birthday_year] = user_params[:birthday_year]
     session[:birthday_manth] = user_params[:birthday_manth]
     session[:birthday_day] = user_params[:birthday_day]
-    binding.pry
     @user = User.new
   end
   def step3
