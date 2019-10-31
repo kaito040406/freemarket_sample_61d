@@ -163,8 +163,6 @@ li {
 }
 
 
-
-
 .icon-arrow-right:hover {
   background-color: #eee;
 }
@@ -178,12 +176,7 @@ li {
   font-weight: 600;
 }
 
-@media screen and (min-width: 1068px) {
-  .l-container {
-    margin: 40px auto 0;
-    width: 1020px;
-  }
-}
+
 
 @media screen and (min-width: 768px) {
   .l-container {
@@ -196,7 +189,7 @@ li {
   padding: 0 0 40px;
 }
 main {
-    display: block;
+  display: block;
 }
 
 @media screen and (min-width: 1068px) {
@@ -594,205 +587,6 @@ h2 {
 }
 
 
-/* footer */
-.jyXDlR {
-  width: 1440px;
-  height: 389px;
-  background-color: rgb(34, 34, 34);
-  color: rgb(255, 255, 255);
-  font-size: 12px;
-  padding: 0px 20px 10px;
-}
-@media (min-width: 1068px){
-  .drJXHf {
-  width: 1020px;
-  height: 296px;
-  margin: 0px auto;
-  }
-}
-.hHaGTu:first-child {
-  width: 207px;
-  height: 240px;
-  padding-left: 0px;
-}
-@media (min-width: 1068px){
-.hHaGTu {
-  width: auto;
-  padding: 0px 40px 0px 0px;
-  }
-}
-.hHaGTu {
-  display: inline-block;
-  margin-top: 18px;
-  vertical-align: top;
-  width: 250px;
-  padding: 0px 10px;
-}
-.cPzMyz {
-  font-size: 16px;
-}
-.common_fontFamily__3-3Si {
-  font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
-}
-.style_medium__1YL67 {
-  font-size: 17px;
-}
-.style_heading__3qSF6 {
-  font-weight: 600;
-  line-height: 1.4em;
-  margin: 0;
-  padding: 0;
-}
-h2 {
-  display: block;
-  font-size: 1.5em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-}
-.ewFVzB{height: 202px;
-}
-.cbYKEG {
-  line-height: 1.4em;
-  margin: 16px 0px 0px;
-}
-.iWAEfH {
-  color: rgb(255, 255, 255);
-  opacity: 0.7;
-}
-.icmRxI {
-  display: inline-block;
-  margin-top: 30px;
-}
-.iQCNqi {
-  max-width: 100%;
-  height: auto;
-  max-height: 100%;
-  width: 30px;
-  margin-right: 20px;
-}
-path[Attributes Style] {
-  fill: currentcolor;
-  d: path("M 6.343 15.969 c 7.61 0 11.773 -6.134 11.773 -11.444 c 0 -0.172 0 -0.345 -0.008 -0.517 a 8.303 8.303 0 0 0 2.066 -2.086 a 8.576 8.576 0 0 1 -2.38 0.635 A 4.07 4.07 0 0 0 19.616 0.329 a 8.377 8.377 0 0 1 -2.63 0.973 a 4.186 4.186 0 0 0 -3.019 -1.27 c -2.283 0 -4.14 1.803 -4.14 4.023 c 0 0.314 0.041 0.62 0.106 0.918 A 11.866 11.866 0 0 1 1.404 0.769 a 3.936 3.936 0 0 0 -0.557 2.023 c 0 1.396 0.735 2.628 1.84 3.35 a 4.278 4.278 0 0 1 -1.872 -0.503 v 0.055 c 0 1.945 1.428 3.577 3.317 3.945 c -0.347 0.094 -0.71 0.141 -1.09 0.141 c -0.266 0 -0.524 -0.023 -0.774 -0.07 c 0.524 1.6 2.057 2.76 3.865 2.792 a 8.452 8.452 0 0 1 -5.14 1.725 a 8.19 8.19 0 0 1 -0.985 -0.054 a 12.02 12.02 0 0 0 6.335 1.796");
-  fill-rule: evenodd;
-}
-.gJZiyP {
-  max-width: 100%;
-  height: auto;
-  max-height: 100%;
-  width: 26px;
-}
-
-path[Attributes Style] {
-  fill: currentcolor;
-  d: path("M 15.111 0 H 0.89 A 0.889 0.889 0 0 0 0 0.889 V 15.11 c 0 0.491 0.398 0.889 0.889 0.889 h 7.658 V 9.813 H 6.469 V 7.391 h 2.078 V 5.613 c 0 -2.066 1.262 -3.193 3.11 -3.193 c 0.623 -0.002 1.244 0.03 1.863 0.096 v 2.15 h -1.276 c -1.002 0 -1.197 0.478 -1.197 1.178 v 1.543 h 2.397 l -0.31 2.422 h -2.087 V 16 h 4.064 c 0.491 0 0.889 -0.398 0.889 -0.889 V 0.89 A 0.889 0.889 0 0 0 15.111 0 Z");
-  fill-rule: evenodd;
-}
-:not(svg) {
-  transform-origin: 0px 0px;
-}
-@media (min-width: 1068px){
-  .aWegH {
-    margin-top: 18px;
-    padding-right: 40px;
-    width: 43%;
-  }
-}
-@media (min-width: 1068px){
-  .aWegH {
-    width: auto;
-    padding: 0px 40px 0px 0px;
-  }
-}
-.aWegH {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0px;
-}
-.dzjMfv {
-  display: inline-block;
-  padding-left: 10px;
-  vertical-align: top;
-  width: 199px;
-}
-@media (min-width: 1068px){
-  .doTCXK {
-  margin-top: 18px;
-  margin-left: 10px;
-  width: auto;
-  }
-}
-@media (min-width: 1068px){
-  .doTCXK {
-  width: auto;
-  padding: 0px 40px 0px 0px;
-  }
-}
-.doTCXK {
-  display: inline-block;
-  vertical-align: top;
-  padding: 0px;
-  width: 112px;
-}
-@media (min-width: 1068px){
-  .hIUIIb {
-  display: block;
-  margin: 16px 0px 0px;
-  }
-}
-.hIUIIb {
-  color: rgb(255, 255, 255);
-  opacity: 0.7;
-  margin-right: 30px;
-}
-@media (min-width: 1068px){
-.igdlOb {
-  width: 1020px;
-  margin: 30px auto 20px;
-  }
-}
-@media (min-width: 768px){
-  .igdlOb {
-  margin: 55px auto 10px;
-  }
-}
-.igdlOb {
-  -webkit-box-align: center;
-  display: flex;
-  width: 1020px;
-  margin: 30px auto 20px;
-  align-items: center;
-}
-.hdALBW {
-  text-align: center;
-}
-.ioByYU {
-  height: 33px;
-  width: 124px;
-  margin-left: 30px;
-  text-align: left;
-}
-@media (min-width: 768px){
-  .exdDTv {
-  text-align: center;
-  }
-}
-.exdDTv {
-  padding-left: 15px;
-  width: 75%;
-}
-@media (min-width: 1068px){
-.fbxObv {
-  height: 390px;
-  background-size: auto;
-  }
-}
-.fbxObv {
-  position: relative;
-  background-size: cover;
-  background-image: url(https://web-jp-assets.mercdn.net/_next/static/images/top-banner-camp-4f3fd88….jpg);
-  background-position: center center;
-}
 
 .mypage-nav-list-item.active .icon-arrow-right {
   color: #333;
@@ -863,7 +657,6 @@ path[Attributes Style] {
 i[class^='icon-'], i[class*='icon-'] {
   display: inline-block;
   font-family: 'icon-font';
-  speak: none;
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
@@ -898,3 +691,5 @@ i[class^='icon-'], i[class*='icon-'] {
   width: 80px;
   height: 16px;
 }
+
+
