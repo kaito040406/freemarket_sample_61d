@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :prefecture
-  #DBのカラム名"categry", # %option{value: ""} \---    
+  belongs_to_active_hash :prefecture   
   enum categry:  { "\---": 0, #<-プレースホルダ、一個にしかつかえない
                 "レディース": 1,
                    "メンズ": 2, 

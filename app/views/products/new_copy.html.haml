@@ -35,13 +35,13 @@
             %span.must-filled-mark-t
               必須
           %div
-            %input.input-default{placeholder: "商品名（必須 40文字まで)", value: ""}/
+            =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
         .form-input-t
           %label
             商品の説明
             %span.must-filled-mark-t
               必須
-          %textarea.textarea-default{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"}
+          = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
       .form-sub-t.flexcontainer
         %h3.sub-title-t
           商品の詳細
@@ -107,7 +107,8 @@
                 .price-flexcontainer-T.price-input
                   ¥
                   %div
-                    %input.input-default{placeholder: "例）300", value: ""}/
+                    =f.text_field :price, placeholder: "例）300", class: "input-default"
+                    
             %li.flexcontainer
               %div
                 販売手数料 (10%)
