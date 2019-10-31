@@ -78,6 +78,7 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'devise'
 gem 'fog-aws'
+
 gem 'haml-rails'
 gem 'omniauth-rails_csrf_protection'#外部認証用のgem はせがわ
 gem 'omniauth-facebook'#facebookログインのgem はせがわ
@@ -85,6 +86,4 @@ gem 'omniauth-twitter'#twitterログインのgem はせがわ
 gem 'omniauth-google-oauth2'#グーグルログインのgem 長谷川
 gem 'dotenv-rails'#.env用のgem はせがわ
 gem 'haml-rails'#hamalのgem  長谷川
-
-
-
+gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
