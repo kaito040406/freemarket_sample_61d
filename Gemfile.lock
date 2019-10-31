@@ -151,6 +151,7 @@ GEM
     ipaddress (0.8.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    json (2.2.0)
     jwt (2.2.1)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -263,6 +264,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    recaptcha (5.2.1)
+      json
     regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -357,6 +360,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.2, >= 5.2.2.1)
+  recaptcha
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

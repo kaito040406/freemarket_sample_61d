@@ -1,4 +1,4 @@
-class SignupController < ApplicationController
+class SignupController < ApplicationController 
 
   def create
     @user = User.new(
@@ -29,6 +29,12 @@ class SignupController < ApplicationController
     @user = User.new
   end
   def step2
+    #if verify_recaptcha
+      #super
+    #else
+      #self.resource = resource_class.new
+      #respond_with_navigational(resource) { render :new }
+    #end
     session[:nick_name] = user_params[:nick_name]
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
