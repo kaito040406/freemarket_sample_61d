@@ -1,3 +1,695 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, 
+img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, 
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, 
+tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, 
+figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, 
+time, mark, audio, video {
+  vertical-align: baseline;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  font: inherit;
+}
+body {
+  position: relative;
+  height: 100%;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
+}
+body {
+  line-height: 1;
+}
+
+
+:root {
+  cursor: auto;
+}
+:root {
+  /* background-color: #fff; */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  cursor: default;
+  font: 66.66667% sans-serif;
+}
+html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  color: -internal-root-color;
+}
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+}
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+*, ::before, ::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+*, ::before, ::after {
+  border-style: solid;
+  border-width: 0;
+}
+::before, ::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+*, ::before, ::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+::selection {
+  color: currentColor;
+}
+::selection {
+  background-color: #b3d4fc;
+  color: #fff;
+  text-shadow: none;
+}
+
+
+
+
+.bread-bar {
+  position: relative;
+  border-top: 1px solid #eee;
+  background: #f5f5f5;
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  background: #fff;
+}
+
+@media screen and (min-width: 1068px) {
+  .bread-bar ul {
+    width: 1020px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bread-bar ul {
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 16px 0;
+    white-space: normal;
+  }
+}
+
+.bread-bar ul {
+  font-size: 0;
+  white-space: nowrap;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+nav ol, nav ul {
+  list-style: none;
+}
+ul, ol {
+  list-style: none;
+}
+
+@media screen and (min-width: 768px) {
+  .bread-bar li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.bread-bar li {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.bread-bar a {
+  color: #333;
+}
+a {
+  /* color: #0099e8; */
+  text-decoration: none;
+}
+a, area, button, input, label, select, textarea, [tabindex] {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+a {
+  text-decoration: none;
+}
+
+li {
+  text-align: -webkit-match-parent;
+}
+
+.bread-bar .icon-arrow-right {
+  margin: 0 8px;
+  font-size: 9px;
+  color: #888;
+}
+
+
+.icon-arrow-right:hover {
+  background-color: #eee;
+}
+
+.fa.icon-arrow-right:hover {
+  color: #333;
+  transform: translateX(5px);
+  transition: 0.3s;
+}
+.bread-bar li:last-child {
+  font-weight: 600;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .l-container {
+    width: 1020px;
+  }
+}
+
+.l-container {
+  margin: 40px auto 0;
+  padding: 0 0 40px;
+}
+main {
+  display: block;
+}
+
+@media screen and (min-width: 1068px) {
+  .l-content {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .l-content {
+    width: 700px;
+  }
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .mypage-user-icon {
+    height: 200px;
+  }
+}
+
+.mypage-user-icon {
+  position: relative;
+  padding: 20px;
+  background: url(/images/user.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.mypage-user-icon>a {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #333;
+}
+
+.mypage-user-icon figure {
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+img {
+  vertical-align: middle;
+}
+audio, canvas, iframe, img, svg, video {
+  vertical-align: middle;
+}
+
+.mypage-user-icon h2 {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+.bold {
+  font-weight: 600;
+}
+h2 {
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.mypage-number {
+  margin: 8px 0 0;
+  font-size: 0;
+}
+
+
+
+.mypage-number span {
+  margin: 0 0 0 8px;
+  font-size: 16px;
+}
+
+
+.mypage-number div+div {
+  margin: 0 0 0 16px;
+}
+.mypage-number div {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.mypage-tab-container-notification-todo {
+  margin: 0;
+  background: #fff;
+}
+
+.mypage-tabs, .listing-tabs, .review-history-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+}
+
+.mypage-tabs li.active, .listing-tabs li.active, .review-history-tabs li.active {
+  background: #fff;
+}
+.mypage-tabs li {
+  width: 50%;
+}
+.mypage-tabs li, .listing-tabs li, .review-history-tabs li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.mypage-tabs li.active a, .listing-tabs li.active a, .review-history-tabs li.active a {
+  border-top: 2px solid #ea352d;
+}
+.mypage-tabs a, .listing-tabs a, .review-history-tabs a {
+  position: relative;
+  display: block;
+  color: #333;
+  font-size: 16px;
+  line-height: 72px;
+}
+
+.mypage-tabs li {
+  width: 50%;
+}
+
+.tab-content .tab-pane.active {
+  display: block;
+}
+.tab-content .tab-pane {
+  display: none;
+}
+
+.mypage-item-list li.mypage-item-not-found {
+  border: 0;
+}
+.mypage-item-list li:first-child {
+  border-bottom: 1px solid #eee;
+}
+.mypage-item-list li:last-child {
+  border: 0;
+}
+.mypage-item-list li {
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+.mypage-item-not-found {
+  padding: 160px 0 60px;
+  background: url(/images/gray_icon.png);
+  background-position: center 40px;
+  background-size: 120px 85px;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+}
+
+
+.mypage-item-list li:first-child {
+  border-bottom: 1px solid #eee;
+}
+.mypage-item-list li {
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.mypage-item-link {
+  display: block;
+  min-height: 80px;
+  padding: 16px;
+  color: #333;
+}
+
+.mypage-item-link figure {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  width: 48px;
+  height: 48px;
+}
+
+.mypage-item-list img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+.lazyload, .lazyloading {
+  opacity: 0;
+}
+img {
+  vertical-align: middle;
+}
+
+.mypage-item-body {
+  margin: 0 40px 0 68px;
+}
+
+.mypage-item-text {
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  max-height: 4.4em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+.mypage-item-link time {
+  display: inline-block;
+  color: #888;
+}
+
+.mypage-item-link .icon-time {
+  margin: 0 8px 0 0;
+}
+
+.icon-time {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.mypage-item-link time span {
+  vertical-align: middle;
+}
+
+
+
+
+.mypage-item-list li:last-child {
+  border: 0;
+}
+
+
+.mypage-go-list {
+  padding: 16px;
+}
+
+.mypage-go-list a {
+  display: block;
+  height: 56px;
+  margin: 0 auto;
+  background: #eee;
+  color: #333;
+  line-height: 56px;
+  text-align: center;
+}
+
+/* right-contents */
+/* 購入した商品 */
+.mypage-tab-container-notification-todo {
+  margin: 0;
+  background: #fff;
+}
+
+.mypage-tabs, .listing-tabs, .review-history-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+}
+
+.mypage-tabs li.active, .listing-tabs li.active, .review-history-tabs li.active {
+  background: #fff;
+}
+.mypage-tabs li {
+  width: 50%;
+}
+.mypage-tabs li, .listing-tabs li, .review-history-tabs li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+
+.mypage-tabs li.active a, .listing-tabs li.active a, .review-history-tabs li.active a {
+  border-top: 2px solid #ea352d;
+}
+
+.mypage-tabs a, .listing-tabs a, .review-history-tabs a {
+  position: relative;
+  display: block;
+  color: #333;
+  font-size: 16px;
+  line-height: 72px;
+}
+
+
+.mypage-item-list li:first-child {
+  border-bottom: 1px solid #eee;
+}
+.mypage-item-list li:last-child {
+  border: 0;
+}
+
+
+
+
+.mypage-tab-container {
+  margin: 40px 0 0;
+  background: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .mypage-tab-head {
+    padding: 0 16px;
+  }
+}
+
+.mypage-tab-head {
+    padding: 0 16px;
+    background: #fafafa;
+    font-size: 16px;
+    line-height: 72px;
+}
+h2 {
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+.mypage-tabs, .listing-tabs, .review-history-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0;
+}
+
+.mypage-tabs li.active, .listing-tabs li.active, .review-history-tabs li.active {
+  background: #fff;
+}
+.mypage-tabs li {
+  width: 50%;
+}
+.mypage-tabs li, .listing-tabs li, .review-history-tabs li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+/* left-content */
+@media screen and (min-width: 1068px) {
+  .l-side {
+    float: left;
+    width: 280px;
+    margin: 0 40px 0 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .l-side {
+    width: 700px;
+  }
+}
+
+.l-side {
+    width: 280px;
+    margin: 0 0 40px 0;
+}
+
+.mypage-nav-list li:first-child {
+  border: 0;
+}
+.mypage-nav-list li {
+  border-top: 1px solid #eee;
+}
+
+@media screen and (min-width: 768px) {
+  .mypage-nav-head {
+    margin: 40px 0 0;
+  }
+}
+
+.mypage-nav-head {
+    font-size: 16px;
+    color: #333333;
+}
+
+.mypage-nav-head+.mypage-nav-list {
+  margin: 8px 0 0;
+}
+
+
+
+.mypage-nav-list-item.active .icon-arrow-right {
+  color: #333;
+}
+
+
+.mypage-nav-list-item .icon-arrow-right {
+  display: block;
+  font-weight: 600;
+  position: relative;
+}
+
+@media (min-width: 768px){
+  .mypage-nav-list-item .icon-arrow-right::before {
+  height: 10px;
+  width: 10px;
+  line-height: 48px; 
+  }
+}
+.mypage-nav-list-item .icon-arrow-right::before {
+  bottom: 0px;
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 0px;
+  transform: rotate(-45deg);
+  border-bottom: 2px solid #ccc;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 2px solid #ccc;
+  margin: -10px 10px;
+  }
+
+.mypage-nav-list-item.active .icon-arrow-right::before {
+  bottom: 0px;
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 0px;
+  transform: rotate(-45deg);
+  border-bottom: 2px solid #333;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 2px solid #333;
+  margin: -10px 10px;
+  }
+
+.mypage-nav-list-item.active {
+  background: #eee;
+  font-weight: 600;
+}
+
+.mypage-nav-list-item {
+  position: relative;
+  display: block;
+  min-height: 48px;
+  padding: 16px;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+.bread-bar .wataru {
+  margin: 0 8px;
+  font-size: 9px;
+  color: #888;
+}
+i[class^='icon-'], i[class*='icon-'] {
+  display: inline-block;
+  font-family: 'icon-font';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wataru {
+  bottom: 0px;
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 0px;
+  transform: rotate(-45deg);
+  border-bottom: 2px solid #888;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 2px solid #888;
+}
+
+.wataru {
+  position: absolute;
+  top: 24px;
+  left: 265px;
+  display: block;
+  height: 7px;
+  width: 7px;
+}
+.watarukiyama {
+  width: 80px;
+  height: 16px;
+}
+
+
