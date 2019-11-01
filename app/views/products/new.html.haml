@@ -5,7 +5,7 @@
         =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
   %main.product-new-main-T
     %h2.product-new-formtitle-T
-      商品の情報を入力_コピーです
+      商品の情報を入力
     =form_for @product, html: { class: "product-new-form"} do |f|
       .img-uploader-box
         %h3.img-uploader-head
@@ -20,7 +20,7 @@
               %ul
           .img-uploader-drop-box.have-item-0
             ???
-            %input.img-uploader-drop-file{multiple: "multiple", name: "image1", style: "display: none;", type: "file"}/
+            %input.img-uploader-drop-file{multiple: true, name: "image1", style: "display: none;", type: "file"}/
             %pre.visible-pc
               :preserve
       
@@ -133,7 +133,7 @@
             また、出品をもちまして
             =link_to "加盟店規約", "/jp/seller_terms/"
             に同意したことになります。
-        %button.button-t.button-submit-t{type: "submit", name: "処理で必要なら"}
+        %button.button-t.button-submit-t{type: "submit"}
           出品する
         =link_to "もどる", "xxx_path", class: "button-t button-cancel-t"
   %footer.product-new-footer-T
