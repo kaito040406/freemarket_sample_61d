@@ -20,7 +20,8 @@
               %ul
           .img-uploader-drop-box.have-item-0
             ???
-            %input.img-uploader-drop-file{multiple: true, name: "image1",  type: "file"}/
+            -# %input.img-uploader-drop-file{multiple: true, name: "product_image",  type: "file"}/
+            =f.file_field :product_image, class: "img-uploader-drop-file" #,multiple: true
             %pre.visible-pc
               :preserve
       
