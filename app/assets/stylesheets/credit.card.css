@@ -1,0 +1,195 @@
+/* credit card */
+.h-container {
+  width: 1020px;
+  margin: 40px auto 0;
+  padding: 0 0 40px;
+}
+
+main {
+  display: block;
+}
+
+.h-content {
+  float: right;
+  width: 700px;
+}
+
+.h-chapter-container:first-child {
+  margin: 0;
+}
+
+.h-chapter-container {
+  margin: 40px 0 0;
+  background: #fff;
+}
+
+.h-chapter-zilyouhou {
+  font-size: 24px;
+  padding: 8px 24px;
+  padding-top: 15px;
+  border-bottom: 1px solid #f5f5f5;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.registratration-form {
+  padding: 40px 40px 64px;
+}
+
+.h-single-content {
+  max-width: 343px;
+  margin: 0 auto;
+  height: 407px;
+}
+
+.h-form-group {
+  margin: 0;
+}
+
+.form-group label {
+  font-weight: 600;
+}
+
+label {
+  display: inline-block;
+}
+
+.h-form-require {
+  background: #ea352d;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.h-input-default {
+  width: 100%;
+  margin: 8px 0 0;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.has-error-text {
+  color: #ea352d;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.h-signup-card-list {
+  margin: 8px 0 0;
+  font-size: 0;
+}
+
+.h-signup-card-list li:first-child {
+  margin: 0;
+}
+
+.h-signup-card-list li {
+  display: inline-block;
+  /* margin: 0 0 0 8px; */
+  vertical-align: middle;
+}
+
+.h-form-group {
+  margin-top: 32px;
+  margin: 24px 0 0;
+}
+
+.h-select-wrap {
+  display: inline-block;
+  width: calc(50% - 2px);
+  margin: 8px 0 0;
+  position: relative;
+  background: #fff;
+}
+
+.h-select-default {
+  width: calc(100% - 38px);
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.icon-arrow-bottom {
+  font-size: 10px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  top: 3px;
+  pointer-events: none;
+  right: 16px;
+  z-index: 2;
+  color: #888;
+  transform: translate(0, -50%);
+}
+
+.icon-arrow-bottom::before {
+  content: '\e001';
+}
+
+.signup-seqcode {
+  position: relative;
+  margin: 8px 0 0;
+}
+
+.signup-seqcode-text {
+  text-align: right;
+  color: #0099e8;
+}
+
+.form-question {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0099e8;
+  color: #fff;
+  line-height: 12px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.signup-seqcode-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 28px;
+  z-index: 1;
+  padding: 16px;
+  border-radius: 6px;
+  background: #eee;
+  color: #333;
+  line-height: 1.5;
+  text-align: center;
+  transition: all ease-out .3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.btn-default {
+  margin: 24px 0 0;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  text-align: center;
+}
