@@ -2,7 +2,7 @@
   %ul.mypage-nav-list 
     %li
       .mypage-nav-list-item.active
-        =link_to "マイページ", ""
+        =link_to "マイページ", users_path
         %i.icon-arrow-right
     %li
       .mypage-nav-list-item
@@ -70,7 +70,7 @@
   %ul.mypage-nav-list
     %li
       .mypage-nav-list-item
-        =link_to "プロフィール", "/users/show"
+        -# =link_to "プロフィール", profile_users_path
         %i.icon-arrow-right
     %li
       .mypage-nav-list-item
@@ -96,3 +96,4 @@
       .mypage-nav-list-item
         =link_to "ログアウト", destroy_user_session_path, method: :delete 
         %i.icon-arrow-righ
+
