@@ -149,35 +149,35 @@ describe User do
       expect(user.errors[:certification]).to include("is not a number")
     end
 
-    #郵便番号が空だと登録できない
+    #22郵便番号が空だと登録できない
     it "is invalid without a address_number" do
       user = build(:user, address_number: nil)
       user.valid?
       expect(user.errors[:address_number]).to include("can't be blank")
     end
 
-    #郵便番号が形式外だと登録できない
+    #23郵便番号が形式外だと登録できない
     it "is valid if out of format" do
       user = build(:user, address_number: "5330022")
       user.valid?
       expect(user.errors[:address_number]).to include("is invalid")
     end
 
-    #県名が空だと登録できない
+    #24県名が空だと登録できない
     it "is invalid without a address_ken" do
       user = build(:user, address_ken: nil)
       user.valid?
       expect(user.errors[:address_ken]).to include("can't be blank")
     end
 
-    #市町村が空だと登録できない
+    #25市町村が空だと登録できない
     it "is invalid without a address_city" do
       user = build(:user, address_city: nil)
       user.valid?
       expect(user.errors[:address_city]).to include("can't be blank")
     end
 
-    #番地が空だと登録できない
+    #26番地が空だと登録できない
     it "is invalid without a address_banch" do
       user = build(:user, address_banch: nil)
       user.valid?
