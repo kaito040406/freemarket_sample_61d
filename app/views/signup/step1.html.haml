@@ -3,13 +3,5 @@
   = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
   = f.password_field :password, placeholder: '7文字以上'
   = f.password_field :password_confirmation, placeholder: '7文字以上'
-  = f.text_field :sur_name, placeholder: '名字を入力'
-  = f.text_field :fr_name, placeholder: '下の名前を入力'
-  = f.text_field :sur_name_yomi, placeholder: '名字をふりがな'
-  = f.text_field :first_name_yomi, placeholder: '下の名前のふりがな'
-  = f.text_field :birthday_year, placeholder: '年'
-  = f.text_field :birthday_manth, placeholder: '月'
-  = f.text_field :birthday_day, placeholder: '日'
   = f.submit 'Send', class: 'submit-btn',method: :post
-  = recaptcha_tags
-  
+  = recaptcha_tags 

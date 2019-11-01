@@ -17,6 +17,11 @@ class AddColumnsToUser < ActiveRecord::Migration[5.2]
     add_column :users,  :account,         :integer
     add_column :users,  :sales_money,     :integer 
     add_column :users,  :point,           :integer
-    add_column :users,  :icon_image,      :string 
+    add_column :users,  :icon_image,      :string
+    add_column :users,  :address_number,   :string, null: false, default: nil
+    add_column :users,  :address_ken,      :string, null: false, default: nil
+    add_column :users,  :address_city,     :string, null: false, default: nil
+    add_column :users,  :address_banch,    :string, null: false, default: nil
+    add_column :users,  :building_name,    :string  
   end
 end

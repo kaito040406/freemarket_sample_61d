@@ -71,6 +71,12 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+#----テスト用に長谷川が追加10月31日--------
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'faker'
+#----ここまで---------------------------
 end
 
 gem 'pry-rails'
@@ -85,6 +91,6 @@ gem 'omniauth-twitter'#twitterログインのgem はせがわ
 gem 'omniauth-google-oauth2'#グーグルログインのgem 長谷川
 gem 'dotenv-rails'#.env用のgem はせがわ
 gem 'haml-rails'#hamalのgem  長谷川
-gem 'recaptcha', require: "recaptcha/rails"
+gem 'recaptcha', require: "recaptcha/rails"#ロボットではない認証用のgem 長谷川
 
 

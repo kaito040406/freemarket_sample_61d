@@ -1,24 +1,15 @@
-- if @user.present?
-  .nick_name
-    = 'ニックネーム'
-    = @user.nick_name
-  .mail
-    = 'メールアドレス'
-    = @user.email
-  .full_name
-    = '名前'
-    = @user.sur_name
-    = @user.fr_name
-  .full_name_yomi
-    = '名前(ふりがな)'
-    = @user.sur_name_yomi
-    = @user.first_name_yomi
-  .brthday
-    = '生年月日'
-    = @user.birthday_year
-    = @user.birthday_manth
-    = @user.birthday_day
-
-
-= form_for @user, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
+= form_for @user, url: step5_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+  = f.text_field :sur_name, placeholder: '名字を入力'
+  = f.text_field :fr_name, placeholder: '下の名前を入力'
+  = f.text_field :sur_name_yomi, placeholder: '名字をふりがな'
+  = f.text_field :first_name_yomi, placeholder: '下の名前のふりがな'
+  = f.text_field :birthday_year, placeholder: '年'
+  = f.text_field :birthday_manth, placeholder: '月'
+  = f.text_field :birthday_day, placeholder: '日'
+  = f.text_field :address_number, placeholder: '郵便番号'
+  = f.text_field :address_ken, placeholder: '都道府県'
+  = f.text_field :address_city, placeholder: '市町村'
+  = f.text_field :address_banch, placeholder: '番地'
+  = f.text_field :building_name, placeholder: '建物名'
   = f.submit 'Send', class: 'submit-btn',method: :post
+  
