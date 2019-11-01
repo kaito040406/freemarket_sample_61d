@@ -20,28 +20,33 @@ crumb :profile do
   parent :mypage
 end
 
+crumb :card do
+  link "支払い方法", card_users_path
+  parent :mypage
+end
 
-# crumb :projects do
-#   link "Projects", projects_path
-# end
+crumb :logout do
+  link "ログアウト", logout_users_path
+end
 
-# crumb :project do |project|
-#   link project.name, project_path(project)
-#   parent :projects
-# end
+crumb :categories do |category|
+  link category.name,category_path
+  parent :categories
+end
 
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
+crumb :brand do |brand|
+  link "ブランド一覧"
+end
 
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
+crumb :brand do |brund|
+  link brand.name, brand_path
+  parent :brands
+end
 
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+
+
+
+
+
+
+
