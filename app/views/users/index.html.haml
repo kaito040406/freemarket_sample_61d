@@ -1,16 +1,9 @@
-- breadcrumb :mypage, @mypage
+- breadcrumb :mypage
 
 .default-container
   %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
     = render 'shared/header'
-    %nav.bread-bar
-      %ul
-        %li.watarukiyama{itemscope: "", itemtype: "http//data-vocabulary.org/Breadcrumb"}
-          =link_to "", itemprop: ""
-          %span{itemprop: "title"} メルカリ
-          %i.wataru
-        %li{itemscope: "", itemtype: "http//data-vocabulary.org/Breadcrumb"}
-        %span{itemprop: "title"} マイページ
+    = render 'shared/bread_bar'
   %main.l-container.clearfix
     .l-content
       %section.mypage-user-icon
@@ -31,13 +24,6 @@
           %li.active
             %h3
               = link_to "お知らせ", "#mypage-tab-notification"
-          %li
-            %h3
-              = link_to "やることリスト", "#mypage-tab-todo"
-        .tab-content
-          %ul#mypage-tab-notification.mypage-item-list.tab-pane.active
-            %li.mypage-item-not-found.bold お知らせの商品がありません
-          %ul#mypage-tab-todo.mypage-item-list.tab-pane
             %li
               =link_to '.mypage-item-link', "https://www.mercari.com/jp/help_center/article/759/"
             %figure

@@ -19,4 +19,10 @@ Rails.application.routes.draw do
     end
   end
   #ここまで長谷川記入
+
+  resources "users",only: [:index,:profile], path: 'mypage' do
+    collection do
+      get 'profile'
+    end
+  end
 end
