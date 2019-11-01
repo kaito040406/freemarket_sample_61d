@@ -94,5 +94,6 @@
         %i.icon-arrow-right
     %li
       .mypage-nav-list-item
-        =link_to "ログアウト", ""
-        %i.icon-arrow-right
+        =link_to "ログアウト", destroy_user_session_path, method: :delete 
+        %i.icon-arrow-righ
+
