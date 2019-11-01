@@ -47,10 +47,13 @@
             .sc-hXRMBi.kmSGSf
               =image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", class: "kmSGSf"
             = link_to "マイページ","/users"
-        .log_out1
-          = link_to "ログアウト", destroy_user_session_path, method: :delete 
     -else
-      .log_in1
-        = link_to "ログイン", new_user_session_path, method: :get
-      .log_in1
-        = link_to "新規登録", step1_signup_index_path, method: :get
+      %ul.sc-cJSrbW_k
+        %ul.sc-ksYbfQ_k
+          .new_user_k
+            .link_box_1k
+              = link_to "新規会員登録", step1_signup_index_path, method: :get
+        %ul.sc-frDJqD_k
+          .log_in_k
+            .link_box_2k
+              = link_to "ログイン", new_user_session_path, method: :get
