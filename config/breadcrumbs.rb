@@ -14,14 +14,11 @@ crumb :mypage do
   link "マイページ", users_path
 end
 
-crumb :show_profile do |user|
-  link user.nickname, show_profile_users_path
-end
 
-# crumb :profile do
-#   link "プロフィール", profile_users_path
-#   parent :mypage
-# end
+crumb :profile do
+  link "プロフィール", profile_users_path
+  parent :mypage
+end
 
 
 # crumb :projects do
