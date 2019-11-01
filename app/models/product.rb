@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  has_many :product_images
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture   
 
