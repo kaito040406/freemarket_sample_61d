@@ -105,10 +105,18 @@ ActiveRecord::Schema.define(version: 2019_10_28_040143) do
     t.string "introduction"
     t.date "birthday", null: false
     t.string "tel_number", null: false
-    t.integer "account", null: false
-    t.integer "sales_money", null: false
-    t.integer "point", null: false
+
+    t.string "certification", null: false
+    t.integer "account"
+    t.integer "sales_money"
+    t.integer "point"
+
     t.string "icon_image"
+    t.string "address_number", null: false
+    t.string "address_ken", null: false
+    t.string "address_city", null: false
+    t.string "address_banch", null: false
+    t.string "building_name"
     t.string "uid"
     t.string "provider"
     t.string "fname"
