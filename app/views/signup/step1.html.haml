@@ -1,0 +1,7 @@
+= form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+  = f.text_field :nick_name, placeholder: 'ニックネーム'
+  = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
+  = f.password_field :password, placeholder: '7文字以上'
+  = f.password_field :password_confirmation, placeholder: '7文字以上'
+  = f.submit 'Send', class: 'submit-btn',method: :post
+  = recaptcha_tags 

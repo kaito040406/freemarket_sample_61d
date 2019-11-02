@@ -71,6 +71,12 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+#----テスト用に長谷川が追加10月31日--------
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'faker'
+#----ここまで---------------------------
 end
 
 gem 'pry-rails'
@@ -79,7 +85,7 @@ gem 'kaminari'
 gem 'devise'
 gem 'fog-aws'
 
-gem 'haml-rails'
+
 gem 'omniauth-rails_csrf_protection'#外部認証用のgem はせがわ
 gem 'omniauth-facebook'#facebookログインのgem はせがわ
 gem 'omniauth-twitter'#twitterログインのgem はせがわ
@@ -89,3 +95,14 @@ gem 'haml-rails'#hamalのgem  長谷川
 gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
 gem 'carrierwave' #画像アップロードに使用 中島
 gem 'mini_magick' #carrierwaveとセットで画像の処理に使用 中島
+
+gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
+gem 'gretel'#パンくずのgem 木山
+
+gem 'recaptcha', require: "recaptcha/rails"#ロボットではない認証用のgem 長谷川
+
+gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
+
+# クレジットカード登録用 平田 11/2
+gem 'payjp'
+
