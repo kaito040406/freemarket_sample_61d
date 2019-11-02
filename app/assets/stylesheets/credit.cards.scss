@@ -1,17 +1,24 @@
 /* credit card */
-.h-container {
-  width: 1020px;
-  margin: 40px auto 0;
-  padding: 0 0 40px;
+.credit-default{
+  width: 1440px;
+  height: 2100px;
 }
 
-main {
+.credit-container.clearfix{
+  margin: 90px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+  height: 1292px;
+}
+
+main{
   display: block;
 }
 
-.h-content {
+.h-credit {
   float: right;
   width: 700px;
+  height: 562px;
 }
 
 .h-chapter-container:first-child {
