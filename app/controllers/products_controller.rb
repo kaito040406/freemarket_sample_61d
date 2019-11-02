@@ -8,28 +8,28 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # @product = Product.new(product_params)
-    # if @product.save
+    @product = Product.new(product_params)
+    if @product.save
       @product_image = ProductImage.new(product_image_params)
       if @product_image.save
       else
-        # @product.delete
+        @product.delete
       end
-    # else
-
-    # end
+    else
+      #
+    end
     render :new
   end
 
   private
 
-  # def product_params
-  #   params[:product][:seller_id] = 1
-  #   params[:product][:size] = 1
-  #   params[:product][:delivery_method] = 1
-  #   params[:product][:date] = Date.current
-  #   params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :extimated_delivery_date, :price)
-  # end
+  def product_params
+    params[:product][:seller_id] = 1
+    params[:product][:size] = 1
+    params[:product][:delivery_method] = 1
+    params[:product][:date] = Date.current
+    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :extimated_delivery_date, :price)
+  end
 
   def product_image_params
     params[:count]= 1
