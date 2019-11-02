@@ -100,4 +100,6 @@ gem 'recaptcha', require: "recaptcha/rails"#ロボットではない認証用の
 
 gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
 
+# クレジットカード登録用 平田 11/2
+gem 'payjp'
 

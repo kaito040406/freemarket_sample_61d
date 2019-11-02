@@ -27,4 +27,4 @@
 /config/master.key
 vendor/*
 config/secrets.yml
-/.env
+.env
