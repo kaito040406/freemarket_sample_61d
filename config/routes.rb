@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   #ここから長谷川記入
   resources :signup do
     collection do
+      get 'sgin_in_select'
       get 'step1'
       get 'step2'
       get 'step3'
