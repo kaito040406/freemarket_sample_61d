@@ -35,7 +35,6 @@ class ProductsController < ApplicationController
     params[:count]= 1
     column_product_image = params[:product][:product_image]
     kaerichi = params.permit(:count).merge(product_id: 2, product_image: column_product_image) #productが保存されそのidができた後、それを呼び出さなければならない
-    binding.pry
     return kaerichi
   end
 end
