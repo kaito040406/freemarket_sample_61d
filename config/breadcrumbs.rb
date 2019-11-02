@@ -13,11 +13,3 @@ crumb :profile do
   parent :mypage
 end
 
-
-
-
-
-
-
-
-
