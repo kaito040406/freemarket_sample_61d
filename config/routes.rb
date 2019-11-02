@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources "users",only: [:index,:profile], path: 'mypage' do
     collection do
       get 'profile'
+      get 'identification'
     end
   end
 end

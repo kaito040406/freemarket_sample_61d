@@ -10,5 +10,8 @@ class UsersController < ApplicationController
   def profile
   end
 
+  def identification
+    @data = Prefecture.all
+  end
   
 end

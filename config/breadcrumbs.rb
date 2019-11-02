@@ -13,3 +13,8 @@ crumb :profile do
   parent :mypage
 end
 
+crumb :identification do
+  link "本人情報", identification_users_path
+  parent :mypage
+end
+

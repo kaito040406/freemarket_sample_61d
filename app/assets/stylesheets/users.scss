@@ -103,17 +103,19 @@ li {
 @media screen and (min-width: 768px) {
   .l-container {
     width: 1020px;
-    height: 164vh;
   }
 }
 
 .l-container {
   margin: 89px auto 0;
   padding: 0 0 40px;
+  height: 1292px;
 }
 main {
   display: block;
 }
+
+
 
 @media screen and (min-width: 1068px) {
   .l-content {
