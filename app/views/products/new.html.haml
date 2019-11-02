@@ -5,7 +5,7 @@
         =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
   %main.product-new-main-T
     %h2.product-new-formtitle-T
-      商品の情報を入力_コピーです
+      商品の情報を入力
     =form_for @product, html: { class: "product-new-form"} do |f|
       .img-uploader-box
         %h3.img-uploader-head
@@ -20,7 +20,7 @@
               %ul
           .img-uploader-drop-box.have-item-0
             ???
-            %input.img-uploader-drop-file{multiple: "multiple", name: "image1", style: "display: none;", type: "file"}/
+            =f.file_field :product_image, class: "img-uploader-drop-file" #,multiple: true
             %pre.visible-pc
               :preserve
       
@@ -54,7 +54,7 @@
             %div
               .select-wrap
                 %i.icon-arrow-bottom
-                = f.select :categry, Product.categries.keys.to_a, {}, class: "select-default"
+                = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
               商品の状態
@@ -62,7 +62,7 @@
                 必須
             .select-wrap
               %i.icon-arrow-bottom
-              = f.select :status, Product.statuses.keys.to_a, {}, class: "select-default"
+              = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t
           配送について
@@ -75,7 +75,7 @@
                 必須
             .select-wrap
               %i.icon-arrow-bottom
-              = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {}, class: "select-default"
+              = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
               発送元の地域
@@ -83,7 +83,7 @@
                 必須
             .select-wrap
               %i.icon-arrow-bottom
-              = f.collection_select :delivery_from, Prefecture.all, :id, :name, {}, class: "select-default"
+              = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
               発送までの日数
@@ -91,7 +91,7 @@
                 必須
             .select-wrap
               %i.icon-arrow-bottom
-              = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {}, class: "select-default"
+              = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t
           販売価格(300〜9,999,999)
@@ -133,7 +133,7 @@
             また、出品をもちまして
             =link_to "加盟店規約", "/jp/seller_terms/"
             に同意したことになります。
-        %button.button-t.button-submit-t{type: "submit", name: "処理で必要なら"}
+        %button.button-t.button-submit-t{type: "submit"}
           出品する
         =link_to "もどる", "xxx_path", class: "button-t button-cancel-t"
   %footer.product-new-footer-T
