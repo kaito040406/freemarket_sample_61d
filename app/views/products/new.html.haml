@@ -7,34 +7,55 @@
     %h2.product-new-formtitle-T
       商品の情報を入力
     =form_for @product, html: { class: "product-new-form"} do |f|
-      .img-uploader-box
-        %h3.img-uploader-head
-          出品画像
-          %span.must-filled-mark-t
-            必須
-        %p
-          最大10枚までアップロードできます
-        .dropbox-container.flexcontainer
-          .img-uploader-container
-            .img-uploader.img-uploader-drop-box
-              ???
-              =f.file_field :product_image[0] #, multiple: true
-              =f.file_field :product_image[1] #, multiple: true
-              =f.file_field :product_image[2] #, multiple: true
-              =f.file_field :product_image[3] #, multiple: true
-              =f.file_field :product_image[4] #, multiple: true
-              =f.file_field :product_image[5] #, multiple: true
-              =f.file_field :product_image[6] #, multiple: true
-              =f.file_field :product_image[7] #, multiple: true
-              =f.file_field :product_image[8] #, multiple: true
-              =f.file_field :product_image[9] #, multiple: true
-              %pre.visible-pc
-                :preserve
+      =f.fields_for :product_images do |i|
+        .img-uploader-box
+          %h3.img-uploader-head
+            出品画像
+            %span.must-filled-mark-t
+              必須
+          %p
+            最大10枚までアップロードできます
+          .dropbox-container.flexcontainer
+            .img-uploader-container
+              .img-uploader.img-uploader-drop-box
+                ???
+                =i.file_field :product_image #まず要素一個の配列としてレコード処理できるようにしたい(増減編集はJSでつけるとする
+                %pre.visible-pc
+                  :preserve
+          
+          
+                    ドラッグアンドドロップ　　　　　　　
+                    またはクリックしてファイルをアップロード　　　　　　　
+                %i.icon-camera
+
+      -# .img-uploader-box
+      -#   %h3.img-uploader-head
+      -#     出品画像
+      -#     %span.must-filled-mark-t
+      -#       必須
+      -#   %p
+      -#     最大10枚までアップロードできます
+      -#   .dropbox-container.flexcontainer
+      -#     .img-uploader-container
+      -#       .img-uploader.img-uploader-drop-box
+      -#         ???
+      -#         =f.file_field :product_image[0] #, multiple: true
+      -#         =f.file_field :product_image[1] #, multiple: true
+      -#         =f.file_field :product_image[2] #, multiple: true
+      -#         =f.file_field :product_image[3] #, multiple: true
+      -#         =f.file_field :product_image[4] #, multiple: true
+      -#         =f.file_field :product_image[5] #, multiple: true
+      -#         =f.file_field :product_image[6] #, multiple: true
+      -#         =f.file_field :product_image[7] #, multiple: true
+      -#         =f.file_field :product_image[8] #, multiple: true
+      -#         =f.file_field :product_image[9] #, multiple: true
+      -#         %pre.visible-pc
+      -#           :preserve
         
         
-                  ドラッグアンドドロップ　　　　　　　
-                  またはクリックしてファイルをアップロード　　　　　　　
-              %i.icon-camera
+      -#             ドラッグアンドドロップ　　　　　　　
+      -#             またはクリックしてファイルをアップロード　　　　　　　
+      -#         %i.icon-camera
       .form-sub-t
         .form-input-t
           %label
