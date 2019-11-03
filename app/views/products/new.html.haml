@@ -16,27 +16,25 @@
           最大10枚までアップロードできます
         .dropbox-container.flexcontainer
           .img-uploader-container
-            .img-uploader
-              %ul
-          .img-uploader-drop-box
-            ???
-            =f.file_field :product_image[0], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[1], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[2], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[3], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[4], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[5], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[6], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[7], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[8], class: "img-uploader-drop-file"#, multiple: true
-            =f.file_field :product_image[9], class: "img-uploader-drop-file"#, multiple: true
-            %pre.visible-pc
-              :preserve
-      
-      
-                ドラッグアンドドロップ　　　　　　　
-                またはクリックしてファイルをアップロード　　　　　　　
-            %i.icon-camera
+            .img-uploader.img-uploader-drop-box
+              ???
+              =f.file_field :product_image[0] #, multiple: true
+              =f.file_field :product_image[1] #, multiple: true
+              =f.file_field :product_image[2] #, multiple: true
+              =f.file_field :product_image[3] #, multiple: true
+              =f.file_field :product_image[4] #, multiple: true
+              =f.file_field :product_image[5] #, multiple: true
+              =f.file_field :product_image[6] #, multiple: true
+              =f.file_field :product_image[7] #, multiple: true
+              =f.file_field :product_image[8] #, multiple: true
+              =f.file_field :product_image[9] #, multiple: true
+              %pre.visible-pc
+                :preserve
+        
+        
+                  ドラッグアンドドロップ　　　　　　　
+                  またはクリックしてファイルをアップロード　　　　　　　
+              %i.icon-camera
       .form-sub-t
         .form-input-t
           %label
