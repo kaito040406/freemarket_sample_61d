@@ -1,25 +1,45 @@
 %div
-  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
-    = render 'shared/header'
-    .sc-iGrrsa.bkYzxq
-      .sc-bmyXtO.kuWFUJ
-        .sc-exkUMo.fpALyF
-          =link_to "","https://www.mercari.com/jp/featured/camp/"
-          .ashhsL
-            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/featured/camp/index/index_keyvisual.png?1248199994", alt: "", class:"ashhsL"
-    .sc-drKuOJ.ibydfh
-      %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
-      .sc-cmjSyW.hTgxLd
-        %ul.sc-sdtwF.cmQcPI
-          %li.sc-iYUSvU.gUHLnE
-            .sc-cHSUfg.sc-cTjmhe.emrFJX
-              = link_to "トップス",""
-    .sc-gkFcWv.lcfgps
-      .sc-hUfwpO.kyoAKq
-        .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-          %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 新着アイテム
-          .sc-dyGzUR.kfbxDu
-            = link_to"もっと見る",""
+  %div.sc-TFwJa.wYTWu
+    %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+      = render 'shared/header'
+    .main-top-content
+      .top-content
+        -# js対応
+        %div.slick
+          %div
+            =link_to "https://www.mercari.com/jp/featured/camp/" do
+              =image_tag "/images/banner-camp.png", alt: "mercari", class:"slick.first"
+          %div
+            .sc-dliRfk.lnMXqm
+              .sc-iqzUVk.jAEZMX
+                =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png", alt: "", class: "slick.second", width: "440px", height: "390px"
+              .sc-qrIAp.PkUrY
+                .sc-jtggT.bqsQJl
+                  スマホでかんたん
+                  %br
+                  フリマアプリ
+                  %p.sc-ebFjAB.SGfox
+                    メルカリはスマホカメラからすぐに出品できる
+                    %br
+                    購入時も安心な独自システムのアプリです
+                  %div.sc-iGrrsa.heyozC
+                    =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8" do
+                      =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg", alt: "", class: "gxiFBJ"
+                    =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
+                      =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg", alt: "", class: "jcELSQ"
+        .sc-drKuOJ.ibydfh
+          %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
+          .sc-cmjSyW.hTgxLd
+            %ul.sc-sdtwF.cmQcPI
+              %li.sc-iYUSvU.gUHLnE
+                .sc-cHSUfg.sc-cTjmhe.emrFJX
+                  = link_to "トップス",""
+        .sc-gkFcWv.lcfgps
+          .sc-hUfwpO.kyoAKq
+            .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+              %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 新着アイテム
+              .sc-dyGzUR.kfbxDu
+                = link_to"もっと見る",""
 
         -# 出品ボタン
     %exhibit.sc-bHwgHz.eUokWJ

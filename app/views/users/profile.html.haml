@@ -1,0 +1,25 @@
+-breadcrumb :profile
+
+.default-container
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    = render 'shared/header'
+    = render 'shared/bread_bar'
+    %main.h-container.clearfix
+      .h-content
+        %section.h-chapter-container
+          %h2.h-chapter-head プロフィール
+          %form{action: "https://wwww.mercari.com/jp/mypager/profile/", method: "POST"}
+            %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
+            .setting-profile-icon
+              .test
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png",size: '60x60'
+              %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: ""}/
+            .setting-profile-content
+              %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+              %input{name: "after_save_callback", type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/"}/
+              %button.btn-default.btn-red{type: "submit"} 変更する
+              %form
+      .l-side
+        = render 'shared/side_bar'
+    %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+      =render 'shared/footer'

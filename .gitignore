@@ -27,4 +27,6 @@
 /config/master.key
 vendor/*
 config/secrets.yml
-/.env
+# Ignore carriarwave images
+public/uploads/*
+.env
