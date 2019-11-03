@@ -97,11 +97,11 @@
                     生年月日
                   .form-require_name_yomi_k
                     必須  
-                = f.select :birthday_year, [['--', nil], ['1993', '1993'], ['1992', '1992']]
+                = f.select :birthday_year,["--"], {},{class: "birthday_year", id:"user_birthday_year"}
                 年
-                = f.select :birthday_manth, [['--', nil], ['2', '2'], ['3', '3']]
+                = f.select :birthday_manth, ["--"], {},{class: "birthday_manth", id:"user_birthday_manth"}
                 月
-                = f.select :birthday_day, [['--', nil], ['5', '5'], ['6', '6']]
+                = f.select :birthday_day, ["--"], {},{class: "birthday_day", id:"user_birthday_day"}
                 日
 
             .form-group_robot_k

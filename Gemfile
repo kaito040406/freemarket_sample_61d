@@ -92,6 +92,7 @@ gem 'omniauth-twitter'#twitterログインのgem はせがわ
 gem 'omniauth-google-oauth2'#グーグルログインのgem 長谷川
 gem 'dotenv-rails'#.env用のgem はせがわ
 gem 'haml-rails'#hamalのgem  長谷川
+gem "jquery-rails"#jqueryを使用するため導入
 
 gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
 gem 'gretel'#パンくずのgem 木山
