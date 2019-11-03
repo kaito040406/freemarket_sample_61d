@@ -100,6 +100,18 @@
 
 
 /*以下step1*/
+.cons_box_k{
+  padding-top:24px;
+  text-align: center;
+  line-height: 1.5;
+}
+.personal_box_k{
+  margin-top: 24px;
+}
+#user_birthday_year,#user_birthday_manth,,#user_birthday_day{
+  background-color: white;
+}
+
 .single-header-st1_k{
   height: 128px;
   width: 100%;
@@ -192,6 +204,33 @@
             border-radius: 4px;
             border: 1px solid #ccc;            
           }
+          #user_sur_name, #user_sur_name_yomi{
+            margin: 8px 8px 0 0;
+            height: 48px;
+            width: calc(50% - 6px);
+            padding: 10px 16px 8px 16px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;  
+          }
+          #user_fr_name, #user_first_name_yomi{
+            margin-top: 8px;
+            height: 48px;
+            width: calc(50% - 6px);
+            padding: 10px 16px 8px 16px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;  
+          }
+          #user_birthday_year,#user_birthday_manth,#user_birthday_day{
+            margin-top: 8px;
+            height: 48px;
+            width: 76px;
+            padding: 0 10px 0 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;  
+          }
         }
         .form-group_robot_k{
           margin-top: 40px;
@@ -269,6 +308,30 @@
     color: white;
     border-radius: 2px;
     height: 19px;
+  }
+  .form-require_name_k{
+    position: relative;
+    bottom: 17px;
+    left: 88px;
+    font-size: 12px;
+    padding: 4px 4px 2px 4px;
+    width: 32px;
+    background-color: #ea352d;
+    color: white;
+    border-radius: 2px;
+    height: 19px;  
+  }
+  .form-require_name_yomi_k{
+    position: relative;
+    bottom: 17px;
+    left: 116px;
+    font-size: 12px;
+    padding: 4px 4px 2px 4px;
+    width: 32px;
+    background-color: #ea352d;
+    color: white;
+    border-radius: 2px;
+    height: 19px;  
   }
 }
 
@@ -394,4 +457,39 @@
 }
 .sms_setting{
   color: #0099e8;
+}
+
+/*step4ここから*/
+.form-group_name_k{
+  width: 343px;
+  .form_lavel_k{
+    height: 70px;
+    #user_sur_name{
+      margin: 8px 8px 0 0;
+      height: 48px;
+      width: calc(50% - 6px);
+      padding: 10px 16px 8px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc; 
+    }
+    #user_fr_name{
+      margin-top: 8px;
+      height: 48px;
+      width: calc(50% - 6px);
+      padding: 10px 16px 8px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc; 
+    }
+  }
+}
+#user_address_number,#user_address_ken,#user_address_city,#user_address_banch,#user_building_name{
+  margin-top: 8px;
+  height: 48px;
+  width: 343px;
+  padding: 10px 16px 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc; 
 }

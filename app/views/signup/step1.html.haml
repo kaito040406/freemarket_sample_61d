@@ -59,11 +59,65 @@
                   .form-require_passc_k
                     必須  
                 = f.password_field :password_confirmation, placeholder: '7文字以上'
+
+            .personal_box_k
+              .l-single-content_k          
+                .form-group_name_k
+                  .form_lavel_k
+                    .form_lavel_text_k
+                      .text_k_st3_1
+                        本人確認
+                    .short_message_text_k
+                      安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+
+            .form-group_k
+              .form_lavel_k
+                .form_lavel_text_k
+                  .text_k
+                    お名前(全角)
+                  .form-require_name_k
+                    必須  
+                = f.text_field :sur_name, placeholder: '例) 山田'
+                = f.text_field :fr_name, placeholder: '例) 彩'
+
+            .form-group_k
+              .form_lavel_k
+                .form_lavel_text_k
+                  .text_k
+                    お名前カナ(全角)
+                  .form-require_name_yomi_k
+                    必須  
+                = f.text_field :sur_name_yomi, placeholder: '例) ヤマダ'
+                = f.text_field :first_name_yomi, placeholder: '例) アヤ'
+
+            .form-group_k
+              .form_lavel_k
+                .form_lavel_text_k
+                  .text_k
+                    生年月日
+                  .form-require_name_yomi_k
+                    必須  
+                = f.select :birthday_year, [['--', nil], ['1993', '1993'], ['1992', '1992']]
+                年
+                = f.select :birthday_manth, [['--', nil], ['2', '2'], ['3', '3']]
+                月
+                = f.select :birthday_day, [['--', nil], ['5', '5'], ['6', '6']]
+                日
+
             .form-group_robot_k
               = recaptcha_tags
+
+            .cons_box_k
+              「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
+
             .form-bottan-k
               .form-bottan-set-k
                 = f.submit '次へ進む', class: 'submit-btn_k',method: :post
+
+            .short_message_reason_k
+              =link_to "個人情報の登録について", "https://www.mercari.com/jp/help_center/article/244/"
+              %i.far.fa-angle-right
+
   %footer.product-new-footer-T
     %nav
       %ul.flexcontainer

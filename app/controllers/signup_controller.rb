@@ -39,6 +39,13 @@ class SignupController < ApplicationController
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
     session[:password_confirmation] = user_params[:password_confirmation]
+    session[:sur_name] = user_params[:sur_name]
+    session[:fr_name] = user_params[:fr_name]
+    session[:sur_name_yomi] = user_params[:sur_name_yomi]
+    session[:first_name_yomi] = user_params[:first_name_yomi]
+    session[:birthday_year] = user_params[:birthday_year]
+    session[:birthday_manth] = user_params[:birthday_manth]
+    session[:birthday_day] = user_params[:birthday_day]
 
     @user = User.new
   end
@@ -55,9 +62,6 @@ class SignupController < ApplicationController
     session[:fr_name] = user_params[:fr_name]
     session[:sur_name_yomi] = user_params[:sur_name_yomi]
     session[:first_name_yomi] = user_params[:first_name_yomi]
-    session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_manth] = user_params[:birthday_manth]
-    session[:birthday_day] = user_params[:birthday_day]
     session[:address_number] = user_params[:address_number]
     session[:address_ken] = user_params[:address_ken]
     session[:address_city] = user_params[:address_city]
