@@ -1,4 +1,115 @@
-クレジット登録画面
-別途作成予定
-= form_for @user, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
-  = f.submit 'Send', class: 'submit-btn',method: :post
+%body
+  .single-header-st1_k
+    .merukari_box_k
+      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), products_path
+      .progress-bar
+        %ol.clearfix_k
+          %li.active_k8
+            会員情報
+            .progress-status_on_k
+          %li.active_k2
+            電話番号認証
+            .progress-status_on_k
+          %li.active_k3
+            お届け先住所入力
+            .progress-status_on_k
+          %li.active_k11
+            支払い方法
+            .progress-status_on_k
+          %li.active_k5
+            完了
+            .progress-status_k
+        .line_st5_on
+        .line_st5_off
+      
+.k-container
+  .h-content
+    %section.h-chapter-container
+      %h2.h-chapter-zilyouhou クレジットカード情報入力
+      %form#add-card-form.registratration-form_k{action: "https://www.mercari.com/jp/mypage/card/add", "data-adyen-id" => "card-fom", method: "POST", novalidate: "novealidate"}
+        %input{naem:  "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
+        .h-single-content
+          .h-form-group
+            %label{for: "payment_card_no"} カード番号
+            %span.h-form-require 必須
+            %input#payment_card_no.h-input-default{"data-input-type" => "card", maxlength: "19", placeholder: "半角英数のみ", type: "text", value: ""}/
+            %ul#card-no-error-wrapper.has-error-text
+            %ul.h-signup-card-list
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1248199994", size: "49x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1248199994", size: "34x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?1248199994", size: "30x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?1248199994", size: "32x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?1248199994", size: "21x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?1248199994", size: "32x20", alt: ""
+              %li 
+                = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?1248199994", size: "32x20", alt: ""
+          .h-form-group.signup-form-expire
+            %label{for: "payment_card_expire"} 有効期限
+            %span.h-form-require 必須
+            %br/
+            .h-select-wrap.half
+              %select#payment_card_expire_mm.h-select-default
+                %option{value: "01"} 01
+                %option{value: "02"} 02
+                %option{value: "03"} 03
+                %option{value: "04"} 04
+                %option{value: "05"} 05
+                %option{value: "06"} 06
+                %option{value: "07"} 07
+                %option{value: "08"} 08
+                %option{value: "09"} 09
+                %option{value: "10"} 10
+                %option{value: "11"} 11
+                %option{value: "12"} 12
+              %i.icon-arrow-bottom
+              %span 月
+            .h-select-wrap.half
+              %select#payment_card_expire_yy.h-select-default
+                %option{value: "19"} 19
+                %option{value: "20"} 20
+                %option{value: "21"} 21
+                %option{value: "22"} 22
+                %option{value: "23"} 23
+                %option{value: "24"} 24
+                %option{value: "25"} 25
+                %option{value: "26"} 26
+                %option{value: "27"} 27
+                %option{value: "28"} 28
+                %option{value: "29"} 29
+              %i.icon-arrow-bottom
+              %span 年
+            %ul#expire-mm-error-wrapper.has-error-text
+            %ul#expire-yy-error-wrapper.has-error-text
+          .h-form-group
+            %label{for: "payment_card_security_code"} セキュリティコード
+            %span.h-form-require 必須
+            %input#payment_card_security_code.h-input-default{placeholder: "カード背面4桁もしくは3行の番号", type: "number", value: ""}/
+            %ul#security-code-error-wrapper.has-error-text
+            .signup-seqcode
+              .signup-seqcode-text{"data-js" => "show-tips-toggle"}
+                %span.form-question ?
+                カード裏面の番号とは？
+      .form-bottan_st5-k
+        .form-bottan-st5-set-k
+          = form_for @user, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
+            = f.submit '次に進む', class: 'submit-btn_k',method: :post
+
+%footer.product-new-footer-T
+  %nav
+    %ul.flexcontainer
+      %li
+        =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+      %li
+        =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+      %li
+        =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+  =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
+    =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
+  %p
+    %small &copy; 2019 Mercari

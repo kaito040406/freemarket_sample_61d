@@ -55,6 +55,10 @@ class SignupController < ApplicationController
   def step4
     session[:certification] = user_params[:certification]
     @user = User.new
+    @sur = session[:sur_name]
+    @sur_yomi = session[:sur_name_yomi]
+    @fr = session[:fr_name]
+    @fr_yomi = session[:first_name_yomi]
   end
 
   def step5

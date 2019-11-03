@@ -205,9 +205,9 @@
             border: 1px solid #ccc;            
           }
           #user_sur_name, #user_sur_name_yomi{
-            margin: 8px 8px 0 0;
+            margin-top: 8px;
             height: 48px;
-            width: calc(50% - 6px);
+            width: 100%;
             padding: 10px 16px 8px 16px;
             font-size: 16px;
             border-radius: 4px;
@@ -216,7 +216,7 @@
           #user_fr_name, #user_first_name_yomi{
             margin-top: 8px;
             height: 48px;
-            width: calc(50% - 6px);
+            width: 100%;
             padding: 10px 16px 8px 16px;
             font-size: 16px;
             border-radius: 4px;
@@ -425,7 +425,19 @@
   z-index: 100;
   width: 330px;
 }
-
+.active_k9{
+  color: #ea352d;
+  margin-right: 40px;
+  font-size: 12px;
+  float:left;
+}
+.active_k10{
+  
+  margin-right: 40px;
+  font-size: 12px;
+  width: 60px;
+  float:left;
+}
 
 /* ここからstep3 */
 #user_certification{
@@ -463,11 +475,10 @@
 .form-group_name_k{
   width: 343px;
   .form_lavel_k{
-    height: 70px;
     #user_sur_name{
-      margin: 8px 8px 0 0;
+      margin-top: 8px;
       height: 48px;
-      width: calc(50% - 6px);
+      width: 100%;
       padding: 10px 16px 8px 16px;
       font-size: 16px;
       border-radius: 4px;
@@ -476,7 +487,7 @@
     #user_fr_name{
       margin-top: 8px;
       height: 48px;
-      width: calc(50% - 6px);
+      width: 100%;
       padding: 10px 16px 8px 16px;
       font-size: 16px;
       border-radius: 4px;
@@ -492,4 +503,199 @@
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid #ccc; 
+}
+#user_address_ken{
+  background-color: white;
+}
+
+.active_k7{
+  color: #ea352d;
+  margin-right: 40px;
+  font-size: 12px;
+  float:left;
+}
+
+.active_k8{
+  margin-right: 40px;
+  font-size: 12px;
+  width: 60px;
+  float:left;
+}
+
+.line_st4_on{
+  position: relative;
+  border-bottom: solid 2.5px #ea352d;
+  top:24.5px;
+  left: 36px;
+  z-index: 100;
+  width: 220px;
+}
+
+.line_st4_off{
+  position: relative;
+  border-bottom: solid 2.5px #ccc;
+  top:22px;
+  left: 266px;
+  z-index: 100;
+  width: 210px;
+}
+
+.form-require_nickname_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 50px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_mail_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 80px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_pass_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 67px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_passc_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 67px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_city_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 65px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_banch_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 38px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ea352d;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_bl_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 50px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ccc;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+.form-require_tel_st4_k{
+  position: relative;
+  bottom: 17px;
+  left: 65px;
+  font-size: 12px;
+  padding: 4px 4px 2px 4px;
+  width: 32px;
+  background-color: #ccc;
+  color: white;
+  border-radius: 2px;
+  height: 19px;
+}
+
+/*step5*/
+.form-bottan_st5-k{
+  position: relative;
+  padding: 0 138.5px;
+  bottom: 75px;
+  margin: 0 40px;
+  .form-bottan-st5-set-k{
+    .submit-btn_k{
+      line-height: 50px;
+      width:100%;
+      text-align: center;;
+      height: 100%;
+      width:100%;
+      font-size:16px;
+      background-color: #ea352d;
+      color: white;
+    }
+  }
+}
+
+.registratration-form_k{
+  padding: 24px 16px 0 16px;
+}
+
+.k-container{
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 128px;
+}
+
+.active_k11{
+  color: #ea352d;
+  margin-right: 40px;
+  font-size: 12px;
+  width: 60px;
+  float:left;
+}
+
+.line_st5_on{
+  position: relative;
+  border-bottom: solid 2.5px #ea352d;
+  top:24.5px;
+  left: 36px;
+  z-index: 100;
+  width: 340px;
+}
+
+.line_st5_off{
+  position: relative;
+  border-bottom: solid 2.5px #ccc;
+  top:22px;
+  left: 384px;
+  z-index: 100;
+  width: 100px;
 }
