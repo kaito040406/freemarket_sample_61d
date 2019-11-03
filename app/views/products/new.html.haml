@@ -16,11 +16,20 @@
           最大10枚までアップロードできます
         .dropbox-container.flexcontainer
           .img-uploader-container
-            .img-uploader.have-item-0
+            .img-uploader
               %ul
-          .img-uploader-drop-box.have-item-0
+          .img-uploader-drop-box
             ???
-            =f.file_field :product_image, class: "img-uploader-drop-file" #,multiple: true
+            =f.file_field :product_image[0], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[1], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[2], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[3], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[4], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[5], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[6], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[7], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[8], class: "img-uploader-drop-file"#, multiple: true
+            =f.file_field :product_image[9], class: "img-uploader-drop-file"#, multiple: true
             %pre.visible-pc
               :preserve
       

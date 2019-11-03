@@ -1,8 +1,9 @@
 class Product < ApplicationRecord
   has_many :product_images
+  accepts_nested_attributes_for :product_images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :prefecture   
+  belongs_to_active_hash :prefecture
 
   enum categry:                    {"レディース": 1,
                                     "メンズ": 2, 

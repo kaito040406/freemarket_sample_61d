@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    binding.pry
     @product = Product.new(product_params)
     if @product.save
       @product_image = ProductImage.new(product_image_params)
