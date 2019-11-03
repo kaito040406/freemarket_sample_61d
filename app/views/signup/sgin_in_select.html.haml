@@ -21,16 +21,16 @@
           .ding_g
             Googleで登録する
 
-    .single-footer_k
-      %nav
-        .clearfix_k
-          .content_k
-            %a{:href => "https://www.mercari.com/jp/privacy/"} プライバシーポリシー
-          .content_c
-            %a{:href => "https://www.mercari.com/jp/tos/"} メルカリ利用規約
-          .content_k
-            %a{:href => "https://www.mercari.com/jp/tokutei/"} 特定商取引に関する表記
-      .single-footer-logo_k{:href => "https://www.mercari.com/jp/"}
-        %img{:alt => "mercari", :height => "65", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?465897195", :width => "80"}/
-      .last_k
-        %small © 2019 Mercari
+  %footer.product-new-footer-T
+    %nav
+      %ul.flexcontainer
+        %li
+          =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+        %li
+          =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+        %li
+          =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+    =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
+      =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
+    %p
+      %small &copy; 2019 Mercari
