@@ -102,4 +102,6 @@ gem 'active_hash' #フォームのセレクトボックスで使うデータの�
 
 # クレジットカード登録用 平田 11/2
 gem 'payjp'
+# jquery使用 平田 11/2
+gem 'jquery-rails'
 
