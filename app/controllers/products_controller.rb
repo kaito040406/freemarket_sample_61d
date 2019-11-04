@@ -21,6 +21,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    if @product.seller_id == current_user.id
+      @product.destroy
+      redirect_to root_path
+    else
+      redirect_to show_products_path(product)
+    end
+  end
+  
+
   private
 
   def product_params
