@@ -239,15 +239,19 @@
           margin-top: 24px;
           width: 100%;
           height: 50px;
-          background-color: #ea352d;
+          background-color: #ea352d!important;
           .form-bottan-set-k{
             text-align: center;
-            color: white;
+            color: white!important;
             .submit-btn_k{
               width: 100%;
               height: 50px;
               text-align: center;
               font-size: 16px;
+              color: white!important;
+              background-color: #ea352d!important;
+              text-decoration: none;
+              border-width: 0!important;
             }
           }
         }
@@ -394,6 +398,10 @@
       height: 50px;
       text-align: center;
       font-size: 14px;
+      color: white!important;
+      background-color: #ea352d!important;
+      text-decoration: none;
+      border-width: 0!important;
     }
   }
 }
@@ -654,12 +662,13 @@
     .submit-btn_k{
       line-height: 50px;
       width:100%;
-      text-align: center;;
+      text-align: center;
       height: 100%;
-      width:100%;
       font-size:16px;
-      background-color: #ea352d;
-      color: white;
+      color: white!important;
+      background-color: #ea352d!important;
+      text-decoration: none;
+      border-width: 0!important;
     }
   }
 }
@@ -867,8 +876,10 @@
     width: 100%;
     line-height: 50px;
     font-size: 14px;
-    background-color: #ea352d;
-    color: white;
+    color: white!important;
+    background-color: #ea352d!important;
+    text-decoration: none;
+    border-width: 0!important;
   }
 }
 .icon_box_f_k_l{
