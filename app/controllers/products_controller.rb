@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
-    @product.product_images.build # この行がないとf.formforの中身が非表示になってしまう
+    10.times { @product.product_images.build }
   end
 
   def create
