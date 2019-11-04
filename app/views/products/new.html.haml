@@ -16,18 +16,46 @@
           最大10枚までアップロードできます
         .dropbox-container.flexcontainer
           .img-uploader-container
-            .img-uploader.have-item-0
-              %ul
-          .img-uploader-drop-box.have-item-0
-            ???
-            =f.file_field :product_image, class: "img-uploader-drop-file" #,multiple: true
-            %pre.visible-pc
-              :preserve
-      
-      
-                ドラッグアンドドロップ　　　　　　　
-                またはクリックしてファイルをアップロード　　　　　　　
-            %i.icon-camera
+            .img-uploader.img-uploader-drop-box
+              ???
+              =f.fields_for :product_images do |i|
+                =i.file_field :product_image
+              %pre.visible-pc
+                :preserve
+          
+          
+                    ドラッグアンドドロップ　　　　　　　
+                    またはクリックしてファイルをアップロード　　　　　　　
+                %i.icon-camera
+
+      -# .img-uploader-box
+      -#   %h3.img-uploader-head
+      -#     出品画像
+      -#     %span.must-filled-mark-t
+      -#       必須
+      -#   %p
+      -#     最大10枚までアップロードできます
+      -#   .dropbox-container.flexcontainer
+      -#     .img-uploader-container
+      -#       .img-uploader.img-uploader-drop-box
+      -#         ???
+      -#         =f.file_field :product_image[0] #, multiple: true
+      -#         =f.file_field :product_image[1] #, multiple: true
+      -#         =f.file_field :product_image[2] #, multiple: true
+      -#         =f.file_field :product_image[3] #, multiple: true
+      -#         =f.file_field :product_image[4] #, multiple: true
+      -#         =f.file_field :product_image[5] #, multiple: true
+      -#         =f.file_field :product_image[6] #, multiple: true
+      -#         =f.file_field :product_image[7] #, multiple: true
+      -#         =f.file_field :product_image[8] #, multiple: true
+      -#         =f.file_field :product_image[9] #, multiple: true
+      -#         %pre.visible-pc
+      -#           :preserve
+        
+        
+      -#             ドラッグアンドドロップ　　　　　　　
+      -#             またはクリックしてファイルをアップロード　　　　　　　
+      -#         %i.icon-camera
       .form-sub-t
         .form-input-t
           %label
