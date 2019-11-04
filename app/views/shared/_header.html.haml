@@ -3,7 +3,7 @@
     .sc-hqyNC.xUiJL
       .sc-dNLxif.KzmkZ
         .sc-jbKcbu.kuQyNF
-          =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari"), products_path
+          =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari"), root_path
     %form.sc-kjoXOD.jhhfpc
       %input.sc-cHGsZl.uBYjF{name: "keyword", placeholder: "何かお探しですか\n？", type: "search", value: ""}/
       %button.sc-TOsTZ.eEWgtr
@@ -45,8 +45,12 @@
         %li.sc-eTuwsz.gDLVUl
           .sc-RefOD.jwHbWf
             .sc-hXRMBi.kmSGSf
-              =image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", class: "kmSGSf"
-            = link_to "マイページ","/users"
+              - if current_user.icon_image == nil
+                = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "32", alt: "", height: "32"
+              - else
+                = image_tag current_user.icon_image, width: "32", alt: "", height: "32"
+            = link_to user_path(current_user) , method: :get do
+              マイページ
     -else
       %ul.sc-cJSrbW_k
         %ul.sc-ksYbfQ_k

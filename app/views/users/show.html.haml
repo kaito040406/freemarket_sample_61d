@@ -9,16 +9,21 @@
       %section.mypage-user-icon
         = link_to "", ""
         %figure
-          = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60", alt: "", height: "60"
+          - if current_user.icon_image == nil
+            = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60", alt: "", height: "60"
+          - else
+            = image_tag current_user.icon_image, width: "60", alt: "", height: "60"
         %h2.bold
-          ニックネーム
+          = current_user.nick_name
         .mypage-number
           %div
             評価
-            %span.bold 0
+            %span.bold 
+              = current_user.evaluation
           %div
             出品数
-            %span.bold 0
+            %span.bold 
+              = current_user.exhibits_number
       %section.mypage-tab-container-notification-todo
         %ul.mypage-tabs
           %li.active
