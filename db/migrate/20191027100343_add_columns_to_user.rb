@@ -7,9 +7,9 @@ class AddColumnsToUser < ActiveRecord::Migration[5.2]
     add_column :users,  :sur_name_yomi,   :string,  null: false, default: nil 
     add_column :users,  :first_name_yomi, :string,  null: false, default: nil
     add_column :users,  :introduction,    :string
-    add_column :users,  :birthday_year,   :string,    null: false, default: nil 
-    add_column :users,  :birthday_manth,  :string,    null: false, default: nil 
-    add_column :users,  :birthday_day,    :string,    null: false, default: nil 
+    add_column :users,  :birthday_year,   :integer,    null: false, default: nil 
+    add_column :users,  :birthday_manth,  :integer,    null: false, default: nil 
+    add_column :users,  :birthday_day,    :integer,    null: false, default: nil 
     #add_column :users,  :email,           :string,  null: false 
     #add_column :users,  :password,        :string,  null: false 
     add_column :users,  :tel_number,      :string,  null: false, default: nil
