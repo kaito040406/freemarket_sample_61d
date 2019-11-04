@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 2019_11_01_062654) do
     t.string "address_city", null: false
     t.string "address_banch", null: false
     t.string "building_name"
+    t.integer "evaluation", default: 0
+    t.integer "exhibits_number", default: 0
     t.string "uid"
     t.string "provider"
     t.string "fname"
