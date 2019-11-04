@@ -109,3 +109,5 @@ gem 'payjp'
 # jquery使用 平田 11/2
 gem 'jquery-rails'
 
+gem 'roo'#CSV読み込みよう
+
