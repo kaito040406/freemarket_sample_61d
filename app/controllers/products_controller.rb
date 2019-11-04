@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
+    @user = current_user
     10.times { @product.product_images.build }
   end
 
@@ -26,7 +27,7 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to root_path
     else
-      redirect_to show_products_path(product)
+      #redirect_to show_products_path(product)
     end
   end
   
