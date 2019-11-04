@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates :nick_name, presence: true
   validates :sur_name, presence: true
   validates :fr_name, presence: true
-  validates :sur_name_yomi, presence: true, format: { with: /\A[ぁ-んー－]+\z/}
-  validates :first_name_yomi, presence: true, format: { with: /\A[ぁ-んー－]+\z/}
+  validates :sur_name_yomi, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
+  validates :first_name_yomi, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
   validates :birthday_year, presence: true, numericality: true
   validates :birthday_manth, presence: true, numericality: true
   validates :birthday_day, presence: true, numericality: true

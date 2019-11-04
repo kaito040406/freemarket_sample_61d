@@ -1,17 +1,49 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+%body
+  .single-header-done_k
+    .merukari_box_k
+      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), products_path
+  .login_box
+    .single-main-done_k
+      .l-single-container_done_k
+        .l-single-head_login_k
+          .new_text_k
+            アカウントをお持ちでない方はこちら
+          = link_to(sgin_in_select_signup_index_path, method: :get) do
+            .new_account_k
+              新規会員登録
+    .single-main-done_k_t
+      .l-single-container_done_k
+        .l-single-head_login_k
+          = link_to(sgin_in_select_signup_index_path, method: :get) do
+            .new_account_f_k
+              .text_f_k
+                Facebookでログイン
+              .icon_box_f_k_l
+                %i.fab.fa-facebook-square
+          = link_to(sgin_in_select_signup_index_path, method: :get) do
+            .new_account_g_k
+              .text_g_k
+                Googleでログイン
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form_lavel_mail_k
+              = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス'
+            .form-group_pass_k 
+              = f.password_field  :password, autofocus: true, autocomplete: "current-password", placeholder: 'パスワード'
+            .form-group_robot__login_k
+              = recaptcha_tags
+            .form-group_bottan_login_k 
+              = f.submit "ログイン",class: 'submit-btn_k_log'
+
+  %footer.product-new-footer-T
+    %nav
+      %ul.flexcontainer
+        %li
+          =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+        %li
+          =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+        %li
+          =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+    =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
+      =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
+    %p
+      %small &copy; 2019 Mercari

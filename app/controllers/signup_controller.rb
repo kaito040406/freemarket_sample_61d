@@ -21,11 +21,14 @@ class SignupController < ApplicationController
       address_banch: session[:address_banch],
       building_name: session[:building_name]
     )
-    binding.pry
     if @user.save
       session[:id] = @user.id
       redirect_to done_signup_index_path
     end
+  end
+
+  def sign_in_select
+  
   end
 
   def step1
@@ -36,6 +39,13 @@ class SignupController < ApplicationController
     session[:email] = user_params[:email]
     session[:password] = user_params[:password]
     session[:password_confirmation] = user_params[:password_confirmation]
+    session[:sur_name] = user_params[:sur_name]
+    session[:fr_name] = user_params[:fr_name]
+    session[:sur_name_yomi] = user_params[:sur_name_yomi]
+    session[:first_name_yomi] = user_params[:first_name_yomi]
+    session[:birthday_year] = user_params[:birthday_year]
+    session[:birthday_manth] = user_params[:birthday_manth]
+    session[:birthday_day] = user_params[:birthday_day]
 
     @user = User.new
   end
@@ -45,6 +55,10 @@ class SignupController < ApplicationController
   def step4
     session[:certification] = user_params[:certification]
     @user = User.new
+    @sur = session[:sur_name]
+    @sur_yomi = session[:sur_name_yomi]
+    @fr = session[:fr_name]
+    @fr_yomi = session[:first_name_yomi]
   end
 
   def step5
@@ -52,9 +66,6 @@ class SignupController < ApplicationController
     session[:fr_name] = user_params[:fr_name]
     session[:sur_name_yomi] = user_params[:sur_name_yomi]
     session[:first_name_yomi] = user_params[:first_name_yomi]
-    session[:birthday_year] = user_params[:birthday_year]
-    session[:birthday_manth] = user_params[:birthday_manth]
-    session[:birthday_day] = user_params[:birthday_day]
     session[:address_number] = user_params[:address_number]
     session[:address_ken] = user_params[:address_ken]
     session[:address_city] = user_params[:address_city]
