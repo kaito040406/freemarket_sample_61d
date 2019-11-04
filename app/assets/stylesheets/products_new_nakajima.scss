@@ -55,6 +55,7 @@ pre {
   overflow: auto;
   font-family: monospace,monospace;
 }
+//8px 0 0;
 .flexcontainer {
   display: flex;
   -webkit-box-pack: justify;
@@ -352,4 +353,26 @@ pre {
   width: 80px;
   height: 65px;
   margin: 40px auto 0;
+}
+.icon-arrow-bottom {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  z-index: 2;
+  color: #888;
+  font-size: 8px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+i[class^='icon-'], i[class*='icon-'] {
+  display: inline-block;
+  font-family: 'icon-font';
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
