@@ -43,7 +43,6 @@ input {
 }
 a {
   text-decoration: none;
-  // color: #0099e8;
 }
 h3 {
   font-size: 1.17em;
@@ -261,13 +260,6 @@ pre {
 .button-container-t p {
   line-height: 1.5;
 }
-.price-input {
-  text-align: right;
-}
-.price>li {
-  padding: 24px 0;
-  border-top: 1px solid #ccc;
-}
 .img-uploader-head {
   font-size: 16px;
 }
@@ -293,30 +285,44 @@ pre {
   width: 620px;
   margin: 16px auto 0;
 }
-
-.price-flexcontainer-T {
-  display:flex;
+.flexcontainer {
+  display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+.price-T {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
-.price-flexcontainer-T .price-input{
+.price-T .price-input{
   width: 50%;
 }
-.price-input .input-default {
-  text-align: right;
-}
-.price-flexcontainer-T .price-input>div{
+.price-T .price-input>div{
   margin: 0px 0px 0px 3px;
 }
-.price:last-child {
-  font-size: 16px;
+.price-T .input-default {
+  text-align: right;
+}
+.price-input {
+  text-align: right;
+}
+.price-field-list>li {
+  padding: 24px 0;
+  border-top: 1px solid #ccc;
 }
 .product-fee{
   font-size: 14px;
+}
+.product-gain{
+  font-size: 16px;
+}
+#product-gain{
+  font-size: 34px;
+}
+.product-new-caution{
+  color: #0099e8;
 }
 .product-new-footer-T {
   width: 456px;
