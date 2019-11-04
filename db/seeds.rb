@@ -7,3 +7,12 @@ CSV.foreach('db/ct.csv', headers: true) do |row|
     parent_id: row['parent_id']
   )
 end
+
+CSV.foreach('db/bl.csv', headers: true) do |row|
+  Merker.create(
+    id: row['id'],
+    name: row['name'],
+    genre: row['genre'],
+    genre_number: row['genre_number']
+  )
+end
