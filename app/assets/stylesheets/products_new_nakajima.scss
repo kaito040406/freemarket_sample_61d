@@ -293,6 +293,7 @@ pre {
   width: 620px;
   margin: 16px auto 0;
 }
+
 .price-flexcontainer-T {
   display:flex;
   -webkit-box-pack: justify;
@@ -313,6 +314,9 @@ pre {
 }
 .price:last-child {
   font-size: 16px;
+}
+.product-fee{
+  font-size: 14px;
 }
 .product-new-footer-T {
   width: 456px;
