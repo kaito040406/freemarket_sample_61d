@@ -100,16 +100,16 @@
           = form_for @user, url: signup_index_path, method: :post, html: {class: 'forth-main-wrapper__box'} do |f|
             = f.submit '次に進む', class: 'submit-btn_k',method: :post
 
-%footer.product-new-footer-T
-  %nav
-    %ul.flexcontainer
-      %li
-        =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
-      %li
-        =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
-      %li
-        =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-  =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
-    =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
-  %p
-    %small &copy; 2019 Mercari
+    %footer.product-new-footer-T
+      %nav
+        %ul.flexcontainer
+          %li
+            =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+          %li
+            =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+          %li
+            =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+      =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
+        =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
+      %p
+        %small &copy; 2019 Mercari
