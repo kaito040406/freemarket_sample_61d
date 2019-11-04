@@ -28,34 +28,6 @@
                     またはクリックしてファイルをアップロード　　　　　　　
                 %i.icon-camera
 
-      -# .img-uploader-box
-      -#   %h3.img-uploader-head
-      -#     出品画像
-      -#     %span.must-filled-mark-t
-      -#       必須
-      -#   %p
-      -#     最大10枚までアップロードできます
-      -#   .dropbox-container.flexcontainer
-      -#     .img-uploader-container
-      -#       .img-uploader.img-uploader-drop-box
-      -#         ???
-      -#         =f.file_field :product_image[0] #, multiple: true
-      -#         =f.file_field :product_image[1] #, multiple: true
-      -#         =f.file_field :product_image[2] #, multiple: true
-      -#         =f.file_field :product_image[3] #, multiple: true
-      -#         =f.file_field :product_image[4] #, multiple: true
-      -#         =f.file_field :product_image[5] #, multiple: true
-      -#         =f.file_field :product_image[6] #, multiple: true
-      -#         =f.file_field :product_image[7] #, multiple: true
-      -#         =f.file_field :product_image[8] #, multiple: true
-      -#         =f.file_field :product_image[9] #, multiple: true
-      -#         %pre.visible-pc
-      -#           :preserve
-        
-        
-      -#             ドラッグアンドドロップ　　　　　　　
-      -#             またはクリックしてファイルをアップロード　　　　　　　
-      -#         %i.icon-camera
       .form-sub-t
         .form-input-t
           %label
@@ -140,12 +112,12 @@
             %li.flexcontainer
               %div
                 販売手数料 (10%)
-              %div
+              .product-fee
                 \-
             %li.flexcontainer.bold
               %div
                 販売利益
-              %div
+              .product-gain
                 \-
       %div.form-sub-t.button-container-t
         %div
