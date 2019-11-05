@@ -22,7 +22,6 @@ class SignupController < ApplicationController
       address_banch: session[:address_banch],
       building_name: session[:building_name]
     )
-    binding.pry
     if @user.save
       session[:id] = @user.id
       redirect_to done_signup_index_path
