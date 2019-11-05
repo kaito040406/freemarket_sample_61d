@@ -18,3 +18,8 @@ crumb :identification do
   parent :mypage
 end
 
+crumb :exhibitnow do
+  link "出品した商品 - 出品中", ""
+  parent :mypage
+end
+

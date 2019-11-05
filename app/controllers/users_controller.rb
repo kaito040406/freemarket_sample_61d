@@ -13,5 +13,9 @@ class UsersController < ApplicationController
   def identification
     @data = Prefecture.all
   end
+
+  def progress
+  end
+
   
 end

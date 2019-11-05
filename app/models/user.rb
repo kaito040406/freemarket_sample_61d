@@ -18,4 +18,7 @@ class User < ApplicationRecord
   validates :address_ken, presence: true
   validates :address_city, presence: true
   validates :address_banch, presence: true
+
+  has_many :products
+  has_many :produst_images
 end

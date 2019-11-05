@@ -2,21 +2,21 @@
   .single-container_k
     .single-header_k
       .image_box_k
-        =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '193x49'), products_path
+        =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '193x49'), root_path
     .single-main_k
       .l-single-head_k
         新規会員登録
       .l-single-inner_k
-        .sgin_box
+        .sign_box
           = link_to(step1_signup_index_path, method: :get) do
             .sign_m
               .icon_box_m_k
-                %i.far.fa-envelope
+                %i.fa.fa-envelope
               メールアドレスで新規登録をする
-          = link_to(products_path, method: :get) do
+          = link_to(root_path) do
             .sign_f
               .icon_box_f_k
-                %i.fab.fa-facebook-square
+                %i.fa.fa-facebook-square
               = link_to "Facebookで登録する", ""
           .ding_g
             Googleで登録する

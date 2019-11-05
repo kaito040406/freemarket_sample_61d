@@ -1,6 +1,7 @@
 class SignupController < ApplicationController 
 
   def create
+    
     @user = User.new(
       nick_name: session[:nick_name],
       email: session[:email],
@@ -46,11 +47,11 @@ class SignupController < ApplicationController
     session[:birthday_year] = user_params[:birthday_year]
     session[:birthday_manth] = user_params[:birthday_manth]
     session[:birthday_day] = user_params[:birthday_day]
-
     @user = User.new
   end
   def step3
     @user = User.new
+    session[:tel_number] = user_params[:tel_number]
   end
   def step4
     session[:certification] = user_params[:certification]
@@ -71,7 +72,6 @@ class SignupController < ApplicationController
     session[:address_city] = user_params[:address_city]
     session[:address_banch] = user_params[:address_banch]
     session[:building_name] = user_params[:building_name]
-    session[:tel_number] = user_params[:tel_number]
     @user = User.new
   end
 
