@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'identification'
       get 'progress'
+      get 'my_details'
     end
   end
 end
