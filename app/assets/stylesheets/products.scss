@@ -46,6 +46,135 @@ body {
   height: 2500px;
 }
 
+
+// 商品一覧表示
+.main.products.content{
+  width: 1020px;
+  height: 544px;
+}
+.products.content.box{
+  margin: -10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1040px;
+  height: 544px;
+}
+
+.products.content.boxes{
+  width: 20%;
+  padding: 10px;
+  height: 50%;
+  display: inline-block;
+}
+.products.link{
+  width: 100%;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  vertical-align: top;
+  height: 252px;
+}
+.style_fluid__19gwX {
+  width: 100%;
+  height: 252px;
+}
+
+.style_card__1SiAF, .style_card__1SiAF figcaption {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.style_card__1SiAF {
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.18);
+  box-shadow: 0 2px 4px rgba(0,0,0,.18);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+  margin: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.style_card__1SiAF figcaption {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 14px;
+  height: 64px;
+  line-height: 1.4em;
+  padding: 0 12px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.style_card__1SiAF, .style_card__1SiAF figcaption {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.style_card__1SiAF figcaption span {
+  display: inline-block;
+  height: 2.8em;
+  overflow: hidden;
+  position: relative;
+}
+
+.style_thumbnail__N_xAi {
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0 0 100%;
+}
+.style_thumbnail__N_xAi span[aria-label=Price] {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0,0,0,.4);
+  border-radius: 0 14px 14px 0;
+  bottom: 8px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 17px;
+  height: 32px;
+  height: 28px;
+  letter-spacing: .02em;
+  margin: 0;
+  padding: 0 12px;
+  position: absolute;
+  z-index: 2;
+}
+.style_fluid__19gwX .style_thumbnail__N_xAi img {
+  bottom: 0;
+  position: absolute;
+  top: 0;
+}
+.style_thumbnail__N_xAi img {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  vertical-align: top;
+  width: 100%;
+  z-index: 1;
+}
+
+// ここまで
+
 // スライド
 
 .sc-dliRfk.lnMXqm{
