@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -9,17 +10,21 @@ class ProductsController < ApplicationController
   end
   
   def new
+    
     @product = Product.new
 
     10.times { @product.product_images.build }
   end
 
   def create
+    #binding.pry
     @product = Product.new(product_params)
-    if @product.save
+    #@product.user = current_user
+     binding.pry
+    if @product.save!
       redirect_to :root
     else
-      render :new
+      #render :new
     end
   end
 
@@ -41,13 +46,12 @@ class ProductsController < ApplicationController
 
   def product_params
     # バリデーションエラー回避のため適当なデータ挿入
-    params[:product][:seller_id] = 1 #current_userが入るように
+    params[:product][:seller_id] = current_user.id #current_userが入るように
     params[:product][:size] = 1
     params[:product][:delivery_method] = 1
     params[:product][:date] = Date.current
     params[:product][:product_images_attributes]["0"][:count] = 1 #[:0][0]だと参照できない
     #ダミーデータ挿入終わり
-
     params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :extimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
   end
 end

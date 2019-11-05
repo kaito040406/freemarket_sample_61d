@@ -6,7 +6,7 @@
   %main.product-new-main-T
     %h2.product-new-formtitle-T
       商品の情報を入力
-    =form_for [@user, @product], html: { class: "product-new-form"} do |f|
+    =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
       .img-uploader-box
         %h3.img-uploader-head
           出品画像
