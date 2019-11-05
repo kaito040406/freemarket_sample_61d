@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_062654) do
+ActiveRecord::Schema.define(version: 2019_11_04_143655) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_11_01_062654) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "parent_id"
+    t.string "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2019_11_01_062654) do
     t.integer "user_id", null: false
     t.integer "number", null: false
     t.date "expiration_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "merkers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "genre"
+    t.integer "genre_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,9 +112,9 @@ ActiveRecord::Schema.define(version: 2019_11_01_062654) do
     t.string "sur_name_yomi", null: false
     t.string "first_name_yomi", null: false
     t.string "introduction"
-    t.string "birthday_year", null: false
-    t.string "birthday_manth", null: false
-    t.string "birthday_day", null: false
+    t.integer "birthday_year", null: false
+    t.integer "birthday_manth", null: false
+    t.integer "birthday_day", null: false
     t.string "tel_number", null: false
     t.string "certification", null: false
     t.integer "account"

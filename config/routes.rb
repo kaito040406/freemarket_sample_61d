@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users 
-  resources :products
+  resources :users do
+    resources :products 
+  end
   resources :credit_cards, only: [:new, :create]
   #ここから長谷川記入
   resources :signup do

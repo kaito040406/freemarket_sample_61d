@@ -1,7 +1,7 @@
 %body
   .single-header-st1_k
     .merukari_box_k
-      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), products_path
+      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), root_path
       .progress-bar
         %ol.clearfix_k
           %li.active_k8
@@ -29,7 +29,7 @@
         .l-single-content_k
           .short_message_text_done_k
             ありがとうございます。会員登録が完了しました。
-          = link_to(products_path, method: :get) do
+          = link_to(user_products_path(current_user.id), method: :get) do
             .form-bottan-st2-k
               .form-bottan-set-st5-k
                 メルカリをはじめる

@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    
+    @products = Product.limit(10).order('created_at DESC')
+    @images = ProductImage.limit(10).order("created_at DESC")
   end
 
   def edit    
@@ -9,6 +10,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
+    @user = current_user
     10.times { @product.product_images.build }
   end
 
@@ -26,12 +28,16 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to root_path
     else
-      redirect_to show_products_path(product)
+      #redirect_to show_products_path(product)
     end
   end
   
 
   private
+  
+  def product_image_params
+    params.require(:product_image).permit(:product_id, :product_image)
+  end
 
   def product_params
     # バリデーションエラー回避のため適当なデータ挿入
