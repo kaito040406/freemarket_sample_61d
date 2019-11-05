@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.string "parent_id"
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,9 +112,9 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.string "sur_name_yomi", null: false
     t.string "first_name_yomi", null: false
     t.string "introduction"
-    t.integer "birthday_year", null: false
-    t.integer "birthday_manth", null: false
-    t.integer "birthday_day", null: false
+    t.string "birthday_year", null: false
+    t.string "birthday_manth", null: false
+    t.string "birthday_day", null: false
     t.string "tel_number", null: false
     t.string "certification", null: false
     t.integer "account"
@@ -126,8 +126,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.string "address_city", null: false
     t.string "address_banch", null: false
     t.string "building_name"
-    t.integer "evaluation", default: 0
-    t.integer "exhibits_number", default: 0
     t.string "uid"
     t.string "provider"
     t.string "fname"
