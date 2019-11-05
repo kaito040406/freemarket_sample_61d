@@ -1,0 +1,57 @@
+.listing-item-change-box {
+  margin: 24px 0 24px 0;
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+}
+
+.listing-item-change-box .btn-default {
+  margin: 16px 0 16px 0;
+}
+
+
+.listing-item-change-box p {
+  font-size: 16px;
+}
+.text-center {
+  text-align: center;
+}
+
+.btn-gray {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .message-content {
+    padding: 24px; 
+  }
+}
+
+.message-content {
+    padding: 24px 7.5%;
+    background: #fff;
+}
+
+.message-form p {
+  padding: 8px;
+  font-size: 14px;
+  background: #fff6de;
+}
+
+.message-form .textarea-default {
+  margin: 8px 0 0;
+}
+
+.message-submit {
+  width: 100%;
+  margin: 8px 0 0;
+  font-size: 0;
+  text-align: center;
+}
+
+.message-submit span {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
