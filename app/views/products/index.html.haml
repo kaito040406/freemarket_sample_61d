@@ -40,17 +40,17 @@
               %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 新着アイテム
               .sc-dyGzUR.kfbxDu
                 = link_to"もっと見る",""
-            %div.main.products.content
+            .main.products.content
               %ul.products.content.box
                 - @products.zip(@images).each do |product, image|
                   %li.products.content.boxes
-                    %div{style: "visibility: visible; transition: all 0.5s ease 0s; opacity: 1; height:252px;"}
+                    %div.products.content.boxes.inner
                       =link_to "","", class:"products.link"
                       %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
                         %figcaption
                           %span
                             =product.name
-                        %div.style_thumbnail__N_xAi
+                        .style_thumbnail__N_xAi
                           %span{"aria-label": "Price"}
                             ¥
                             =product.price 

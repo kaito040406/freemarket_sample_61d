@@ -65,7 +65,16 @@ body {
   padding: 10px;
   height: 50%;
   display: inline-block;
+  .products.content.boxes.inner{
+    visibility: visible;
+    transition: all 0.5s ease 0s;
+    opacity: 1; 
+    height:252px;
+    width: 208px;
+  }
 }
+
+
 .products.link{
   width: 100%;
   cursor: pointer;
