@@ -1,0 +1,50 @@
+.default-container
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    = render 'shared/header'
+    = render 'shared/bread_bar'
+  %main.l-container.clearfix
+    .l-content
+      %section.mypage-tab-container
+        %h2.mypage-tab-head 出品した商品
+        %ul.listing-tabs
+          %li.active
+            %h3
+              =link_to "出品中", "#mypage-tab-transaction-now"
+          %li
+            %h3
+              =link_to "取引中", "/jp/mypage/listings/in_progress/"
+          %li
+            %h3
+              =link_to "売却済み", "/jp/mypage/listings/completed/"
+        .tab-content
+          %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+            %li
+              =link_to "https//www.mercari.com/jp/items/m69617298882/", class: "mypage-item-link" do
+                %figure
+                  =image_tag "//static.mercdn.net/thumb/photos/m69617298882_1.jpg?1572693431", class: "is-higher-width lazyloaded"
+                .mypage-item-body.show-stock-item
+                  .mypage-item-text
+                    商品名
+                  %div
+                    %span.listing-item-count
+                      %i.fa.fa-heart
+                      %span 1
+                    %span.listing-item-count
+                      %i.fa.fa-comment-alt
+                      %span 0
+                    .mypage-item-status.bold.awaiting
+                      出品中
+                .fa.fa-chevron-right
+      %ul.mypage-history.pager
+        %li.pager-prev.pager-cell
+          =link_to "/jp/mypage/listings/listing/?min_pager_id=5138546276" do
+            .fa.fa-chevron-left
+        %li.pager-next.pager-cell
+          =link_to "/jp/mypage/listings/listing/?max_pager_id=5138546276" do
+            .fa.fa-chevron-right
+    .l-side
+      = render 'shared/side_bar'
+      = render 'shared/cameraicon'
+  %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+    =render 'shared/footer'
+

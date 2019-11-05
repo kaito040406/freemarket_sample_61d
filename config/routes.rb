@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #ここから長谷川記入
   resources :signup do
     collection do
-      get 'sgin_in_select'
+      get 'sign_in_select'
       get 'step1'
       get 'step2'
       get 'step3'
@@ -22,10 +22,11 @@ Rails.application.routes.draw do
   end
   #ここまで長谷川記入
 
-  resources "users",only: [:index,:profile], path: 'mypage' do
+  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
     collection do
       get 'profile'
       get 'identification'
+      get 'progress'
     end
   end
 end
