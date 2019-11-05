@@ -85,14 +85,29 @@ gem 'kaminari'
 gem 'devise'
 gem 'fog-aws'
 
-gem 'haml-rails'
+
 gem 'omniauth-rails_csrf_protection'#外部認証用のgem はせがわ
 gem 'omniauth-facebook'#facebookログインのgem はせがわ
 gem 'omniauth-twitter'#twitterログインのgem はせがわ
 gem 'omniauth-google-oauth2'#グーグルログインのgem 長谷川
 gem 'dotenv-rails'#.env用のgem はせがわ
 gem 'haml-rails'#hamalのgem  長谷川
+gem "jquery-rails"#jqueryを使用するため導入
+gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
+gem 'carrierwave' #画像アップロードに使用 中島
+gem 'mini_magick' #carrierwaveとセットで画像の処理に使用 中島
+
+gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
+gem 'gretel'#パンくずのgem 木山
+
 gem 'recaptcha', require: "recaptcha/rails"#ロボットではない認証用のgem 長谷川
 
 gem 'active_hash' #フォームのセレクトボックスで使うデータの管理 中島
+
+# クレジットカード登録用 平田 11/2
+gem 'payjp'
+# jquery使用 平田 11/2
+gem 'jquery-rails'
+
+gem 'roo'#CSV読み込みよう
 

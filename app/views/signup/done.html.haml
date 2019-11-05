@@ -1,2 +1,39 @@
-- if user_signed_in?
- = 'ログインOK'
+%body
+  .single-header-st1_k
+    .merukari_box_k
+      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), root_path
+      .progress-bar
+        %ol.clearfix_k
+          %li.active_k8
+            会員情報
+            .progress-status_on_k
+          %li.active_k2
+            電話番号認証
+            .progress-status_on_k
+          %li.active_k3
+            お届け先住所入力
+            .progress-status_on_k
+          %li.active_k4
+            支払い方法
+            .progress-status_on_k
+          %li.active_k11
+            完了
+            .progress-status_on_k
+        .line_done_on
+
+  .single-main-st1_k
+    .l-single-container_k
+      .l-single-head_k
+        会員登録完了
+      .form_box_k
+        .l-single-content_k
+          .short_message_text_done_k
+            ありがとうございます。会員登録が完了しました。
+          = link_to(user_products_path(current_user.id), method: :get) do
+            .form-bottan-st2-k
+              .form-bottan-set-st5-k
+                メルカリをはじめる
+  .block_k
+
+  %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+    =render 'shared/footer'

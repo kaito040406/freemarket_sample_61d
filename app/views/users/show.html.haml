@@ -1,19 +1,70 @@
-%header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
-  = render 'shared/header'
-  %main.h-container.clearfix
-    .h-content
-      %section.h-chapter-container
-        %h2.h-chapter-head プロフィール
-        %form{action: "https://wwww.mercari.com/jp/mypager/profile/", method: "POST"}
-          %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
-          .setting-profile-icon
-            .test
-              = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png"
-            %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: ""}/
-          .setting-profile-content
-            %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-            %input{name: "after_save_callback", type: "hidden", value: "https://www.mercari.com/jp/mypage/profile/"}/
-            %button.btn-default.btn-red{type: "submit"} 変更する
-            %form
+- breadcrumb :mypage
+
+.default-container
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    = render 'shared/header'
+    = render 'shared/bread_bar'
+  %main.l-container.clearfix
+    .l-content
+      %section.mypage-user-icon
+        = link_to "", ""
+        %figure
+          - if current_user.icon_image == nil
+            = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60", alt: "", height: "60"
+          - else
+            = image_tag current_user.icon_image, width: "60", alt: "", height: "60"
+        %h2.bold
+          = current_user.nick_name
+        .mypage-number
+          %div
+            評価
+            %span.bold 
+              = current_user.evaluation
+          %div
+            出品数
+            %span.bold 
+              = current_user.exhibits_number
+      %section.mypage-tab-container-notification-todo
+        %ul.mypage-tabs
+          %li.active
+            %h3
+              = link_to "お知らせ", "#mypage-tab-notification"
+            %li
+              = link_to 'やることリスト', "https://www.mercari.com/jp/help_center/article/759/"
+            %figure
+              = image_tag "//static.mercdn.net/images/mercari_profile.png", alt: "", class: ".lazyload"
+            .mypage-item-body
+              .mypage-item-text ご登録のメールアドレスに認証メールを送ります。メールに記載のURLをクリックして、メールアドレスを認証してください。
+              %time
+                %i.icon-time
+                %span １日前
+              %i.icon-arrow-right
+            %li.mypage-go-list
+              = link_to "一覧を見る", "" 
+      %section.mypage-tab-container
+        %h2.mypage-tab-head 購入した商品
+        %ul.mypage-tabs
+          %li.active
+            %h3
+              = link_to "取引中", "#mypage-tab-transaction-now"
+          %li
+            %h3
+              = link_to "過去の取引", "#mypage-tab-transaction-old"
+        .tab-content
+          %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+            %li.mypage-item-not-found.bold 取引中の商品がありません
+          %ul#mypage-tab-transaction-old.mypage-item-list.tab-pane
+            %li.mypage-item-not-found.bold 過去に取引した商品がありません
+    .l-side
+      = render 'shared/side_bar'
+      %exhibit.sc-bHwgHz.eUokWJ
+        .sc-krDsej.judNJS
+          .sc-hzDkRC.cEMgYD
+            .sc-jhAzac.jsMoaY 
+              =link_to"出品",""
+            %svg.sc-kGXeez.sc-fBuWsC.bMYJEZ{"aria-hidden": "true", height: "16", viewbox: "0 0 18 16", width: "18"}
+              %path{d: "M6.3 0L4.653 1.778H1.8c-.99 0-1.8.8-1.8 1.778v10.666C0 15.2.81 16 1.8 16h14.4c.99 0 1.8-.8 1.8-1.778V3.556c0-.978-.81-1.778-1.8-1.778h-2.853L11.7 0H6.3zM9 13.333c-2.484 0-4.5-1.99-4.5-4.444 0-2.453 2.016-4.445 4.5-4.445s4.5 1.992 4.5 4.445c0 2.453-2.016 4.444-4.5 4.444zm0-1.6c1.59 0 2.88-1.273 2.88-2.844S10.59 6.044 9 6.044c-1.59 0-2.88 1.274-2.88 2.845 0 1.57 1.29 2.844 2.88 2.844z", fill: "currentColor", "fill-rule": "nonzero"}
+          -# 出品ボタン
   %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
     =render 'shared/footer'
+

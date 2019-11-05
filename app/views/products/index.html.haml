@@ -1,27 +1,61 @@
 %div
-  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
-    = render 'shared/header'
-    .sc-iGrrsa.bkYzxq
-      .sc-bmyXtO.kuWFUJ
-        .sc-exkUMo.fpALyF
-          =link_to "","https://www.mercari.com/jp/featured/camp/"
-          .ashhsL
-            =image_tag "https://www-mercari-jp.akamaized.net/assets/img/featured/camp/index/index_keyvisual.png?1248199994", alt: "", class:"ashhsL"
-    .sc-drKuOJ.ibydfh
-      %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
-      .sc-cmjSyW.hTgxLd
-        %ul.sc-sdtwF.cmQcPI
-          %li.sc-iYUSvU.gUHLnE
-            .sc-cHSUfg.sc-cTjmhe.emrFJX
-              = link_to "トップス",""
-    .sc-gkFcWv.lcfgps
-      .sc-hUfwpO.kyoAKq
-        .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-          %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 新着アイテム
-          .sc-dyGzUR.kfbxDu
-            = link_to"もっと見る",""
-
-        -# 出品ボタン
+  %div.sc-TFwJa.wYTWu
+    %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+      = render 'shared/header'
+    .main-top-content
+      .top-content
+        -# js対応
+        %div.slick
+          %div
+            =link_to "https://www.mercari.com/jp/featured/camp/" do
+              =image_tag "/images/banner-camp.png", alt: "mercari", class:"slick.first"
+          %div
+            .sc-dliRfk.lnMXqm
+              .sc-iqzUVk.jAEZMX
+                =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png", alt: "", class: "slick.second", width: "440px", height: "390px"
+              .sc-qrIAp.PkUrY
+                .sc-jtggT.bqsQJl
+                  スマホでかんたん
+                  %br
+                  フリマアプリ
+                  %p.sc-ebFjAB.SGfox
+                    メルカリはスマホカメラからすぐに出品できる
+                    %br
+                    購入時も安心な独自システムのアプリです
+                  %div.sc-iGrrsa.heyozC
+                    =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8" do
+                      =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg", alt: "", class: "gxiFBJ"
+                    =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
+                      =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg", alt: "", class: "jcELSQ"
+        .sc-drKuOJ.ibydfh
+          %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
+          .sc-cmjSyW.hTgxLd
+            %ul.sc-sdtwF.cmQcPI
+              %li.sc-iYUSvU.gUHLnE
+                .sc-cHSUfg.sc-cTjmhe.emrFJX
+                  = link_to "トップス",""
+        .sc-gkFcWv.lcfgps
+          .sc-hUfwpO.kyoAKq
+            .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+              %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 新着アイテム
+              .sc-dyGzUR.kfbxDu
+                = link_to"もっと見る",""
+            .main.products.content
+              %ul.products.content.box
+                - @products.zip(@images).each do |product, image|
+                  %li.products.content.boxes
+                    %div.products.content.boxes.inner
+                      =link_to "","", class:"products.link"
+                      %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                        %figcaption
+                          %span
+                            =product.name
+                        .style_thumbnail__N_xAi
+                          %span{"aria-label": "Price"}
+                            ¥
+                            =product.price 
+                          %img.style_thumbnail__N_xAi
+                            = image_tag "#{image.product_image}"
     %exhibit.sc-bHwgHz.eUokWJ
       .sc-krDsej.judNJS
         .sc-hzDkRC.cEMgYD
@@ -29,6 +63,5 @@
             =link_to"出品",""
           %svg.sc-kGXeez.sc-fBuWsC.bMYJEZ{"aria-hidden": "true", height: "16", viewbox: "0 0 18 16", width: "18"}
             %path{d: "M6.3 0L4.653 1.778H1.8c-.99 0-1.8.8-1.8 1.778v10.666C0 15.2.81 16 1.8 16h14.4c.99 0 1.8-.8 1.8-1.778V3.556c0-.978-.81-1.778-1.8-1.778h-2.853L11.7 0H6.3zM9 13.333c-2.484 0-4.5-1.99-4.5-4.444 0-2.453 2.016-4.445 4.5-4.445s4.5 1.992 4.5 4.445c0 2.453-2.016 4.444-4.5 4.444zm0-1.6c1.59 0 2.88-1.273 2.88-2.844S10.59 6.044 9 6.044c-1.59 0-2.88 1.274-2.88 2.845 0 1.57 1.29 2.844 2.88 2.844z", fill: "currentColor", "fill-rule": "nonzero"}
-        -# 出品ボタン
     %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
       =render 'shared/footer'
