@@ -27,9 +27,17 @@ let DeliveryMethodSelectBoxHTML = `
   </label>
   <div class="select-wrap">
     <i class="icon-arrow-bottom"></i>
-    <select class="select-default" name="product[delivery_fee]" id="product_delivery_fee"><option value="">---</option>
-    <option value="着払い(購入者負担)">着払い(購入者負担)</option>
-    <option value="送料込み(出品者負担)">送料込み(出品者負担)</option></select>
+    <select class="select-default" name="product[delivery_method]" id="product_delivery__method">
+    <option value="">---</option>
+    <option value="5">未定</option>
+    <option value="14">らくらくメルカリ便</option>
+    <option value="6">ゆうメール</option>
+    <option value="8">レターパック</option>
+    <option value="9">普通郵便(定形、定形外)</option>
+    <option value="10">クロネコヤマト</option>
+    <option value="11">ゆうパック</option>
+    <option value="13">クリックポスト</option>
+    <option value="7">ゆうパケット</option></select>
   </div>
 </div>`
 
