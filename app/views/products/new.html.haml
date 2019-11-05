@@ -28,34 +28,6 @@
                     またはクリックしてファイルをアップロード　　　　　　　
                 %i.icon-camera
 
-      -# .img-uploader-box
-      -#   %h3.img-uploader-head
-      -#     出品画像
-      -#     %span.must-filled-mark-t
-      -#       必須
-      -#   %p
-      -#     最大10枚までアップロードできます
-      -#   .dropbox-container.flexcontainer
-      -#     .img-uploader-container
-      -#       .img-uploader.img-uploader-drop-box
-      -#         ???
-      -#         =f.file_field :product_image[0] #, multiple: true
-      -#         =f.file_field :product_image[1] #, multiple: true
-      -#         =f.file_field :product_image[2] #, multiple: true
-      -#         =f.file_field :product_image[3] #, multiple: true
-      -#         =f.file_field :product_image[4] #, multiple: true
-      -#         =f.file_field :product_image[5] #, multiple: true
-      -#         =f.file_field :product_image[6] #, multiple: true
-      -#         =f.file_field :product_image[7] #, multiple: true
-      -#         =f.file_field :product_image[8] #, multiple: true
-      -#         =f.file_field :product_image[9] #, multiple: true
-      -#         %pre.visible-pc
-      -#           :preserve
-        
-        
-      -#             ドラッグアンドドロップ　　　　　　　
-      -#             またはクリックしてファイルをアップロード　　　　　　　
-      -#         %i.icon-camera
       .form-sub-t
         .form-input-t
           %label
@@ -125,41 +97,41 @@
           販売価格(300〜9,999,999)
           =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon-t"
         .form-input-list-t
-          %ul.price
+          %ul.price-field-list
             %li.form-input-t
-              .price-flexcontainer-T
+              .flexcontainer.price-T
                 %label
                   価格
                   %span.must-filled-mark-t
                     必須
-                .price-flexcontainer-T.price-input
+                .flexcontainer.price-T.price-input
                   ¥
                   %div
-                    =f.text_field :price, placeholder: "例）300", class: "input-default"
+                    =f.text_field :price, placeholder: "例）300", class: "input-default", id: "product_price"
                     
-            %li.flexcontainer
+            %li.flexcontainer.product-fee
               %div
                 販売手数料 (10%)
-              %div
+              #product-fee
                 \-
-            %li.flexcontainer.bold
+            %li.flexcontainer.bold.product-gain
               %div
                 販売利益
-              %div
+              #product-gain
                 \-
       %div.form-sub-t.button-container-t
         %div
           %p
-            =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank"
-            =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank"
+            =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank", class: "product-new-caution"
+            =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank", class: "product-new-caution"
             を必ずご確認ください。
           %p
             またブランド品でシリアルナンバー等がある場合はご記載ください。
-            =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank"
+            =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank", class: "product-new-caution"
             は犯罪であり処罰される可能性があります。
           %p
             また、出品をもちまして
-            =link_to "加盟店規約", "/jp/seller_terms/"
+            =link_to "加盟店規約", "/jp/seller_terms/", class: "product-new-caution"
             に同意したことになります。
         %button.button-t.button-submit-t{type: "submit"}
           出品する

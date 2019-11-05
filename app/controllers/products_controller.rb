@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
-    @user = current_user
+
     10.times { @product.product_images.build }
   end
 
