@@ -7,7 +7,7 @@ class SignupController < ApplicationController
       password: session[:password],
       password_confirmation: session[:password_confirmation],
       sur_name: session[:sur_name],
-      fr_name: session[:sur_name],
+      fr_name: session[:fr_name],
       sur_name_yomi: session[:sur_name_yomi],
       first_name_yomi: session[:first_name_yomi],
       birthday_year: session[:birthday_year],
@@ -21,6 +21,7 @@ class SignupController < ApplicationController
       address_banch: session[:address_banch],
       building_name: session[:building_name]
     )
+    
     if @user.save
       session[:id] = @user.id
       redirect_to done_signup_index_path
