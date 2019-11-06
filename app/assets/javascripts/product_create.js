@@ -20,24 +20,23 @@ let CategorySelectBoxHTML = `
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
-    配送料の負担
+    配送の方法
     <span class="must-filled-mark-t">
       必須
     </span>
   </label>
   <div class="select-wrap">
     <i class="icon-arrow-bottom"></i>
-    <select class="select-default" name="product[delivery_method]" id="product_delivery__method">
-    <option value="">---</option>
-    <option value="5">未定</option>
-    <option value="14">らくらくメルカリ便</option>
-    <option value="6">ゆうメール</option>
-    <option value="8">レターパック</option>
-    <option value="9">普通郵便(定形、定形外)</option>
-    <option value="10">クロネコヤマト</option>
-    <option value="11">ゆうパック</option>
-    <option value="13">クリックポスト</option>
-    <option value="7">ゆうパケット</option></select>
+    <select class="select-default" name="product[delivery_method]" id="product_delivery_method">
+    <option value="未定">未定</option>
+    <option value="らくらくメルカリ便">らくらくメルカリ便</option>
+    <option value="ゆうメール">ゆうメール</option>
+    <option value="レターパック">レターパック</option>
+    <option value="普通郵便(定形、定形外)">普通郵便(定形、定形外)</option>
+    <option value="クロネコヤマト">クロネコヤマト</option>
+    <option value="ゆうパック">ゆうパック</option>
+    <option value="クリックポスト">クリックポスト</option>
+    <option value="ゆうパケット">ゆうパケット</option></select>
   </div>
 </div>`
 
@@ -51,7 +50,7 @@ $(document).on('turbolinks:load', function(){
     let product_gain = product_price - product_fee;
     $('#product-fee').html(product_fee);
     $('#product-gain').html(product_gain);
-  });  
+  });
 
   $('#product_categry').change(function() {
     let selection = $('option:selected').val();
@@ -70,4 +69,19 @@ $(document).on('turbolinks:load', function(){
       console.log('default');
     }
   });
+
+  
+//画像がアップローダされたらhidden属性でproduct_image: count:の値を付与
+  $("[id ^='product_product_images_attributes_']").change(function() {
+    let productImageNum = $(this).attr('id').replace(/[^0-9]/g, '');
+    productImageNum = Number(productImageNum);
+    console.log(productImageNum);
+    let ProductImageCountAttrHTML = `
+    <input type="hidden" 
+    name="product[product_images_attributes][${productImageNum}][count]" 
+    value=${productImageNum}>
+    `;
+    $(this).after(ProductImageCountAttrHTML);
+  });
+
 });
