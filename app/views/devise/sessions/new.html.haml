@@ -1,26 +1,26 @@
 %body
   .single-header-done_k
     .merukari_box_k
-      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), products_path
+      =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari", size: '185x49'), root_path
   .login_box
     .single-main-done_k
       .l-single-container_done_k
         .l-single-head_login_k
           .new_text_k
             アカウントをお持ちでない方はこちら
-          = link_to(sgin_in_select_signup_index_path, method: :get) do
+          = link_to(sign_in_select_signup_index_path, method: :get) do
             .new_account_k
               新規会員登録
     .single-main-done_k_t
       .l-single-container_done_k
         .l-single-head_login_k
-          = link_to(sgin_in_select_signup_index_path, method: :get) do
+          = link_to(sign_in_select_signup_index_path, method: :get) do
             .new_account_f_k
               .text_f_k
                 Facebookでログイン
               .icon_box_f_k_l
                 %i.fab.fa-facebook-square
-          = link_to(sgin_in_select_signup_index_path, method: :get) do
+          = link_to(sign_in_select_signup_index_path, method: :get) do
             .new_account_g_k
               .text_g_k
                 Googleでログイン
