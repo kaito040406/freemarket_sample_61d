@@ -37,7 +37,6 @@ class ProductsController < ApplicationController
       #redirect_to show_products_path(product)
     end
   end
-  
 
   private
   
