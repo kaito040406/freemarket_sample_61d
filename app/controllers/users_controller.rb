@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def identification
     @data = Prefecture.all
+    @user = current_user
   end
 
   def progress
