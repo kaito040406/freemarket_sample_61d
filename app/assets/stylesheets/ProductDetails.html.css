@@ -352,13 +352,11 @@ i[class^='icon-'], i[class*='icon-'] {
 }
 
 .item-button-right {
-  margin: 8pxs 0 0;
+  margin: 8px 0 0;
   float: right;
 }
 
-.fa.fa-lock:before {
-  content: '\e01c';
-}
+
 
 .item-detail-message {
   width: 700px;

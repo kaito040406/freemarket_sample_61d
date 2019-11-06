@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { registrations: 'registrations'} #ロボットではない認証に使用
   root 'products#index'
+  resources :products, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

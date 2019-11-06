@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  def edit    
+  def edit
   
   end
   
@@ -37,6 +37,12 @@ class ProductsController < ApplicationController
       #redirect_to show_products_path(product)
     end
   end
+  
+  def show
+    
+  end  
+
+
 
   private
   
