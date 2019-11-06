@@ -42,6 +42,8 @@ class ProductsController < ApplicationController
     
   end  
 
+
+
   private
   
   def product_image_params

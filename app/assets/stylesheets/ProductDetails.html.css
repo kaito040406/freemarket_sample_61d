@@ -356,9 +356,7 @@ i[class^='icon-'], i[class*='icon-'] {
   float: right;
 }
 
-.fa.fa-lock:before {
-  /* content: '\e01c'; */
-}
+
 
 .item-detail-message {
   width: 700px;
@@ -829,3 +827,4 @@ i[class^='icon-'], i[class*='icon-'] {
   font-size: 14px;
   line-height: 1.2;
 }
+
