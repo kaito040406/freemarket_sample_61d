@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
+    
 
     collection do
       get 'identification'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
       get 'progress'
     end
   end
-  resources :credit_cards, only: [:new, :create]
+  
   #ここから長谷川記入
   resources :signup do
     collection do
@@ -38,4 +39,7 @@ Rails.application.routes.draw do
       get 'my_details'
     end
   end
+
+  resources :credit_cards, only: [:index, :new, :show]
+    
 end
