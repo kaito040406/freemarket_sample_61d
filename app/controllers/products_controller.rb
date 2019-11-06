@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  def edit    
+  def edit
   
   end
   
@@ -38,6 +38,9 @@ class ProductsController < ApplicationController
     end
   end
   
+  def show
+    
+  end  
 
   private
   
