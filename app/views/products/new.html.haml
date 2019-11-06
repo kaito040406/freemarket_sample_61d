@@ -53,7 +53,7 @@
                 必須
             %div
               .select-wrap
-                %i.icon-arrow-bottom
+                %i.fa.fa-chevron-down
                 = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -61,7 +61,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t
@@ -74,7 +74,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -82,7 +82,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -90,7 +90,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t
