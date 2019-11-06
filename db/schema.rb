@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.integer "size", null: false
     t.date "date", null: false
     t.integer "delivery_fee", null: false
-    t.integer "delivery_method", null: false
+    t.integer "delivery_method"
     t.integer "delivery_from"
     t.integer "estimated_delivery_date"
     t.integer "buyer_id"

@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  def edit    
+  def edit
   
   end
   
@@ -17,10 +17,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    binding.pry
+    #binding.pry
     @product = Product.new(product_params)
+    binding.pry
+    
     #@product.user = current_user
     if @product.save!
+
       redirect_to :root
     else
       #render :new
@@ -36,6 +39,11 @@ class ProductsController < ApplicationController
     end
   end
   
+  def show
+    
+  end  
+
+
 
   private
   
