@@ -13,12 +13,11 @@
             %ul.settings-payment-list
           %section.settings-add-card
             .l-single-content
-              =link_to "", "https://www.mercari.com/jp/mypage/card/create/", class: "btn-default btn-red submit_button"
-              %i.icon-card>
-              クレジットカードを追加する
+              .btn-default.btn-red.submit_button
+                =link_to "クレジットカードを追加する", "/credit_cards/new"
+                %i.fa.fa-credit-card
           .settings-not-regist
-            =link_to "", "/jp/help_center/category/6/"
-            %span 支払い方法について
+            =link_to "支払い方法について", "/jp/help_center/category/6/"
             %i.fa.fa-chevron-right
     .l-side
       = render 'shared/side_bar'

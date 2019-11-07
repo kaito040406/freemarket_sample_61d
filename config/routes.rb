@@ -40,6 +40,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :credit_cards, only: [:index, :new, :show]
+  resources "credit_cards", only: [:index, :new, :show] do
+    collection do
+      get 'new'
+    end
+  end
     
 end

@@ -5,7 +5,6 @@ class CreditCardsController < ApplicationController
   end
 
   def new
-  
   end
 
 
