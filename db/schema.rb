@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_162646) do
     t.integer "mid"
     t.text "token"
     t.text "pass_token"
+    t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

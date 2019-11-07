@@ -10,54 +10,41 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
  
   def callback_from(provider)
-    binding.pry
     provider = provider.to_s
     @user = User.find_for_oauth(request.env['omniauth.auth'])
-    check = Snscredential.find_by(uid: request.env['omniauth.auth'][:uid])
-    if request.env['omniauth.auth'] == 'facebook'
-      if check != nil
-        sign_in User.find(check.mid) unless user_signed_in?
-        redirect_to root_path
-        end
-      else
+    check = Snscredential.find_by(token: request.env['omniauth.auth'][:uid])
+    if check != nil
+      binding.pry
+      sign_in User.find(check.mid) unless user_signed_in?
+      redirect_to root_path
+    else
+      @email = request.env['omniauth.auth'][:info][:email]
+      mail_check = User.find_by(email: @email)
+      if mail_check == nil
         pass_token = SecureRandom.base64()
-        @user_data = User.new(
-          nick_name: request.env['omniauth.auth'][:info][:name],
-          email: request.env['omniauth.auth'][:info][:email],
-          password: pass_token,
-          password_confirmation: pass_token,
-          icon_image: request.env['omniauth.auth'][:info][:image],
-          sur_name: "",
-          fr_name: "",
-          sur_name_yomi: "",
-          first_name_yomi: "",
-          birthday_manth: "",
-          birthday_year: "",
-          birthday_day: "",
-          tel_number: "",
-          certification: "",
-          address_number: "",
-          address_ken: "",
-          address_city: "",
-          address_banch: "",
-          building_name: ""
-          
-        )
-        #session["devise.#{provider}_data"] = request.env['omniauth.auth']
-        @user.save!(validate: false)
-        @snscredential = Snscredential.new(
-          mid: @user.id,
-          uid: request.env['omniauth.auth'][:uid],
+        @user_data = "from_sns"
+        @nick_name = request.env['omniauth.auth'][:info][:name]
+        @password = pass_token
+        @password_confirmation = pass_token
+        @icon_image = request.env['omniauth.auth'][:info][:image]
+        @user = User.new
+        @provider = request.env['omniauth.auth'][:provider]
+        @uid = request.env['omniauth.auth'][:uid]
+        @account_source = "sns"
+        @token = request.env['omniauth.auth'][:credentials][:token]
+        render template: 'signup/step1'
+      else
+        Snscredential.create(
           provider: request.env['omniauth.auth'][:provider],
-          token: request.env['omniauth.auth'][:credentials],
-          pass_token: pass_token
-        )
-        if @snscredential.save
-          sign_in User.find(@user.id) unless user_signed_in?
+          uid: request.env['omniauth.auth'][:uid],
+          email: request.env['omniauth.auth'][:info][:email],
+          mid: mail_check.id,
+          token: request.env['omniauth.auth'][:credentials][:token]
+          )
+          sign_in User.find(mail_check.id) unless user_signed_in?
           redirect_to root_path
-          end
-        end
       end
     end
   end
 end
+

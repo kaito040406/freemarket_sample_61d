@@ -6,6 +6,7 @@ class CreateSnscredentials < ActiveRecord::Migration[5.2]
       t.integer :mid
       t.text    :token
       t.text    :pass_token
+      t.text    :email
       t.timestamps
     end
   end

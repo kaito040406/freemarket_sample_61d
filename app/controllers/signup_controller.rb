@@ -1,4 +1,4 @@
-class SignupController < ApplicationController 
+class SignupController < ApplicationController
 
   def create
     
@@ -20,20 +20,30 @@ class SignupController < ApplicationController
       address_ken: session[:address_ken],
       address_city: session[:address_city],
       address_banch: session[:address_banch],
-      building_name: session[:building_name]
+      building_name: session[:building_name],
+      icon_image: session[:icon_image]
     )
-    
-    if @user.save
+    if @user.save!
       session[:id] = @user.id
+      if session[:sorce] == "sns"
+        Snscredential.create(
+          provider: session[:provider],
+          uid: session[:uid],
+          email: session[:email],
+          mid: session[:id],
+          token: session[:token]
+        )
+      end
       redirect_to done_signup_index_path
     end
   end
 
   def sign_in_select
-  
+    
   end
 
   def step1
+    @user_data = 'from_mail'
     @user = User.new
   end
   def step2
@@ -48,6 +58,14 @@ class SignupController < ApplicationController
     session[:birthday_year] = user_params[:birthday_year]
     session[:birthday_manth] = user_params[:birthday_manth]
     session[:birthday_day] = user_params[:birthday_day]
+    if params[:user][:account_source] != nil
+      session[:nick_name] = user_params[:nick_name]
+      session[:icon_image] = user_params[:icon_image]
+      session[:provider] = user_params[:provider]
+      session[:uid] = user_params[:uid]
+      session[:token] = user_params[:token]
+    end
+    session[:sorce] = params[:user][:account_source]
     @user = User.new
   end
   def step3
@@ -100,7 +118,12 @@ class SignupController < ApplicationController
       :address_ken,
       :address_city,
       :address_banch,
-      :building_name
+      :building_name,
+      :icon_image,
+      :uid,
+      :mid,
+      :provider,
+      :token
     )
   end
 end
