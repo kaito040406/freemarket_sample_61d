@@ -1,0 +1,18 @@
+- breadcrumb :mypage
+
+%header.log_out_k
+  = render 'shared/header'
+  = render 'shared/bread_bar'
+.log_out_box
+  .in_log_out_box
+    .l-side
+      = render 'shared/side_bar'
+    .lob_out_bottan_box_k
+      = link_to(destroy_user_session_path, method: :delete) do 
+        .lob_out_bottan_k
+          ログアウトする
+
+%footer.lpg_out_k
+  =render 'shared/footer'
+  =render 'shared/cameraicon'
+  
