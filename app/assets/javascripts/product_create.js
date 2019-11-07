@@ -44,11 +44,7 @@ let DeliveryMethodSelectBoxHTML = `
 $(document).on('turbolinks:load', function(){
   let fileForms = $("[type=file]");
   $(fileForms).hide();
-  // let labelIdNum = 0;
 
-  // $(labelIdValue).change(function(e){
-  //   //$(this).show();
-  //});
 //画像がアップローダされたらhidden属性でproduct_image: count:の値を付与
   $("[id ^='product_product_images_attributes_']").change(function() {
     //アップロードされたinputタグのidから数字部分を取り出す
