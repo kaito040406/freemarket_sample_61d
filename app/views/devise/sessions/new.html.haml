@@ -19,11 +19,13 @@
               .text_f_k
                 Facebookでログイン
               .icon_box_f_k_l
-                %i.fab.fa-facebook-square
+                %i.fa.fa-facebook-square.k
           = link_to(sign_in_select_signup_index_path, method: :get) do
             .new_account_g_k
               .text_g_k
                 Googleでログイン
+              .icon_box_f_k_l
+                %i.fa.fa-google.k
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form_lavel_mail_k
               = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス'
