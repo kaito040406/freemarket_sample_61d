@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   has_many :product_images
+  belongs_to :merker
+  belongs_to :category
   belongs_to :user
   accepts_nested_attributes_for :product_images
 

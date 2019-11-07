@@ -1,0 +1,32 @@
+.default-container 
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    =render 'shared/header'
+    =render 'shared/bread_bar'
+  .category-index.l-single-container
+    .visible-pc
+      .categories-all
+        %h2
+          カテゴリー一覧
+      .category-list-nav.slide-nav-parent.text-center.clearfix
+        - @roots.each do |root|
+          .white.category-root-category-link-name
+            =root.name
+    - @roots.each do |root|
+      .category-list-box
+        .category-list-individual-box.white.clearfix
+          .red.font-white.category-list-individual-box-root-category-name
+            %h10.root_category-1
+              =root.name
+          .category-list-individual-box-inner-box
+            %p
+              .category-list-individual-box-inner-box-all
+                =link_to "すべて", ""
+            .category-list-individual-box-sub-category-name
+              %h11
+
+
+
+
+  =render  'shared/cameraicon'
+  %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+    =render 'shared/footer'

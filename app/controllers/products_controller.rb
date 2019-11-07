@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
+    @categories = Category.all
   end
 
   def edit    

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :products 
   end
+  resources :categories
   resources :credit_cards, only: [:new, :create]
   #ここから長谷川記入
   resources :signup do
