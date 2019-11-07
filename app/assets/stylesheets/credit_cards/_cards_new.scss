@@ -132,22 +132,6 @@ label {
   cursor: pointer;
 }
 
-.icon-arrow-bottom {
-  font-size: 10px;
-  margin: 0 6px 0 -15px;
-  position: relative;
-  top: 3px;
-  pointer-events: none;
-  right: 16px;
-  z-index: 2;
-  color: #888;
-  transform: translate(0, -50%);
-}
-
-.icon-arrow-bottom::before {
-  content: '\e001';
-}
-
 .signup-seqcode {
   position: relative;
   margin: 8px 0 0;
@@ -199,4 +183,16 @@ label {
   transition: all ease-out .3s;
   cursor: pointer;
   text-align: center;
+}
+
+.signup-form-expire .h-select-wrap .fa.fa-chevron-down {
+  font-size: 15px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  right: 15px;
+  pointer-events: none;
+}
+
+.h-form-group label {
+  font-weight: 600;
 }
