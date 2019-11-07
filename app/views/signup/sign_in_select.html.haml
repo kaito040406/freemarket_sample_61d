@@ -13,11 +13,11 @@
               .icon_box_m_k
                 %i.fa.fa-envelope
               メールアドレスで新規登録をする
-          = link_to(root_path) do
+          = link_to(user_facebook_omniauth_authorize_path, method: :post) do
             .sign_f
               .icon_box_f_k
                 %i.fa.fa-facebook-square
-              = link_to "Facebookで登録する", ""
+              Facebookで登録する 
           .ding_g
             Googleで登録する
 
