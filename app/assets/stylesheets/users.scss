@@ -219,9 +219,8 @@ h2 {
 .mypage-tabs li.active, .listing-tabs li.active, .review-history-tabs li.active {
   background: #fff;
 }
-.mypage-tabs li {
-  width: 50%;
-}
+
+
 .mypage-tabs li, .listing-tabs li, .review-history-tabs li {
   display: inline-block;
   text-align: center;
@@ -250,9 +249,6 @@ h3 {
   line-height: 72px;
 }
 
-.mypage-tabs li {
-  width: 50%;
-}
 
 .tab-content .tab-pane.active {
   display: block;
@@ -369,6 +365,7 @@ img {
 
 .mypage-go-list {
   padding: 16px;
+  width: 100%!important;
 }
 
 .mypage-go-list a {
@@ -397,9 +394,7 @@ img {
 .mypage-tabs li.active, .listing-tabs li.active, .review-history-tabs li.active {
   background: #fff;
 }
-.mypage-tabs li {
-  width: 50%;
-}
+
 .mypage-tabs li, .listing-tabs li, .review-history-tabs li {
   display: inline-block;
   text-align: center;
@@ -425,6 +420,9 @@ img {
 }
 .mypage-item-list li:last-child {
   border: 0;
+}
+.mypage-tab-transaction-now{
+
 }
 
 
@@ -487,7 +485,6 @@ h2 {
 
 .l-side {
   width: 280px;
-  margin: 0 0 40px 0;
 }
 
 .mypage-nav-list-item {
