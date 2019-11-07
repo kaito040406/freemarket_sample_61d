@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
     //アップロードされたinputタグのidから数字部分を取り出す
     let productImageNum = $(this).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
     productImageNum = Number(productImageNum);//文字列型なので数値型へ変換
-    let labelIdValue = '#product_product_images_attributes_'+productImageNum+'_product_image';
+    let labelIdValue = 'product_product_images_attributes_'+productImageNum+'_product_image';
     let ProductImageCountAttrHTML = `
     <input type="hidden" 
     name="product[product_images_attributes][${productImageNum}][count]" 
@@ -66,11 +66,11 @@ $(document).on('turbolinks:load', function(){
     $(this).after(ProductImageCountAttrHTML);
     //ラベルが指すアップローダーを変更
     if (productImageNum <= 9){
-      let label = $("label [id ^='product_product_images_attributes_']");
+      let label = $("[for ^='product_product_images_attributes_']");
       let incrementedProductImageNum = productImageNum + 1;
-      let incrementedId = '#product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
-      console.log(incrementedId);
-      $("label [id ^='product_product_images_attributes_']").attr('id', incrementedId);
+      let incrementedFor = 'product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
+      console.log(incrementedFor);
+      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
       //書き換え
       console.log('meow');
     // let label = $("label [id ^='product_product_images_attributes_']");
