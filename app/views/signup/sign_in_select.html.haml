@@ -18,8 +18,9 @@
               .icon_box_f_k
                 %i.fa.fa-facebook-square
               Facebookで登録する 
-          .ding_g
-            Googleで登録する
+          = link_to(user_google_oauth2_omniauth_authorize_path, method: :post) do
+            .ding_g
+              Googleで登録する
 
   %footer.product-new-footer-T
     %nav
