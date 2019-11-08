@@ -62,15 +62,13 @@ $(document).on('turbolinks:load', function(){
     $(this).after(ProductImageCountAttrHTML);
     //ラベルが指すアップローダーを変更
     if (productImageNum <= 9){
-      let label = $("[for ^='product_product_images_attributes_']");
+      //let label = $("[for ^='product_product_images_attributes_']");
       let incrementedProductImageNum = productImageNum + 1;
       let incrementedFor = 'product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
-      console.log(incrementedFor);
-      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
       //書き換え
-      console.log('meow');
-    // let label = $("label [id ^='product_product_images_attributes_']");
+      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
     }
+    
   });
 
   $('#product_categry').change(function() {
