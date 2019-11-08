@@ -29,18 +29,20 @@
           %li.active
             %h3
               = link_to "お知らせ", "#mypage-tab-notification"
-            %li
+          %li
+            %h3
               = link_to 'やることリスト', "https://www.mercari.com/jp/help_center/article/759/"
-            %figure
-              = image_tag "//static.mercdn.net/images/mercari_profile.png", alt: "", class: ".lazyload"
-            .mypage-item-body
-              .mypage-item-text ご登録のメールアドレスに認証メールを送ります。メールに記載のURLをクリックして、メールアドレスを認証してください。
-              %time
-                %i.icon-time
-                %span １日前
-              %i.icon-arrow-right
-            %li.mypage-go-list
+        .tab-content
+          %ul#mypage-tab-transaction-now.mypage-tab-transaction-now
+            %li.mypage-item-not-found.bold お知らせはありません
+            .mypage-item-body.k
+              .mypage-item-text.k
+            %li.mypage-go-list.k
               = link_to "一覧を見る", "" 
+      
+      
+      
+      
       %section.mypage-tab-container
         %h2.mypage-tab-head 購入した商品
         %ul.mypage-tabs
