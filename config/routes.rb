@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
-    
-
     collection do
       get 'identification'
       get 'profile'
       get 'progress'
+      get 'log_out'
     end
   end
   #ここから長谷川記入
