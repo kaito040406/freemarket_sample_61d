@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function(){
       return function(e) {
         console.log('hoge');
            // 領域の中にロードした画像を表示するimageタグを追加
-           $(changedInput).append($('<img>').attr({
+           $(changedInput).after($('<img>').attr({
                src: e.target.result,
                width: "114px",
                height: "116px",
