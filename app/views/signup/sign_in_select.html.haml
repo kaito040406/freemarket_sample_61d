@@ -11,7 +11,7 @@
           = link_to(step1_signup_index_path, method: :get) do
             .sign_m
               .icon_box_m_k
-                %i.fa.fa-envelope
+                %i.fa.fa-envelope.k
               メールアドレスで新規登録をする
           - if Rails.env.development?
             = link_to(user_facebook_omniauth_authorize_path, method: :post) do
@@ -31,7 +31,6 @@
             = link_to(step1_signup_index_path, method: :get) do
               .ding_g
                 Googleで登録する
-
   %footer.product-new-footer-T
     %nav
       %ul.flexcontainer

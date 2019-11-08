@@ -54,7 +54,8 @@
                           %span{"aria-label": "Price"}
                             ¥
                             =product.price 
-                          %img.style_thumbnail__N_xAi
+                          = link_to "/products/#{product.id}" do
+                            %img.style_thumbnail__N_xAi
                             = image_tag "#{image.product_image}"
     %exhibit.sc-bHwgHz.eUokWJ
       -if user_signed_in?

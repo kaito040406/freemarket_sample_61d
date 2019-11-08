@@ -18,5 +18,10 @@ class UsersController < ApplicationController
   def progress
   end
 
+  def my_details
+  end
+
+  
+
   
 end

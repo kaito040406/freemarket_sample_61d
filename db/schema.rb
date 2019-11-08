@@ -123,9 +123,9 @@ ActiveRecord::Schema.define(version: 2019_11_06_162646) do
     t.string "sur_name_yomi", null: false
     t.string "first_name_yomi", null: false
     t.string "introduction"
-    t.integer "birthday_year"
-    t.integer "birthday_manth"
-    t.integer "birthday_day"
+    t.integer "birthday_year", null: false
+    t.integer "birthday_manth", null: false
+    t.integer "birthday_day", null: false
     t.string "tel_number", null: false
     t.string "certification", null: false
     t.integer "account"

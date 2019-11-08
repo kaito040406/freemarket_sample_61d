@@ -6,6 +6,8 @@
     %title メルカリ スマホでかんたん フリマアプリ
     %link{href: "ProductDetails.html.css", rel: "stylesheet"}/
   %body
+    %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+      = render 'shared/header'
     %section.h-single-container
       %h1.item-name ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
       .item-main-contentclearfix
@@ -38,16 +40,15 @@
           %tr
             %th カテゴリー
             %td
-              -# = link_to 'https://www.mercari.com/jp/category/5/'
-                %div 本・音楽・ゲーム
-              -# = link_to 'https://www.mercari.com/jp/category/75/'
-                .item-detail-table-sub-category
-                  %i.fa.fa-arrow-right
-                  CD
-              -#   = link_to 'https://www.mercari.com/jp/category/696/'
-                .item-detail-table-sub-sub-category
-                  %i.fa.fa-arrow-right
-                  アニメ
+              %div 本・音楽・ゲーム
+            -# = link_to 'https://www.mercari.com/jp/category/75/'
+              .item-detail-table-sub-category
+                %i.fa.fa-arrow-right
+                CD
+            -#   = link_to 'https://www.mercari.com/jp/category/696/'
+              .item-detail-table-sub-sub-category
+                %i.fa.fa-arrow-right
+                アニメ
           %tr
             %th ブランド
             %td
@@ -91,16 +92,17 @@
             %i.fa.fa-like-border
             %span いいね!
             %span.fade-in-down{"data-num" => "like"} 1
-          -# = link_to '','data-modal' => 'report-item', 'data-open' => 'modal', class: 'item-button.item-button-report.clearfix' 
+          %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m49716933620", "data-toggle" => "like", name: "like!", type: "button"}
             %i.fa.fa-flag
             %span 不適切な商品の報告
-          -# %input{name: "like_add_url", type: "hidden", value: "https://www.mercari.com/jp/like/add/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
-          -# %input{name: "like_del_url", type: "hidden", value: "https://www.mercari.com/jp/like/delete/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
-          -# %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
+          %input{name: "like_add_url", type: "hidden", value: "https://www.mercari.com/jp/like/add/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
+          %input{name: "like_del_url", type: "hidden", value: "https://www.mercari.com/jp/like/delete/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
+          %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
         .item-button-right
-          -# = link_to 'https://www.mercari.com/jp/safe/description/', target: '_blank'
-            %i.icon-lock
-            %span あんしん・あんぜんへの取り組み
+          %i.fa.fa-lock
+          %span 
+            あんしん・あんぜんへの取り組み
+
     .item-detail-message
       .message-container
         .message-content
@@ -124,10 +126,10 @@
                 .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
                 %button.modal-btn.modal-btn-submit{type: "submit"}
                   削除する
-              %input{name: "item_id", type: "hidden", value: "m49716933620"}/
-              %input{name: "comment_id", type: "hidden", value:  ""}/
-              %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}/
-              %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
+              %input{name: "item_id", type: "hidden", value: "m49716933620"}
+              %input{name: "comment_id", type: "hidden", value:  ""}
+              %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}
+              %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}
     %ul.nav-item-link-prev-next.clearfix
       %li.nav-item-link-prev
     -#     = link_to 'https://item.mercari.com/jp/m76402632145/'
@@ -138,21 +140,18 @@
           【新品】Hurley  ◇  ハーレー  パーカー  キッズ  2T
           %i.fa.fa-arrow-right
     .item-social-media-box
-      .text-center
+      .text-center-h
         .fb-save{"data-uri" => "product://113299479059860/m49716933620"}
       %ul.social-media-box
         %li
-    -#       = link_to 'http://www.facebook.com/share.php?u=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F', target: '_blank', class: 'share-btn'
-            %i.fa.fa-facebook
-    -#     %li
-    -#       = link_to 'http://twitter.com/share?count=horizontal&original_referer=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F&text=%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96%EF%BC%81%E3%82%B5%E3%83%B3%E3%82%B7%E2%80%A6%20%28%C2%A512%2C000%29%20https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F%20%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8C%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E3%80%8D%E3%81%A7%E8%B2%A9%E5%A3%B2%E4%B8%AD%E2%99%AA%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%20%40mercari_jp%E3%81%95%E3%82%93%E3%81%8B%E3%82%89', target: '_blank', class: 'share-btn'
-            %i.icon-twitter
-        %li.social-hidden-item
-    -#       = link_to 'http://line.me/R/msg/text/?ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING%20%7C%20%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%20%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93%20%E3%83%95%E3%83%AA%E3%83%9E%E3%82%A2%E3%83%97%E3%83%AA%0D%0Ahttps://item.mercari.com/jp/m49716933620/', target: '_blank'
-            %i.fa.fa-line
+          =link_to "",""
+          %i.fa.fa-facebook-square.h
         %li
+          %i.fa.fa-twitter.h
+        %li
+          %i.fa.fa-pinterest.h
     -#       = link_to 'http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F&media=https%3A%2F%2Fstatic.mercdn.net%2Fitem%2Fdetail%2Forig%2Fphotos%2Fm49716933620_1.jpg%3F1572580974&description=%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E5%95%86%E5%93%81%3A%20%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96%EF%BC%81%E3%82%B5%E3%83%B3%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3%21%21%20%E3%82%BD%E3%83%95%E3%83%9E%E3%83%83%E3%83%97%E5%85%A8%E5%B7%BB%E8%B3%BC%E5%85%A5%E7%89%B9%E5%85%B8%20LONELY%20TUNING%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA', target: '_blank', class: 'share-btn'
-            %i.fa.fa-pinterest
+            
     .items-in-user-profile
       %section.items-box-container.clearfix.related-item-column.items-in-user-profile
         %h2.items-box-head
@@ -289,8 +288,10 @@
     %nav.bread-crumbs.pos-bottom
       %ul
         %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
-    -#       = link_to 'https://www.mercari.com/jp/', itemprop: 'url'
+          -# = link_to 'https://www.mercari.com/jp/', itemprop: 'url'
             %span{itemprop: "title"} メルカリ
           %i.icon-arrow-right
         %li{itemscope: "", itemtype: 'http://data-vocabulary.org/Breadcrumb'}
-          %span itemprop: 'title', ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
+          %span{itemprop: 'title'} ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
+    %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+      =render 'shared/footer'

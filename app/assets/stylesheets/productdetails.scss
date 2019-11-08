@@ -1,3 +1,4 @@
+@import "font-awesome";
 .h-single-container {
   width: 700px;
   padding: 24px 40px 40px;
@@ -26,9 +27,8 @@ line-height: 1.4;
   background: #fafafa;
 }
 
-.owl-carousel 
-{
- position: relative;
+.owl-carousel {
+position: relative;
 }
 
 .owl-stage-outer {
@@ -352,13 +352,11 @@ i[class^='icon-'], i[class*='icon-'] {
 }
 
 .item-button-right {
-  margin: 8pxs 0 0;
+  margin: 8px 0 0;
   float: right;
 }
 
-.fa.fa-lock:before {
-  content: '\e01c';
-}
+
 
 .item-detail-message {
   width: 700px;
@@ -524,8 +522,10 @@ i[class^='icon-'], i[class*='icon-'] {
   background: #fff;
 }
 
-.text-center {
+.text-center-h {
   text-align: center;
+  height: 14px;
+  width: 700px;
 }
 
 .fb_iframe_widget {
@@ -555,6 +555,7 @@ i[class^='icon-'], i[class*='icon-'] {
   margin: 16px 0 0;
   text-align: center;
   font-size: 0;
+  height: 52px;
 }
 
 .social-media-box li {
@@ -562,6 +563,8 @@ i[class^='icon-'], i[class*='icon-'] {
   margin: 0 8px 8px 0;
   vertical-align: middle;
   text-align: center;
+  height: 44px;
+  width: 44px;
 }
 
 .social-media-box li a {
@@ -575,14 +578,17 @@ i[class^='icon-'], i[class*='icon-'] {
   line-height: 44px;
 }
 
-.fa.fa-facebook {
-  font-size: 26px;
+.fa.fa-facebook-square.h {
   color: #fff;
   background: #385185;
+  font-size: 26px;
 }
-
-.fa.fa-facebook::before {
-  content: '\e014';
+.fa.fa-facebook-square.h{
+  font-size: 26px;
+}
+.fa.fa-facebook-square.h::before {
+  content: '\f082';
+  font-size: 26px;
 }
 
 .fa.fa-twitter {
@@ -591,8 +597,8 @@ i[class^='icon-'], i[class*='icon-'] {
   background: #5d9dc9;
 }
 
-.fa.fa-twitter:before {
-  content: '\e02c';
+.fa.fa-twitter.h:before {
+  content: '\f099';
 }
 
 .fa.fa-line {
@@ -605,14 +611,14 @@ i[class^='icon-'], i[class*='icon-'] {
   content: '\e01a';
 }
 
-.fa.fa-pinterest {
+.fa.fa-pinterest.h {
   color: #fff;
   background: #aa262a;
   font-size: 18px;
 }
 
-.fa.fa-pinterest:before {
-  content: '\e022';
+.fa.fa-pinterest.h:before {
+  content: '\f0d2';
 }
 
 .items-in-user-profile {
@@ -829,4 +835,6 @@ i[class^='icon-'], i[class*='icon-'] {
   font-size: 14px;
   line-height: 1.2;
 }
-
+.fa.fa-twitter.h{
+  font-size: 26px;
+}

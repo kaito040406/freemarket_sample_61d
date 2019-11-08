@@ -18,8 +18,14 @@ crumb :identification do
   parent :mypage
 end
 
-crumb :exhibitnow do
+crumb :my_details do
   link "出品した商品 - 出品中", ""
   parent :mypage
 end
+
+crumb :cards do
+  link "支払い方法", new_cards_path
+  parent :mypage
+end
+
 

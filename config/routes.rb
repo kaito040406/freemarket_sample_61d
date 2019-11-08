@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks'} #ロボットではない認証に使用
   root 'products#index'
+  resources :products, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
+    
 
     collection do
       get 'identification'
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
       get 'progress'
     end
   end
-  resources :credit_cards, only: [:new, :create]
+  
   #ここから長谷川記入
   resources :signup do
     collection do
@@ -37,4 +39,7 @@ Rails.application.routes.draw do
       get 'my_details'
     end
   end
+
+  resources :credit_cards, only: [:index, :new, :show]
+    
 end

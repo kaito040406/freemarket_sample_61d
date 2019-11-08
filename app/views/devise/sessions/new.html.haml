@@ -24,6 +24,8 @@
             .new_account_g_k
               .text_g_k
                 Googleでログイン
+              .icon_box_f_k_l
+                %i.fa.fa-google.k
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form_lavel_mail_k
               = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス'
