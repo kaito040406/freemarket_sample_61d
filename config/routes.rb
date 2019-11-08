@@ -15,7 +15,6 @@ Rails.application.routes.draw do
       get 'progress'
     end
   end
-  
   #ここから長谷川記入
   resources :signup do
     collection do
@@ -30,7 +29,7 @@ Rails.application.routes.draw do
     end
   end
   #ここまで長谷川記入
-
+  resources :categories
   resources "users",only: [:index,:profile, :progress], path: 'mypage' do
     collection do
       get 'profile'
