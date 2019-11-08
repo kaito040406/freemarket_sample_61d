@@ -47,24 +47,28 @@ $(document).on('turbolinks:load', function(){
   $(fileForms).hide();
 
   $('.img-uploader').on('change', 'input[type="file"]', function(e) {
-    file = e.target.files[0];
-    reader = new FileReader();
+    let file = e.target.files[0];
+    let reader = new FileReader();
     let changedInput = $(e.target);
+
     reader.onload = (function(file) {
+      console.log(e.target.result);
       return function(e) {
-          // 領域の中にロードした画像を表示するimageタグを追加
-          $(changedInput).append($('<img>').attr({
-              src: e.target.result,
-              width: "114px",
-              height: "116px",
-              class: "preview",
-              title: file.name,
-          }));
-          // 編集削除ボタンを表示する
-          //$('.btn-box').css('display', 'block');
+        console.log('hoge');
+           // 領域の中にロードした画像を表示するimageタグを追加
+           $(changedInput).append($('<img>').attr({
+               src: e.target.result,
+               width: "114px",
+               height: "116px",
+               class: "thumbnail",
+               title: file.name
+           }));
+           // 編集削除ボタンを表示する
+           //$('.btn-box').css('display', 'block');
       };
     })(file);
-    
+
+    reader.readAsDataURL(file);
     // 画像ファイル以外なら中断
     if(file.type.indexOf("image") < 0){
         return false;
