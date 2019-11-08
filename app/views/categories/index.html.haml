@@ -1,0 +1,35 @@
+.default-container 
+  =render 'shared/header'
+  =render 'shared/bread_bar'
+  .category-index.l-single-container
+    .visible-pc
+      .categories-all
+        %h2
+          カテゴリー一覧
+      .category-list-nav.slide-nav-parent.text-center.clearfix
+        -  @category_parent.each do |parent|
+          .white.category-root-category-link-name
+            =parent.name
+      .category-list-box
+        -  @category_parent.each do |parent|
+          .category-list-individual-box.white.clearfix
+            .red.font-white.category-list-individual-box-root-category-name
+              %h10.root_category-1
+                =parent.name
+            .category-list-individual-box-inner-box
+              %p
+                =link_to "すべて", ""
+              .category-list-individual-box-sub-category-name
+                - parent.children.each do |children|
+                  %h11
+                    = children.name
+                  .grand-child-all
+                    =link_to "すべて", ""
+                    .clearfix.category-list-individual-box-sub-sub-category-box
+                    - children.children.each do |grandchild|
+                      .category-list-individual-box-sub-sub-category-name
+                        %p
+                          %h12
+                            =link_to "#{grandchild.name}",""
+  =render  'shared/cameraicon'
+  =render 'shared/footer'

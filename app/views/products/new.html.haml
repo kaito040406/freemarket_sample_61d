@@ -16,18 +16,17 @@
           最大10枚までアップロードできます
         .dropbox-container.flexcontainer
           .img-uploader-container
-            .img-uploader.img-uploader-drop-box
-              ???
-              =f.fields_for :product_images do |i|
-                =i.file_field :product_image
-              %pre.visible-pc
-                :preserve
-          
-          
-                    ドラッグアンドドロップ　　　　　　　
-                    またはクリックしてファイルをアップロード　　　　　　　
-                %i.icon-camera
-
+            %label{for: "product_product_images_attributes_0_product_image"}
+              .img-uploader.img-uploader-drop-box
+                %pre
+                  :preserve
+            
+            
+                      ドラッグアンドドロップ　　　　　　　
+                      またはクリックしてファイルをアップロード　　　　　　　
+                  %i.icon-camera
+                =f.fields_for :product_images do |i, index|
+                  =i.file_field :product_image
       .form-sub-t
         .form-input-t
           %label
@@ -53,7 +52,7 @@
                 必須
             %div
               .select-wrap
-                %i.icon-arrow-bottom
+                %i.fa.fa-chevron-down
                 = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -61,7 +60,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t
@@ -74,7 +73,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -82,7 +81,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
           .form-input-t
             %label
@@ -90,7 +89,7 @@
               %span.must-filled-mark-t
                 必須
             .select-wrap
-              %i.icon-arrow-bottom
+              %i.fa.fa-chevron-down
               = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
       .form-sub-t.flexcontainer
         %h3.sub-title-t

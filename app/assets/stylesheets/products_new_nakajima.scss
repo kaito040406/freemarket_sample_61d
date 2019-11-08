@@ -51,11 +51,8 @@ h3 {
 label {
   display: inline-block;
 }
-pre {
-  overflow: auto;
-  font-family: monospace,monospace;
-}
-//8px 0 0;
+
+
 .flexcontainer {
   display: flex;
   -webkit-box-pack: justify;
@@ -124,6 +121,13 @@ pre {
   margin: 8px 0 0;
   line-height: 1.5;
 }
+.img-uploader-box label{
+  width: 620px;
+}
+// #new_product > div.img-uploader-box > div > div > label > div > pre{
+//   width: 620px;
+//   height: 80px;
+// }
 .img-uploader-drop-box {
   position: relative;
   min-height: 162px;
@@ -137,12 +141,25 @@ pre {
   transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
   cursor: pointer;
   margin-left: 2%;
-}
-.img-uploader-drop-box {
   width: 620px;
   padding: 40px;
   width: 100%;
   margin-left: 0;
+}
+
+.img-uploader-drop-box label pre {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .img-uploader {
@@ -270,19 +287,9 @@ pre {
 .img-uploader-container {
   display: inline;
 }
-.img-uploader-drop-box pre {
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  right: 16px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  pointer-events: none;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+pre {
+  overflow: auto;
+  font-family: monospace,monospace;
 }
 .dropbox-container {
   display: block;

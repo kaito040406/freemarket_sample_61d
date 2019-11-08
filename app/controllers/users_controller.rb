@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   def show
   end  
 
+  def log_out
+
+  end
+
   def profile
   end
 
@@ -17,6 +21,11 @@ class UsersController < ApplicationController
 
   def progress
   end
+
+  def my_details
+  end
+
+  
 
   
 end

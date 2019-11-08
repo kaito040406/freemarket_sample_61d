@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :product_images
   belongs_to :user,optional: true
+  belongs_to :category
   accepts_nested_attributes_for :product_images
   validates :seller_id, presence: true
 
