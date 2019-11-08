@@ -75,16 +75,7 @@
       = link_to 'アプリで購入','http://app.adjust.io/xio2ii?campaign=iOS&adgroup=items.buy_button1', class: 'item-action-text'
       .item-description.f14
         %p.item-description-inner
-          ラブライブ！サンシャイン!!TVアニメBlu-ray特装限定版ソフマップ全巻購入特典「LONELY TUNING」
-          
-          未開封品ですが、初期ダメージは多少付いてありますので、神経質な方はご遠慮ください。
-          
-          衝撃防止と放水対策をさせて発送致します。
-          
-          AZALEA
-          松浦果南
-          黒澤ダイヤ
-          国木田花丸
+          =@product.text
       .item-button-container.clearfix
         .item-button-left
           %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m49716933620", "data-toggle" => "like", name: "like!", type: "button"}
