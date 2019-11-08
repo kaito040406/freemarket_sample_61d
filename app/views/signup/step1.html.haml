@@ -26,7 +26,7 @@
         会員情報入力
       .form_box_k
         .l-single-content_k
-          = form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+          = form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f| 
             .form-group_name_k
               .form_lavel_k
                 .form_lavel_text_k
@@ -34,7 +34,10 @@
                     ニックネーム
                   .form-require_nickname_k
                     必須
-                = f.text_field :nick_name, placeholder: 'ニックネーム'
+                - if @user_data == 'from_mail'
+                  = f.text_field :nick_name, placeholder: 'ニックネーム'
+                - else
+                  = f.text_field :nick_name, placeholder: 'ニックネーム', value: @nick_name
             .form-group_k
               .form_lavel_k
                 .form_lavel_text_k
@@ -42,24 +45,35 @@
                     メールアドレス
                   .form-require_mail_k
                     必須
-                = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
-            .form-group_k
-              .form_lavel_k
-                .form_lavel_text_k
-                  .text_k
-                    パスワード
-                  .form-require_pass_k
-                    必須
-                = f.password_field :password, placeholder: '7文字以上'
-            .form-group_k
-              .form_lavel_k
-                .form_lavel_text_k
-                  .text_k
-                    パスワード(確認)
-                  .form-require_passc_k
-                    必須  
-                = f.password_field :password_confirmation, placeholder: '7文字以上'
-
+                - if @user_data == 'from_mail'
+                  = f.email_field :email, placeholder: 'PC・携帯どちらでも可'
+                - else
+                  = f.email_field :email, placeholder: 'PC・携帯どちらでも可', value: @email
+                  = f.hidden_field :password, value: @password
+                  = f.hidden_field :password_confirmation, value: @password_confirmation
+                  = f.hidden_field :icon_image, value: @icon_image
+                  = f.hidden_field :account_source, value: @account_source
+                  = f.hidden_field :provider, value: @provider
+                  = f.hidden_field :uid, value: @uid 
+                  = f.hidden_field :token, value: @token
+            - if @user_data == 'from_mail' 
+              .form-group_k
+                .form_lavel_k
+                  .form_lavel_text_k
+                    .text_k
+                      パスワード
+                    .form-require_pass_k
+                      必須
+                  = f.password_field :password, placeholder: '7文字以上'
+              .form-group_k
+                .form_lavel_k
+                  .form_lavel_text_k
+                    .text_k
+                      パスワード(確認)
+                    .form-require_passc_k
+                      必須  
+                  = f.password_field :password_confirmation, placeholder: '7文字以上'
+            - else
             .personal_box_k
               .l-single-content_k          
                 .form-group_name_k

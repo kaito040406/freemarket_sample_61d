@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(version: 2019_11_08_103000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "snscredentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.text "uid"
+    t.integer "mid"
+    t.text "token"
+    t.text "pass_token"
+    t.text "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_bookmarks_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "product_id", null: false
@@ -130,10 +141,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_103000) do
     t.string "building_name"
     t.integer "evaluation", default: 0
     t.integer "exhibits_number", default: 0
-    t.string "uid"
     t.string "provider"
-    t.string "fname"
-    t.string "fimage"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
