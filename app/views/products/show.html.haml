@@ -9,11 +9,13 @@
     %section.h-single-container
       %h1.item-name
         =@product.name
+
       .item-main-contentclearfix
         .item-photo
           .owl-carousel
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
+              
         .item-price-box.text-center.visible-sp
           %span.item-price.bold ¥12,000
           %span.item-tax (税込)
@@ -26,6 +28,7 @@
             %th 出品者
             %td
               = link_to "#{@user.nick_name}"
+
               %div
                 .item-user-ratings
                   %i.fa.fa-good
@@ -54,16 +57,20 @@
           %tr
             %th 商品の状態
             %td=@product.status
+
           %tr
             %th 配送料の負担
             %td=@product.delivery_fee
+
           %tr
             %th 配送の方法
             %td=@product.delivery_method
+
           %tr
             %th 配送元地域
             %td
               = link_to(@product.delivery_from)
+
           %tr
             %th 発送日の目安
             %td
