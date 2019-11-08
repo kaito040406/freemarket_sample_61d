@@ -1,0 +1,33 @@
+.default-container
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    = render 'shared/header'
+    = render 'shared/bread_bar'
+  %main.l-container.clearfix
+    .l-content
+      %section.l-chapter-container
+        %h2.l-chapter-head 支払い方法
+        .l-single-inner
+          %section
+            .l-single-content
+              %h3.l-chapter-sub-head クレジットカード一覧
+            %ul.settings-payment-list
+              %li
+                %form.l-single-content{:action => "https://www.mercari.com/jp/mypage/card/delete/", :method => "POST"}
+                  %figure
+                    %img{:alt => "master-card", :height => "20", :src => "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?2317089198", :width => "34"}/
+                  %input{:name => "__csrf_value", :type => "hidden", :value => "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
+                  %input{:name => "card_sequence_no", :type => "hidden", :value => "4pVBCQiySV7duxdYguSJt5cc"}/
+                  .settings-payment-num ************1047
+                  .settings-payment-num 04 / 23
+                  %input{:name => "method", :type => "hidden", :value => "card"}/
+                  %button.settings-payment-remove{:type => "submit"}
+                    削除する
+          .settings-not-regist
+            %a{:href => "/jp/help_center/category/6/", :target => "_blank"}
+              %span 支払い方法について
+              %i.fa.fa-chevron-right
+    .l-side
+      = render 'shared/side_bar'
+      = render 'shared/cameraicon'
+  %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+    =render 'shared/footer'
