@@ -42,14 +42,33 @@ let DeliveryMethodSelectBoxHTML = `
 
 
 $(document).on('turbolinks:load', function(){
-  //手数料と利益の計算
-  $('#product_price').on('keyup', function(e){
-    let product_fee_rate = 0.1
-    let product_price = $('#product_price').val();
-    let product_fee = Math.floor(product_price * product_fee_rate);
-    let product_gain = product_price - product_fee;
-    $('#product-fee').html(product_fee);
-    $('#product-gain').html(product_gain);
+  let fileForms = $("[type=file]");
+  $(fileForms).hide();
+
+//画像がアップローダされたらhidden属性でproduct_image: count:の値を付与
+  $("[id ^='product_product_images_attributes_']").change(function() {
+    //アップロードされたinputタグのidから数字部分を取り出す
+    let productImageNum = $(this).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    productImageNum = Number(productImageNum);//文字列型なので数値型へ変換
+    let labelIdValue = 'product_product_images_attributes_'+productImageNum+'_product_image';
+    let ProductImageCountAttrHTML = `
+    <input type="hidden" 
+    name="product[product_images_attributes][${productImageNum}][count]" 
+    value=${productImageNum}>
+    `;
+
+    $(labelIdValue).show();
+    $(this).show();
+    $(this).after(ProductImageCountAttrHTML);
+    //ラベルが指すアップローダーを変更
+    if (productImageNum <= 9){
+      //let label = $("[for ^='product_product_images_attributes_']");
+      let incrementedProductImageNum = productImageNum + 1;
+      let incrementedFor = 'product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
+      //書き換え
+      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
+    }
+    
   });
 
   $('#product_categry').change(function() {
@@ -70,18 +89,14 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
-  
-//画像がアップローダされたらhidden属性でproduct_image: count:の値を付与
-  $("[id ^='product_product_images_attributes_']").change(function() {
-    let productImageNum = $(this).attr('id').replace(/[^0-9]/g, '');
-    productImageNum = Number(productImageNum);
-    console.log(productImageNum);
-    let ProductImageCountAttrHTML = `
-    <input type="hidden" 
-    name="product[product_images_attributes][${productImageNum}][count]" 
-    value=${productImageNum}>
-    `;
-    $(this).after(ProductImageCountAttrHTML);
+  //手数料と利益の計算
+  $('#product_price').on('keyup', function(e){
+    let product_fee_rate = 0.1
+    let product_price = $('#product_price').val();
+    let product_fee = Math.floor(product_price * product_fee_rate);
+    let product_gain = product_price - product_fee;
+    $('#product-fee').html(product_fee);
+    $('#product-gain').html(product_gain);
   });
 
 });
