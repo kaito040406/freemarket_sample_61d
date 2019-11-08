@@ -19,7 +19,6 @@ class ProductsController < ApplicationController
   def create
     #binding.pry
     @product = Product.new(product_params)
-    binding.pry
     
     #@product.user = current_user
     if @product.save!
@@ -35,7 +34,7 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to root_path
     else
-      #redirect_to show_products_path(product)
+      redirect_to show_products_path(product)
     end
   end
   
