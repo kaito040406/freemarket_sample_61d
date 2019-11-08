@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  # before_action :authenticate_user!, except: [:index]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -38,10 +38,10 @@ class ProductsController < ApplicationController
   end
   
   def show
-    
+    @product=Product.find(params[:id])
+    @image = ProductImage.find_by(product_id: params[:id])
+    @user = User.find_by(id: @product.seller_id)
   end  
-
-
 
   private
   
