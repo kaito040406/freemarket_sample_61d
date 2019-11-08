@@ -1,15 +1,19 @@
 FactoryBot.define do
   factory :product do
-    name                        {Faker::raburaibusannsilyainn.name}
-    price                       {Faker::Number.number(4)}
-    categry                     {Faker::takamitika.characters(1)}
-    status                      {OK}
-    brand                       {'キャラクター'}
+    name                        {"テスト"}
+    price                       {"300"}
+    categry                     {1}
+    status                      {1}
+    brand                       {1}
     size                        {1}
+    date                        {"Sat, 06 Jan 2018"}
     delivery_fee                {1}
-    delivery_method             {'undecided'}
-    delivery_from               {'undecided'}
+    delivery_method             {5}
+    delivery_from               {1}
     estimated_delivery_date     {1}
-    buyere_id                   {1}    
+    seller_id                   {1}
+    buyer_id                    {1}  
+    finished                    {1}  
+    text                        {"テスト用"}
   end
 end
