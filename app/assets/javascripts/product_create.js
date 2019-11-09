@@ -51,22 +51,27 @@ $(document).on('turbolinks:load', function(){
     let reader = new FileReader();
     let changedInput = $(e.target);
 
-    reader.onload = (function(file) {
-      console.log(e.target.result);
-      return function(e) {
-        console.log('hoge');
-           // 領域の中にロードした画像を表示するimageタグを追加
-           $(changedInput).after($('<img>').attr({
-               src: e.target.result,
-               width: "114px",
-               height: "116px",
-               class: "thumbnail",
-               title: file.name
-           }));
-           // 編集削除ボタンを表示する
-           //$('.btn-box').css('display', 'block');
-      };
-    })(file);
+    reader.onload = function(e) {
+      // 領域の中にロードした画像を表示するimageタグを追加
+      let imageThumbnail =`
+      <img src="${e.target.result}" width="114px" height="116px" 
+        class="thumbnail" title="${file.name}" >
+      <div class="btn-box" height ="15px">
+        <a href ="" >編集</a>
+        <a href ="" >削除</a>
+      </div>
+      `;
+      $(changedInput).after(imageThumbnail);
+      // $(changedInput).after($('<img>').attr({
+      //     src: e.target.result,
+      //     width: "114px",
+      //     height: "116px",
+      //     class: "thumbnail",
+      //     title: file.name
+      // }));
+      // 編集削除ボタンを表示する
+      //$('.btn-box').css('display', 'block');
+    };
 
     reader.readAsDataURL(file);
     // 画像ファイル以外なら中断
@@ -86,7 +91,8 @@ $(document).on('turbolinks:load', function(){
     `;
     $(e.target).after(ProductImageCountAttrHTML); //hiddenタグ書き込み
 
-    $(e.target).show(); //表示する
+    //$(e.target).show(); //表示する
+    $('.img-uploader-drop-box pre').hide();
     //ドロップボックスのラベルが指すアップローダーを更新
     if (productImageNum <= 9){
       let incrementedProductImageNum = productImageNum + 1;
