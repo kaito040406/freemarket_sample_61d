@@ -44,10 +44,6 @@ input {
 a {
   text-decoration: none;
 }
-h3 {
-  font-size: 1.17em;
-  font-weight: bold;
-}
 label {
   display: inline-block;
 }
@@ -89,7 +85,9 @@ label {
   padding: 40px;
   border-top: 1px solid #eee;
 }
+
 .sub-title-t {
+  font-weight: bold;
   color: #888;
   font-size: 14px;
 }
@@ -113,41 +111,34 @@ label {
   width: 185px;
   height: 49px;
 }
-.img-uploader-box {
+.form-sub-image-uploader-t {
   width: 620px;
   padding: 40px;
 }
-.img-uploader-head+p {
+.form-sub-image-uploader-t label{
+  width: 100%;
+}
+.form-sub-image-uploader-t > p {
   margin: 8px 0 0;
   line-height: 1.5;
 }
-.img-uploader-box label{
-  width: 620px;
-}
-// #new_product > div.img-uploader-box > div > div > label > div > pre{
-//   width: 620px;
-//   height: 80px;
-// }
 .img-uploader-drop-box {
+  display: block;
   position: relative;
-  min-height: 162px;
-  background: #f5f5f5;
+  margin-left: 0;
+  width: 620px;
+  height: 162px;
+  padding: 40px;
   border: 1px dashed #ccc;
-  font-size: 0;
+  background: #f5f5f5;
+  cursor: pointer;
   text-align: center;
   -webkit-transition: -webkit-box-shadow ease-out .3s;
   transition: -webkit-box-shadow ease-out .3s;
   transition: box-shadow ease-out .3s;
   transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
-  cursor: pointer;
-  margin-left: 2%;
-  width: 620px;
-  padding: 40px;
-  width: 100%;
-  margin-left: 0;
 }
-
-label .img-uploader-drop-box pre {
+.img-uploader-drop-box pre {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -160,13 +151,6 @@ label .img-uploader-drop-box pre {
   pointer-events: none;
   white-space: pre-wrap;
   word-wrap: break-word;
-}
-
-.img-uploader {
-  display: block;
-}
-.img-uploader ul {
-  width: 100%;
 }
 /////////
 .btn-box {
@@ -291,27 +275,18 @@ label .img-uploader-drop-box pre {
 .button-container-t p {
   line-height: 1.5;
 }
-.img-uploader-head {
+.form-sub-image-uploader-t h3{
   font-size: 16px;
 }
-.img-uploader-container {
-  display: inline;
+.dropbox-container {
+  width: 620px;
+  margin: 16px auto 0;
 }
 pre {
   overflow: auto;
   font-family: monospace,monospace;
 }
-.dropbox-container {
-  display: block;
-  width: 620px;
-  margin: 16px auto 0;
-}
-.flexcontainer {
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
+
 .price-T {
   -webkit-box-align: center;
   -ms-flex-align: center;

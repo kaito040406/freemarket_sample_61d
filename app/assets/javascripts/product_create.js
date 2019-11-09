@@ -46,7 +46,7 @@ $(document).on('turbolinks:load', function(){
   let fileForms = $("[type=file]");
   $(fileForms).hide();
 
-  $('.img-uploader').on('change', 'input[type="file"]', function(e) {
+  $('.img-uploader-drop-box').on('change', 'input[type="file"]', function(e) {
     let file = e.target.files[0];
     let reader = new FileReader();
     let changedInput = $(e.target);
@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function(){
         <a href ="" >編集</a>
         <a href ="" >削除</a>
       </div>
-      `;
+      `;//タグは生成されてるが表示されない。。css見直し要
       $(changedInput).after(imageThumbnail);
       // $(changedInput).after($('<img>').attr({
       //     src: e.target.result,
