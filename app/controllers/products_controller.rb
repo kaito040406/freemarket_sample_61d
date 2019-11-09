@@ -45,6 +45,10 @@ class ProductsController < ApplicationController
   end  
 
 
+  def my_details
+    binding.pry
+    @product = Product.find(params[:id])
+  end
 
   private
   
