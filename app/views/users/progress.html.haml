@@ -20,7 +20,7 @@
         - @products.each do |product|
           -# = link_to hoge_product_path(product) do
           -#   edit
-          = form_for product, url: my_details_product_path(product), method: :get do |f|
+          = link_to product, url: my_details_product_path(product), method: :get do |f|
             %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
               %li
               .mypage-item-link

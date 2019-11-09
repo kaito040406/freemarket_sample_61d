@@ -30,8 +30,8 @@ class ProductsController < ApplicationController
 
   def destroy
     # if @product.seller_id == current_user.id
-    @products = Product.find(params[:id])
-    @products.destroy
+    @product = Product.find(params[:id])
+    @product.destroy
     redirect_to root_path
     # else
       #redirect_to show_products_path(product)
@@ -39,15 +39,15 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
   end  
 
 
   def my_details
-    binding.pry
     @product = Product.find(params[:id])
+    
   end
 
   private
