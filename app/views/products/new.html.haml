@@ -46,14 +46,15 @@
           商品の詳細
         .form-input-list-t
           .form-input-t
-            %label
-              カテゴリー
-              %span.must-filled-mark-t
-                必須
-            %div
-              .select-wrap
-                %i.fa.fa-chevron-down
-                = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+            = f.label :category_id, "カテゴリー"
+            %span.must-filled-mark-t
+              必須
+            .select-wrap
+              %i.fa.fa-chevron-down
+              %select.category_parent
+                %option{value: 0} ---
+                - @category_parent.each do |parent|
+                  %option{value: "#{parent.id}"} #{parent.name}
           .form-input-t
             %label
               商品の状態

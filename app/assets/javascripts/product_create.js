@@ -1,7 +1,7 @@
 let CategorySelectBoxHTML = `
 <div class="select-wrap">
   <i class="icon-arrow-bottom"></i>
-  <select class="select-default" name="product[categry]" id="product_categry"><option value="">---</option>
+  <select class="select-default" name="product[category]" id="product_category"><option value>---</option>
   <option value="レディース">レディース</option>
   <option value="メンズ">メンズ</option>
   <option value="ベビー・キッズ">ベビー・キッズ</option>

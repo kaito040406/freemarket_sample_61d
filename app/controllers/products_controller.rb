@@ -10,10 +10,11 @@ class ProductsController < ApplicationController
   end
   
   def new
-    
     @product = Product.new
 
     10.times { @product.product_images.build }
+
+    @category_parent = Category.where(ancestry: nil)
   end
 
   def create
