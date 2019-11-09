@@ -46,7 +46,7 @@ $(document).on('turbolinks:load', function(){
   let fileForms = $("[type=file]");
   $(fileForms).hide();
 
-  $('.img-uploader-drop-box').on('change', 'input[type="file"]', function(e) {
+  $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     let file = e.target.files[0];
     let reader = new FileReader();
     let changedInput = $(e.target);
@@ -92,7 +92,7 @@ $(document).on('turbolinks:load', function(){
     $(e.target).after(ProductImageCountAttrHTML); //hiddenタグ書き込み
 
     //$(e.target).show(); //表示する
-    $('.img-uploader-drop-box pre').hide();
+    $('.img-uploader-dropbox pre').hide();
     //ドロップボックスのラベルが指すアップローダーを更新
     if (productImageNum <= 9){
       let incrementedProductImageNum = productImageNum + 1;
