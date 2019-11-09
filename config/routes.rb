@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     collection do
       post 'show', to: 'cards#show'
       post 'pay', to: 'cards#pay'
-      delete 'delete', to: 'cards#delete'
+      post 'delete', to: 'cards#delete'
     end
   end
     
