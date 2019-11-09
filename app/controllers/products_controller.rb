@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :destroy]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -29,16 +29,19 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.seller_id == current_user.id
-      @product.destroy
-      redirect_to root_path
-    else
+    # if @product.seller_id == current_user.id
+    @products = Product.find(params[:id])
+    @products.destroy
+    redirect_to root_path
+    # else
       #redirect_to show_products_path(product)
-    end
+    # end
   end
   
   def show
-    
+    @product=Product.find(params[:id])
+    @image = ProductImage.find_by(product_id: params[:id])
+    @user = User.find_by(id: @product.seller_id)
   end  
 
 

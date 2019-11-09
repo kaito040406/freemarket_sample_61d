@@ -7,13 +7,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
-    
-
-    collection do
-      get 'identification'
-      get 'profile'
-      get 'progress'
-    end
   end
   
   #ここから長谷川記入
@@ -31,7 +24,7 @@ Rails.application.routes.draw do
   end
   #ここまで長谷川記入
 
-  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+  resources "users",only: [:index,:profile, :progress, :my_details], path: 'mypage' do
     collection do
       get 'profile'
       get 'identification'

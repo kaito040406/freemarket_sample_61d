@@ -9,7 +9,7 @@
         %ul.listing-tabs
           %li.active
             %h3
-              =link_to "出品中", "#mypage-tab-transaction-now"
+              =link_to "出品中", ""
           %li
             %h3
               =link_to "取引中", "/jp/mypage/listings/in_progress/"
@@ -17,24 +17,28 @@
             %h3
               =link_to "売却済み", "/jp/mypage/listings/completed/"
         .tab-content
-          %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
-            %li
-              =link_to my_details_users_path, class: "mypage-item-link" do
-                %figure
-                  =image_tag "//static.mercdn.net/thumb/photos/m69617298882_1.jpg?1572693431", class: "is-higher-width lazyloaded"
-                .mypage-item-body.show-stock-item
-                  .mypage-item-text
-                    商品名
-                  %div
-                    %span.listing-item-count
-                      %i.fa.fa-heart
-                      %span 1
-                    %span.listing-item-count
-                      %i.fa.fa-comment-alt
-                      %span 0
-                    .mypage-item-status.bold.awaiting
-                      出品中
-                .fa.fa-chevron-right
+        - @products.each do |product|
+          = form_for product, url: my_details_users_path(product), method: :post do |f|
+            %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+              %li
+                =link_to my_details_users_path, class: "mypage-item-link" do
+                  %figure
+                    =image_tag "//static.mercdn.net/thumb/photos/m69617298882_1.jpg?1572693431", class: "is-higher-width lazyloaded"
+                  .mypage-item-body.show-stock-item
+                    .mypage-item-text
+                      = product.name
+                    %div
+                      %span.listing-item-count
+                        %i.fa.fa-heart
+                        %span 1
+                      %span.listing-item-count
+                        %i.fa.fa-comment-alt
+                        %span 0
+                      .mypage-item-status.bold.awaiting
+                        = product.id
+                        = f.hidden_field :id, value: product.id
+                        = f.submit '出品中',method: :post
+                  .fa.fa-chevron-right
       %ul.mypage-history.pager
         %li.pager-prev.pager-cell
           =link_to "/jp/mypage/listings/listing/?min_pager_id=5138546276" do

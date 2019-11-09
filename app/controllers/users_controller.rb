@@ -16,9 +16,11 @@ class UsersController < ApplicationController
   end
 
   def progress
+    @products = Product.all
   end
 
   def my_details
+    @product = Product.find(params[:id])
   end
 
   
