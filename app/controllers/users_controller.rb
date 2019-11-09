@@ -22,8 +22,4 @@ class UsersController < ApplicationController
   def my_details
     @product = Product.find(params[:id])
   end
-
-  
-
-  
 end
