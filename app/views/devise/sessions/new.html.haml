@@ -14,13 +14,13 @@
     .single-main-done_k_t
       .l-single-container_done_k
         .l-single-head_login_k
-          = link_to(sign_in_select_signup_index_path, method: :get) do
+          = link_to(user_facebook_omniauth_authorize_path, method: :post) do
             .new_account_f_k
               .text_f_k
                 Facebookでログイン
               .icon_box_f_k_l
-                %i.fa.fa-facebook-square.k
-          = link_to(sign_in_select_signup_index_path, method: :get) do
+                %i.fab.fa-facebook-square
+          = link_to(user_google_oauth2_omniauth_authorize_path, method: :post) do
             .new_account_g_k
               .text_g_k
                 Googleでログイン

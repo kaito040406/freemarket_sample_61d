@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_143655) do
+ActiveRecord::Schema.define(version: 2019_11_08_103000) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.string "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -68,7 +69,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.string "name", null: false
     t.text "text", null: false
     t.integer "price", null: false
-    t.integer "categry", null: false
+    t.string "categry"
     t.integer "status", null: false
     t.integer "brand"
     t.integer "size", null: false
@@ -79,6 +80,17 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.integer "estimated_delivery_date"
     t.integer "buyer_id"
     t.integer "finished", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "snscredentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.text "uid"
+    t.integer "mid"
+    t.text "token"
+    t.text "pass_token"
+    t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,9 +124,9 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.string "sur_name_yomi", null: false
     t.string "first_name_yomi", null: false
     t.string "introduction"
-    t.integer "birthday_year", null: false
-    t.integer "birthday_manth", null: false
-    t.integer "birthday_day", null: false
+    t.integer "birthday_year"
+    t.integer "birthday_manth"
+    t.integer "birthday_day"
     t.string "tel_number", null: false
     t.string "certification", null: false
     t.integer "account"
@@ -128,10 +140,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_143655) do
     t.string "building_name"
     t.integer "evaluation", default: 0
     t.integer "exhibits_number", default: 0
-    t.string "uid"
     t.string "provider"
-    t.string "fname"
-    t.string "fimage"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
