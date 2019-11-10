@@ -11,7 +11,7 @@
           %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
           %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
         %button.btn-default.btn-gray
-          この商品を削除する
+          = link_to 'この商品を削除する', product_path(@product), method: :delete
       .item-detail-message
         .message-container
           .message-content

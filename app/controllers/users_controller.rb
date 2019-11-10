@@ -20,12 +20,6 @@ class UsersController < ApplicationController
   end
 
   def progress
+    @products = Product.all
   end
-
-  def my_details
-  end
-
-  
-
-  
 end
