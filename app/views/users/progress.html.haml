@@ -18,9 +18,7 @@
               =link_to "売却済み", "/jp/mypage/listings/completed/"
         .tab-content
         - @products.each do |product|
-          -# = link_to hoge_product_path(product) do
-          -#   edit
-          = link_to product, url: my_details_product_path(product), method: :get do |f|
+          = form_for product, url: my_details_product_path(product), method: :get do |f|
             %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
               %li
               .mypage-item-link
@@ -37,8 +35,8 @@
                       %i.fa.fa-comment-alt
                       %span 0
                     .mypage-item-status.bold.awaiting
-                      = product.id
                       = f.hidden_field :id, value: product.id
+                      = f.hidden_field :seller_id, value: product.id
                       = f.submit '出品中',method: :post
                 .fa.fa-chevron-right
       %ul.mypage-history.pager
