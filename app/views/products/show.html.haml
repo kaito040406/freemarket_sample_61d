@@ -17,7 +17,9 @@
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
         .item-price-box.text-center.visible-sp
-          %span.item-price.bold ¥12,000
+          %span.item-price.bold 
+            ¥
+            = @product.price
           %span.item-tax (税込)
           %span.item-shipping-fee 送料込み
         %section.visible-sp
@@ -70,7 +72,9 @@
             %th 発送日の目安
             %td 1~2日で発送
       .item-price-box.text-center
-        %span.item-price.bold ¥12,000
+        %span.item-price.bold 
+          ¥
+          = @product.price
         %span.item-tax (税込)
         %span.item-shipping-fee 送料込み
       = link_to '購入画面に進む','https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC', class: 'item-buy-btn'
