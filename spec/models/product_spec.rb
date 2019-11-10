@@ -194,13 +194,6 @@ describe Product do
     #   expect(product.errors[:certification]).to include("is not a number")
     # end
 
-    # #22郵便番号が空だと登録できない
-    # it "is invalid without a address_number" do
-    #   product = build(:product, address_number: nil)
-    #   product.valid?
-    #   expect(product.errors[:address_number]).to include("can't be blank")
-    # end
-
     # #23郵便番号が形式外だと登録できない
     # it "is valid if out of format" do
     #   product = build(:product, address_number: "5330022")
@@ -208,26 +201,6 @@ describe Product do
     #   expect(product.errors[:address_number]).to include("is invalid")
     # end
 
-    # #24県名が空だと登録できない
-    # it "is invalid without a address_ken" do
-    #   product = build(:product, address_ken: nil)
-    #   product.valid?
-    #   expect(product.errors[:address_ken]).to include("can't be blank")
-    # end
-
-    # #25市町村が空だと登録できない
-    # it "is invalid without a address_city" do
-    #   product = build(:product, address_city: nil)
-    #   product.valid?
-    #   expect(product.errors[:address_city]).to include("can't be blank")
-    # end
-
-    # #26番地が空だと登録できない
-    # it "is invalid without a address_banch" do
-    #   product = build(:product, address_banch: nil)
-    #   product.valid?
-    #   expect(product.errors[:address_banch]).to include("can't be blank")
-    # end
 
   end
 end
