@@ -122,6 +122,7 @@ label {
   margin: 8px 0 0;
   line-height: 1.5;
 }
+
 .img-uploader-dropbox {
   display: flex;
   overflow: scroll;
@@ -136,6 +137,9 @@ label {
   transition: -webkit-box-shadow ease-out .3s;
   transition: box-shadow ease-out .3s;
   transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+}
+.img-uploader-dropbox::-webkit-scrollbar {
+  display: none;
 }
 .img-uploader-dropbox pre {
   position: absolute;
