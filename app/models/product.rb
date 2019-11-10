@@ -67,7 +67,7 @@ class Product < ApplicationRecord
   validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
   #validates :brand, brandsテーブルとの連動必要
-  validates :size,                      presence: true
+  #validates :size,                      presence: true categryに依存、DBには設定あるためコントローラで挿入
   validates :date,                      presence: true
   validates :delivery_fee,              presence: true
   validates :delivery_method,           presence: true #presenceDBカラム未設定

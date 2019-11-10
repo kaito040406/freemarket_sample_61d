@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Product do
   describe '#create' do
-    #1 seller_id, name, text, price, categry,status, size, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finishedにはバリデーションがかかっている
-    it "is valid with a seller_id, name, text, price, categry,status, size, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished" do
+    #1 seller_id, name, text, price, categry, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finishedにはバリデーションがかかっている
+    it "is valid with a seller_id, name, text, price, categry, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished" do
       product = build(:product)
       expect(product).to be_valid
     end
@@ -32,12 +32,68 @@ describe Product do
       expect(product.errors[:price]).to include("is not a number")
     end
 
-    # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
-    # it "is invalid without a password_confirmation although with a password" do
-    #   product = build(:product, password_confirmation: "")
-    #   product.valid?
-    #   expect(product.errors[:password_confirmation]).to include("doesn't match Password")
-    # end
+    #5 categryが空だと登録ができない
+    it "is invalid without a price" do
+      product = build(:product, categry: nil)
+      product.valid?
+      expect(product.errors[:categry]).to include("can't be blank")
+    end
+
+    #6 statusが空だと登録ができない
+    it "is invalid without a status" do
+      product = build(:product, status: nil)
+      product.valid?
+      expect(product.errors[:status]).to include("can't be blank")
+    end
+
+    #7 statusが空だと登録ができない
+    it "is invalid without a status" do
+      product = build(:product, status: nil)
+      product.valid?
+      expect(product.errors[:status]).to include("can't be blank")
+    end
+
+    #8 dateが空だと登録ができない
+    it "is invalid without a date" do
+      product = build(:product, date: nil)
+      product.valid?
+      expect(product.errors[:date]).to include("can't be blank")
+    end
+
+    #9 delivery_feeが空だと登録ができない
+    it "is invalid without a delivery_fee" do
+      product = build(:product, delivery_fee: nil)
+      product.valid?
+      expect(product.errors[:delivery_fee]).to include("can't be blank")
+    end
+
+    #10 delivery_methodが空だと登録ができない
+    it "is invalid without a delivery_method" do
+      product = build(:product, delivery_method: nil)
+      product.valid?
+      expect(product.errors[:delivery_method]).to include("can't be blank")
+    end
+
+    #11 delivery_fromが空だと登録ができない
+    it "is invalid without a delivery_from" do
+      product = build(:product, delivery_from: nil)
+      product.valid?
+      expect(product.errors[:delivery_from]).to include("can't be blank")
+    end
+
+    #12 estimated_delivery_dateが空だと登録ができない
+    it "is invalid without a estimated_delivery_date" do
+      product = build(:product, estimated_delivery_date: nil)
+      product.valid?
+      expect(product.errors[:estimated_delivery_date]).to include("can't be blank")
+    end
+
+    #13 finishedが空だと登録ができない
+    it "is invalid without a finished" do
+      product = build(:product, finished: nil)
+      product.valid?
+      expect(product.errors[:finished]).to include("can't be blank")
+    end
 
     # #6 passwordが6文字以下だと登録できないこと
     # it "is invalid with a password that has less than 6 characters " do
@@ -50,27 +106,6 @@ describe Product do
     # it "is valid for passwords longer than 7 characters " do
     #   product = build(:product, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
     #   expect(product).to be_valid
-    # end
-
-    # #8 sur_nameが空では登録ができないこと
-    # it "is invalid without a sur_name" do
-    #   product = build(:product, sur_name: nil)
-    #   product.valid?
-    #   expect(product.errors[:sur_name]).to include("can't be blank")
-    # end
-
-    # #9 fr_nameが空では登録ができないこと
-    # it "is invalid without a fr_name" do
-    #   product = build(:product, fr_name: nil)
-    #   product.valid?
-    #   expect(product.errors[:fr_name]).to include("can't be blank")
-    # end
-
-    # #9 sur_name_yomiが空では登録ができないこと
-    # it "is invalid without a sur_name yomi" do
-    #   product = build(:product, sur_name_yomi: nil)
-    #   product.valid?
-    #   expect(product.errors[:sur_name_yomi]).to include("can't be blank")
     # end
 
     # #10 sur_name_yomiが漢字では登録ができないこと
