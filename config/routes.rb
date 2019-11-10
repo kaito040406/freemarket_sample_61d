@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { registrations: 'registrations'} #ロボットではない認証に使用
   root 'products#index'
-  resources :products, only: [:show] do
+  resources :products, only: [:show, :destroy, :create] do
     member do
       get 'my_details'
     end
