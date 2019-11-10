@@ -1,0 +1,27 @@
+
+  .log_out_box{
+    width: 1020px;
+    height: 100vh;
+    margin: 0 auto;
+    .in_log_out_box{
+      margin-top: 40px;
+      .lob_out_bottan_box_k{
+        float:right;
+        width: 700px;
+        line-height: 50px;
+        padding: 64px;
+        background-color: white;
+        .lob_out_bottan_k{
+          text-align: center;
+          background-color: #ea352d;
+          margin: 0 126px;
+          color: white;
+        }
+      }
+    }
+  }
+
+
+.lpg_out_k{
+  padding-top:64vh;
+}

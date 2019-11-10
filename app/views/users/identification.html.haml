@@ -19,13 +19,16 @@
               %i.fa.fa-chevron-right
           .form-group
             %label お名前
-            %p 漢字フルネーム
+            %p
+              = @user.sur_name + " " + @user.fr_name
           .form-group
             %label お名前カナ
-            %p カナフルネーム
+            %p 
+              = @user.sur_name_yomi + " " + @user.first_name_yomi
           .form-group
             %label{for: "birthday"} 生年月日
-            %p xxxx/xx/xx
+            %p 
+              = "#{@user.birthday_year}/#{@user.birthday_manth}/#{@user.birthday_day}"
           .form-group
             %label{for: "zip_code"} 郵便番号
             %span.form-arbitrary 任意

@@ -11,16 +11,26 @@
           = link_to(step1_signup_index_path, method: :get) do
             .sign_m
               .icon_box_m_k
-                %i.fa.fa-envelope
+                %i.fa.fa-envelope.k
               メールアドレスで新規登録をする
-          = link_to(root_path) do
-            .sign_f
-              .icon_box_f_k
-                %i.fa.fa-facebook-square
-              = link_to "Facebookで登録する", ""
-          .ding_g
-            Googleで登録する
-
+          - if Rails.env.development?
+            = link_to(user_facebook_omniauth_authorize_path, method: :post) do
+              .sign_f
+                .icon_box_f_k
+                  %i.fa.fa-facebook-square
+                Facebookで登録する 
+            = link_to(user_google_oauth2_omniauth_authorize_path, method: :post) do
+              .ding_g
+                Googleで登録する
+          - else
+            = link_to(step1_signup_index_path, method: :get) do
+              .sign_f
+                .icon_box_f_k
+                  %i.fa.fa-facebook-square
+                Facebookで登録する 
+            = link_to(step1_signup_index_path, method: :get) do
+              .ding_g
+                Googleで登録する
   %footer.product-new-footer-T
     %nav
       %ul.flexcontainer
