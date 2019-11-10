@@ -12,7 +12,7 @@
             .sign_m
               .icon_box_m_k
                 %i.fa.fa-envelope.k
-              メールアドレスで新規登録をする
+              メールアドレスで登録をする
           - if Rails.env.development?
             = link_to(user_facebook_omniauth_authorize_path, method: :post) do
               .sign_f
