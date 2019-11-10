@@ -63,7 +63,7 @@ class Product < ApplicationRecord
   validates :name,                      presence: true, length: { in: 1..40}
   validates :text,                      presence: true, length: { in: 1..1000}
   validates :price,                     numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
-  validates :seller_id,                 presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :seller_id,                 presence: true, numericality: { only_integer: true}
   validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
   #validates :brand, brandsテーブルとの連動必要
@@ -73,6 +73,6 @@ class Product < ApplicationRecord
   validates :delivery_method,           presence: true #presenceDBカラム未設定
   validates :delivery_from,             presence: true #presenceDBカラム未設定
   validates :estimated_delivery_date,   presence: true #presenceDBカラム未設定
-  validates :buyer_id,                  presence: true #presenceDBカラム未設定
-  validates :finished,                  presence: true
+  #validates :buyer_id
+  validates :finished,                  presence: true #, DBではdefault: 0
 end
