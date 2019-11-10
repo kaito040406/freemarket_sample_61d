@@ -81,7 +81,7 @@ describe Product do
       expect(product.errors[:delivery_from]).to include("can't be blank")
     end
 
-    #12 estimated_delivery_dateが空だと登録ができない
+    #12 estimated_delivery_dateが空だと登録できない
     it "is invalid without a estimated_delivery_date" do
       product = build(:product, estimated_delivery_date: nil)
       product.valid?
@@ -95,13 +95,19 @@ describe Product do
       expect(product.errors[:finished]).to include("can't be blank")
     end
 
-    # #6 passwordが6文字以下だと登録できないこと
-    # it "is invalid with a password that has less than 6 characters " do
-    #   product = build(:product, password: "aaaaa", password_confirmation: "aaaaa")
-    #   product.valid?
-    #   expect(product.errors[:password]).to include("is too short (minimum is 7 characters)")
-    # end
+    #14 nameが1文字未満だと登録できない
+    it "is invalid with a name that has less than 1 characters " do
+      product = build(:product, name: "")
+      product.valid?
+      expect(product.errors[:name]).to include("is too short (minimum is 1 character)")
+    end
 
+    #15 nameが41文字以上だと登録できない
+    it "is invalid with a name that has more than 40 characters " do
+      product = build(:product, name: "abcdefghijabcdefghijabcdefghijabcdefghija")
+      product.valid?
+      expect(product.errors[:name]).to include("is too long (maximum is 40 characters)")
+    end
     # #7 passwordが7文字以上で登録できること
     # it "is valid for passwords longer than 7 characters " do
     #   product = build(:product, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
