@@ -41,10 +41,32 @@ let DeliveryMethodSelectBoxHTML = `
 </div>`
 
 
+function ProductImageInputForm(){
+let ProductImageInputHTML = `
+  <div class="product_image_box">
+    <input type="file" 
+    name="product[product_images_attributes][0][product_image]" 
+    id="product_product_images_attributes_0_product_image" 
+    style="display: none;">
+  </div>`
+$('.img-uploader-dropbox').append(ProductImageInputHTML);
+}
+//labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
+function updateNextImageNum(inputIndex){
+  let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+  //書き換え
+  $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
+}
+
 $(document).on('turbolinks:load', function(){
   //画像アップロードフォームを全て取得、非表示に
   let fileForms = $("[type=file]");
   $(fileForms).hide();
+//フォームのラベルのforいじってみる
+
+  // let productImgIndex = 3; //ラベルをJSで挿入するための仮初期設定、
+  // updateNextImageNum(productImgIndex);
+
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     let file = e.target.files[0];
@@ -62,15 +84,6 @@ $(document).on('turbolinks:load', function(){
       </div>
       `;//タグは生成されてるが表示されない。。css見直し要
       $(changedInput).after(imageThumbnail);
-      // $(changedInput).after($('<img>').attr({
-      //     src: e.target.result,
-      //     width: "114px",
-      //     height: "116px",
-      //     class: "thumbnail",
-      //     title: file.name
-      // }));
-      // 編集削除ボタンを表示する
-      //$('.btn-box').css('display', 'block');
     };
 
     reader.readAsDataURL(file);
@@ -81,27 +94,26 @@ $(document).on('turbolinks:load', function(){
 
     //hidden属性でproduct_image: count:の値を付与
     //アップロードされたinputタグのidから数字部分を取り出す
-    let productImageNum = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    productImageNum = Number(productImageNum);//数値型へ変換
+    productImgIndex = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    productImgIndex = Number(productImgIndex);//数値型へ変換
     //product_image: count:のhtml生成
     let ProductImageCountAttrHTML = `
     <input type="hidden" 
-    name="product[product_images_attributes][${productImageNum}][count]" 
-    value=${productImageNum}>
+    name="product[product_images_attributes][${productImgIndex}][count]" 
+    value=${productImgIndex}>
     `;
     $(e.target).after(ProductImageCountAttrHTML); //hiddenタグ書き込み
 
-    //$(e.target).show(); //表示する
-    $('.img-uploader-dropbox pre').hide();
-    //ドロップボックスのラベルが指すアップローダーを更新
-    if (productImageNum <= 9){
-      let incrementedProductImageNum = productImageNum + 1;
-      let incrementedFor = 'product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
-      //書き換え
-      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
-    }
 
-    
+    //ドロップボックスのラベルが指すアップローダーを更新
+    if (productImgIndex <= 9){
+      let incrementedProductImgIndex = productImgIndex + 1;
+      updateNextImageNum(incrementedProductImgIndex);
+    }
+      //$(e.target).show(); //表示する
+      $('.img-uploader-dropbox pre').hide();
+      //imgがなければ
+      //$('.img-uploader-dropbox pre').show();
     
   });
 
