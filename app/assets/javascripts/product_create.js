@@ -40,15 +40,14 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
-
-function ProductImageInputForm(){
+function appendProductImageForm(inputIndex){
 let ProductImageInputHTML = `
   <div class="product_image_box">
     <input type="file" 
-    name="product[product_images_attributes][0][product_image]" 
-    id="product_product_images_attributes_0_product_image" 
+    name="product[product_images_attributes][${inputIndex}][product_image]" 
+    id="product_product_images_attributes_${inputIndex}_product_image" 
     style="display: none;">
-  </div>`
+  </div>`;
 $('.img-uploader-dropbox').append(ProductImageInputHTML);
 }
 //labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
@@ -58,12 +57,18 @@ function updateNextImageNum(inputIndex){
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
+let imgFormCount = 0;
+function countImgForm(){
+  $('.img-uploader-dropbox input').each(function(){
+    imgFormCount++;
+  });
+}
+
 $(document).on('turbolinks:load', function(){
   //画像アップロードフォームを全て取得、非表示に
   let fileForms = $("[type=file]");
   $(fileForms).hide();
-
-
+  console.log(imgFormCount);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     let file = e.target.files[0];
@@ -107,6 +112,7 @@ $(document).on('turbolinks:load', function(){
       let incrementedProductImgIndex = productImgIndex + 1;
       updateNextImageNum(incrementedProductImgIndex);
     }
+    appendProductImageForm(10);
       //$(e.target).show(); //表示する
       $('.img-uploader-dropbox pre').hide();
       //imgがなければ

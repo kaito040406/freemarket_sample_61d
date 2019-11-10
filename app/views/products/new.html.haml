@@ -22,8 +22,8 @@
                 ドラッグアンドドロップ　　　　　　　
                 またはクリックしてファイルをアップロード　　　　　　　
             %i.icon-camera
-          =f.fields_for :product_images do |img, index|
-            %div{class: "product_image_box#{index}"}
+          =f.fields_for :product_images do |img|
+            %div{class: "product_image_box"}
               =img.file_field :product_image
     .form-sub-t
       .form-input-t
