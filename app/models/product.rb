@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
-  has_many :product_images
+  has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
-  belongs_to :categry
-  accepts_nested_attributes_for :product_images
-  #validates :seller_id, presence: true
+  accepts_nested_attributes_for :product_images, allow_destroy: true
+  validates :seller_id, presence: true
+
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture

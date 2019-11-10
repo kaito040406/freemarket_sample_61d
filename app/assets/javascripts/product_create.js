@@ -40,52 +40,98 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
+function appendProductImageForm(inputIndex){
+let ProductImageInputHTML = `
+  <div class="product_image_box">
+    <input type="file" 
+    name="product[product_images_attributes][${inputIndex}][product_image]" 
+    id="product_product_images_attributes_${inputIndex}_product_image" 
+    style="display: none;">
+  </div>`;
+$('.img-uploader-dropbox').append(ProductImageInputHTML);
+}
+//labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
+function updateNextImageNum(inputIndex){
+  let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+  //書き換え
+  $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
+}
+
+let imgFormCount = 0;
+function countImgForm(){
+  $('.img-uploader-dropbox input').each(function(){
+    imgFormCount++;
+  });
+}
 
 $(document).on('turbolinks:load', function(){
+  //画像アップロードフォームを全て取得、非表示に
   let fileForms = $("[type=file]");
   $(fileForms).hide();
 
-//画像がアップローダされたらhidden属性でproduct_image: count:の値を付与
-  $("[id ^='product_product_images_attributes_']").change(function() {
+  $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    let changedInput = $(e.target);
+
+    reader.onload = function(e) {
+      // 領域の中にロードした画像を表示するimageタグを追加
+      let imageThumbnail =`
+      <img src="${e.target.result}" width="114px" height="116px" 
+        class="thumbnail" title="${file.name}" >
+      <div class="btn-box" height ="15px">
+        <a href ="" >編集</a>
+        <a href ="" >削除</a>
+      </div>
+      `;//タグは生成されてるが表示されない。。css見直し要
+      $(changedInput).after(imageThumbnail);
+    };
+
+    reader.readAsDataURL(file);
+    // 画像ファイル以外なら中断
+    if(file.type.indexOf("image") < 0){
+        return false;
+    }
+
+    //hidden属性でproduct_image: count:の値を付与
     //アップロードされたinputタグのidから数字部分を取り出す
-    let productImageNum = $(this).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    productImageNum = Number(productImageNum);//文字列型なので数値型へ変換
-    let labelIdValue = 'product_product_images_attributes_'+productImageNum+'_product_image';
+    productImgIndex = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    productImgIndex = Number(productImgIndex);//数値型へ変換
+    //product_image: count:のhtml生成
     let ProductImageCountAttrHTML = `
     <input type="hidden" 
-    name="product[product_images_attributes][${productImageNum}][count]" 
-    value=${productImageNum}>
+    name="product[product_images_attributes][${productImgIndex}][count]" 
+    value=${productImgIndex}>
     `;
+    $(e.target).after(ProductImageCountAttrHTML); //hiddenタグ書き込み
 
-    $(labelIdValue).show();
-    $(this).show();
-    $(this).after(ProductImageCountAttrHTML);
-    //ラベルが指すアップローダーを変更
-    if (productImageNum <= 9){
-      //let label = $("[for ^='product_product_images_attributes_']");
-      let incrementedProductImageNum = productImageNum + 1;
-      let incrementedFor = 'product_product_images_attributes_'+incrementedProductImageNum+'_product_image';
-      //書き換え
-      $("[for ^='product_product_images_attributes_']").attr('for', incrementedFor);
+
+    //ドロップボックスのラベルが指すアップローダーを更新
+    if (productImgIndex <= 9){
+      let incrementedProductImgIndex = productImgIndex + 1;
+      updateNextImageNum(incrementedProductImgIndex);
     }
+    appendProductImageForm(10);
+      //$(e.target).show(); //表示する
+      $('.img-uploader-dropbox pre').hide();
+      //imgがなければ
+      //$('.img-uploader-dropbox pre').show();
     
   });
 
   $('#product_categry').change(function() {
     let selection = $('option:selected').val();
-    console.log(selection);
     $('#product_categry').after(CategorySelectBoxHTML);
     if (!selection) {
-      console.log('default');
+      //
     }
   });
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();
-    console.log(selection);
     $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
     if (!selection) {
-      console.log('default');
+      //
     }
   });
 
@@ -98,5 +144,4 @@ $(document).on('turbolinks:load', function(){
     $('#product-fee').html(product_fee);
     $('#product-gain').html(product_gain);
   });
-
 });
