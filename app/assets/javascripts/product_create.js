@@ -62,10 +62,7 @@ $(document).on('turbolinks:load', function(){
   //画像アップロードフォームを全て取得、非表示に
   let fileForms = $("[type=file]");
   $(fileForms).hide();
-//フォームのラベルのforいじってみる
 
-  // let productImgIndex = 3; //ラベルをJSで挿入するための仮初期設定、
-  // updateNextImageNum(productImgIndex);
 
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
