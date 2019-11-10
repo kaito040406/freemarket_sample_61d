@@ -68,7 +68,6 @@ $(document).on('turbolinks:load', function(){
   //画像アップロードフォームを全て取得、非表示に
   let fileForms = $("[type=file]");
   $(fileForms).hide();
-  console.log(imgFormCount);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     let file = e.target.files[0];
@@ -122,19 +121,17 @@ $(document).on('turbolinks:load', function(){
 
   $('#product_categry').change(function() {
     let selection = $('option:selected').val();
-    console.log(selection);
     $('#product_categry').after(CategorySelectBoxHTML);
     if (!selection) {
-      console.log('default');
+      //
     }
   });
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();
-    console.log(selection);
     $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
     if (!selection) {
-      console.log('default');
+      //
     }
   });
 
