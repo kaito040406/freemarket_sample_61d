@@ -2,12 +2,9 @@ class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
   accepts_nested_attributes_for :product_images, allow_destroy: true
-  validates :seller_id, presence: true
-
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-
   enum categry:                    {"レディース": 1,
                                     "メンズ": 2, 
                                     "ベビー・キッズ": 3,
@@ -21,7 +18,6 @@ class Product < ApplicationRecord
                                     "チケット": 1027,
                                     "自動車・オートバイ": 1318,
                                     "その他": 10}
-
   enum categry_ladies:             {"トップス": 11,
                                     "ジャケット/アウター": 12, 
                                     "パンツ": 13,
@@ -41,14 +37,12 @@ class Product < ApplicationRecord
                                     "スーツ/フォーマル/ドレス": 27,
                                     "マタニティ": 28,}
                                     # "その他": 29}
-
   enum status:                     {"新品、未使用": 1,
                                     "未使用に近い": 2, 
                                     "目立った傷や汚れなし": 3,
                                     "やや傷や汚れあり": 4,
                                     "傷や汚れあり": 5,
                                     "全体的に状態が悪い": 6}
-
   enum delivery_fee:               {"着払い(購入者負担)": 1,
                                     "送料込み(出品者負担)": 2}
   enum delivery_method:            {"未定": 5,
@@ -60,8 +54,25 @@ class Product < ApplicationRecord
                                     "ゆうパック": 11,
                                     "クリックポスト": 13,
                                     "ゆうパケット": 7}
-
   enum estimated_delivery_date:    {"1~2日で発送": 1,
                                     "2~3日で発送": 2,
                                     "4~7日で発送": 3}
+
+  ## enum定義より後にしないとundefined method `categries'エラー
+  # validation
+  validates :name,                      presence: true, length: { in: 1..40}
+  validates :text,                      presence: true, length: { in: 1..1000}
+  validates :price,                     numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :seller_id,                 presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
+  validates :status,                    presence: true
+  #validates :brand, brandsテーブルとの連動必要
+  validates :size,                      presence: true
+  validates :date,                      presence: true
+  validates :delivery_fee,              presence: true
+  validates :delivery_method,           presence: true #presenceDBカラム未設定
+  validates :delivery_from,             presence: true #presenceDBカラム未設定
+  validates :estimated_delivery_date,   presence: true #presenceDBカラム未設定
+  validates :buyer_id,                  presence: true #presenceDBカラム未設定
+  validates :finished,                  presence: true
 end
