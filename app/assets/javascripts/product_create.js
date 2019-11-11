@@ -87,11 +87,11 @@ $(document).on('turbolinks:load', function () {
           $('#ct_no_3').remove();
         }
         html_head = `
-                    <div class="form-input-t" id="ct_no_2" value="ct_no_2">
-                      <label for="product_category_id">カテゴリー</label>
+                    <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_child" id="category_child">
+                    <option value="---" id = "---">---</option>
                     `
         ap_html = html_head
         categories.forEach(function(category){
@@ -114,6 +114,7 @@ $(document).on('turbolinks:load', function () {
   
   $(this).on("change", "#category_child", function() {
     var child_name = $(this).val();
+    if(child_name != "---"){
     console.log(child_name)
       $.ajax({
           type: 'GET',
@@ -126,11 +127,11 @@ $(document).on('turbolinks:load', function () {
           $('#ct_no_3').remove();
         }
         html_head_g = `
-                    <div class="form-input-t" id="ct_no_3" value="ct_no_3">
-                      <label for="product_category_id">カテゴリー</label>
+                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_grand_child" id="category_grand_child" >
+                    <option value="---" id = "---">---</option>
                     `
         ap_html_g = html_head_g
         categories.forEach(function(category){
@@ -147,6 +148,10 @@ $(document).on('turbolinks:load', function () {
       })
       .fail(function() {
       });
+    }
+    if(child_name == "---"){
+      $('#ct_no_3').remove();
+    }
   });
 
 
