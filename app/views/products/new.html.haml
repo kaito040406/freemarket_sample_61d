@@ -23,8 +23,8 @@
                 またはクリックしてファイルをアップロード　　　　　　　
             %i.icon-camera
           =f.fields_for :product_images do |img|
-            %div{class: "product_image_box"}
-              =img.file_field :product_image
+            -# %div{class: "product_image_box"}
+              -# =img.file_field :product_image JSで生成するため不要となった
     .form-sub-t
       .form-input-t
         %label
