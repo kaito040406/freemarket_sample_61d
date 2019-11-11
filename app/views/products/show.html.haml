@@ -24,7 +24,7 @@
           %span.item-shipping-fee 送料込み
         %section.visible-sp
           .item-btn-float-area item-buy-btn
-          = link_to '購入画面に進む', 'https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC'     
+          = link_to purchase_confirmation_product(product.id), method: :get  
         %table.item-detail-table
           %tr
             %th 出品者

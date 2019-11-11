@@ -51,6 +51,10 @@ class ProductsController < ApplicationController
   def my_details
   end
 
+  def purchase_confirmation
+
+  end
+
   private
   
   def product_image_params
