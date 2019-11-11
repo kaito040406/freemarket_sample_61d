@@ -1,1 +1,50 @@
-テスト
+%header.product-new-header-T
+  %h1
+    =link_to "https://www.mercari.com/jp/" do
+      =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
+
+%main.product-new-main-T
+  %h2.product-new-formtitle-T
+    購入内容の確認
+  .pr_check_box
+    .pr_check_box_k
+      .form-sub-image-uploader-k
+        = image_tag("#{@images.product_image}", size: '64', class: "pr_imaga_box_k")
+        .pr_name_box_k
+          = @product.name
+      .form-sub-price-k
+        .price_box
+          ¥
+          = @product.price
+        .option_box_k
+          送料込み
+      .form-buy_k_nopoint
+        = link_to(root_path, method: :get) do
+          .form-buy_bottan_k
+            ポイントはありません
+
+      .form-buy_price
+        .form-buy_left_k
+          支払い金額
+        .form-buy_right_k
+          ¥
+          = @product.price
+
+      .worning_k
+
+  .form-sub-t
+
+
+%footer.product-new-footer-T
+  %nav
+    %ul.flexcontainer
+      %li
+        =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+      %li
+        =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+      %li
+        =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+  =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
+    =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
+  %p
+    %small &copy; 2019 Mercari
