@@ -21,5 +21,5 @@ class User < ApplicationRecord
 
   has_many :products
   has_many :produst_images
-  has_one :credit_cards
+  has_many :cards
 end
