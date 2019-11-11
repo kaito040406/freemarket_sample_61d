@@ -10,8 +10,11 @@ class Api::ProductsController < ApplicationController
 
   def grand_child
     unless params[:id].empty?
-      id = "/" + "#{params[:id]}"
-      @grand_child_categories = Category.where('ancestry LIKE(?)', "%#{id}")
+      data = Category.find_by(name: params[:id])
+      g_id = data[:id] + 1
+      g_data = Category.find(g_id)
+      g_anc = g_data[:ancestry]
+      @grand_child_categories = Category.where(ancestry: g_anc)
       respond_to do |format|
         format.html
         format.json

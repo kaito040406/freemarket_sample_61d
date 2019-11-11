@@ -25,9 +25,9 @@
 
 
 $(document).on('turbolinks:load', function () {
-  function appendCategory(name){
+  function appendCategory(ct){
     var html = `
-                <option value="${name}">${name}</option>
+                <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
                 `
     return html;
     }
@@ -36,7 +36,7 @@ $(document).on('turbolinks:load', function () {
 
   $('#category_parent').change(function() {
       var parent_name = $(this).val();
-      var user_id = $(".select-wrap").attr("id");
+      user_id = $(".select-wrap").attr("id");
       if(parent_name == "レディース"){
         parent_id = 1;
       }
@@ -83,8 +83,11 @@ $(document).on('turbolinks:load', function () {
         if($('#ct_no_2').val() != null){
           $('#ct_no_2').remove();
         }
+        if($('#ct_no_3').val() != null){
+          $('#ct_no_3').remove();
+        }
         html_head = `
-                    <div class="form-input-t" value="ct_no_2">
+                    <div class="form-input-t" id="ct_no_2" value="ct_no_2">
                       <label for="product_category_id">カテゴリー</label>
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
@@ -92,7 +95,7 @@ $(document).on('turbolinks:load', function () {
                     `
         ap_html = html_head
         categories.forEach(function(category){
-          ct_html = appendCategory(category.name)
+          ct_html = appendCategory(category)
           ap_html = ap_html + ct_html
         })
         html_foot=`
@@ -109,26 +112,46 @@ $(document).on('turbolinks:load', function () {
       })
   });
   
-  $(this).on("change", "#child", function() {
-      var child_id = $("#child").val();
+  $(this).on("change", "#category_child", function() {
+    var child_name = $(this).val();
+    console.log(child_name)
       $.ajax({
           type: 'GET',
-          url: '/api/grand_child',
-          data: {id: child_id},
+          url: "/users/" + user_id + "/api/products/grand_child",
+          data: {id: child_name},
           dataType: 'json'
       })
       .done(function(categories) {
-          $('.grand_child').css('display', 'block');
-          $('#grand_child').empty();
-          $('#grand_child').append(buildPrompt);
-          categories.forEach(function(cat) {
-              var html_option = buildHtmlOption(cat);
-              $('#grand_child').append(html_option);
-          });
+        if($('#ct_no_3').val() != null){
+          $('#ct_no_3').remove();
+        }
+        html_head_g = `
+                    <div class="form-input-t" id="ct_no_3" value="ct_no_3">
+                      <label for="product_category_id">カテゴリー</label>
+                      <div class="select-wrap" id="1">
+                      <i class="fa fa-chevron-down"></i>
+                    <select class="category_grand_child" id="category_grand_child" >
+                    `
+        ap_html_g = html_head_g
+        categories.forEach(function(category){
+          ct_html_g = appendCategory(category)
+          ap_html_g = ap_html_g + ct_html_g
+        })
+        html_foot_g=`
+                    </select>
+                    </div>
+                    </div>
+                  `
+        html_g = ap_html_g + html_foot_g;
+        $('.ct_box_k').append(html_g);
       })
       .fail(function() {
       });
   });
+
+
+
+
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
