@@ -1,22 +1,70 @@
-let CategorySelectBoxHTML = `
-<div class="select-wrap">
-  <i class="icon-arrow-bottom"></i>
-  <select class="select-default" name="product[category]" id="product_category"><option value>---</option>
-  <option value="レディース">レディース</option>
-  <option value="メンズ">メンズ</option>
-  <option value="ベビー・キッズ">ベビー・キッズ</option>
-  <option value="インテリア・住まい・小物">インテリア・住まい・小物</option>
-  <option value="本・音楽・ゲーム">本・音楽・ゲーム</option>
-  <option value="おもちゃ・ホビー・グッズ">おもちゃ・ホビー・グッズ</option>
-  <option value="コスメ・香水・美容">コスメ・香水・美容</option>
-  <option value="家電・スマホ・カメラ">家電・スマホ・カメラ</option>
-  <option value="スポーツ・レジャー">スポーツ・レジャー</option>
-  <option value="ハンドメイド">ハンドメイド</option>
-  <option value="チケット">チケット</option>
-  <option value="自動車・オートバイ">自動車・オートバイ</option>
-  <option value="その他">その他</option></select>
-</div>`
+// let CategorySelectBoxHTML = `
+// <div class="select-wrap">
+//   <i class="fa fa-chevron-down"></i>
+//   <select class="category_parent">
+//   <option value="0">---</option>
+//   <option value="1">レディース</option>
+//   <option value="200">メンズ</option>
+//   <option value="345">ベビー・キッズ</option>
+//   <option value="480">インテリア・住まい・小物</option>
+//   <option value="623">本・音楽・ゲーム</option>
+//   <option value="683">おもちゃ・ホビー・グッズ</option>
+//   <option value="796">コスメ・香水・美容</option>
+//   <option value="896">家電・スマホ・カメラ</option>
+//   <option value="982">スポーツ・レジャー</option>
+//   <option value="1091">ハンドメイド</option>
+//   <option value="1143">チケット</option>
+//   <option value="1202">自動車・オートバイ</option>
+//   <option value="1264">その他</option>
+//   </select>
+// </div>`
 
+
+
+// カテゴリ選択
+    $('#parent').change(function() {
+        var parent_id = $(this).val();
+        $.ajax({
+            type: 'GET',
+            url: '/api/child',
+            data: {id: parent_id},
+            dataType: 'json'
+        })
+        .done(function(categories) {
+            $('.child').css('display', 'block');
+            $('#child').empty();
+            $('.grand_child').css('display', 'none');
+            $('#child').append(buildPrompt);
+
+            categories.forEach(function(cat) {
+                var html_option = buildHtmlOption(cat);
+                $('#child').append(html_option);
+            });
+        })
+        .fail(function() {
+        });
+    });
+    
+    $(this).on("change", "#child", function() {
+        var child_id = $("#child").val();
+        $.ajax({
+            type: 'GET',
+            url: '/api/grand_child',
+            data: {id: child_id},
+            dataType: 'json'
+        })
+        .done(function(categories) {
+            $('.grand_child').css('display', 'block');
+            $('#grand_child').empty();
+            $('#grand_child').append(buildPrompt);
+            categories.forEach(function(cat) {
+                var html_option = buildHtmlOption(cat);
+                $('#grand_child').append(html_option);
+            });
+        })
+        .fail(function() {
+        });
+    });
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
@@ -71,14 +119,14 @@ $(document).on('turbolinks:load', function(){
     
   });
 
-  $('#product_categry').change(function() {
-    let selection = $('option:selected').val();
-    console.log(selection);
-    $('#product_categry').after(CategorySelectBoxHTML);
-    if (!selection) {
-      console.log('default');
-    }
-  });
+  // $('#product_categry').change(function() {
+  //   let selection = $('option:selected').val();
+  //   console.log(selection);
+  //   $('#product_categry').after(CategorySelectBoxHTML);
+  //   if (!selection) {
+  //     console.log('default');
+  //   }
+  // });
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();

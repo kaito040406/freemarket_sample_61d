@@ -55,6 +55,15 @@
                 %option{value: 0} ---
                 - @category_parent.each do |parent|
                   %option{value: "#{parent.id}"} #{parent.name}
+            .select-wrap
+              %i.fa.fa-chevron-down
+              %select.category_child
+              
+
+
+
+
+
           .form-input-t
             %label
               商品の状態
