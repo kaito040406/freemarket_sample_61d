@@ -41,82 +41,93 @@ let DeliveryMethodSelectBoxHTML = `
 </div>`
 
 function appendProductImageForm(inputIndex){
-let ProductImageInputHTML = `
-  <div class="product_image_box">
-    <input type="file" 
-    name="product[product_images_attributes][${inputIndex}][product_image]" 
-    id="product_product_images_attributes_${inputIndex}_product_image" 
-    style="display: none;">
-  </div>`;
-$('.img-uploader-dropbox').append(ProductImageInputHTML);
+  let ProductImageInputHTML = `
+    <div class="product_image_box">
+      <input type="file" 
+      name="product[product_images_attributes][${inputIndex}][product_image]" 
+      id="product_product_images_attributes_${inputIndex}_product_image" 
+      >
+    </div>`;
+
+  $('.img-uploader-dropbox').append(ProductImageInputHTML);
 }
+//画像inputフォームの識別数字（削除で通し番号ではなくなる）
+//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個までインデックスで9まで、であるため
+//結局番号の振り直し必須、10個のフォームには区別要かもしれない
 //labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
-function updateNextImageNum(inputIndex){
+function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
-  //書き換え
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
-let imgFormCount = 0;
-function countImgForm(){
-  $('.img-uploader-dropbox input').each(function(){
-    imgFormCount++;
-  });
+function youngestInputIndex(){
+  let inputIndex;
+  inputIndex = countImgForm();
+  return inputIndex;
 }
+function countImgForm(){//今アップロード候補に入ってる画像の総数を数える
+  let imgFormCount = 0;//並べる時の順番作成にも必要と思われる
+  $('.img-uploader-dropbox input[type="file"]').each(function(){
+    imgFormCount = imgFormCount + 1;
+  });
+  return imgFormCount;//DBに記録される画像の総数);
+}
+//updateImgCount()
+//hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
+
+/////////////////////////////////////
+/////本体ここから//////////////////////
+/////////////////////////////////////
 
 $(document).on('turbolinks:load', function(){
-  //画像アップロードフォームを全て取得、非表示に
-  let fileForms = $("[type=file]");
-  $(fileForms).hide();
+  let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+  labelForIndex = Number(labelForIndex);//数値型へ変換
+  appendProductImageForm(labelForIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+    let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelForIndex = Number(labelForIndex);//数値型へ変換
+    // 11枚目なら中断
+    if(labelForIndex >= 10){//バブリング利用のためファイル選択ダイアログは表示されてしまう
+      return false;
+    }
     let file = e.target.files[0];
-    let reader = new FileReader();
-    let changedInput = $(e.target);
-
-    reader.onload = function(e) {
-      // 領域の中にロードした画像を表示するimageタグを追加
-      let imageThumbnail =`
-      <img src="${e.target.result}" width="114px" height="116px" 
-        class="thumbnail" title="${file.name}" >
-      <div class="btn-box" height ="15px">
-        <a href ="" >編集</a>
-        <a href ="" >削除</a>
-      </div>
-      `;//タグは生成されてるが表示されない。。css見直し要
-      $(changedInput).after(imageThumbnail);
-    };
-
-    reader.readAsDataURL(file);
     // 画像ファイル以外なら中断
     if(file.type.indexOf("image") < 0){
-        return false;
+      return false;
     }
+    //サムネイルと編集・削除 追加(関数として切り出すとサムネイルが表示されなくなったため保留)
+    let reader = new FileReader();
+    let changedInput = $(e.target);
+    //hidden属性でproduct_image:[:count]の値を付与
+    labelForIndex = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelForIndex = Number(labelForIndex);//数値型へ変換
+    reader.onload = function (e){
+      let imageThumbnail =`
+        <img src="${e.target.result}" width="114px" height="116px" 
+        class="thumbnail" title="${file.name}" >
+        <input type="hidden" 
+          name="product[product_images_attributes][${labelForIndex}][count]" 
+        value=${labelForIndex}>
+        <div class="btn-box" height ="15px">
+          <a href ="" >画像編集</a>
+          <a href ="" >画像削除</a>
+        </div>
+        `;
+      $(changedInput).after(imageThumbnail);
+    };
+    reader.readAsDataURL(file);
 
-    //hidden属性でproduct_image: count:の値を付与
-    //アップロードされたinputタグのidから数字部分を取り出す
-    productImgIndex = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    productImgIndex = Number(productImgIndex);//数値型へ変換
-    //product_image: count:のhtml生成
-    let ProductImageCountAttrHTML = `
-    <input type="hidden" 
-    name="product[product_images_attributes][${productImgIndex}][count]" 
-    value=${productImgIndex}>
-    `;
-    $(e.target).after(ProductImageCountAttrHTML); //hiddenタグ書き込み
+  //updateImgCount();
 
+    labelForIndex = youngestInputIndex();
+    overwriteLabel(labelForIndex);
 
-    //ドロップボックスのラベルが指すアップローダーを更新
-    if (productImgIndex <= 9){
-      let incrementedProductImgIndex = productImgIndex + 1;
-      updateNextImageNum(incrementedProductImgIndex);
+    appendProductImageForm(labelForIndex);
+    $('.img-uploader-dropbox pre').hide();
+    if(labelForIndex== 0){
+      $('.img-uploader-dropbox pre').show();
     }
-    appendProductImageForm(10);
-      //$(e.target).show(); //表示する
-      $('.img-uploader-dropbox pre').hide();
-      //imgがなければ
-      //$('.img-uploader-dropbox pre').show();
-    
   });
 
   $('#product_categry').change(function() {
