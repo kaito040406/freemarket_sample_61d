@@ -1,7 +1,7 @@
 class Api::ProductsController < ApplicationController
 
   def child
-    @child_categories = Category.where('ancestry = ?', "#{params[:id]}")
+    @child_categories = Category.where(ancestry: params[:id])
     respond_to do |format|
       format.html
       format.json
@@ -18,3 +18,4 @@ class Api::ProductsController < ApplicationController
       end
     end
   end
+end

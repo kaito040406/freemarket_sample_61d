@@ -45,19 +45,17 @@
         %h3.sub-title-t
           商品の詳細
         .form-input-list-t
-          .form-input-t
-            = f.label :category_id, "カテゴリー"
-            %span.must-filled-mark-t
-              必須
-            .select-wrap
-              %i.fa.fa-chevron-down
-              %select.category_parent
-                %option{value: 0} ---
-                - @category_parent.each do |parent|
-                  %option{value: "#{parent.id}"} #{parent.name}
-            .select-wrap
-              %i.fa.fa-chevron-down
-              %select.category_child
+          .ct_box_k
+            .form-input-t{value: "ct_no_1"}
+              = f.label :category_id, "カテゴリー"
+              %span.must-filled-mark-t
+                必須
+              .select-wrap{id: current_user.id , value: @product.id}
+                %i.fa.fa-chevron-down
+                %select.category_parent{id: "category_parent"}
+                  %option{value: 0} ---
+                  - @category_parent.each do |parent|
+                    %option{value: "#{parent.name}"} #{parent.name}
               
 
 

@@ -22,49 +22,113 @@
 
 
 // カテゴリ選択
-    $('#parent').change(function() {
-        var parent_id = $(this).val();
-        $.ajax({
-            type: 'GET',
-            url: '/api/child',
-            data: {id: parent_id},
-            dataType: 'json'
-        })
-        .done(function(categories) {
-            $('.child').css('display', 'block');
-            $('#child').empty();
-            $('.grand_child').css('display', 'none');
-            $('#child').append(buildPrompt);
 
-            categories.forEach(function(cat) {
-                var html_option = buildHtmlOption(cat);
-                $('#child').append(html_option);
-            });
+
+$(document).on('turbolinks:load', function () {
+  function appendCategory(name){
+    var html = `
+                <option value="${name}">${name}</option>
+                `
+    return html;
+    }
+
+
+
+  $('#category_parent').change(function() {
+      var parent_name = $(this).val();
+      var user_id = $(".select-wrap").attr("id");
+      if(parent_name == "レディース"){
+        parent_id = 1;
+      }
+      if(parent_name == "メンズ"){
+        parent_id = 200;
+      }
+      if(parent_name == "ベビー・キッズ"){
+        parent_id = 345;
+      }
+      if(parent_name == "インテリア・住まい・小物"){
+        parent_id = 480;
+      }
+      if(parent_name == "本・音楽・ゲーム"){
+        parent_id = 623;
+      }
+      if(parent_name == "おもちゃ・ホビー・グッズ"){
+        parent_id = 683;
+      }
+      if(parent_name == "コスメ・香水・美容"){
+        parent_id = 796;
+      }
+      if(parent_name == "家電・スマホ・カメラ"){
+        parent_id = 896;
+      }
+      if(parent_name == "スポーツ・レジャー"){
+        parent_id = 982;
+      }
+      if(parent_name == "チケット"){
+        parent_id = 1143;
+      }
+      if(parent_name == "自動車・オートバイ"){
+        parent_id = 1202;
+      }
+      if(parent_name == "その他"){
+        parent_id = 1264;
+      }
+      $.ajax({
+          type: 'GET',
+          url: "/users/" + user_id + "/api/products/child",
+          dataType: 'json',
+          data: {id: parent_id}
+      })
+      .done(function(categories){
+        if($('#ct_no_2').val() != null){
+          $('#ct_no_2').remove();
+        }
+        html_head = `
+                    <div class="form-input-t" value="ct_no_2">
+                      <label for="product_category_id">カテゴリー</label>
+                      <div class="select-wrap" id="1">
+                      <i class="fa fa-chevron-down"></i>
+                    <select class="category_child" id="category_child">
+                    `
+        ap_html = html_head
+        categories.forEach(function(category){
+          ct_html = appendCategory(category.name)
+          ap_html = ap_html + ct_html
         })
-        .fail(function() {
-        });
-    });
-    
-    $(this).on("change", "#child", function() {
-        var child_id = $("#child").val();
-        $.ajax({
-            type: 'GET',
-            url: '/api/grand_child',
-            data: {id: child_id},
-            dataType: 'json'
-        })
-        .done(function(categories) {
-            $('.grand_child').css('display', 'block');
-            $('#grand_child').empty();
-            $('#grand_child').append(buildPrompt);
-            categories.forEach(function(cat) {
-                var html_option = buildHtmlOption(cat);
-                $('#grand_child').append(html_option);
-            });
-        })
-        .fail(function() {
-        });
-    });
+        html_foot=`
+                    </select>
+                    </div>
+                    </div>
+                  `
+        html = ap_html + html_foot;
+        $('.ct_box_k').append(html);
+      })
+      .fail((data) => {
+        //失敗した場合の処理
+        console.log(data.responseText);  //レスポンス文字列を表示
+      })
+  });
+  
+  $(this).on("change", "#child", function() {
+      var child_id = $("#child").val();
+      $.ajax({
+          type: 'GET',
+          url: '/api/grand_child',
+          data: {id: child_id},
+          dataType: 'json'
+      })
+      .done(function(categories) {
+          $('.grand_child').css('display', 'block');
+          $('#grand_child').empty();
+          $('#grand_child').append(buildPrompt);
+          categories.forEach(function(cat) {
+              var html_option = buildHtmlOption(cat);
+              $('#grand_child').append(html_option);
+          });
+      })
+      .fail(function() {
+      });
+  });
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
@@ -147,4 +211,5 @@ $(document).on('turbolinks:load', function(){
     $('#product-gain').html(product_gain);
   });
 
+});
 });
