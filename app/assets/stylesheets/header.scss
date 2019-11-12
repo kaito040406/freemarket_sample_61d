@@ -1,70 +1,19 @@
 /* header */
-.dPkCkl {
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  position: relative;
-  z-index: 3;
-  height: 100px;
+
+* ::before, ::after {
+  box-sizing: border-box;
 }
-@media (min-width: 1068px){
-  .jrJWo {
-    width: 1020px;
-  }
-}
-.jrJWo {
-    width: 1020px;
-    margin: 0px auto;
-    padding: 8px 0px 0px;
-}
-.hABnEO {
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-}
-.xUiJL {
-  -webkit-box-align: center;
-  align-items: center;
-  display: flex;
-  height: 40px;
-  margin-right: 45px;
-}
+
 a {
   color: inherit;
   text-decoration: none;
 }
-.kuQyNF {
-  height: 36px;
-  width: 134px;
-}
 
-.jhhfpc {
-  position: relative;
-  width: 100%;
-}
-.uBYjF {
-  background-color: rgb(245, 245, 245);
-  font-size: 16px;
-  height: 40px;
-  line-height: 1.4em;
-  position: relative;
-  width: 100%;
-  -webkit-appearance: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(204, 204, 204);
-  border-image: initial;
-  border-radius: 4px;
-  outline: none;
-  padding: 0px 50px 0px 10px;
-  transition: all 0.3s ease-out 0s;
-}
 button, input, select, textarea {
   font-family: inherit;
   font-size: 100%;
 }
-*, ::before, ::after {
-  box-sizing: border-box;
-}
+
 input[type="search" i] {
   -webkit-appearance: searchfield;
   box-sizing: border-box;
@@ -92,22 +41,7 @@ input {
   border-color: initial;
   border-image: initial;
 }
-.eEWgtr {
-  background-color: transparent;
-  cursor: pointer;
-  height: 40px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  width: 40px;
-  -webkit-appearance: none;
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
-  border-radius: 0px 4px 4px 0px;
-  padding: 0px;
-}
+
 button {
   -webkit-appearance: button;
   -webkit-writing-mode: horizontal-tb !important;
@@ -132,7 +66,89 @@ button {
   border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
   border-image: initial;
 }
-.gKFuLS {
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.header_main_box {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  position: relative;
+  z-index: 3;
+  height: 100px;
+}
+
+.header_main_content_box {
+  width: 1020px;
+  margin: 0px auto;
+  padding: 8px 0px 0px;
+}
+
+.header_first_box {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.header_mercari_box {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  height: 40px;
+  margin-right: 45px;
+}
+
+.header_top_link {
+  height: 36px;
+  width: 134px;
+}
+
+.header_serch {
+  position: relative;
+  width: 100%;
+}
+
+.header_serch_box {
+  background-color: rgb(245, 245, 245);
+  font-size: 16px;
+  height: 40px;
+  line-height: 1.4em;
+  position: relative;
+  width: 100%;
+  -webkit-appearance: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  border-radius: 4px;
+  outline: none;
+  padding: 0px 50px 0px 10px;
+  transition: all 0.3s ease-out 0s;
+}
+
+.header_serch_button {
+  background-color: transparent;
+  cursor: pointer;
+  height: 40px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 40px;
+  -webkit-appearance: none;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 0px 4px 4px 0px;
+  padding: 0px;
+}
+
+.header_serch_button_icon {
   max-width: 100%;
   max-height: 100%;
   color: rgb(34, 34, 34);
@@ -140,15 +156,18 @@ button {
   margin-top: 2px;
   width: 14px;
 }
+
 svg:not(:root) {
   overflow: hidden;
 }
+
 path[Attributes Style] {
   fill: currentcolor;
   fill-rule: nonzero;
   d: path("M 11.435 10.063 h -0.723 l -0.256 -0.247 a 5.92 5.92 0 0 0 1.437 -3.87 a 5.946 5.946 0 1 0 -5.947 5.947 a 5.92 5.92 0 0 0 3.87 -1.437 l 0.247 0.256 v 0.723 L 14.637 16 L 16 14.637 l -4.565 -4.574 Z m -5.489 0 A 4.111 4.111 0 0 1 1.83 5.946 A 4.111 4.111 0 0 1 5.946 1.83 a 4.111 4.111 0 0 1 4.117 4.116 a 4.111 4.111 0 0 1 -4.117 4.117 Z");
 }
-.fBRiXF {
+
+.header_second_box {
   width: 1020px;
   height: 44px;
   display: flex;
@@ -156,16 +175,19 @@ path[Attributes Style] {
   justify-content: space-between;
   margin-top: 8px;
 }
-.iUysIE {
+
+.header_second_left_box {
   width: 308.45px;
   height: 44px;
   display: flex;
   margin-left: -3px;
 }
-.duCyXi:first-child {
+
+.header_second_w_box:first-child {
   padding-left: 0px;
 }
-.duCyXi {
+
+.header_second_w_box {
   cursor: pointer;
   width: 159.45px;
   height: 44px;
@@ -173,88 +195,59 @@ path[Attributes Style] {
   z-index: 3;
   padding: 0px 10px;
 }
-.jreoh {
+
+.header_second_w_box_inner {
   display: block;
   font-size: 14px;
   font-weight: 600;
   line-height: 36px;
   white-space: nowrap;
 }
-.jreoh {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 36px;
-  white-space: nowrap;
-}
-.dKBFhm {
+
+.header_second_category_icon {
   max-width: 100%;
   max-height: 100%;
   color: rgb(234, 53, 45);
   height: 12px;
   margin-right: 4px;
 }
-@media (min-width: 1068px){
-  .hyHaBj {
-    left: 0px;
-  }
-}
-.hyHaBj {
-  display: none;
-  left: -34px;
-  position: absolute;
-  top: 44px;
-  z-index: 1;
-}
-.duCyXi:last-child {
-  padding-right: 0px;
-}
-.kspmux {
+
+.header_second_brand_icon{
   max-width: 100%;
   max-height: 100%;
   color: rgb(234, 53, 45);
   height: 12px;
   margin-right: 4px;
 }
+
 path[Attributes Style] {
   fill: currentcolor;
   fill-rule: nonzero;
   d: path("M 6.315 0 L 4.473 1.806 L 2.833 0.019 L 0.73 1.977 l 1.69 1.84 L 1.198 5.02 c -1.594 1.594 -1.594 4.188 -0.01 5.772 L 6.3 16 h 13.272 a 3.08 3.08 0 0 0 3.077 -3.077 V 3.076 A 3.08 3.08 0 0 0 19.57 0 H 6.315 Z m 13.46 12.925 a 0.211 0.211 0 0 1 -0.205 0.205 H 7.504 L 3.227 8.771 a 1.226 1.226 0 0 1 -0.01 -1.71 L 4.38 5.92 l 1.28 1.371 a 2.68 2.68 0 1 0 2.13 -1.93 L 6.433 3.907 L 7.49 2.87 h 12.082 a 0.211 0.211 0 0 1 0.206 0.205 v 9.848 h -0.002 Z");
 }
 
-.fzedbE {
+.header_second_right_box {
   display: flex;
   position: relative;
   width: 530.31px;
+}
 
-}
-ol, ul {
-  list-style: none;
-}
 @media (min-width: 1068px){
-.gDLVUl:first-child {
+  .header_second_right_box_four:first-child {
   display: block;
 
   }
 }
-.gDLVUl:first-child {
-  padding-left: 0px;
-  width: 127px;
-  height: 44px;
-}
-@media (min-width: 1068px){
-  .gDLVUl {
-    padding: 0px 14px;
-  }
-}
-.gDLVUl {
+
+.header_second_right_box_four {
   height: 44px;
   position: relative;
   padding: 0px 7px;
   width: 127px;
   float:right;
 }
-.jwHbWf {
+
+.header_second_right_box_inner {
   -webkit-box-align: center;
   align-items: center;
   display: flex;
@@ -264,7 +257,8 @@ ol, ul {
   transition: all 0.3s ease-out 0s;
   width: 129px;
 }
-.elIJWw {
+
+.header_second_right_good_icon{
   max-width: 100%;
   height: auto;
   max-height: 100%;
@@ -272,13 +266,14 @@ ol, ul {
   margin-right: 10px;
   width: 19px;
 }
+
 path[Attributes Style] {
   fill: currentcolor;
   d: path("M 8.08 12.711 l -0.08 0.082 l -0.08 -0.082 C 4.112 9.188 1.6 6.858 1.6 4.496 c 0 -1.635 1.2 -2.861 2.8 -2.861 c 1.232 0 2.432 0.81 2.856 1.929 h 1.496 c 0.416 -1.12 1.616 -1.93 2.848 -1.93 c 1.6 0 2.8 1.227 2.8 2.862 c 0 2.362 -2.512 4.692 -6.32 8.215 M 11.6 0 C 10.208 0 8.872 0.662 8 1.708 C 7.128 0.662 5.792 0 4.4 0 C 1.936 0 0 1.978 0 4.496 c 0 3.09 2.72 5.608 6.84 9.433 L 8 15 l 1.16 -1.079 C 13.28 10.104 16 7.586 16 4.496 C 16 1.978 14.064 0 11.6 0");
   fill-rule: evenodd;
 }
 
-.kjjLAK {
+.header_second_right_notice_icon {
   max-width: 100%;
   height: auto;
   max-height: 100%;
@@ -286,19 +281,8 @@ path[Attributes Style] {
   margin-right: 10px;
   width: 17px;
 }
-.kmSGSf {
-  margin-right: 10px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-img {
-  vertical-align: middle;
-}
 
-
-.lcPaSU {
+.header_second_right_notice_number{
   background-color: rgb(234, 53, 45);
   color: rgb(255, 255, 255);
   font-size: 12px;
@@ -312,10 +296,20 @@ img {
   border-radius: 50%;
 }
 
-.hkkZYC {
+.header_second_right_todo_icon {
   max-width: 100%;
   height: auto;
   max-height: 100%;
   color: rgb(204, 204, 204);
   margin-right: 10px;
 }
+
+.header_second_right_my_icon {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
