@@ -31,12 +31,13 @@ Rails.application.routes.draw do
   end
   #ここまで長谷川記入
 
-  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+  resources "users",only: [:index,:profile, :progress, :card], path: 'mypage' do
     collection do
       get 'profile'
       get 'identification'
       get 'progress'
       get 'my_details'
+      get 'card'
     end
   end
 
