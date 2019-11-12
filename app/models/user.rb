@@ -8,6 +8,7 @@ class User < ApplicationRecord
          omniauth_providers: [:facebook, :google_oauth2]
          
 
+
   validates :nick_name, presence: true
   validates :sur_name, presence: true
   validates :fr_name, presence: true
@@ -25,6 +26,7 @@ class User < ApplicationRecord
 
   has_many :products
   has_many :produst_images
+  has_many :cards
 
   def self.find_for_oauth(auth)
     user = User.where(id: auth.id, provider: auth.provider).first

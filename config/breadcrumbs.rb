@@ -4,7 +4,8 @@ end
 
 
 crumb :mypage do
-  link "マイページ", users_path
+  link "マイページ", "#{current_user.id}"
+
 end
 
 
@@ -24,8 +25,14 @@ crumb :my_details do
 end
 
 crumb :cards do
-  link "支払い方法", new_cards_path
+  link "支払い方法", card_users_path
   parent :mypage
 end
+
+
+
+
+
+
 
 

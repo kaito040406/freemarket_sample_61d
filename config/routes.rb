@@ -32,15 +32,25 @@ Rails.application.routes.draw do
     end
   end
   #ここまで長谷川記入
+
   resources :categories
   resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+
     collection do
       get 'profile'
       get 'identification'
       get 'progress'
+      get 'my_details'
+      get 'card'
+
     end
   end
 
-  resources :credit_cards, only: [:index, :new, :show]
-    
+  resources :cards, only: [:new, :show, :index] do
+    collection do
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+      post 'show', to: 'cards#show'
+    end
+  end
 end

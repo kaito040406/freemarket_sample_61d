@@ -1,0 +1,87 @@
+.credit-default
+  %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
+    = render 'shared/header'
+    = render 'shared/bread_bar'
+  %main.credit-container.clearfix
+    .h-credit
+      %section.h-chapter-container
+        %h2.h-chapter-zilyouhou クレジットカード情報入力
+        = form_tag(pay_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
+          %input{name:  "__csrf_value", type: "hidden", value: ""}/
+          .h-single-content
+            .h-form-group
+              %label カード番号
+              %span.form-require 必須
+              = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              %br
+              %ul.h-signup-card-list
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1248199994", size: "49x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?1248199994", size: "34x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?1248199994", size: "30x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?1248199994", size: "32x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?1248199994", size: "21x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?1248199994", size: "32x20", alt: ""
+                %li 
+                  = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?1248199994", size: "32x20", alt: ""
+            .form-group.signup-form-expire
+              %label 有効期限
+              %span.form-require 必須
+              %br
+              .select-wrap.half-h
+                %select#exp_month{name: "exp_year", type: "text"}
+                  %option{value: ""} --
+                  %option{value: "1"}01
+                  %option{value: "2"}02
+                  %option{value: "3"}03
+                  %option{value: "4"}04
+                  %option{value: "5"}05
+                  %option{value: "6"}06
+                  %option{value: "7"}07
+                  %option{value: "8"}08
+                  %option{value: "9"}09
+                  %option{value: "10"}10
+                  %option{value: "11"}11
+                  %option{value: "12"}12
+                %i.fa.fa-chevron-down
+              %span 月
+              .select-wrap.half-h
+                %select#exp_year{name: "exp_year", type: "text"}
+                  %option{value: ""} --
+                  %option{value: "2019"}19
+                  %option{value: "2020"}20
+                  %option{value: "2021"}21
+                  %option{value: "2022"}22
+                  %option{value: "2023"}23
+                  %option{value: "2024"}24
+                  %option{value: "2025"}25
+                  %option{value: "2026"}26
+                  %option{value: "2027"}27
+                  %option{value: "2028"}28
+                  %option{value: "2029"}29
+                %i.fa.fa-chevron-down
+              %span 年
+              %br
+            .form-group
+              %label セキュリティコード
+              %span.form-require 必須
+              .signup-seqcode
+              = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc"
+              .signup-seqcode-text
+                %span.form-question ?
+                カード裏面の番号とは？
+              .signup-seqcode-info
+                カードの裏面をご参照ください。
+                %br/ 
+              #card_token
+              = submit_tag "追加する", id: "token_submit", type: "button"
+    .l-side
+      = render 'shared/side_bar'
+  %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+    =render 'shared/footer'
+  =render 'shared/cameraicon'
