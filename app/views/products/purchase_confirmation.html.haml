@@ -4,67 +4,64 @@
       =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
 
 %main.product-new-main-T
-  %section.purchase-confirmation-main
-    %h2.purchase-confirmation-title-T
-      購入内容の確認
-    %section.purchese-confirm-subsections.product-info
-      = image_tag("#{@images.product_image}", size: '64', class: "product-img")
-      %p.product-name
-        = @product.name
-      = form_with url: root_path, class: "purchase-confirmation-form" do |f|
-        .form-sub-price-k
-          .product-price
-            ¥
-            = @product.price
-            %span.fee-side
-              送料込み
-        .point-info
-          =link_to("root_path", method: :get, class: "no-point-k") do
-            ポイントはありません
-        .pay-amount
-          .payment-subtitle
-            支払い金額
-          .payment-price
-            ¥
-            = @product.price
-        =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
-          購入する
-    %section.purchese-confirm-subsections.buyer-address
-      %h3
-        配送先
-      %address
-        〒600-8892
-        -# =@product.buyer.address.postal_code モデルの設定とコントローラへの呼び出し追加要
-        %br
-        京都府 下京区西七条西八反田町
-        %br
-        7
-        %br
-        ウエストエイト206
-        %br
-        中島 知子
-      %p.buy-user-info-text
-      =link_to "", class:"change-link-purchase-confirm" do
-        %span
-          変更する
-        .fa.fa-chevron-right
-    %section.purchese-confirm-subsections.purchase-info
-      %h1
-        支払い方法
-      %p.buy-user-info-text
-        ************1049
-        %br
-        07 / 26
-      %figure
-        =image_tag "/assets/jcb-logomark-img-01.gif", alt: "jcb",  width: "26", height: "20"
-      %p
-      =link_to "select-card", class: "change-link-purchase-confirm" do
-        %span
-          変更する
-        .fa.fa-chevron-right
+  %h2.purchase-confirmation-title-T
+    購入内容の確認
+  %section.purchese-confirm-subsections.product-info
+    = image_tag("#{@images.product_image}", size: '64', class: "product-img")
+    %p.product-name
+      = @product.name
+    -# =モデル無しのform_withを仮置き
+    = form_with url: root_path, class: "purchase-confirmation-form" do |f|
+      .form-sub-price-k
+        .product-price
+          ¥
+          = @product.price
+          %span.fee-side
+            送料込み
+      .point-info
+        =link_to("root_path", method: :get, class: "no-point-k") do
+          ポイントはありません
+      .pay-amount
+        .payment-subtitle
+          支払い金額
+        .payment-price
+          ¥
+          = @product.price
+      =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
+        購入する
+  %section.purchese-confirm-subsections.buyer-address
+    %h3
+      配送先
+    %address
+      〒600-8892
+      %br
+      京都府 下京区西七条西八反田町
+      7
+      ウエストエイト206
+      %br
+      中島 知子
+    %p.buy-user-info-text
+    =link_to "", class:"change-link-purchase-confirm" do
+      %span
+        変更する
+      .fa.fa-chevron-right
+  %section.purchese-confirm-subsections.purchase-info
+    %h3
+      支払い方法
+    %p.buy-user-info-text
+      ************1049
+      %br
+      07 / 26
+    %figure
+      =image_tag "/assets/jcb-logomark-img-01.gif", alt: "jcb",  width: "26", height: "20"
+    %p
+    =link_to "select-card", class: "change-link-purchase-confirm" do
+      %span
+        変更する
+      .fa.fa-chevron-right
 %footer.product-new-footer-T
   %nav
-    %ul.flexcontainer
+    %ul.flexcontainer.purchase-confirmation-footer
       %li
         =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
       %li
