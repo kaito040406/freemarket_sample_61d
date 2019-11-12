@@ -4,37 +4,63 @@
       =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
 
 %main.product-new-main-T
-  %h2.product-new-formtitle-T
-    購入内容の確認
-  .pr_check_box
-    .pr_check_box_k
-      .form-sub-image-uploader-k
-        = image_tag("#{@images.product_image}", size: '64', class: "pr_imaga_box_k")
-        .pr_name_box_k
-          = @product.name
-      .form-sub-price-k
-        .price_box
-          ¥
-          = @product.price
-        .option_box_k
-          送料込み
-      .form-buy_k_nopoint
-        = link_to(root_path, method: :get) do
-          .form-buy_bottan_k
+  %section.purchase-confirmation-main
+    %h2.purchase-confirmation-title-T
+      購入内容の確認
+    %section.purchese-confirm-subsections.product-info
+      = image_tag("#{@images.product_image}", size: '64', class: "product-img")
+      %p.product-name
+        = @product.name
+      = form_with url: root_path, class: "purchase-confirmation-form" do |f|
+        .form-sub-price-k
+          .product-price
+            ¥
+            = @product.price
+            %span.fee-side
+              送料込み
+        .point-info
+          = link_to(root_path, method: :get , class: "no-point-k") do
             ポイントはありません
-
-      .form-buy_price
-        .form-buy_left_k
-          支払い金額
-        .form-buy_right_k
+        .pay-amount
+          .pay-amount__left-k
+            支払い金額
+          .pay-amount__right-k
           ¥
           = @product.price
-
-      .worning_k
-
-  .form-sub-t
-
-
+        =f.submit(root_path, method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
+          購入する
+    %section.buyer-info.purchese-confirm-subsections
+      %h3
+        配送先
+        %address.buy-user-info-text
+          〒600-8892
+          %br
+          京都府 下京区西七条西八反田町
+          %br
+          7
+          %br
+          ウエストエイト206
+          %br
+          中島 知子
+        %p.buy-user-info-text
+        =link_to "", class:"buyers-option-on-purchase-confirm" do
+          %span
+            変更する
+          .fa.fa-chevron-right
+    %section.purchase-info.purchese-confirm-subsections
+      %h1
+        支払い方法
+      %p.buy-user-info-text
+        ************1049
+        %br
+        07 / 26
+      %figure
+        =image_tag "/assets/jcb-logomark-img-01.gif", alt: "jcb",  width: "26", height: "20"
+      %p
+      =link_to "select-card", class: "buyers-option-on-purchase-confirm" do
+        %span
+          変更する
+        .fa.fa-chevron-right
 %footer.product-new-footer-T
   %nav
     %ul.flexcontainer
