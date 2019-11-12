@@ -6,20 +6,21 @@
     .l-content
       .user-card__content
       %h2 クレジットカード情報
-        .customer-card__content
-          %figure.form_space
-            = image_tag"credit_cards/visa.svg",size: "50x30"
-          .customer-card__content--number.form_space
-            %h3
-              = "**** **** **** " + @customer_card.last4
-          .customer-card__content--expired.form_space
-            - exp_month = @customer_card.exp_month.to_s
-            - exp_year = @customer_card.exp_year.to_s.slice(2,3)
-            %h3
-              = exp_month + " / " + exp_year
-          = link_to delete_cards_path ,method: :delete,class:"customer-card__content--btn" do
-            %button{type: "submit",class: "btn-red"}
-              削除する
+      .customer-card__content
+        %figure.form_space
+          = image_tag"//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1248199994",size: "50x30"
+        .customer-card__content--number.form_space
+          %h3
+            = "**** **** **** " + @default_card_information.last4
+        .customer-card__content--expired.form_space
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          %h3
+            = exp_month + " / " + exp_year
+        = form_tag("/cards/delete", method: :post, id: 'charge-form',  name: "inputForm") do
+          %input{ type: "hidden", name: "card_id", value: "" }
+          %button 削除する
+          
     .l-side
       = render 'shared/side_bar'
       = render 'shared/cameraicon'

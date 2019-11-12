@@ -6,14 +6,14 @@
     .h-credit
       %section.h-chapter-container
         %h2.h-chapter-zilyouhou クレジットカード情報入力
-        %form#add-card-form.registratration-form{action: "/cards/show", method: "POST", novalidate: "novealidate"}
+        = form_tag(pay_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
           %input{name:  "__csrf_value", type: "hidden", value: ""}/
           .h-single-content
             .h-form-group
-              %label{for: "payment_card_no"} カード番号
-              %span.h-form-require 必須
-              %input#payment_card_no.h-input-default{maxlength: "19", placeholder: "半角英数のみ", type: "text", value: ""}/
-              %ul#card-no-error-wrapper.has-error-text
+              %label カード番号
+              %span.form-require 必須
+              = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
+              %br
               %ul.h-signup-card-list
                 %li 
                   = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?1248199994", size: "49x20", alt: ""
@@ -29,67 +29,59 @@
                   = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?1248199994", size: "32x20", alt: ""
                 %li 
                   = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?1248199994", size: "32x20", alt: ""
-            .h-form-group.signup-form-expire
-              %label{for: "payment_card_expire"} 有効期限
-              %span.h-form-require 必須
-              %br/
-              .h-select-wrap.half
-                %select#payment_card_expire_mm.h-select-default
-                  %option{value: "01"} 01
-                  %option{value: "02"} 02
-                  %option{value: "03"} 03
-                  %option{value: "04"} 04
-                  %option{value: "05"} 05
-                  %option{value: "06"} 06
-                  %option{value: "07"} 07
-                  %option{value: "08"} 08
-                  %option{value: "09"} 09
-                  %option{value: "10"} 10
-                  %option{value: "11"} 11
-                  %option{value: "12"} 12
+            .form-group.signup-form-expire
+              %label 有効期限
+              %span.form-require 必須
+              %br
+              .select-wrap.half-h
+                %select#exp_month{name: "exp_year", type: "text"}
+                  %option{value: ""} --
+                  %option{value: "1"}01
+                  %option{value: "2"}02
+                  %option{value: "3"}03
+                  %option{value: "4"}04
+                  %option{value: "5"}05
+                  %option{value: "6"}06
+                  %option{value: "7"}07
+                  %option{value: "8"}08
+                  %option{value: "9"}09
+                  %option{value: "10"}10
+                  %option{value: "11"}11
+                  %option{value: "12"}12
                 %i.fa.fa-chevron-down
-                %span 月
-              .h-select-wrap.half
-                %select#payment_card_expire_yy.h-select-default
-                  %option{value: "19"} 19
-                  %option{value: "20"} 20
-                  %option{value: "21"} 21
-                  %option{value: "22"} 22
-                  %option{value: "23"} 23
-                  %option{value: "24"} 24
-                  %option{value: "25"} 25
-                  %option{value: "26"} 26
-                  %option{value: "27"} 27
-                  %option{value: "28"} 28
-                  %option{value: "29"} 29
+              %span 月
+              .select-wrap.half-h
+                %select#exp_year{name: "exp_year", type: "text"}
+                  %option{value: ""} --
+                  %option{value: "2019"}19
+                  %option{value: "2020"}20
+                  %option{value: "2021"}21
+                  %option{value: "2022"}22
+                  %option{value: "2023"}23
+                  %option{value: "2024"}24
+                  %option{value: "2025"}25
+                  %option{value: "2026"}26
+                  %option{value: "2027"}27
+                  %option{value: "2028"}28
+                  %option{value: "2029"}29
                 %i.fa.fa-chevron-down
-                %span 年
-              %ul#expire-mm-error-wrapper.has-error-text
-              %ul#expire-yy-error-wrapper.has-error-text
-            .h-form-group
-              %label{for: "payment_card_security_code"} セキュリティコード
-              %span.h-form-require 必須
-              %input#payment_card_security_code.h-input-default{placeholder: "カード背面4桁もしくは3行の番号", type: "number", value: ""}/
-              %ul#security-code-error-wrapper.has-error-text
+              %span 年
+              %br
+            .form-group
+              %label セキュリティコード
+              %span.form-require 必須
               .signup-seqcode
-                .signup-seqcode-text
-                  %span.form-question
-                  カード裏面の番号とは？
-                .signup-seqcode-info
-                  カードの裏面をご参照ください。
-                  %br/ 
-                  = image_tag "/www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?1248199994", size: "240x0", alt: ""
-            %input#user_id{name: "user_id", type: "hidden", value: "175036195"}/
-            %input#encrypted_card_data{:name => "encrypted_card_data", type: "hidden"}/
-            %button#submit-button.btn-default.btn-red{type: "submit"} 追加する
+              = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", maxlength: "4", id: "cvc"
+              .signup-seqcode-text
+                %span.form-question ?
+                カード裏面の番号とは？
+              .signup-seqcode-info
+                カードの裏面をご参照ください。
+                %br/ 
+              #card_token
+              = submit_tag "追加する", id: "token_submit", type: "button"
     .l-side
       = render 'shared/side_bar'
   %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
     =render 'shared/footer'
-  %exhibit.sc-bHwgHz.eUokWJ
-    .sc-krDsej.judNJS
-      .sc-hzDkRC.cEMgYD
-        .sc-jhAzac.jsMoaY 
-          =link_to"出品",""
-        %svg.sc-kGXeez.sc-fBuWsC.bMYJEZ{"aria-hidden": "true", height: "16", viewbox: "0 0 18 16", width: "18"}
-          %path{d: "M6.3 0L4.653 1.778H1.8c-.99 0-1.8.8-1.8 1.778v10.666C0 15.2.81 16 1.8 16h14.4c.99 0 1.8-.8 1.8-1.778V3.556c0-.978-.81-1.778-1.8-1.778h-2.853L11.7 0H6.3zM9 13.333c-2.484 0-4.5-1.99-4.5-4.444 0-2.453 2.016-4.445 4.5-4.445s4.5 1.992 4.5 4.445c0 2.453-2.016 4.444-4.5 4.444zm0-1.6c1.59 0 2.88-1.273 2.88-2.844S10.59 6.044 9 6.044c-1.59 0-2.88 1.274-2.88 2.845 0 1.57 1.29 2.844 2.88 2.844z", fill: "currentColor", "fill-rule": "nonzero"}
+  =render 'shared/cameraicon'

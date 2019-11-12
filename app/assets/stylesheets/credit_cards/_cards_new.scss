@@ -110,9 +110,9 @@ label {
   margin: 24px 0 0;
 }
 
-.h-select-wrap {
+.select-wrap.half-h {
   display: inline-block;
-  width: calc(50% - 2px);
+  width: 131px;
   margin: 8px 0 0;
   position: relative;
   background: #fff;
@@ -201,3 +201,48 @@ label {
   border-color: #ea352d;
 }
 
+.form-require {
+  background: #ea352d;
+}
+.form-require, .form-arbitrary, .message-is-seller, .news-private {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+#card_number{
+  width: 100%;
+  margin: 8px 0 0;
+  height: 48px;
+}
+@media screen and (min-width: 1068px)
+{.l-single-inner.registration-form .form-group:not(:first-of-type), .l-single-inner.registration-form .btn-red {
+  margin-top: 32px;
+}
+}
+.l-single-inner.registration-form .form-group:not(:first-of-type), .l-single-inner.registration-form .btn-red {
+  margin: 24px 0 0;
+}
+.select-wrap.half{
+  display: inline-block;
+  width: calc(50% - 2px);
+  margin: 8px 0 0;
+  position: relative;
+  background: #fff;
+}
+.form-group select{
+  width: 131.5px!important;
+  height: 48px;
+}
+#cvc{
+  width: 343px;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
