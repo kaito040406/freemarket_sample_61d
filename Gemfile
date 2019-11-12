@@ -110,4 +110,4 @@ gem 'payjp'
 gem 'jquery-rails'
 
 gem 'roo'#CSV読み込みよう
-
+gem 'ancestry'

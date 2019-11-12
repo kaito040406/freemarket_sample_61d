@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_123101) do
+ActiveRecord::Schema.define(version: 2019_11_08_103000) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_11_07_123101) do
     t.string "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -87,6 +89,17 @@ ActiveRecord::Schema.define(version: 2019_11_07_123101) do
     t.integer "estimated_delivery_date"
     t.integer "buyer_id"
     t.integer "finished", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "snscredentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.text "uid"
+    t.integer "mid"
+    t.text "token"
+    t.text "pass_token"
+    t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

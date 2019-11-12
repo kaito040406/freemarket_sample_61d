@@ -2,7 +2,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable,  :validatable, password_length: 7..128
+         :recoverable, :rememberable, 
+         :validatable,
+         :omniauthable, 
+         omniauth_providers: [:facebook, :google_oauth2]
+         
+
 
   validates :nick_name, presence: true
   validates :sur_name, presence: true
@@ -22,4 +27,20 @@ class User < ApplicationRecord
   has_many :products
   has_many :produst_images
   has_many :cards
+
+  def self.find_for_oauth(auth)
+    user = User.where(id: auth.id, provider: auth.provider).first
+
+    unless user
+      user = User.create(
+        id:      auth.id,
+        email:    auth.info.email,
+        provider: auth.provider,
+        nick_name:  auth.info.nick_name,
+        password: Devise.friendly_token[0, 20],
+        icon_image:  auth.info.icon_image
+      )
+    end
+    user
+  end
 end
