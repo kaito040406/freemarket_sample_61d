@@ -19,35 +19,36 @@
             %span.fee-side
               送料込み
         .point-info
-          = link_to(root_path, method: :get , class: "no-point-k") do
+          =link_to("aaa", method: :get, class: "no-point-k") do
             ポイントはありません
         .pay-amount
-          .pay-amount__left-k
+          .payment-subtitle
             支払い金額
-          .pay-amount__right-k
-          ¥
-          = @product.price
+          .payment-price
+            ¥
+            = @product.price
         =f.submit(root_path, method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
           購入する
-    %section.buyer-info.purchese-confirm-subsections
+    %section.purchese-confirm-subsections.buyer-address
       %h3
         配送先
-        %address.buy-user-info-text
-          〒600-8892
-          %br
-          京都府 下京区西七条西八反田町
-          %br
-          7
-          %br
-          ウエストエイト206
-          %br
-          中島 知子
-        %p.buy-user-info-text
-        =link_to "", class:"buyers-option-on-purchase-confirm" do
-          %span
-            変更する
-          .fa.fa-chevron-right
-    %section.purchase-info.purchese-confirm-subsections
+      %address
+        〒600-8892
+        -# =@product.buyer.address.postal_code モデルの設定とコントローラへの呼び出し追加要
+        %br
+        京都府 下京区西七条西八反田町
+        %br
+        7
+        %br
+        ウエストエイト206
+        %br
+        中島 知子
+      %p.buy-user-info-text
+      =link_to "", class:"change-link-purchase-confirm" do
+        %span
+          変更する
+        .fa.fa-chevron-right
+    %section.purchese-confirm-subsections.purchase-info
       %h1
         支払い方法
       %p.buy-user-info-text
@@ -57,7 +58,7 @@
       %figure
         =image_tag "/assets/jcb-logomark-img-01.gif", alt: "jcb",  width: "26", height: "20"
       %p
-      =link_to "select-card", class: "buyers-option-on-purchase-confirm" do
+      =link_to "select-card", class: "change-link-purchase-confirm" do
         %span
           変更する
         .fa.fa-chevron-right
