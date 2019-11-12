@@ -6,7 +6,7 @@
 %main.product-new-main-T
   %h2.purchase-confirmation-title-T
     購入内容の確認
-  %section.purchese-confirm-subsections.product-info
+  %section.purchese-confirm-sections.product-info
     = image_tag("#{@images.product_image}", size: '64', class: "product-img")
     %p.product-name
       = @product.name
@@ -29,7 +29,7 @@
           = @product.price
       =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
         購入する
-  %section.purchese-confirm-subsections.buyer-address
+  %section.purchese-confirm-sections.buyer-address
     %h3
       配送先
     %address
@@ -45,7 +45,7 @@
       %span
         変更する
       .fa.fa-chevron-right
-  %section.purchese-confirm-subsections.purchase-info
+  %section.purchese-confirm-sections.purchase-info
     %h3
       支払い方法
     %p.buy-user-info-text
