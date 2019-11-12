@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :products, only: [:show, :destroy, :create] do
     member do
       get 'my_details'
+      get 'purchase_confirmation'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

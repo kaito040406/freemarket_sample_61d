@@ -5,7 +5,8 @@ class Product < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
-  enum categry:                    {"レディース": 1,
+
+  enum categry:                    {"レディース": 1, ##ancestory使用へ置き換えてく
                                     "メンズ": 2, 
                                     "ベビー・キッズ": 3,
                                     "インテリア・住まい・小物": 4,
