@@ -19,7 +19,7 @@
             %span.fee-side
               送料込み
         .point-info
-          =link_to("aaa", method: :get, class: "no-point-k") do
+          =link_to("root_path", method: :get, class: "no-point-k") do
             ポイントはありません
         .pay-amount
           .payment-subtitle
@@ -27,7 +27,7 @@
           .payment-price
             ¥
             = @product.price
-        =f.submit(root_path, method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
+        =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
           購入する
     %section.purchese-confirm-subsections.buyer-address
       %h3
