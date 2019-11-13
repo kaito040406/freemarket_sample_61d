@@ -46,10 +46,12 @@ function appendProductImageForm(inputIndex){
       <input type="file" 
       name="product[product_images_attributes][${inputIndex}][product_image]" 
       id="product_product_images_attributes_${inputIndex}_product_image" 
+      style="display:none;"
       >
     </div>`;
 
   $('.img-uploader-dropbox').append(ProductImageInputHTML);
+  $(ProductImageInputHTML).hide();
 }
 //画像inputフォームの識別数字（削除で通し番号ではなくなる）
 //と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個までインデックスで9まで、であるため
@@ -72,6 +74,12 @@ function countImgForm(){//今アップロード候補に入ってる画像の総
   });
   return imgFormCount;//DBに記録される画像の総数);
 }
+
+function getLabelForIndex(){
+  let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+  labelForIndex = Number(labelForIndex);//数値型へ変換
+  return labelForIndex;
+  }
 //updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
@@ -80,15 +88,12 @@ function countImgForm(){//今アップロード候補に入ってる画像の総
 /////////////////////////////////////
 
 $(document).on('turbolinks:load', function(){
-  let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-  labelForIndex = Number(labelForIndex);//数値型へ変換
+  let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
   appendProductImageForm(labelForIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
-    //labelのfor属性値で指定された
-    //@product.product_imageのインデックスを取得する、最初は0
-    let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelForIndex = Number(labelForIndex);//数値型へ変換
+    //inputタグのインデックスを取得する
+    let labelForIndex = getLabelForIndex();
     // 11枚目なら中断
     if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
@@ -98,12 +103,12 @@ $(document).on('turbolinks:load', function(){
     if(file.type.indexOf("image") < 0){
       return false;
     }
-    //サムネイルと編集・削除 追加(関数として切り出すとサムネイルが表示されなくなったため保留)
+
+    //サムネイルと編集削除ボタン生成//
+    //(関数として切り出すとサムネイルが表示されなくなったため保留)//
     let reader = new FileReader();
     let changedInput = $(e.target);
     //hidden属性でproduct_image:[:count]の値を付与
-    labelForIndex = $(e.target).attr('id').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelForIndex = Number(labelForIndex);//数値型へ変換
     reader.onload = function (e){
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
@@ -111,25 +116,33 @@ $(document).on('turbolinks:load', function(){
         <input type="hidden" 
           name="product[product_images_attributes][${labelForIndex}][count]" 
         value=${labelForIndex}>
-        <div class="btn-box" height ="15px">
-          <a href ="" >画像編集</a>
-          <a href ="" >画像削除</a>
+        <div class="btn-box">
+          <div id="img-edit-btn">編集</div>
+          <div id="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
     };
     reader.readAsDataURL(file);
+    //サムネイルと編集削除ボタン生成ここまで//
 
-  //updateImgCount();
-
+    //次のchangeイベントでのinputタグ(product_model)を更新
     labelForIndex = youngestInputIndex();
     overwriteLabel(labelForIndex);
-
     appendProductImageForm(labelForIndex);
+
+    //プレースホルダの表示・非表示処理
     $('.img-uploader-dropbox pre').hide();
     if(labelForIndex== 0){
       $('.img-uploader-dropbox pre').show();
     }
+  });
+  //アップローダーが起動してしまう
+  $('.product_image_box').on('click', '#img-delete-btn', function(e) {
+    e.stopPropagation();
+    let box =e.target.closest('.product_image_box');
+    $(box).remove();
+
   });
 
   $('#product_categry').change(function() {

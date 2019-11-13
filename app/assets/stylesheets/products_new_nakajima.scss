@@ -162,10 +162,8 @@ label {
 .btn-box {
   width:114px;
   height:15px;
-}
-.btn-box a{
-  width:114px;
-  height:15px;
+  display:flex;
+  justify-content:space-between;
 }
 /////////
 .product-new-formtitle-T {
