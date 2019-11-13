@@ -53,11 +53,22 @@ $(document).on('turbolinks:load', function(){
     
       }
     })
-      $('#ct_box_h_k').mouseleave(function() {
-        console.log("ok")
-        $('#parent_box').remove()
-      })
 
-    
+    $('#ct_box_h_k').mouseleave(function() {
+      $('#parent_box').remove()
+    })
+})
+
+
+$(function() {
+  $(document).on('mouseover', '.category_inner_box_k', function(e){
+    parent_id = $(this).attr("id")
+    console.log(parent_id)
+    if($('.category_inner_box_c_k').length){
+  
+    }else{
+
+    }
+  })
 })
 
