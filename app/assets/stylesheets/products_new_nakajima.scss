@@ -81,6 +81,15 @@ label {
   vertical-align: top;
   background: #ea352d;
 }
+.must-filled-mark-h {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  background: #ccc;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
 .form-sub-t {
   padding: 40px;
   border-top: 1px solid #eee;
@@ -315,6 +324,17 @@ label {
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
+  &__select-default-h {
+    width: 100%;
+    margin: 8px 0 0;
+    height: 48px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+  }
 }
 
 .button-t {
