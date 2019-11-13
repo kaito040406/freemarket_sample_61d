@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     
     #@product.user = current_user
+    
     if @product.save!
 
       redirect_to :root
@@ -45,6 +46,12 @@ class ProductsController < ApplicationController
     @user = User.find_by(id: @product.seller_id)
   end  
 
+  def buy
+  end
+
+  def my_details
+  end
+
   def updete
     @product = Product.updete(params[:id])
     @product.product_id.each do |product|
@@ -68,6 +75,6 @@ class ProductsController < ApplicationController
     params[:product][:size] = 1
     params[:product][:date] = Date.current
     #ダミーデータ挿入終わり
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :condition, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
   end
 end
