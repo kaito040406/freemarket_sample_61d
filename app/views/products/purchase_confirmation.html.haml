@@ -27,7 +27,7 @@
         .payment-price
           ¥
           = @product.price
-      = form_with url: root_path do :plain
+      = form_with url: "/products/:id/purchase_confirmation" do :plain
         %script.payjp-button{"data-key" => "pk_test_4f3ae755f35fe892d5290eba", :src => "https://checkout.pay.jp", :type => "text/javascript"}
 
 
