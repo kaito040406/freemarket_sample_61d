@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def my_details
   end
 
-  
+  def edit
+  end  
 
-  
 end

@@ -5,7 +5,7 @@
   %main.l-container.clearfix
     .l-content
       .listing-item-change-box
-        =link_to "商品の編集","https://www.mercari.com/jp/sell/edit/m69617298882/",class:"btn-default btn-red"
+        =link_to "商品の編集","edit_user_product(@product)", method: :get
         %p.text-center or
         %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
           %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/

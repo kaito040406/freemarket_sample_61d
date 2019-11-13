@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_product, only: [:destroy, :show, :my_details, :updete, :edit]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
   def edit
-  
+    
   end
   
   def new
@@ -43,7 +44,15 @@ class ProductsController < ApplicationController
     @user = User.find_by(id: @product.seller_id)
   end  
 
+  def my_details
+  end
 
+  def updete
+    @product = Product.updete(params[:id])
+    @product.product_id.each do |product|
+      product.destroy
+    end  
+  end  
 
   private
   
