@@ -117,8 +117,8 @@ $(document).on('turbolinks:load', function(){
           name="product[product_images_attributes][${labelForIndex}][count]" 
         value=${labelForIndex}>
         <div class="btn-box">
-          <div id="img-edit-btn">編集</div>
-          <div id="img-delete-btn">削除</div>
+          <div class="img-edit-btn">編集</div>
+          <div class="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
@@ -137,12 +137,18 @@ $(document).on('turbolinks:load', function(){
       $('.img-uploader-dropbox pre').show();
     }
   });
-  //アップローダーが起動してしまう
-  $('.product_image_box').on('click', '#img-delete-btn', function(e) {
-    e.stopPropagation();
+  //画像選択により生成された要素の削除
+  $('.product_image_box').on('click', '.img-delete-btn', function(e) {
+    e.preventDefault();
     let box =e.target.closest('.product_image_box');
     $(box).remove();
+    let labelForIndex = youngestInputIndex();
+    overwriteLabel(labelForIndex);
+    console.log(labelForIndex);
+    if(labelForIndex== 0){
 
+      $('.img-uploader-dropbox pre').show();
+    }
   });
 
   $('#product_categry').change(function() {
