@@ -12,6 +12,16 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
+
+    namespace :api do
+      resources :products, defaults: { format: 'json' } do
+        collection do
+          get 'child'
+          get 'grand_child'
+        end
+      end
+    end
+    
     collection do
       get 'identification'
       get 'profile'

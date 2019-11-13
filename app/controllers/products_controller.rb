@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
   
   def new
-    
+    @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
     10.times { @product.product_images.build }
