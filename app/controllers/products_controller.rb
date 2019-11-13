@@ -45,9 +45,6 @@ class ProductsController < ApplicationController
     @user = User.find_by(id: @product.seller_id)
   end  
 
-  def my_details
-  end
-
   def updete
     @product = Product.updete(params[:id])
     @product.product_id.each do |product|

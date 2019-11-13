@@ -20,9 +20,15 @@ class UsersController < ApplicationController
   end
 
   def progress
+    @product=Product.all
+    @image = ProductImage.all
+    @user = User.all
   end
 
   def my_details
+    @product=Product.all
+    @image = ProductImage.all
+    @user = User.all
   end
 
   def edit
