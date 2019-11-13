@@ -194,7 +194,7 @@ function appendProductImageForm(inputIndex){
   $(ProductImageInputHTML).hide();
 }
 //画像inputフォームの識別数字（削除で通し番号ではなくなる）
-//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個までインデックスで9まで、であるため
+//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個インデックスで9まで、であるため
 //結局番号の振り直し必須、10個のフォームには区別要かもしれない
 //labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
 function overwriteLabel(inputIndex){
@@ -227,7 +227,7 @@ function getLabelForIndex(){
 /////本体ここから//////////////////////
 /////////////////////////////////////
 
-$(document).on('turbolinks:load', function(){
+// $(document).on('turbolinks:load', function(){
   let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
   appendProductImageForm(labelForIndex);
 
@@ -246,6 +246,7 @@ $(document).on('turbolinks:load', function(){
 
     //サムネイルと編集削除ボタン生成//
     //(関数として切り出すとサムネイルが表示されなくなったため保留)//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
     let reader = new FileReader();
     let changedInput = $(e.target);
     //hidden属性でproduct_image:[:count]の値を付与
@@ -278,7 +279,8 @@ $(document).on('turbolinks:load', function(){
     }
   });
   //画像選択により生成された要素の削除
-  $('.product_image_box').on('click', '.img-delete-btn', function(e) {
+  $(document).off('click');
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
     e.preventDefault();
     let box =e.target.closest('.product_image_box');
     $(box).remove();
@@ -320,4 +322,4 @@ $(document).on('turbolinks:load', function(){
     $('#product-gain').html(product_gain);
   });
 });
-});
+// });
