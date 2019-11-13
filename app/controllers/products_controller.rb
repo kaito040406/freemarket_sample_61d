@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
     
     #@product.user = current_user
     if @product.save!
+
       flash[:notice] = "出品が完了しました"
       redirect_to :root
     else
