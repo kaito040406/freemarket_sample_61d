@@ -1,14 +1,11 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_product, only: [:destroy, :show, :my_details, :updete, :edit]
+  before_action :set_product, only: [:destroy, :show, :my_details, :updete]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  def edit
-    
-  end
   
   def new
     
@@ -37,6 +34,10 @@ class ProductsController < ApplicationController
       #redirect_to show_products_path(product)
     end
   end
+
+  def edit
+    @product=Product.find(params[:id])
+  end
   
   def show
     @product=Product.find(params[:id])
@@ -55,6 +56,10 @@ class ProductsController < ApplicationController
   end  
 
   private
+
+  def set_product
+    
+  end
   
   def product_image_params
     params.require(:product_image).permit(:product_id, :product_image)

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get 'my_details'
       get 'purchase_confirmation'
+      get 'mypage'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'progress'
       get 'log_out'
+      get 'my_details'
     end
   end
   
