@@ -27,8 +27,10 @@
         .payment-price
           ¥
           = @product.price
-      =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
-        購入する
+      = form_with url: root_path do :plain
+        %script.payjp-button{"data-key" => "pk_test_4f3ae755f35fe892d5290eba", :src => "https://checkout.pay.jp", :type => "text/javascript"}
+
+
         
 
   %section.purchese-confirm-sections.buyer-address
