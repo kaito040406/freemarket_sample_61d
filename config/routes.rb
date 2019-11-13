@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       get 'profile'
       get 'progress'
       get 'log_out'
-      get 'my_details'
     end
   end
   
@@ -43,7 +42,6 @@ Rails.application.routes.draw do
       get 'profile'
       get 'identification'
       get 'progress'
-      get 'my_details'
       get 'card'
     end
   end

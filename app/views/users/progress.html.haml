@@ -20,7 +20,7 @@
         .tab-content
           %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
             %li
-              =link_to my_details_users_path, class: "mypage-item-link" do
+              =link_to my_details_product_path(product.id), class: "mypage-item-link" do
                 %figure
                   =image_tag "#{image.product_image}", class: "is-higher-width lazyloaded"
                 .mypage-item-body.show-stock-item

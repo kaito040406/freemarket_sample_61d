@@ -41,7 +41,6 @@ class ProductsController < ApplicationController
   end
   
   def show
-    binding.pry
     @product=Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
@@ -51,6 +50,9 @@ class ProductsController < ApplicationController
   end
 
   def my_details
+    @product=Product.find(params[:id])
+    @image = ProductImage.all
+    @user = User.all
   end
 
   def updete
