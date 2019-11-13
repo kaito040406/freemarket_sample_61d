@@ -52,10 +52,6 @@ class CardsController < ApplicationController
     end
   end
 
-
-
-
-  
   def buy #クレジット購入
     if card.blank?
       redirect_to action: "new"
