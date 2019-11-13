@@ -16,6 +16,10 @@
           .owl-carousel
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
+          
+            .items__sold
+              .items__sold__inner
+                SOLD
         .item-price-box.text-center.visible-sp
           %span.item-price.bold 
             ¥
@@ -32,13 +36,13 @@
               = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
-                  %i.fa.fa-good
-                  %span 26
-                .item-user-ratings
-                  %i.fa.fa-normal
+                  %img{src: "/images/smile.png", alt: "", width: "20px", height: "20px"}
                   %span 0
                 .item-user-ratings
-                  %i.fa.fa-bad
+                  %img{src: "/images/magao.png", alt: "", width: "20px", height: "20px"}
+                  %span 0
+                .item-user-ratings
+                  %img{src: "/images/kanasimi.png", alt: "", width: "20px", height: "20px"}
                   %span 0
           %tr
             %th カテゴリー
