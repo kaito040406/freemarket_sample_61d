@@ -42,8 +42,13 @@
                   %span 0
           %tr
             %th カテゴリー
-            %td
-              %div 本・音楽・ゲーム
+            %td.ct_bo_k
+              %div.ct_1_k 
+                = @product.parent
+              %div.ct_2_k
+                = @product.child
+              %div.ct_3_k
+                = @product.grand
             -# = link_to 'https://www.mercari.com/jp/category/75/'
               .item-detail-table-sub-category
                 %i.fa.fa-arrow-right
