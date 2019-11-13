@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks'} #ロボットではない認証に使用
   root 'products#index'
-  resources :products, only: [:show, :destroy, :create] do
+  resources :products, only: [:show, :destroy, :create, :buy] do
+    post 'buy', to: 'products#buy'
     member do
       get 'my_details'
       get 'purchase_confirmation'
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
-
     namespace :api do
       resources :products, defaults: { format: 'json' } do
         collection do
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :cards, only: [:new, :show, :index,] do
+  resources :cards, only: [:new, :show, :index] do
     collection do
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'

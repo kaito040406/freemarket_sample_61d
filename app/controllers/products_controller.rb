@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+
+  require 'payjp'
+
+
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details]
   def index
@@ -18,7 +22,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    binding.pry
     @product = Product.new(product_params)
     #@product.user = current_user
     if @product.save!
@@ -55,6 +58,36 @@ class ProductsController < ApplicationController
   def purchase_confirmation
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
+  end
+
+
+  def buy #クレジット購入
+    @products = Product.find(params[:id])
+    if card.blank?
+      redirect_to action: "new"
+      flash[:alert] = '購入にはクレジットカード登録が必要です'
+    else
+      @product = Product.find(params[:product_id])
+      # 購入した際の情報を元に引っ張ってくる
+      card = current_user.credit_card
+      # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # キーをセットする(環境変数においても良い)
+      Payjp::Charge.create(
+      amount: @product.price, #支払金額
+      customer: card.customer_id, #顧客ID
+      currency: 'jpy', #日本円
+      )
+      # ↑商品の金額をamountへ、cardの顧客idをcustomerへ、currencyをjpyへ入れる
+      if @product.update(status: 1, buyer_id: current_user.id)
+        flash[:notice] = '購入しました。'
+        redirect_to controller: "products", action: 'show'
+      else
+        flash[:alert] = '購入に失敗しました。'
+        redirect_to controller: "products", action: 'show'
+      end
+      #↑この辺はこちら側のテーブル設計どうりに色々しています
+    end
   end
 
   private
