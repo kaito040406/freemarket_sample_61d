@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_103000) do
     t.integer "delivery_method"
     t.integer "delivery_from"
     t.integer "estimated_delivery_date"
+    t.integer "condition"
     t.integer "buyer_id"
     t.integer "finished", default: 0, null: false
     t.datetime "created_at", null: false

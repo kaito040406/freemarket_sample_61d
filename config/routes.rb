@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products, only: [:show, :destroy, :create, :edit, :update,] do
     member do
+      get 'buy'
       get 'my_details'
       get 'purchase_confirmation'
       get 'mypage'
