@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    
   end  
 
   def log_out
@@ -33,5 +34,4 @@ class UsersController < ApplicationController
 
   def edit
   end  
-
 end

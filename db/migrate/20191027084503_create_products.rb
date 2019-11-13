@@ -17,6 +17,9 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :condition
       t.integer :buyer_id, null: true, foreign_key: true
       t.integer :finished, null: false, default:0
+      t.string :parent
+      t.string :child
+      t.string :grand
       t.timestamps
     end
   end

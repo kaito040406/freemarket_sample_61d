@@ -101,7 +101,7 @@ label {
 
 .h-signup-card-list li {
   display: inline-block;
-  /* margin: 0 0 0 8px; */
+  margin: 0 0 0 8px; 
   vertical-align: middle;
 }
 
@@ -110,9 +110,9 @@ label {
   margin: 24px 0 0;
 }
 
-.h-select-wrap {
+.select-wrap.half-h {
   display: inline-block;
-  width: calc(50% - 2px);
+  width: 131px;
   margin: 8px 0 0;
   position: relative;
   background: #fff;
@@ -130,22 +130,6 @@ label {
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
-}
-
-.icon-arrow-bottom {
-  font-size: 10px;
-  margin: 0 6px 0 -15px;
-  position: relative;
-  top: 3px;
-  pointer-events: none;
-  right: 16px;
-  z-index: 2;
-  color: #888;
-  transform: translate(0, -50%);
-}
-
-.icon-arrow-bottom::before {
-  content: '\e001';
 }
 
 .signup-seqcode {
@@ -199,4 +183,86 @@ label {
   transition: all ease-out .3s;
   cursor: pointer;
   text-align: center;
+}
+
+.signup-form-expire .h-select-wrap .fa.fa-chevron-down {
+  font-size: 15px;
+  margin: 0 6px 0 -15px;
+  position: relative;
+  right: 15px;
+  pointer-events: none;
+}
+
+.h-form-group label {
+  font-weight: 600;
+}
+
+.h-input-default.has-error {
+  border-color: #ea352d;
+}
+
+.form-require {
+  background: #ea352d;
+}
+.form-require, .form-arbitrary, .message-is-seller, .news-private {
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+}
+#card_number{
+  width: 100%;
+  margin: 8px 0 0;
+  height: 48px;
+}
+@media screen and (min-width: 1068px)
+{.l-single-inner.registration-form .form-group:not(:first-of-type), .l-single-inner.registration-form .btn-red {
+  margin-top: 32px;
+}
+}
+.l-single-inner.registration-form .form-group:not(:first-of-type), .l-single-inner.registration-form .btn-red {
+  margin: 24px 0 0;
+}
+.select-wrap.half{
+  display: inline-block;
+  width: calc(50% - 2px);
+  margin: 8px 0 0;
+  position: relative;
+  background: #fff;
+}
+.form-group select{
+  width: 131.5px!important;
+  height: 48px;
+}
+#cvc{
+  width: 343px;
+  height: 48px;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+#token_submit{
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  display: block;
+  width: 100%;
+  line-height: 48px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  -webkit-transition: all ease-out .3s;
+  transition: all ease-out .3s;
+  cursor: pointer;
+  margin-top: 32px;
+  margin: 24px 0 0;
+  text-align: center;;
+}
+#charge-form{
+  height: 512px;
+  padding: 40px 40px 64px;
 }

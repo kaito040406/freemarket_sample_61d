@@ -13,7 +13,17 @@ Rails.application.routes.draw do
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
-    resources :products, only:  [:new, :create, :edit, :destroy]
+    resources :products, only: [:new, :create, :edit, :destroy]
+
+    namespace :api do
+      resources :products, defaults: { format: 'json' } do
+        collection do
+          get 'child'
+          get 'grand_child'
+        end
+      end
+    end
+    
     collection do
       get 'identification'
       get 'profile'
@@ -37,7 +47,9 @@ Rails.application.routes.draw do
   end
   #ここまで長谷川記入
 
-  resources "users",only: [:index,:profile, :progress, :my_details], path: 'mypage' do
+  resources :categories
+  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+
     collection do
       get 'profile'
       get 'identification'

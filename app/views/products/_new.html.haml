@@ -17,14 +17,12 @@
         %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
           %pre
             :preserve
-      
-      
-                ドラッグアンドドロップ
-                またはクリックしてファイルをアップロード
-            %i.icon-camera
+              ドラッグアンドドロップ
+              またはクリックしてファイルをアップロード
+            -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
-            %div{class: "product_image_box"}
-              =img.file_field :product_image
+            -# %div{class: "product-img-box"}
+              -# =img.file_field :product_image JSで生成するため不要となった
     .form-sub-t
       .form-input-t
         %label
@@ -43,15 +41,18 @@
       %h3.sub-title-t
         商品の詳細
       .form-input-list-t
-        .form-input-t
-          %label
-            カテゴリー
-            %span.must-filled-mark-t
-              必須
-          %div
-            .select-wrap
-              %i.fa.fa-chevron-down
-              = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .ct_box_k
+          .form-input-t{value: "ct_no_1"}
+            %label
+              カテゴリー
+              %span.must-filled-mark-t
+                必須
+            %div
+              .select-wrap
+                %i.fa.fa-chevron-down
+                = f.select :categry , Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
+
+              
         .form-input-t
           %label
             商品の状態
