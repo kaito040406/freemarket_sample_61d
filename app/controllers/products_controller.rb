@@ -19,8 +19,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    
     #@product.user = current_user
+    binding.pry
     if @product.save!
 
       flash[:notice] = "出品が完了しました"
@@ -68,8 +68,10 @@ class ProductsController < ApplicationController
     # バリデーションエラー回避のため適当なデータ挿入
     params[:product][:size] = 1
     params[:product][:date] = Date.current
+    params[:product][:child] = params[:child]
+    params[:product][:grand] = params[:grand]
     #ダミーデータ挿入終わり
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :child, :grand, product_images_attributes: [:product_image, :count])
   end
 
   def set_product
