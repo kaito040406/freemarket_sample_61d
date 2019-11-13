@@ -73,7 +73,7 @@
     = link_to '購入画面に進む','https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC', class: 'item-buy-btn'
   .l-content
     .listing-item-change-box
-      =link_to "商品の編集","/products/product_id/edit",class:"btn-default btn-red"
+      =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
       %p.text-center or
       %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
         %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/

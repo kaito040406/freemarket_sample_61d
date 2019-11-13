@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
   
   def show
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
   end
 
   def my_details
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @image = ProductImage.all
     @user = User.all
   end
