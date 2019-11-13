@@ -16,6 +16,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer :estimated_delivery_date, null: true
       t.integer :buyer_id, null: true, foreign_key: true
       t.integer :finished, null: false, default:0
+      t.integer :condition
       t.timestamps
     end
   end
