@@ -193,15 +193,26 @@ function appendProductImageForm(inputIndex){
   $('.img-uploader-dropbox').append(ProductImageInputHTML);
   $(ProductImageInputHTML).hide();
 }
-//画像inputフォームの識別数字（削除で通し番号ではなくなる）
-//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個インデックスで9まで、であるため
-//結局番号の振り直し必須、10個のフォームには区別要かもしれない
-//labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
+//出品ごとの画像の通し番号
+//inputタグのインデックス（=product_image配列のインデックス）は画像の削除で途中が抜けたりするので
+//画像が何枚目か、全部で何枚あるかはこちらで管理
+function overwriteHiddenCountAll(){
+  let count = 1;
+  $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+    overwriteHiddenCountEach(this, count)
+    count = count + 1;
+  });
+}
+function overwriteHiddenCountEach(hiddenTag, count){
+  $(hiddenTag).attr('value', count);
+}
+
+//inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
 function youngestInputIndex(){
   let inputIndex;
   inputIndex = countImgForm();
@@ -285,6 +296,7 @@ function getLabelForIndex(){
     let box =e.target.closest('.product_image_box');
     $(box).remove();
     let labelForIndex = youngestInputIndex();
+    overwriteHiddenCountAll();
     overwriteLabel(labelForIndex);
     console.log(labelForIndex);
     if(labelForIndex== 0){
