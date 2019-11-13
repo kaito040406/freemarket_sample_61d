@@ -1,43 +1,81 @@
-.product-new-wrapper-T
-  %header.product-new-header-T
-    %h1
-      =link_to "https://www.mercari.com/jp/" do
-        =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
-  %main.product-new-main-T
-    %h2.product-new-formtitle-T
-      商品の情報を入力
-    =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
-      .img-uploader-box
-        %h3.img-uploader-head
-          出品画像
+%header.product-new-header-T
+  %h1
+    =link_to "https://www.mercari.com/jp/" do
+      =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
+%main.product-new-main-T
+  %h2.product-new-formtitle-T
+    商品の情報を入力
+  =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
+    .form-sub-image-uploader-t
+      %h3
+        出品画像
+        %span.must-filled-mark-t
+          必須
+      %p
+        最大10枚までアップロードできます
+      .dropbox-container.flexcontainer
+        %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
+          %pre
+            :preserve
+      
+      
+                ドラッグアンドドロップ　　　　　　　
+                またはクリックしてファイルをアップロード　　　　　　　
+            %i.icon-camera
+          =f.fields_for :product_images do |img|
+            -# %div{class: "product_image_box"}
+              -# =img.file_field :product_image JSで生成するため不要となった
+    .form-sub-t
+      .form-input-t
+        %label
+          商品名
           %span.must-filled-mark-t
             必須
-        %p
-          最大10枚までアップロードできます
-        .dropbox-container.flexcontainer
-          .img-uploader-container
-            %label{for: "product_product_images_attributes_0_product_image"}
-              .img-uploader.img-uploader-drop-box
-                %pre
-                  :preserve
-            
-            
-                      ドラッグアンドドロップ　　　　　　　
-                      またはクリックしてファイルをアップロード　　　　　　　
-                  %i.icon-camera
-                =f.fields_for :product_images do |i, index|
-                  =i.file_field :product_image
-      .form-sub-t
+        %div
+          =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
+      .form-input-t
+        %label
+          商品の説明
+          %span.must-filled-mark-t
+            必須
+        = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+    .form-sub-t.flexcontainer
+      %h3.sub-title-t
+        商品の詳細
+      .form-input-list-t
         .form-input-t
           %label
-            商品名
+            カテゴリー
             %span.must-filled-mark-t
               必須
           %div
-            =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
+            .select-wrap
+              %i.fa.fa-chevron-down
+              = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
-            商品の説明
+            商品の状態
+            %span.must-filled-mark-t
+              必須
+          .select-wrap
+            %i.fa.fa-chevron-down
+            = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+    .form-sub-t.flexcontainer
+      %h3.sub-title-t
+        配送について
+        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon-t"
+      .form-input-list-t
+        .form-input-t
+          %label
+            配送料の負担
+            %span.must-filled-mark-t
+              必須
+          .select-wrap
+            %i.fa.fa-chevron-down
+            = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .form-input-t
+          %label
+            発送元の地域
             %span.must-filled-mark-t
               必須
           = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
@@ -155,4 +193,4 @@
     =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
       =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
     %p
-      %small &copy; 2019 Mercari
+      %small &copy; 2019 Mercar

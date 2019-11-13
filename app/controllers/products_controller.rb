@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_product, only: [:destroy, :show, :my_details]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -21,7 +22,7 @@ class ProductsController < ApplicationController
     
     #@product.user = current_user
     if @product.save!
-
+      flash[:notice] = "出品が完了しました"
       redirect_to :root
     else
       #render :new
@@ -30,18 +31,30 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product.seller_id == current_user.id
-      @product.destroy
-      redirect_to root_path
+      if @product.destroy
+          redirect_to root_path
+        else
+          redirect_to show_products_path(product)
+        end 
     else
-      #redirect_to show_products_path(product)
+      redirect_to show_products_path(product)
     end
   end
-  
+
   def show
-    
+    @product=Product.find(params[:id])
+    @image = ProductImage.find_by(product_id: params[:id])
+    @user = User.find_by(id: @product.seller_id)
   end  
 
 
+  def my_details
+  end
+
+  def purchase_confirmation
+    @product = Product.find(params[:id])
+    @images = ProductImage.find_by(product_id: params[:id])
+  end
 
   private
   
@@ -56,5 +69,9 @@ class ProductsController < ApplicationController
     params[:product][:date] = Date.current
     #ダミーデータ挿入終わり
     params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

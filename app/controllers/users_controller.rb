@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    
   end  
+
+  def log_out
+
+  end
 
   def profile
   end
@@ -16,12 +21,6 @@ class UsersController < ApplicationController
   end
 
   def progress
+    @products = Product.all
   end
-
-  def my_details
-  end
-
-  
-
-  
 end

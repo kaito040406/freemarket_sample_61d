@@ -1,5 +1,5 @@
 !!!
-%html{:lang => "ja"}
+%html{lang: "ja"}
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{charset: "UTF-8"}/
@@ -9,14 +9,17 @@
     %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
       = render 'shared/header'
     %section.h-single-container
-      %h1.item-name ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
+      %h1.item-name
+        =@product.name
       .item-main-contentclearfix
         .item-photo
           .owl-carousel
             .owl-item-inner 
-              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m49716933620_1.jpg?1572580974', class: 'owl-lazy', alt: 'ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING'
+              = image_tag("#{@image.product_image}")
         .item-price-box.text-center.visible-sp
-          %span.item-price.bold ¥12,000
+          %span.item-price.bold 
+            ¥
+            = @product.price
           %span.item-tax (税込)
           %span.item-shipping-fee 送料込み
         %section.visible-sp
@@ -26,7 +29,7 @@
           %tr
             %th 出品者
             %td
-              = link_to 'ドロ', 'https://www.mercari.com/jp/u/506612442/' 
+              = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
                   %i.fa.fa-good
@@ -54,38 +57,33 @@
             %td
           %tr
             %th 商品の状態
-            %td 新品、未使用
+            %td=@product.status
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td=@product.delivery_fee
           %tr
             %th 配送の方法
-            %td ゆうパケット
+            %td=@product.delivery_method
           %tr
             %th 配送元地域
             %td
-              = link_to '神奈川県','https://www.mercari.com/jp/area/14/' 
+              = link_to(@product.delivery_from)
           %tr
             %th 発送日の目安
             %td 1~2日で発送
       .item-price-box.text-center
-        %span.item-price.bold ¥12,000
+        %span.item-price.bold 
+          ¥
+          = @product.price
         %span.item-tax (税込)
         %span.item-shipping-fee 送料込み
-      = link_to '購入画面に進む','https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC', class: 'item-buy-btn'
+      = link_to(purchase_confirmation_product_path(@product.id), method: :get) do
+        .item-buy-btn
+          購入画面に進む
       = link_to 'アプリで購入','http://app.adjust.io/xio2ii?campaign=iOS&adgroup=items.buy_button1', class: 'item-action-text'
       .item-description.f14
         %p.item-description-inner
-          ラブライブ！サンシャイン!!TVアニメBlu-ray特装限定版ソフマップ全巻購入特典「LONELY TUNING」
-          
-          未開封品ですが、初期ダメージは多少付いてありますので、神経質な方はご遠慮ください。
-          
-          衝撃防止と放水対策をさせて発送致します。
-          
-          AZALEA
-          松浦果南
-          黒澤ダイヤ
-          国木田花丸
+          =@product.text
       .item-button-container.clearfix
         .item-button-left
           %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m49716933620", "data-toggle" => "like", name: "like!", type: "button"}

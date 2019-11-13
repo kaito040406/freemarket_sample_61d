@@ -565,8 +565,8 @@ h2 {
     & span {
       font-weight: bold;
     }
-      &:hover {
-        color: #333;
+      & a:hover {
+        color: #AAAAAA;
         text-decoration: underline;
       }
     }

@@ -79,7 +79,7 @@
         .fa.fa-chevron-right
     %li
       .mypage-nav-list-item
-        =link_to "支払い方法", "/credit_cards"
+        =link_to "支払い方法", "/cards"
         .fa.fa-chevron-right
     %li
       .mypage-nav-list-item
@@ -95,7 +95,7 @@
         .fa.fa-chevron-right
     %li
       .mypage-nav-list-item
-        =link_to "ログアウト", destroy_user_session_path, method: :delete 
+        =link_to "ログアウト", log_out_users_path, method: :get 
         .fa.fa-chevron-right
 
 
