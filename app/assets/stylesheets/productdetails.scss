@@ -29,7 +29,8 @@ line-height: 1.4;
 }
 
 .owl-carousel {
-position: relative;
+  position: relative;
+  overflow: hidden;
 }
 
 .owl-stage-outer {
@@ -166,6 +167,17 @@ position: relative;
   text-align: center;
   font-weight: 600;
   /* -webkit-transition: all ease-out .3s; */
+  transition: all ease-out .3s;
+}
+
+.sold-out {
+  background: #888;
+  cursor: not-allowed;
+  display: block;
+  margin-top: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
   transition: all ease-out .3s;
 }
 

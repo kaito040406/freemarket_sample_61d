@@ -53,6 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def purchase_confirmation
+    
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
   end
