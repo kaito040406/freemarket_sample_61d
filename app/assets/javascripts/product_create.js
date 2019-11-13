@@ -24,7 +24,7 @@
 // カテゴリ選択
 
 
-$(document).on('turbolinks:load', function () {
+$(function(){
   function appendCategory(ct){
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>

@@ -111,3 +111,5 @@ gem 'jquery-rails'
 
 gem 'roo'#CSV読み込みよう
 gem 'ancestry'
+gem 'jquery-turbolinks'
+
