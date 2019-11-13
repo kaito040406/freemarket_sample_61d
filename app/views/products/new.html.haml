@@ -17,11 +17,9 @@
         %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
           %pre
             :preserve
-      
-      
-                ドラッグアンドドロップ　　　　　　　
-                またはクリックしてファイルをアップロード　　　　　　　
-            %i.icon-camera
+              ドラッグアンドドロップ
+              またはクリックしてファイルをアップロード
+            -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
             -# %div{class: "product_image_box"}
               -# =img.file_field :product_image JSで生成するため不要となった

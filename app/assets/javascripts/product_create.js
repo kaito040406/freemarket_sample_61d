@@ -85,10 +85,12 @@ $(document).on('turbolinks:load', function(){
   appendProductImageForm(labelForIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+    //labelのfor属性値で指定された
+    //@product.product_imageのインデックスを取得する、最初は0
     let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
     labelForIndex = Number(labelForIndex);//数値型へ変換
     // 11枚目なら中断
-    if(labelForIndex >= 10){//バブリング利用のためファイル選択ダイアログは表示されてしまう
+    if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
     }
     let file = e.target.files[0];
