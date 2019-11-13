@@ -41,6 +41,7 @@ class ProductsController < ApplicationController
   end
   
   def show
+    binding.pry
     @product=Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
