@@ -41,15 +41,16 @@
       %h3.sub-title-t
         商品の詳細
       .form-input-list-t
-        .form-input-t
-          %label
-            カテゴリー
-            %span.must-filled-mark-t
-              必須
-          %div
-            .select-wrap
-              %i.fa.fa-chevron-down
-              = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .ct_box_k
+          .form-input-t{value: "ct_no_1"}
+            %label
+              カテゴリー
+              %span.must-filled-mark-t
+                必須
+            %div
+              .select-wrap
+                %i.fa.fa-chevron-down
+                = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
 
               
         .form-input-t
