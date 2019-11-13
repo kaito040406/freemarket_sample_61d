@@ -56,9 +56,9 @@ namespace :deploy do
 
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
-  
+  after 'deploy:migrating', 'deploy:apply_seedfu'
 end
-after 'deploy:migrating', 'deploy:apply_seedfu'
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
