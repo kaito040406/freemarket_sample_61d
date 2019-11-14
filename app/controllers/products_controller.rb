@@ -21,7 +21,6 @@ class ProductsController < ApplicationController
     
     if @product.save!
 
-      flash[:notice] = "出品が完了しました"
       redirect_to :root
     else
       #render :new
@@ -71,7 +70,6 @@ class ProductsController < ApplicationController
   end
 
   def purchase_confirmation
-    
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
   end
