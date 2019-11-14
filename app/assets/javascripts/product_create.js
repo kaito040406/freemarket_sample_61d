@@ -180,11 +180,25 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
+// function generateProductImageForm(inputIndex){
+//   let ProductImageInputHTML = `
+//     <div class="product_image_box">
+//       <input type="file" 
+//       name="product[product_images_attributes][${inputIndex}][product_image]" 
+//       id="product_product_images_attributes_${inputIndex}_product_image" 
+//       style="display:none;"
+//       >
+//     </div>`;
+//////あえてnameの値を不正にし、あとから正確にすることでnullエラーを回避したい。このhtmlで
+/////////ファイルロード後nameの最初にproduct追加でいけるはず
+////productStr = '"product';
+////correctNameAttr =  productStr + $(changedInput).attr('name');
+///$(changedInput).attr() = correctNameAttr;
 function generateProductImageForm(inputIndex){
   let ProductImageInputHTML = `
     <div class="product_image_box">
       <input type="file" 
-      name="product[product_images_attributes][${inputIndex}][product_image]" 
+      name=[product_images_attributes][${inputIndex}][product_image]" 
       id="product_product_images_attributes_${inputIndex}_product_image" 
       style="display:none;"
       >
@@ -215,28 +229,24 @@ function overwriteHiddenCountEach(hiddenTag, count){
 //inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
 //
 function youngestInputIndex(){
-  //選択済み画像のDOM要素を全て取得
+  //サムネイルとセットのhidden要素を全て取得
   let allImgs = $('.hiddenCount');
-  //アップロード画像群の通し番号に抜けがなければ
-  //今の最大インデックス数+1(サムネイル数)がlabelが指す空インプットのインデックス
+  //youngestInputIndexの最大値
   let nextIndex = $(allImgs).length;
-  //サムネイル＝選択されてる画像の数
-  let ImgsCount = $(allImgs).length;
-  //(10ならば最大枚数アップされている)
+  //サムネイル＝選択されてる画像の数、10ならば最大枚数アップされている
 
-  //(Whileを最大値->最小値へと回す
-  //
-  let inputTagCounter = ImgsCount - 1;
-    //できるだけ小さい、空いてるinputIndexを探しindexを取得
+  //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
+  let inputTagCounter = nextIndex - 1;
     while(0 <= inputTagCounter){
+      //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
       let filledInputSelecter = "#hiddenCount" + inputTagCounter;
+        //lengthメソッドの返り値が0なら要素が存在しない
       if ($(filledInputSelecter).length ==0){
+        //サムネイルの無い番号だったならその値へ更新
         nextIndex = inputTagCounter;
       }
       inputTagCounter = inputTagCounter -1;
     }
-  console.log('EndOfyoungestInputIndex');
-  console.log(nextIndex);
   return nextIndex;
 }
 function readLabelIndex(){
@@ -279,7 +289,7 @@ function readLabelIndex(){
         class="thumbnail" title="${file.name}" >
         <input type="hidden" 
           name="product[product_images_attributes][${labelIndex}][count]" 
-          value=${labelIndex} 
+          value="${labelIndex}"
           id = "hiddenCount${labelIndex}"
           class = "hiddenCount">
         <div class="btn-box">
@@ -312,8 +322,12 @@ function readLabelIndex(){
   $(document).off('click');//イベント多重化防止
   $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
     e.preventDefault();
+    let inputFile =e.target.closest('input[type="file"]');
+    let inputHidden =e.target.closest('input[type="hidden"]');
     let box =e.target.closest('.product_image_box');
-    $(box).remove();
+    $(inputFile).val(null);
+    $(inputHidden).remove();
+    $(box).hide();
     //削除によりアップローダーが空になった場合
     //（一旦最大までアップロードしてから0まで削除）はindex0のものを生成
     if($('.img-uploader-dropbox input[type="file"]').length == 0){
