@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
+
+  require 'payjp'
+
+
   before_action :authenticate_user!, except: [:index]
-  before_action :set_product, only: [:destroy, :show, :my_details, :updete]
+  before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
+
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -15,7 +20,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    binding.pry
     @product = Product.new(product_params)
     #@product.user = current_user
     
@@ -76,6 +80,36 @@ class ProductsController < ApplicationController
     @images = ProductImage.find_by(product_id: params[:id])
   end
 
+
+  def buy #クレジット購入
+    @product = Product.find(params[:id])
+    unless user_signed_in?
+      redirect_to registration_users_path
+      flash[:alert] = '購入には新規登録が必要です'
+    else
+      card = Cards.find_by(user_id: current_user.id)
+      if card.blank?
+        redirect_to action: "new"
+        flash[:alert] = '購入にはクレジットカード登録が必要です'
+      else
+        card = Cards.find_by(user_id: current_user.id)
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        Payjp::Charge.create(
+        amount: @product.price, #支払金額
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy', #日本円
+        )
+        if @product.update(finished: 1)
+          flash[:notice] = '購入しました。'
+          redirect_to controller: "products", action: 'show'
+        else
+          flash[:alert] = '購入に失敗しました。'
+          redirect_to controller: "products", action: 'show'
+        end
+      end
+    end
+  end
+end
   private
 
   def set_product
@@ -133,4 +167,3 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-end
