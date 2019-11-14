@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
+  belongs_to :card
   accepts_nested_attributes_for :product_images, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -19,25 +20,7 @@ class Product < ApplicationRecord
                                     "チケット": 1027,
                                     "自動車・オートバイ": 1318,
                                     "その他": 10}
-  enum categry_ladies:             {"トップス": 11,
-                                    "ジャケット/アウター": 12, 
-                                    "パンツ": 13,
-                                    "スカート": 14,
-                                    "ワンピース": 15,
-                                    "靴": 16,
-                                    "ルームウェア/パジャマ": 17,
-                                    "レッグウェア": 18,
-                                    "帽子": 19,
-                                    "バッグ": 20,
-                                    "アクセサリー": 21,
-                                    "へアアクセサリー": 22,
-                                    "小物": 23,
-                                    "時計": 24,
-                                    "ウィッグ/エクステ": 25,
-                                    "浴衣/水着": 26,
-                                    "スーツ/フォーマル/ドレス": 27,
-                                    "マタニティ": 28,}
-                                    # "その他": 29}
+ 
   enum status:                     {"新品、未使用": 1,
                                     "未使用に近い": 2, 
                                     "目立った傷や汚れなし": 3,

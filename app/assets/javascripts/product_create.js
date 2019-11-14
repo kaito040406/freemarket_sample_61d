@@ -24,8 +24,9 @@
 // カテゴリ選択
 
 
-$(document).off('turbolinks:load');//イベント多重化防止
-$(document).on('turbolinks:load', function () {
+
+
+$(function(){
   function appendCategory(ct){
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
@@ -91,7 +92,7 @@ $(document).on('turbolinks:load', function () {
                     <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
-                    <select class="category_child" id="category_child">
+                    <select class="category_child" id="category_child" name="child">
                     <option value="---" id = "---">---</option>
                     `
         ap_html = html_head
@@ -131,7 +132,7 @@ $(document).on('turbolinks:load', function () {
                     <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
-                    <select class="category_grand_child" id="category_grand_child" >
+                    <select class="category_grand_child" id="category_grand_child" name="grand" >
                     <option value="---" id = "---">---</option>
                     `
         ap_html_g = html_head_g
@@ -381,4 +382,4 @@ function readLabelIndex(){
     $('#product-gain').html(product_gain);
   });
 });
-// });
+});

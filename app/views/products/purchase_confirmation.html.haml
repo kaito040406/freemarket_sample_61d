@@ -27,7 +27,7 @@
         .payment-price
           ¥
           = @product.price
-      =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
+      =link_to( buy_product_path,class: "btn-default btn-red bold.form-buy-bottan_k") do
         購入する
   %section.purchese-confirm-sections.buyer-address
     %h3
@@ -39,7 +39,7 @@
       7
       ウエストエイト206
       %br
-      中島 知子
+      中島 知子でございます
     %p.buy-user-info-text
     =link_to "", class:"change-link-purchase-confirm" do
       %span
