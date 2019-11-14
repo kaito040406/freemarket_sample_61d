@@ -108,6 +108,15 @@ $(function() {
   })
 })
 
+$(function() {
+  $(document).on('mouseleave', '.category_inner_box_k', function(e){
+    $("#"+ parent_id).css({
+        color: "",
+        backgroundColor: ""
+    })
+  })
+})
+
 
 $(function() {
   $(document).on('mouseover', '.category_inner_box_c_k', function(e){
