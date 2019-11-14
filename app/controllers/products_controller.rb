@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
 
   def index
+    @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
@@ -20,12 +21,12 @@ class ProductsController < ApplicationController
   end
 
   def create
+
     @product = Product.new(product_params)
     #@product.user = current_user
     
     if @product.save!
 
-      flash[:notice] = "出品が完了しました"
       redirect_to :root
     else
       #render :new
@@ -49,7 +50,7 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
   end  
@@ -75,7 +76,6 @@ class ProductsController < ApplicationController
   end
 
   def purchase_confirmation
-    
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
   end
@@ -113,7 +113,7 @@ end
   private
 
   def set_product
-    
+    @product = Product.find(params[:product_id])
   end
   
   def product_image_params
