@@ -751,3 +751,18 @@ line-height: 1.4;
 .fa.fa-twitter.h{
   font-size: 26px;
 }
+
+.item-sold-btn {
+  font-size: 24px;
+  line-height: 60px;
+  display: block;
+  margin-top: 16px;
+  background: #888888;
+  /* font-size: 14px; */
+  color: #fff;
+  /* line-height: 56px; */
+  text-align: center;
+  font-weight: 600;
+  /* -webkit-transition: all ease-out .3s; */
+  transition: all ease-out .3s;
+}
