@@ -258,6 +258,7 @@ path[Attributes Style] {
   transform: scale(1);
   transition: all 0.3s ease-out 0s;
   width: 129px;
+  margin-left: 10px;
   &:hover {
     color: #0099e8;
   }
@@ -310,7 +311,7 @@ path[Attributes Style] {
 }
 
 .header_second_right_my_icon {
-  margin-right: 10px;
+  margin-left: 20px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -318,7 +319,7 @@ path[Attributes Style] {
 }
 
 
-h3:hover {
+h4:hover {
   color: #0099e8;
 }
 
@@ -370,7 +371,7 @@ h3:hover {
   z-index: 310;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-  .category_inner_box_c_k{
+  .category_inner_box_g_k{
     padding-left: 20px;
     height: 5%;
     width: 100%;

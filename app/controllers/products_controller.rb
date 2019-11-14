@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  
   def new
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
@@ -51,6 +50,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
+    @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
   def buy
@@ -76,6 +76,7 @@ class ProductsController < ApplicationController
   def purchase_confirmation
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
+    @users = User.find(current_user.id)
   end
 
 
