@@ -24,6 +24,7 @@
 // カテゴリ選択
 
 
+$(document).off('turbolinks:load');//イベント多重化防止
 $(document).on('turbolinks:load', function () {
   function appendCategory(ct){
     var html = `
@@ -215,28 +216,61 @@ function overwriteHiddenCountEach(hiddenTag, count){
 //inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
 //
 function youngestInputIndex(){
-  let inputIndex = 0;
-  while(inputIndex <= 9){//最大枚数-1
-    let inputTagSelecter = `'input[type="hidden"][name="product_product_images_attributes_${inputIndex}_product_image"]'`; 
-    if ($(inputTagSelecter).length == 0){
-      return inputIndex;
+  //選択済み画像のDOM要素を全て取得
+  let hiddenCounts = $('.hiddenCount');
+
+  //10ならば最大枚数アップされている->間違い
+  let nextIndex = $(hiddenCounts).length; //アップロード画像群の通し番号に抜けがなければ今の最大インデックス+1(=フォームにサムネイルがある数)がlabelが指す空インプットのインデックス
+  let hiddenNums = $(hiddenCounts).length; //フォームにサムネイルがある、選択されてる数
+  //hiddenCountsは1個では配列でなく2個以上では配列になることに注意
+  let inputTagCounter = hiddenNums - 1;
+    //できるだけ小さい、空いてるinputIndexを探しindexを取得
+    while(0 <= inputTagCounter){
+      let filledInputSelecter = '"#'+inputTagCounter+'"';
+      console.log('filledInputSelecter');
+      console.log(filledInputSelecter);
+      if ($(filledInputSelecter).length ==0){
+        nextIndex = inputTagCounter+1;
+      }
+      inputTagCounter = inputTagCounter -1;
     }
-    inputIndex = inputIndex + 1;
-  }
-  return -1; //最大枚数分アップロードされている
+    // while(inputTagCounter <= hiddenNums){  
+    //   let currentIndex = hiddenCounts[inputTagCounter].attr('name').replace(/[^0-9]/g, ''); //数字でない部分を空白へ置換=削除
+    //   console.log('currentIndex ha');
+    //   console.log(currentIndex);
+    //   currentIndex= Number(currentIndex);//数値型へ変換
+    //   if (nextIndex > currentIndex){
+    //     nextIndex = currentIndex+1;
+    //   }
+    //   inputTagCounter = inputTagCounter +1;
+    // }
+  console.log('EndOfyoungestInputIndex');
+  console.log(nextIndex);
+  return nextIndex;
 }
+
+
+  //   let inputTag = $(inputTagSelecter);
+  //   console.log(inputTag);
+  //   let inputTagLength = $(inputTag).length;
+  //   if(inputTagLength == 0){
+  //     return inputIndex;
+  //   }
+  //   inputIndex = inputIndex + 1;
+  //   console.log('inputIndex was incremented');
+  // }
 function countImgForm(){//今アップロード候補に入ってる画像の総数を数える
   let imgFormCount = 0;//並べる時の順番作成にも必要と思われる
   $('.img-uploader-dropbox input[type="file"]').each(function(){
     imgFormCount = imgFormCount + 1;
   });
-  return imgFormCount;//DBに記録される画像の総数);
+  return imgFormCount;//DBに記録される画像の総数;
 }
 function readLabelIndex(){
   let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
   labelIndex = Number(labelIndex);//数値型へ変換
   return labelIndex;
-  }
+}
 //updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
@@ -249,7 +283,7 @@ function readLabelIndex(){
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    let labelIndex = readLabelIndex();
+    labelIndex = readLabelIndex();
     // 11枚目なら中断
     if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
@@ -260,41 +294,49 @@ function readLabelIndex(){
       return false;
     }
 
-    //サムネイルと編集削除ボタン生成//
+    //サムネイル・編集削除ボタン・hidden属性によるcount値生成//
     //(関数として切り出すとサムネイルが表示されなくなったため保留)//
     //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
     let reader = new FileReader();
     let changedInput = $(e.target);
-    //hidden属性でproduct_image:[:count]の値を付与
+    //を付与
     reader.onload = function (e){
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
         class="thumbnail" title="${file.name}" >
         <input type="hidden" 
           name="product[product_images_attributes][${labelIndex}][count]" 
-        value=${labelIndex}>
+          value=${labelIndex}
+          id = ${labelIndex}
+          class = "hiddenCount">
         <div class="btn-box">
           <div class="img-edit-btn">編集</div>
           <div class="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
+
+      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+        console.log("imageThumbnailonready");
+        labelIndex = youngestInputIndex();
+        console.log(labelIndex);
+        overwriteLabel(labelIndex);
+        generateProductImageForm(labelIndex);
+        overwriteHiddenCountAll();
+        //プレースホルダの表示・非表示処理
+        $('.img-uploader-dropbox pre').hide();
+        
+      });
     };
+    //次のchangeイベントでのinputタグ(product_model)を更新
+
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
-    //次のchangeイベントでのinputタグ(product_model)を更新
-    generateProductImageForm(labelIndex);
-    labelIndex = youngestInputIndex();
-    overwriteLabel(labelIndex);
-    //プレースホルダの表示・非表示処理
-    $('.img-uploader-dropbox pre').hide();
-    if(labelIndex== 0){
-      $('.img-uploader-dropbox pre').show();
-    }
   });
-  //画像選択により生成された要素の削除
-  $(document).off('click');
+
+  //削除ボタンを押した時の処理
+  $(document).off('click');//イベント多重化防止
   $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
     e.preventDefault();
     let box =e.target.closest('.product_image_box');
@@ -302,14 +344,12 @@ function readLabelIndex(){
     //削除によりアップローダーが空になった場合
     //（一旦最大までアップロードしてから0まで削除）はindex0のものを生成
     if($('.img-uploader-dropbox input[type="file"]').length == 0){
+      $('.img-uploader-dropbox pre').show();
       generateProductImageForm(0);
     }
-    let labelIndex = youngestInputIndex();
+    labelIndex = youngestInputIndex();
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
-    if(labelIndex == 0){
-      $('.img-uploader-dropbox pre').show();
-    }
   });
 
 
