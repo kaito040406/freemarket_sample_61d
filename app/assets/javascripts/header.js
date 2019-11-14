@@ -57,12 +57,19 @@ $(document).on('turbolinks:load', function(){
     $('#ct_box_h_k').mouseleave(function() {
       $('#parent_box').remove()
     })
+
+    
 })
+
 
 
 $(function() {
   $(document).on('mouseover', '.category_inner_box_k', function(e){
     parent_id = $(this).attr("id")
+    $("#"+ parent_id).css({
+      backgroundColor: "rgb(234, 53, 45)",
+      color: "white"
+    })
     user_id = 1
     $.ajax({
       type: 'GET',
