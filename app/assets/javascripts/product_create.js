@@ -216,15 +216,17 @@ function overwriteHiddenCountEach(hiddenTag, count){
 //
 function youngestInputIndex(){
   //選択済み画像のDOM要素を全て取得
-  let hiddenCounts = $('.hiddenCount');
+  let allImgs = $('.hiddenCount');
+  //アップロード画像群の通し番号に抜けがなければ
+  //今の最大インデックス数+1(サムネイル数)がlabelが指す空インプットのインデックス
+  let nextIndex = $(allImgs).length;
+  //サムネイル＝選択されてる画像の数
+  let ImgsCount = $(allImgs).length;
+  //(10ならば最大枚数アップされている)
 
-  //10ならば最大枚数アップされている->間違い
-  let nextIndex = $(hiddenCounts).length; //アップロード画像群の通し番号に抜けがなければ今の最大インデックス+1(=フォームにサムネイルがある数)がlabelが指す空インプットのインデックス
-  let hiddenNums = $(hiddenCounts).length; //フォームにサムネイルがある、選択されてる数
-  
-  console.log(hiddenNums);
-  ;//hiddenCountsは1個では配列でなく2個以上では配列になることに注意
-  let inputTagCounter = hiddenNums - 1;
+  //(Whileを最大値->最小値へと回す
+  //
+  let inputTagCounter = ImgsCount - 1;
     //できるだけ小さい、空いてるinputIndexを探しindexを取得
     while(0 <= inputTagCounter){
       let filledInputSelecter = "#hiddenCount" + inputTagCounter;
@@ -236,24 +238,6 @@ function youngestInputIndex(){
   console.log('EndOfyoungestInputIndex');
   console.log(nextIndex);
   return nextIndex;
-}
-
-
-  //   let inputTag = $(inputTagSelecter);
-  //   console.log(inputTag);
-  //   let inputTagLength = $(inputTag).length;
-  //   if(inputTagLength == 0){
-  //     return inputIndex;
-  //   }
-  //   inputIndex = inputIndex + 1;
-  //   console.log('inputIndex was incremented');
-  // }
-function countImgForm(){//今アップロード候補に入ってる画像の総数を数える
-  let imgFormCount = 0;//並べる時の順番作成にも必要と思われる
-  $('.img-uploader-dropbox input[type="file"]').each(function(){
-    imgFormCount = imgFormCount + 1;
-  });
-  return imgFormCount;//DBに記録される画像の総数;
 }
 function readLabelIndex(){
   let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
