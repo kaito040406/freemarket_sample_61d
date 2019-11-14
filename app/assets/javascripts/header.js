@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-    $('#').mouseover(function() {
+    $('#ct_box_h_k').mouseover(function() {
       if($('.category_inner_box_k').length){
         
       }else{
