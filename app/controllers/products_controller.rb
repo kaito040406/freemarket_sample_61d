@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
 
   before_action :authenticate_user!, except: [:index]
-  before_action :set_product, only: [:destroy, :show, :my_details]
+  before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
@@ -62,34 +62,34 @@ class ProductsController < ApplicationController
 
 
   def buy #クレジット購入
-    @products = Product.find(params[:id])
-    if card.blank?
-      redirect_to action: "new"
-      flash[:alert] = '購入にはクレジットカード登録が必要です'
+    @product = Product.find(params[:id])
+    unless user_signed_in?
+      redirect_to registration_users_path
+      flash[:alert] = '購入には新規登録が必要です'
     else
-      @product = Product.find(params[:product_id])
-      # 購入した際の情報を元に引っ張ってくる
-      card = current_user.credit_card
-      # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      # キーをセットする(環境変数においても良い)
-      Payjp::Charge.create(
-      amount: @product.price, #支払金額
-      customer: card.customer_id, #顧客ID
-      currency: 'jpy', #日本円
-      )
-      # ↑商品の金額をamountへ、cardの顧客idをcustomerへ、currencyをjpyへ入れる
-      if @product.update(status: 1, buyer_id: current_user.id)
-        flash[:notice] = '購入しました。'
-        redirect_to controller: "products", action: 'show'
+      card = Cards.find_by(user_id: current_user.id)
+      if card.blank?
+        redirect_to action: "new"
+        flash[:alert] = '購入にはクレジットカード登録が必要です'
       else
-        flash[:alert] = '購入に失敗しました。'
-        redirect_to controller: "products", action: 'show'
+        card = Cards.find_by(user_id: current_user.id)
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        Payjp::Charge.create(
+        amount: @product.price, #支払金額
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy', #日本円
+        )
+        if @product.update(finished: 1)
+          flash[:notice] = '購入しました。'
+          redirect_to controller: "products", action: 'show'
+        else
+          flash[:alert] = '購入に失敗しました。'
+          redirect_to controller: "products", action: 'show'
+        end
       end
-      #↑この辺はこちら側のテーブル設計どうりに色々しています
     end
   end
-
+end
   private
   
   def product_image_params
@@ -142,4 +142,3 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-end
