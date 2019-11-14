@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     #@product.user = current_user
     
-    if @product.save!
+    if @product.save!(validate: false)
 
       flash[:notice] = "出品が完了しました"
       redirect_to :root
@@ -41,11 +41,10 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @size = Product
   end
   
   def show
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
   end  

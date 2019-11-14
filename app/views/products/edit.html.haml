@@ -54,6 +54,15 @@
               = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
+            サイズ
+            %span.must-filled-mark-t
+              必須
+          %div
+            .select-wrap
+              %i.fa.fa-chevron-down
+              = f.select :size, Product.sizes.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .form-input-t
+          %label
             ブランド
             %span.must-filled-mark-h
               任意
