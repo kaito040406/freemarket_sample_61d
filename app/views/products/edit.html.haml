@@ -54,22 +54,13 @@
               = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
-            サイズ
-            %sapn.must-filled-mark-t
-              必須
-          %div
-            .select-wrap
-              %i.fa.fa-chevron-down
-              = f.select :size, Product.size.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
-          %label
             ブランド
             %span.must-filled-mark-h
               任意
           %div
             .select-wrap
               %i.fa.fa-chevron-down
-              -# = f.select :brand, Product.brand.keys.to_a, {placeholder: "例) シャネル"}, {class: "select-default-h"}
+              = f.text_area :brand, placeholder: "例) シャネル", class: "select-default-h"
         .form-input-t
           %label
             商品の状態
