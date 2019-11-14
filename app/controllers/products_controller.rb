@@ -24,7 +24,6 @@ class ProductsController < ApplicationController
 
     @product = Product.new(product_params)
     #@product.user = current_user
-    binding.pry
     if @product.save!(validate: false)
 
       redirect_to :root
