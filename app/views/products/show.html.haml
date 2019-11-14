@@ -16,6 +16,11 @@
           .owl-carousel
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
+            - unless @product.finished == 0
+              .items__sold
+                .items__sold__inner SOLD
+              
+
         .item-price-box.text-center.visible-sp
           %span.item-price.bold 
             ¥

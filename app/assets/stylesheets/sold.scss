@@ -25,3 +25,25 @@
     font-size: 24px;
   }
 }
+
+.items-box_photo__sold{
+  width: 0;
+  height: 0;
+  border-top: 50px solid #ea352d ;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid #ea352d ;
+  z-index:100;
+  margin-top: 68px;
+  &__inner{
+    transform: rotate(-45deg);
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 600;
+    padding-top: 3px;
+    margin-top: 1px;
+  }
+}
+
+
