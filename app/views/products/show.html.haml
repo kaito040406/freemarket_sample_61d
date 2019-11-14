@@ -19,8 +19,6 @@
             - unless @product.finished == 0
               .items__sold
                 .items__sold__inner SOLD
-              
-
         .item-price-box.text-center.visible-sp
           %span.item-price.bold 
             ¥
@@ -34,7 +32,8 @@
           %tr
             %th 出品者
             %td
-              = link_to "#{@user.nick_name}"
+              %h6
+                = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
                   %img{src: "/images/smile.png", alt: "", width: "20px", height: "20px"}
@@ -49,11 +48,14 @@
             %th カテゴリー
             %td.ct_bo_k
               %div.ct_1_k 
-                = @product.parent
+                %h6
+                  = @product.parent
               %div.ct_2_k
-                = @product.child
+                %h6
+                  = @product.child
               %div.ct_3_k
-                = @product.grand
+                %h6
+                  = @product.grand
             -# = link_to 'https://www.mercari.com/jp/category/75/'
               .item-detail-table-sub-category
                 %i.fa.fa-arrow-right
@@ -65,6 +67,7 @@
           %tr
             %th ブランド
             %td
+              %h6
           %tr
             %th 商品の状態
             %td=@product.status
@@ -77,7 +80,8 @@
           %tr
             %th 配送元地域
             %td
-              = link_to(@prefecture)
+              %h6
+                = link_to(@prefecture)
           %tr
             %th 発送日の目安
             %td 1~2日で発送
