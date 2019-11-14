@@ -3,7 +3,7 @@
     =link_to "https://www.mercari.com/jp/" do
       =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"
 %main.product-new-main-T
-  %h2.product-new-formtitle-T{id: "#{current_user.id}"}
+  %h2.product-new-formtitle-T
     商品の情報を入力
   =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
     .form-sub-image-uploader-t
