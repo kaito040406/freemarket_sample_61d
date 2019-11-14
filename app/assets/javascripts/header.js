@@ -2,7 +2,6 @@ $(document).on('turbolinks:load', function(){
     $('#ct_box_h_k').mouseover(function() {
       if($('.category_inner_box_k').length){
         
-        
       }else{
         parent_html = `
         <div class="category_box_k" id="parent_box">
