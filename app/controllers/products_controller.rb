@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details, :updete]
   def index
+    @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
@@ -15,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    binding.pry
+    
     @product = Product.new(product_params)
     #@product.user = current_user
     
@@ -44,7 +45,7 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
   end  
@@ -77,7 +78,7 @@ class ProductsController < ApplicationController
   private
 
   def set_product
-    
+    @product = Product.find(params[:product_id])
   end
   
   def product_image_params

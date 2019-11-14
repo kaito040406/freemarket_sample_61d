@@ -60,6 +60,10 @@
                         = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
                           = image_tag "#{image.product_image}"
+                        - if product.finished == 0
+                          .items__sold
+                            .items__sold__inner
+                              SOLD
     %exhibit.sc-bHwgHz.eUokWJ
       -if user_signed_in?
         =link_to(new_user_product_path(current_user), method: :get, class: "sc-krDsej judNJS") do
