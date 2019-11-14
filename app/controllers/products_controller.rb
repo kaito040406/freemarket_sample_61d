@@ -100,7 +100,6 @@ class ProductsController < ApplicationController
         currency: 'jpy', #日本円
         )
         if @product.update_attribute(:finished, 1)
-          flash[:notice] = '購入しました。'
           redirect_to controller: "products", action: 'show'
         else
           flash[:alert] = '購入に失敗しました。'
