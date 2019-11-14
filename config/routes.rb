@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users,controllers: { registrations: 'registrations'} #ロボットではない認証に使用
+  devise_for :users,controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks'} #ロボットではない認証に使用
   root 'products#index'
   resources :products, only: [:show, :destroy, :create, :edit, :update,:buy] do
 
