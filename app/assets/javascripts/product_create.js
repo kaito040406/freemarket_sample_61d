@@ -382,4 +382,4 @@ function readLabelIndex(){
     $('#product-gain').html(product_gain);
   });
 });
-});
+
