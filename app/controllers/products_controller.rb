@@ -99,7 +99,7 @@ class ProductsController < ApplicationController
         customer: card.customer_id, #顧客ID
         currency: 'jpy', #日本円
         )
-        if @product.update(finished: 1)
+        if @product.update_attribute(:finished, 1)
           flash[:notice] = '購入しました。'
           redirect_to controller: "products", action: 'show'
         else
