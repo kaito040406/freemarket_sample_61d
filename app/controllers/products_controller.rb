@@ -99,6 +99,7 @@ class ProductsController < ApplicationController
         currency: 'jpy', #日本円
         )
         if @product.update_attribute(:finished, 1)
+          @product.update_attribute(:buyer_id, current_user.id)
           redirect_to controller: "products", action: 'show'
         else
           flash[:alert] = '購入に失敗しました。'
