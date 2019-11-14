@@ -88,7 +88,7 @@ $(function() {
     categories.forEach(function(category){
       
       chaild_html_2 =`      
-                    <div class="category_inner_box_c_k" id = "${category.ancestry}" value = "${category.name}">
+                    <div class="category_inner_box_c_k" id = "${category.id}" value = "${category.name}">
                       ${category.name}
                     </div>
                     `
@@ -120,7 +120,18 @@ $(function() {
 
 $(function() {
   $(document).on('mouseover', '.category_inner_box_c_k', function(e){
+    ct_id = $(this).attr("id")
+    console.log("ok")
+
+
+    $("#"+ parent_id).css({
+      backgroundColor: "rgb(234, 53, 45)",
+      color: "white"
+    })
     chaild_id = $(this).attr("value")
+    $("#"+ ct_id).css({
+      backgroundColor: "rgb(204, 204, 204)",
+    })
     user_id = 1
     $.ajax({
       type: 'GET',
@@ -162,6 +173,15 @@ $(function() {
       $('#child_box').remove()
       $('#grand_box').remove()
     }
+  })
+})
+
+$(function() {
+  $(document).on('mouseleave', '.category_inner_box_c_k', function(e){
+    $("#"+ ct_id).css({
+        color: "",
+        backgroundColor: ""
+    })
   })
 })
 
