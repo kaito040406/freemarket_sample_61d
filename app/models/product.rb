@@ -45,7 +45,7 @@ class Product < ApplicationRecord
   # validation
   validates :name,                      presence: true, length: { in: 1..40}
   validates :text,                      presence: true, length: { in: 1..1000}
-  validates :price,                     numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :price,                     numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
   validates :seller_id,                 presence: true, numericality: { only_integer: true}
   validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
