@@ -60,7 +60,7 @@
           %div
             .select-wrap
               %i.fa.fa-chevron-down
-              -# = f.select :size, Product.size.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+              = f.select :size, Product.size.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
             ブランド
