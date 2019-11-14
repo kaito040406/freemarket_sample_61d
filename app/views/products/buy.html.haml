@@ -1,1 +1,19 @@
-購入完了しました
+.mask.hidden
+.buy__modal.hidden
+  .buy__modal__content
+    %h2 購入内容の確認
+    .buy__modal__content__info
+      .buy__modal__content__info__inner
+        .buy__modal__content__info__inner__product
+          %h3
+            = image_tag(@product.images[0].image_url.url, size: '60x60')
+          .buy__modal__content__info__inner__product--name
+            = @product.name
+        .buy__modal__content__info__inner__price
+          %h3 支払い金額
+          .buy__modal__content__info__inner__price--num
+            %h3
+            = "¥ #{@product.price}"
+            %span (税込)
+  = link_to buy_show_products_cards_path,method: :POST, class: 'buy__modal--btn',id: "buy__modal--btn" do
+    %p 購入
