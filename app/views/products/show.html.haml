@@ -16,6 +16,10 @@
           .owl-carousel
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
+          
+            .items__sold
+              .items__sold__inner
+                SOLD
         .item-price-box.text-center.visible-sp
           %span.item-price.bold 
             ¥
@@ -32,13 +36,13 @@
               = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
-                  %i.fa.fa-good
-                  %span 26
-                .item-user-ratings
-                  %i.fa.fa-normal
+                  %img{src: "/images/smile.png", alt: "", width: "20px", height: "20px"}
                   %span 0
                 .item-user-ratings
-                  %i.fa.fa-bad
+                  %img{src: "/images/magao.png", alt: "", width: "20px", height: "20px"}
+                  %span 0
+                .item-user-ratings
+                  %img{src: "/images/kanasimi.png", alt: "", width: "20px", height: "20px"}
                   %span 0
           %tr
             %th カテゴリー
@@ -106,195 +110,195 @@
           %span 
             あんしん・あんぜんへの取り組み
 
-    .item-detail-message
-      .message-container
-        .message-content
-          %form.message-form{action: "https://www.mercari.com/jp/comment/add/", method: "POST"}
-            %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
-            %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            %input{name: "item_id", type: "hidden", value: "m49716933620"}/
-            %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}/
-            %textarea.textarea-default{name: "body", type: "text", value: ""}
-            %button.message-submit.btn-default.btn-gray{type: "submit"}
-              %span コメントする
-        %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
-          .modal-inner.modal-banner
-            .modal-body
-              .modal-head.bold 確認
-              %div{"data-comment" => "body"}
-              %br/
-              本当にこのコメントを削除してよろしいですか？
-            %form{action: "https://www.mercari.com/jp/comment/delete/", method: "POST"}
-              .clearfix
-                .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
-                %button.modal-btn.modal-btn-submit{type: "submit"}
-                  削除する
-              %input{name: "item_id", type: "hidden", value: "m49716933620"}
-              %input{name: "comment_id", type: "hidden", value:  ""}
-              %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}
-              %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}
-    %ul.nav-item-link-prev-next.clearfix
-      %li.nav-item-link-prev
-    -#     = link_to 'https://item.mercari.com/jp/m76402632145/'
-          %i.fa.fa-arrow-left
-          らむちゃむ様専用2
-      %li.nav-item-link-next
-    -#     = link_to 'https://item.mercari.com/jp/m12415990181/'
-          【新品】Hurley  ◇  ハーレー  パーカー  キッズ  2T
-          %i.fa.fa-arrow-right
-    .item-social-media-box
-      .text-center-h
-        .fb-save{"data-uri" => "product://113299479059860/m49716933620"}
-      %ul.social-media-box
-        %li
-          =link_to "",""
-          %i.fa.fa-facebook-square.h
-        %li
-          %i.fa.fa-twitter.h
-        %li
-          %i.fa.fa-pinterest.h
-    -#       = link_to 'http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F&media=https%3A%2F%2Fstatic.mercdn.net%2Fitem%2Fdetail%2Forig%2Fphotos%2Fm49716933620_1.jpg%3F1572580974&description=%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E5%95%86%E5%93%81%3A%20%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96%EF%BC%81%E3%82%B5%E3%83%B3%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3%21%21%20%E3%82%BD%E3%83%95%E3%83%9E%E3%83%83%E3%83%97%E5%85%A8%E5%B7%BB%E8%B3%BC%E5%85%A5%E7%89%B9%E5%85%B8%20LONELY%20TUNING%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA', target: '_blank', class: 'share-btn'
-            
-    .items-in-user-profile
-      %section.items-box-container.clearfix.related-item-column.items-in-user-profile
-        %h2.items-box-head
-    -#       = link_to 'ドロさんのその他の出品','https://www.mercari.com/jp/u/506612442/' 
-        .items-box-content.clearfix
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m92958394078/'
-              %figure.items-box-photo
-                = image_tag  'https://static.mercdn.net/thumb/photos/m92958394078_1.jpg?1557969203', class: 'lazyload', alt: '飯田里穂 ブロマイド 生写真 二枚セット'
-              .items-box-body
-                %h3.items-box-name.font-2 飯田里穂 ブロマイド 生写真 二枚セット
-                .items-box-num
-                  .items-box-price.font-5 ¥500
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m34953611012/'
-              %figure.items-box-photo
-              = image_tag 'https://static.mercdn.net/thumb/photos/m34953611012_1.jpg?1567185534', class: 'lazyload', alt: 'ゾンビランドサガ トレーディング缶バッジ ラッピング列車 星川リリィ'
-              .items-box-body
-                %h3.items-box-name.font-2 ゾンビランドサガ トレーディング缶バッジ ラッピング列車 星川リリィ
-                .items-box-num
-                  .items-box-price.font-5 ¥499
-                  .font-2
-                    %i.fa.fa-like-border
-                    %span 2
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m10928654768/'
-              %figure.items-box-photo
-    -#             = link_to 'https://static.mercdn.net/thumb/photos/m10928654768_1.jpg?1572393913', class: 'lazyload', alt: 'TAMASHII NATION 2019 真骨彫 仮面ライダーディエンド'
-                %figcaption
-                  .item-sold-out-badge
-                    %div SOLD
-              .items-box-body
-                %h3.items-box-name.font-2 TAMASHII NATION 2019 真骨彫 仮面ライダーディエンド
-                .items-box-num
-                  .items-box-price.font-5 ¥11,111
-                  .font-2
-                    %i.fa.fa-like-border
-                    %span 3
-          %section.items-box
-    -#         =link_to 'https://item.mercari.com/jp/m82816494031/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m82816494031_1.jpg?1571897472', class: 'lazyload', alt: 'フランシュシュ The Best 発売記念イベント シリアル 2組セット'
-                %figcaption
-                  .item-sold-out-badge
-                    %div SOLD
-              .items-box-body
-                %h3.items-box-name.font-2 フランシュシュ The Best 発売記念イベント シリアル 2組セット
-                .items-box-num
-                  .items-box-price.font-5 ¥2,200
-                  .font-2
-                    %i.fa.fa-like-border
-                    %span 1
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m69659774499/'
-              %figure.items-box-photo
-                = image_tag  'https://static.mercdn.net/thumb/photos/m69659774499_1.jpg?1563898665', class: 'lazyload', alt: 'Guilty Kiss / Strawberry Trapper ブロマイド'
-              .items-box-body
-                %h3.items-box-name.font-2 Guilty Kiss / Strawberry Trapper ブロマイド
-                .items-box-num
-                  .items-box-price.font-5 ¥1,400
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m37271491929/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m37271491929_1.jpg?1566744098', class: 'lazyload', alt: 'ゾンビランドサガ 源さくら ~ふんわりスタイル♪~ 缶バッジ'
-              .items-box-body
-                %h3.items-box-name.font-2 ゾンビランドサガ 源さくら ~ふんわりスタイル♪~ 缶バッジ
-                .items-box-num
-                  .items-box-price.font-5 ¥555
-      %section.items-box-container.clearfix.related-item-column
-        %h2.items-box-head
-    -#       = link_to 'https://www.mercari.com/jp/category/696/'
-            アニメ （本・音楽・ゲーム） その他の商品
-        .items-box-content.clearfix
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m89761558373/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m89761558373_1.jpg?1572945247', class: 'lazyload', alt: 'CD'
-              .items-box-body
-                %h3.items-box-name.font-2 CD
-                .items-box-num
-                  .items-box-price.font-5 ¥888
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m35281885814/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m35281885814_1.jpg?1572945245' class: 'lazyload', alt: 'ラブライブ サンシャイン CD3枚セット'
-                %figcaption
-                  .item-sold-out-badge
-                    %div SOLD
-              .items-box-body
-                %h3.items-box-name.font-2 ラブライブ サンシャイン CD3枚セット
-                .items-box-num
-                  .items-box-price.font-5 ¥1,999
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m78486115825/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m78486115825_1.jpg?1567223979', class: 'lazyload', alt: '名探偵コナン グッズ'
-              .items-box-body
-                %h3.items-box-name.font-2 名探偵コナン グッズ
-                .items-box-num
-                  .items-box-price.font-5 ¥1,111
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m10657871599/'
-              %figure.items-box-photo
-    -#             = link_to 'https://static.mercdn.net/thumb/photos/m10657871599_1.jpg?1572945142', class: 'lazyload', alt: 'カラマリ 予約特典CD'
-              .items-box-body
-                %h3.items-box-name.font-2 カラマリ 予約特典CD
-                .items-box-num
-                  .items-box-price.font-5 ¥888
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m34530811737/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m34530811737_1.jpg?1572138148', class: 'lazyload', alt: 'デレマス 6th Blu-ray コロムビア購入特典  CD(メットライフ)'
-              .items-box-body
-                %h3.items-box-name.font-2 デレマス 6th Blu-ray コロムビア購入特典  CD(メットライフ)
-                .items-box-num
-                  .items-box-price.font-5 ¥2,100
-          %section.items-box
-    -#         = link_to 'https://item.mercari.com/jp/m57002903329/'
-              %figure.items-box-photo
-                = image_tag 'https://static.mercdn.net/thumb/photos/m57002903329_1.jpg?1572138376', class: 'lazyload', alt: 'デレマス 6th Blu-ray コロムビア購入特典  CDナゴヤドーム)' 
-              .items-box-body
-                %h3.items-box-name.font-2 デレマス 6th Blu-ray コロムビア購入特典  CDナゴヤドーム)
-                .items-box-num
-                  .items-box-price.font-5 ¥2,100
-    %aside.modal{"data-close" => "modal", "data-modal" => "report-item"}
+.item-detail-message
+  .message-container
+    .message-content
+      %form.message-form{action: "https://www.mercari.com/jp/comment/add/", method: "POST"}
+        %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %input{name: "item_id", type: "hidden", value: "m49716933620"}/
+        %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}/
+        %textarea.textarea-default{name: "body", type: "text", value: ""}
+        %button.message-submit.btn-default.btn-gray{type: "submit"}
+          %span コメントする
+    %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
       .modal-inner.modal-banner
         .modal-body
           .modal-head.bold 確認
-          不適切な商品を報告しますか？
-        .clearfix
-          .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
-    -#       = link_to 'https://www.mercari.com/jp/report/m49716933620/'
-            %button.modal-btn.modal-btn-submit はい
-    %nav.bread-crumbs.pos-bottom
-      %ul
-        %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
-          -# = link_to 'https://www.mercari.com/jp/', itemprop: 'url'
-            %span{itemprop: "title"} メルカリ
-          %i.icon-arrow-right
-        %li{itemscope: "", itemtype: 'http://data-vocabulary.org/Breadcrumb'}
-          %span{itemprop: 'title'} ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
-    %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
-      =render 'shared/footer'
+          %div{"data-comment" => "body"}
+          %br/
+          本当にこのコメントを削除してよろしいですか？
+        %form{action: "https://www.mercari.com/jp/comment/delete/", method: "POST"}
+          .clearfix
+            .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
+            %button.modal-btn.modal-btn-submit{type: "submit"}
+              削除する
+          %input{name: "item_id", type: "hidden", value: "m49716933620"}
+          %input{name: "comment_id", type: "hidden", value:  ""}
+          %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}
+          %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}
+%ul.nav-item-link-prev-next.clearfix
+  %li.nav-item-link-prev
+-#     = link_to 'https://item.mercari.com/jp/m76402632145/'
+      %i.fa.fa-arrow-left
+      らむちゃむ様専用2
+  %li.nav-item-link-next
+-#     = link_to 'https://item.mercari.com/jp/m12415990181/'
+      【新品】Hurley  ◇  ハーレー  パーカー  キッズ  2T
+      %i.fa.fa-arrow-right
+.item-social-media-box
+  .text-center-h
+    .fb-save{"data-uri" => "product://113299479059860/m49716933620"}
+  %ul.social-media-box
+    %li
+      =link_to "",""
+      %i.fa.fa-facebook-square.h
+    %li
+      %i.fa.fa-twitter.h
+    %li
+      %i.fa.fa-pinterest.h
+-#       = link_to 'http://pinterest.com/pin/create/button/?url=https%3A%2F%2Fitem.mercari.com%2Fjp%2Fm49716933620%2F&media=https%3A%2F%2Fstatic.mercdn.net%2Fitem%2Fdetail%2Forig%2Fphotos%2Fm49716933620_1.jpg%3F1572580974&description=%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA%E5%95%86%E5%93%81%3A%20%E3%83%A9%E3%83%96%E3%83%A9%E3%82%A4%E3%83%96%EF%BC%81%E3%82%B5%E3%83%B3%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3%21%21%20%E3%82%BD%E3%83%95%E3%83%9E%E3%83%83%E3%83%97%E5%85%A8%E5%B7%BB%E8%B3%BC%E5%85%A5%E7%89%B9%E5%85%B8%20LONELY%20TUNING%20%23%E3%83%A1%E3%83%AB%E3%82%AB%E3%83%AA', target: '_blank', class: 'share-btn'
+        
+.items-in-user-profile
+  %section.items-box-container.clearfix.related-item-column.items-in-user-profile
+    %h2.items-box-head
+-#       = link_to 'ドロさんのその他の出品','https://www.mercari.com/jp/u/506612442/' 
+    .items-box-content.clearfix
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m92958394078/'
+          %figure.items-box-photo
+            = image_tag  'https://static.mercdn.net/thumb/photos/m92958394078_1.jpg?1557969203', class: 'lazyload', alt: '飯田里穂 ブロマイド 生写真 二枚セット'
+          .items-box-body
+            %h3.items-box-name.font-2 飯田里穂 ブロマイド 生写真 二枚セット
+            .items-box-num
+              .items-box-price.font-5 ¥500
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m34953611012/'
+          %figure.items-box-photo
+          = image_tag 'https://static.mercdn.net/thumb/photos/m34953611012_1.jpg?1567185534', class: 'lazyload', alt: 'ゾンビランドサガ トレーディング缶バッジ ラッピング列車 星川リリィ'
+          .items-box-body
+            %h3.items-box-name.font-2 ゾンビランドサガ トレーディング缶バッジ ラッピング列車 星川リリィ
+            .items-box-num
+              .items-box-price.font-5 ¥499
+              .font-2
+                %i.fa.fa-like-border
+                %span 2
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m10928654768/'
+          %figure.items-box-photo
+-#             = link_to 'https://static.mercdn.net/thumb/photos/m10928654768_1.jpg?1572393913', class: 'lazyload', alt: 'TAMASHII NATION 2019 真骨彫 仮面ライダーディエンド'
+            %figcaption
+              .item-sold-out-badge
+                %div SOLD
+          .items-box-body
+            %h3.items-box-name.font-2 TAMASHII NATION 2019 真骨彫 仮面ライダーディエンド
+            .items-box-num
+              .items-box-price.font-5 ¥11,111
+              .font-2
+                %i.fa.fa-like-border
+                %span 3
+      %section.items-box
+-#         =link_to 'https://item.mercari.com/jp/m82816494031/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m82816494031_1.jpg?1571897472', class: 'lazyload', alt: 'フランシュシュ The Best 発売記念イベント シリアル 2組セット'
+            %figcaption
+              .item-sold-out-badge
+                %div SOLD
+          .items-box-body
+            %h3.items-box-name.font-2 フランシュシュ The Best 発売記念イベント シリアル 2組セット
+            .items-box-num
+              .items-box-price.font-5 ¥2,200
+              .font-2
+                %i.fa.fa-like-border
+                %span 1
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m69659774499/'
+          %figure.items-box-photo
+            = image_tag  'https://static.mercdn.net/thumb/photos/m69659774499_1.jpg?1563898665', class: 'lazyload', alt: 'Guilty Kiss / Strawberry Trapper ブロマイド'
+          .items-box-body
+            %h3.items-box-name.font-2 Guilty Kiss / Strawberry Trapper ブロマイド
+            .items-box-num
+              .items-box-price.font-5 ¥1,400
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m37271491929/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m37271491929_1.jpg?1566744098', class: 'lazyload', alt: 'ゾンビランドサガ 源さくら ~ふんわりスタイル♪~ 缶バッジ'
+          .items-box-body
+            %h3.items-box-name.font-2 ゾンビランドサガ 源さくら ~ふんわりスタイル♪~ 缶バッジ
+            .items-box-num
+              .items-box-price.font-5 ¥555
+  %section.items-box-container.clearfix.related-item-column
+    %h2.items-box-head
+-#       = link_to 'https://www.mercari.com/jp/category/696/'
+        アニメ （本・音楽・ゲーム） その他の商品
+    .items-box-content.clearfix
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m89761558373/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m89761558373_1.jpg?1572945247', class: 'lazyload', alt: 'CD'
+          .items-box-body
+            %h3.items-box-name.font-2 CD
+            .items-box-num
+              .items-box-price.font-5 ¥888
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m35281885814/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m35281885814_1.jpg?1572945245' class: 'lazyload', alt: 'ラブライブ サンシャイン CD3枚セット'
+            %figcaption
+              .item-sold-out-badge
+                %div SOLD
+          .items-box-body
+            %h3.items-box-name.font-2 ラブライブ サンシャイン CD3枚セット
+            .items-box-num
+              .items-box-price.font-5 ¥1,999
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m78486115825/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m78486115825_1.jpg?1567223979', class: 'lazyload', alt: '名探偵コナン グッズ'
+          .items-box-body
+            %h3.items-box-name.font-2 名探偵コナン グッズ
+            .items-box-num
+              .items-box-price.font-5 ¥1,111
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m10657871599/'
+          %figure.items-box-photo
+-#             = link_to 'https://static.mercdn.net/thumb/photos/m10657871599_1.jpg?1572945142', class: 'lazyload', alt: 'カラマリ 予約特典CD'
+          .items-box-body
+            %h3.items-box-name.font-2 カラマリ 予約特典CD
+            .items-box-num
+              .items-box-price.font-5 ¥888
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m34530811737/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m34530811737_1.jpg?1572138148', class: 'lazyload', alt: 'デレマス 6th Blu-ray コロムビア購入特典  CD(メットライフ)'
+          .items-box-body
+            %h3.items-box-name.font-2 デレマス 6th Blu-ray コロムビア購入特典  CD(メットライフ)
+            .items-box-num
+              .items-box-price.font-5 ¥2,100
+      %section.items-box
+-#         = link_to 'https://item.mercari.com/jp/m57002903329/'
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m57002903329_1.jpg?1572138376', class: 'lazyload', alt: 'デレマス 6th Blu-ray コロムビア購入特典  CDナゴヤドーム)' 
+          .items-box-body
+            %h3.items-box-name.font-2 デレマス 6th Blu-ray コロムビア購入特典  CDナゴヤドーム)
+            .items-box-num
+              .items-box-price.font-5 ¥2,100
+%aside.modal{"data-close" => "modal", "data-modal" => "report-item"}
+  .modal-inner.modal-banner
+    .modal-body
+      .modal-head.bold 確認
+      不適切な商品を報告しますか？
+    .clearfix
+      .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
+-#       = link_to 'https://www.mercari.com/jp/report/m49716933620/'
+        %button.modal-btn.modal-btn-submit はい
+%nav.bread-crumbs.pos-bottom
+  %ul
+    %li{itemscope: "", itemtype: "http://data-vocabulary.org/Breadcrumb"}
+      -# = link_to 'https://www.mercari.com/jp/', itemprop: 'url'
+        %span{itemprop: "title"} メルカリ
+      %i.icon-arrow-right
+    %li{itemscope: "", itemtype: 'http://data-vocabulary.org/Breadcrumb'}
+      %span{itemprop: 'title'} ラブライブ！サンシャイン!! ソフマップ全巻購入特典 LONELY TUNING
+%footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
+  =render 'shared/footer'

@@ -228,96 +228,101 @@ function getLabelForIndex(){
 /////////////////////////////////////
 
 $(document).on('turbolinks:load', function(){
-  let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
-  appendProductImageForm(labelForIndex);
-
-  $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
-    //inputタグのインデックスを取得する
-    let labelForIndex = getLabelForIndex();
-    // 11枚目なら中断
-    if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
-      return false;
-    }
-    let file = e.target.files[0];
-    // 画像ファイル以外なら中断
-    if(file.type.indexOf("image") < 0){
-      return false;
-    }
-
-    //サムネイルと編集削除ボタン生成//
-    //(関数として切り出すとサムネイルが表示されなくなったため保留)//
-    let reader = new FileReader();
-    let changedInput = $(e.target);
-    //hidden属性でproduct_image:[:count]の値を付与
-    reader.onload = function (e){
-      let imageThumbnail =`
-        <img src="${e.target.result}" width="114px" height="116px" 
-        class="thumbnail" title="${file.name}" >
-        <input type="hidden" 
-          name="product[product_images_attributes][${labelForIndex}][count]" 
-        value=${labelForIndex}>
-        <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn">削除</div>
-        </div>
-        `;
-      $(changedInput).after(imageThumbnail);
-    };
-    reader.readAsDataURL(file);
-    //サムネイルと編集削除ボタン生成ここまで//
-
-    //次のchangeイベントでのinputタグ(product_model)を更新
-    labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
+  path = location.pathname
+  id = $(".product-new-formtitle-T").attr("id")
+  console.log(id)
+  if(path == "/users/"+ id +"/products/new"){
+    let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
     appendProductImageForm(labelForIndex);
 
-    //プレースホルダの表示・非表示処理
-    $('.img-uploader-dropbox pre').hide();
-    if(labelForIndex== 0){
-      $('.img-uploader-dropbox pre').show();
-    }
-  });
-  //画像選択により生成された要素の削除
-  $('.product_image_box').on('click', '.img-delete-btn', function(e) {
-    e.preventDefault();
-    let box =e.target.closest('.product_image_box');
-    $(box).remove();
-    let labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
-    console.log(labelForIndex);
-    if(labelForIndex== 0){
+    $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+      //inputタグのインデックスを取得する
+      let labelForIndex = getLabelForIndex();
+      // 11枚目なら中断
+      if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
+        return false;
+      }
+      let file = e.target.files[0];
+      // 画像ファイル以外なら中断
+      if(file.type.indexOf("image") < 0){
+        return false;
+      }
 
-      $('.img-uploader-dropbox pre').show();
-    }
-  });
+      //サムネイルと編集削除ボタン生成//
+      //(関数として切り出すとサムネイルが表示されなくなったため保留)//
+      let reader = new FileReader();
+      let changedInput = $(e.target);
+      //hidden属性でproduct_image:[:count]の値を付与
+      reader.onload = function (e){
+        let imageThumbnail =`
+          <img src="${e.target.result}" width="114px" height="116px" 
+          class="thumbnail" title="${file.name}" >
+          <input type="hidden" 
+            name="product[product_images_attributes][${labelForIndex}][count]" 
+          value=${labelForIndex}>
+          <div class="btn-box">
+            <div class="img-edit-btn">編集</div>
+            <div class="img-delete-btn">削除</div>
+          </div>
+          `;
+        $(changedInput).after(imageThumbnail);
+      };
+      reader.readAsDataURL(file);
+      //サムネイルと編集削除ボタン生成ここまで//
+
+      //次のchangeイベントでのinputタグ(product_model)を更新
+      labelForIndex = youngestInputIndex();
+      overwriteLabel(labelForIndex);
+      appendProductImageForm(labelForIndex);
+
+      //プレースホルダの表示・非表示処理
+      $('.img-uploader-dropbox pre').hide();
+      if(labelForIndex== 0){
+        $('.img-uploader-dropbox pre').show();
+      }
+    });
+    //画像選択により生成された要素の削除
+    $('.product_image_box').on('click', '.img-delete-btn', function(e) {
+      e.preventDefault();
+      let box =e.target.closest('.product_image_box');
+      $(box).remove();
+      let labelForIndex = youngestInputIndex();
+      overwriteLabel(labelForIndex);
+      console.log(labelForIndex);
+      if(labelForIndex== 0){
+
+        $('.img-uploader-dropbox pre').show();
+      }
+    });
 
 
-  // $('#product_categry').change(function() {
-  //   let selection = $('option:selected').val();
-  //   console.log(selection);
-  //   $('#product_categry').after(CategorySelectBoxHTML);
-  //   if (!selection) {
-  //     console.log('default');
-  //   }
-  // });
+    // $('#product_categry').change(function() {
+    //   let selection = $('option:selected').val();
+    //   console.log(selection);
+    //   $('#product_categry').after(CategorySelectBoxHTML);
+    //   if (!selection) {
+    //     console.log('default');
+    //   }
+    // });
 
 
-  $('#product_delivery_fee').change(function() {
-    let selection = $('option:selected').val();
-    $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
-    if (!selection) {
-      //
-    }
-  });
+    $('#product_delivery_fee').change(function() {
+      let selection = $('option:selected').val();
+      $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
+      if (!selection) {
+        //
+      }
+    });
 
-  //手数料と利益の計算
-  $('#product_price').on('keyup', function(e){
-    let product_fee_rate = 0.1
-    let product_price = $('#product_price').val();
-    let product_fee = Math.floor(product_price * product_fee_rate);
-    let product_gain = product_price - product_fee;
-    $('#product-fee').html(product_fee);
-    $('#product-gain').html(product_gain);
-  });
+    //手数料と利益の計算
+    $('#product_price').on('keyup', function(e){
+      let product_fee_rate = 0.1
+      let product_price = $('#product_price').val();
+      let product_fee = Math.floor(product_price * product_fee_rate);
+      let product_gain = product_price - product_fee;
+      $('#product-fee').html(product_fee);
+      $('#product-gain').html(product_gain);
+    });
+  }
 });
 });

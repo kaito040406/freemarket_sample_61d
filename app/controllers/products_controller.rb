@@ -5,14 +5,12 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
+
   def index
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  def edit
-  
-  end
   
   def new
     @category_parent = Category.where(ancestry: nil)
@@ -24,6 +22,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     #@product.user = current_user
+    
     if @product.save!
 
       flash[:notice] = "出品が完了しました"
@@ -45,17 +44,38 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+  
   def show
     @product=Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
   end  
 
+  def buy
+  end
+
+  def my_details
+    @product = Product.find(params[:id])
+    @image = ProductImage.all
+    @user = User.all
+  end
+
+
+  def updete
+    @product = Product.updete(params[:id])
+    @product.product_id.each do |product|
+      product.destroy
+    end  
+  end  
 
   def my_details
   end
 
   def purchase_confirmation
+    
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
   end
@@ -91,6 +111,10 @@ class ProductsController < ApplicationController
   end
 end
   private
+
+  def set_product
+    
+  end
   
   def product_image_params
     params.require(:product_image).permit(:product_id, :product_image)
@@ -101,6 +125,7 @@ end
     # バリデーションエラー回避のため適当なデータ挿入
     params[:product][:size] = 1
     params[:product][:date] = Date.current
+
     params[:product][:child] = params[:child]
     params[:product][:grand] = params[:grand]
     params[:product][:parent] = params[:product][:categry]
