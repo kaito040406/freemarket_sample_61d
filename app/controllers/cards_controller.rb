@@ -2,6 +2,8 @@ class CardsController < ApplicationController
   require "date"
   require "payjp"
 
+  
+
 
   def index
   end

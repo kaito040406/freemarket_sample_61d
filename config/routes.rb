@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { registrations: 'registrations'} #ロボットではない認証に使用
   root 'products#index'
-  resources :products, only: [:show, :destroy, :create, :edit, :update,] do
+  resources :products, only: [:show, :destroy, :create, :edit, :update,:buy] do
+
     member do
       get 'buy'
       get 'my_details'
       get 'purchase_confirmation'
+      get 'buy'
       get 'mypage'
+
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -14,7 +17,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :products, only: [:new, :create, :edit, :destroy]
-
     namespace :api do
       resources :products, defaults: { format: 'json' } do
         collection do
