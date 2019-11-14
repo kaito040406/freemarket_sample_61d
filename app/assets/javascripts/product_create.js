@@ -24,6 +24,8 @@
 // カテゴリ選択
 
 
+
+
 $(function(){
   function appendCategory(ct){
     var html = `
@@ -180,7 +182,7 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
-function appendProductImageForm(inputIndex){
+function generateProductImageForm(inputIndex){
   let ProductImageInputHTML = `
     <div class="product_image_box">
       <input type="file" 
@@ -193,49 +195,98 @@ function appendProductImageForm(inputIndex){
   $('.img-uploader-dropbox').append(ProductImageInputHTML);
   $(ProductImageInputHTML).hide();
 }
-//画像inputフォームの識別数字（削除で通し番号ではなくなる）
-//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個までインデックスで9まで、であるため
-//結局番号の振り直し必須、10個のフォームには区別要かもしれない
-//labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
-function youngestInputIndex(){
-  let inputIndex;
-  inputIndex = countImgForm();
-  return inputIndex;
+//出品ごとの画像の通し番号
+//inputタグのインデックス（=product_image配列のインデックス）は画像の削除で途中が抜けたりするので
+//画像が何枚目か、全部で何枚あるかはこちらで管理
+function overwriteHiddenCountAll(){
+  let count = 1;
+  $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+    overwriteHiddenCountEach(this, count)
+    count = count + 1;
+  });
 }
+function overwriteHiddenCountEach(hiddenTag, count){
+  $(hiddenTag).attr('value', count);
+}
+
+//inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
+//
+function youngestInputIndex(){
+  //選択済み画像のDOM要素を全て取得
+  let hiddenCounts = $('.hiddenCount');
+
+  //10ならば最大枚数アップされている->間違い
+  let nextIndex = $(hiddenCounts).length; //アップロード画像群の通し番号に抜けがなければ今の最大インデックス+1(=フォームにサムネイルがある数)がlabelが指す空インプットのインデックス
+  let hiddenNums = $(hiddenCounts).length; //フォームにサムネイルがある、選択されてる数
+  //hiddenCountsは1個では配列でなく2個以上では配列になることに注意
+  let inputTagCounter = hiddenNums - 1;
+    //できるだけ小さい、空いてるinputIndexを探しindexを取得
+    while(0 <= inputTagCounter){
+      let filledInputSelecter = '"#'+inputTagCounter+'"';
+      console.log('filledInputSelecter');
+      console.log(filledInputSelecter);
+      if ($(filledInputSelecter).length ==0){
+        nextIndex = inputTagCounter+1;
+      }
+      inputTagCounter = inputTagCounter -1;
+    }
+    // while(inputTagCounter <= hiddenNums){  
+    //   let currentIndex = hiddenCounts[inputTagCounter].attr('name').replace(/[^0-9]/g, ''); //数字でない部分を空白へ置換=削除
+    //   console.log('currentIndex ha');
+    //   console.log(currentIndex);
+    //   currentIndex= Number(currentIndex);//数値型へ変換
+    //   if (nextIndex > currentIndex){
+    //     nextIndex = currentIndex+1;
+    //   }
+    //   inputTagCounter = inputTagCounter +1;
+    // }
+  console.log('EndOfyoungestInputIndex');
+  console.log(nextIndex);
+  return nextIndex;
+}
+
+
+  //   let inputTag = $(inputTagSelecter);
+  //   console.log(inputTag);
+  //   let inputTagLength = $(inputTag).length;
+  //   if(inputTagLength == 0){
+  //     return inputIndex;
+  //   }
+  //   inputIndex = inputIndex + 1;
+  //   console.log('inputIndex was incremented');
+  // }
 function countImgForm(){//今アップロード候補に入ってる画像の総数を数える
   let imgFormCount = 0;//並べる時の順番作成にも必要と思われる
   $('.img-uploader-dropbox input[type="file"]').each(function(){
     imgFormCount = imgFormCount + 1;
   });
-  return imgFormCount;//DBに記録される画像の総数);
+  return imgFormCount;//DBに記録される画像の総数;
 }
-
-function getLabelForIndex(){
-  let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-  labelForIndex = Number(labelForIndex);//数値型へ変換
-  return labelForIndex;
-  }
+function readLabelIndex(){
+  let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+  labelIndex = Number(labelIndex);//数値型へ変換
+  return labelIndex;
+}
 //updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
 /////////////////////////////////////
 /////本体ここから//////////////////////
 /////////////////////////////////////
-
-$(document).on('turbolinks:load', function(){
-  let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
-  appendProductImageForm(labelForIndex);
+// $(document).on('turbolinks:load', function(){
+  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
+  generateProductImageForm(labelIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    let labelForIndex = getLabelForIndex();
+    labelIndex = readLabelIndex();
     // 11枚目なら中断
-    if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
+    if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
     }
     let file = e.target.files[0];
@@ -244,51 +295,62 @@ $(document).on('turbolinks:load', function(){
       return false;
     }
 
-    //サムネイルと編集削除ボタン生成//
+    //サムネイル・編集削除ボタン・hidden属性によるcount値生成//
     //(関数として切り出すとサムネイルが表示されなくなったため保留)//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
     let reader = new FileReader();
     let changedInput = $(e.target);
-    //hidden属性でproduct_image:[:count]の値を付与
+    //を付与
     reader.onload = function (e){
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
         class="thumbnail" title="${file.name}" >
         <input type="hidden" 
-          name="product[product_images_attributes][${labelForIndex}][count]" 
-        value=${labelForIndex}>
+          name="product[product_images_attributes][${labelIndex}][count]" 
+          value=${labelIndex}
+          id = ${labelIndex}
+          class = "hiddenCount">
         <div class="btn-box">
           <div class="img-edit-btn">編集</div>
           <div class="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
+
+      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+        console.log("imageThumbnailonready");
+        labelIndex = youngestInputIndex();
+        console.log(labelIndex);
+        overwriteLabel(labelIndex);
+        generateProductImageForm(labelIndex);
+        overwriteHiddenCountAll();
+        //プレースホルダの表示・非表示処理
+        $('.img-uploader-dropbox pre').hide();
+        
+      });
     };
+    //次のchangeイベントでのinputタグ(product_model)を更新
+
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
-    //次のchangeイベントでのinputタグ(product_model)を更新
-    labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
-    appendProductImageForm(labelForIndex);
-
-    //プレースホルダの表示・非表示処理
-    $('.img-uploader-dropbox pre').hide();
-    if(labelForIndex== 0){
-      $('.img-uploader-dropbox pre').show();
-    }
   });
-  //画像選択により生成された要素の削除
-  $('.product_image_box').on('click', '.img-delete-btn', function(e) {
+
+  //削除ボタンを押した時の処理
+  $(document).off('click');//イベント多重化防止
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
     e.preventDefault();
     let box =e.target.closest('.product_image_box');
     $(box).remove();
-    let labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
-    console.log(labelForIndex);
-    if(labelForIndex== 0){
-
+    //削除によりアップローダーが空になった場合
+    //（一旦最大までアップロードしてから0まで削除）はindex0のものを生成
+    if($('.img-uploader-dropbox input[type="file"]').length == 0){
       $('.img-uploader-dropbox pre').show();
+      generateProductImageForm(0);
     }
+    labelIndex = youngestInputIndex();
+    overwriteLabel(labelIndex);
+    overwriteHiddenCountAll();
   });
 
 
