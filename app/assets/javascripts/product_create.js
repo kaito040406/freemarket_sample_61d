@@ -157,8 +157,6 @@ $(function(){
   });
 
 
-
-
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
@@ -223,28 +221,18 @@ function youngestInputIndex(){
   //10ならば最大枚数アップされている->間違い
   let nextIndex = $(hiddenCounts).length; //アップロード画像群の通し番号に抜けがなければ今の最大インデックス+1(=フォームにサムネイルがある数)がlabelが指す空インプットのインデックス
   let hiddenNums = $(hiddenCounts).length; //フォームにサムネイルがある、選択されてる数
-  //hiddenCountsは1個では配列でなく2個以上では配列になることに注意
+  
+  console.log(hiddenNums);
+  ;//hiddenCountsは1個では配列でなく2個以上では配列になることに注意
   let inputTagCounter = hiddenNums - 1;
     //できるだけ小さい、空いてるinputIndexを探しindexを取得
     while(0 <= inputTagCounter){
-      let filledInputSelecter = '"#'+inputTagCounter+'"';
-      console.log('filledInputSelecter');
-      console.log(filledInputSelecter);
+      let filledInputSelecter = "#hiddenCount" + inputTagCounter;
       if ($(filledInputSelecter).length ==0){
-        nextIndex = inputTagCounter+1;
+        nextIndex = inputTagCounter;
       }
       inputTagCounter = inputTagCounter -1;
     }
-    // while(inputTagCounter <= hiddenNums){  
-    //   let currentIndex = hiddenCounts[inputTagCounter].attr('name').replace(/[^0-9]/g, ''); //数字でない部分を空白へ置換=削除
-    //   console.log('currentIndex ha');
-    //   console.log(currentIndex);
-    //   currentIndex= Number(currentIndex);//数値型へ変換
-    //   if (nextIndex > currentIndex){
-    //     nextIndex = currentIndex+1;
-    //   }
-    //   inputTagCounter = inputTagCounter +1;
-    // }
   console.log('EndOfyoungestInputIndex');
   console.log(nextIndex);
   return nextIndex;
@@ -307,8 +295,8 @@ function readLabelIndex(){
         class="thumbnail" title="${file.name}" >
         <input type="hidden" 
           name="product[product_images_attributes][${labelIndex}][count]" 
-          value=${labelIndex}
-          id = ${labelIndex}
+          value=${labelIndex} 
+          id = "hiddenCount${labelIndex}"
           class = "hiddenCount">
         <div class="btn-box">
           <div class="img-edit-btn">編集</div>
@@ -381,5 +369,4 @@ function readLabelIndex(){
     $('#product-fee').html(product_fee);
     $('#product-gain').html(product_gain);
   });
-});
 });

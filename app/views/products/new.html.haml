@@ -22,7 +22,7 @@
             -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
             %div{class: "product-img-box"}
-              =img.file_field :product_image #JSで生成するため不要となった
+              -#=img.file_field :product_image #cssで非表示（削除方法）
     .form-sub-t
       .form-input-t
         %label
