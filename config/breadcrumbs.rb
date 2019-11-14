@@ -2,10 +2,8 @@ crumb :root do
   link "メルカリ", root_path
 end
 
-
 crumb :mypage do
   link "マイページ", "#{current_user.id}"
-
 end
 
 
@@ -19,20 +17,24 @@ crumb :identification do
   parent :mypage
 end
 
-crumb :my_details do
-  link "出品した商品 - 出品中", ""
+crumb :progress do
+  link "出品した商品 - 出品中", progress_users_path
   parent :mypage
 end
 
 crumb :cards do
-  link "支払い方法", card_users_path
+  link "支払い方法", cards_users_path
+  parent :mypage
+end
+
+crumb :log_out do
+  link "ログアウト", log_out_users_path
   parent :mypage
 end
 
 
-
-
-
-
-
+crumb :credit do
+  link "クレジットカード情報入力", credit_users_path
+  parent :cards
+end
 

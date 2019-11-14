@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  
   def new
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
