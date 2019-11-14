@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
   def purchase_confirmation
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
-    @users = User.find(params[:id])
+    @users = User.find(current_user.id)
   end
 
 
