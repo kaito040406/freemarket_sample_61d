@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def progress
-    @product=Product.all
+    @products = Product.all
     @image = ProductImage.all
     @user = User.all
   end

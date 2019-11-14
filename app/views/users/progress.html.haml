@@ -16,7 +16,7 @@
           %li
             %h3
               =link_to "売却済み", "/jp/mypage/listings/completed/"
-      - @product.zip(@image).each do |product, image|
+      - @products.zip(@image).each do |product, image|
         .tab-content
 
         - @products.each do |product|
