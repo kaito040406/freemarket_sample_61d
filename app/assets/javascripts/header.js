@@ -71,13 +71,81 @@ $(function() {
       dataType: 'json'
   })
   .done(function(categories){
-    if($('.category_inner_box_c_k').length){
-  
-    }else{
+    $('#grand_box').remove()
+    $('#child_box').remove()
+    haild_htmls =""
+    chaild_html_1 = `
+                <div class="category_box_c_k" id="child_box">
+                `
+    chaild_htmls = chaild_html_1
+    categories.forEach(function(category){
+      
+      chaild_html_2 =`      
+                    <div class="category_inner_box_c_k" id = "${category.ancestry}" value = "${category.name}">
+                      ${category.name}
+                    </div>
+                    `
+      chaild_htmls = chaild_htmls + chaild_html_2
+    })
+    chaild_html_3 = `</div>`
+    chaild_html = chaild_htmls + chaild_html_3
+    $('#ct_box_h_k').append(chaild_html);
 
-    }
   })
-    
+
+  $('#ct_box_h_k').mouseleave(function() {
+    $('#child_box').remove()
+    $('#grand_box').remove()
+  })
+  
+  })
+})
+
+
+$(function() {
+  $(document).on('mouseover', '.category_inner_box_c_k', function(e){
+    chaild_id = $(this).attr("value")
+    user_id = 1
+    $.ajax({
+      type: 'GET',
+      url: "/users/" + user_id + "/api/products/grand_child",
+      data: {id: chaild_id},
+      dataType: 'json'
+  })
+  .done(function(categories){
+    $('#grand_box').remove()
+    g_haild_htmls =""
+    grand_html_1 = `
+                <div class="category_box_g_k" id="grand_box">
+                `
+    grand_htmls = grand_html_1
+    categories.forEach(function(category){
+      
+      grand_html_2 =`      
+                    <div class="category_inner_box_c_k" id = "${category.ancestry}" value = "${category.id}">
+                      ${category.name}
+                    </div>
+                    `
+      grand_htmls = grand_htmls + grand_html_2
+    })
+    grand_html_3 = `</div>`
+    grand_html = grand_htmls + grand_html_3
+    $('#ct_box_h_k').append(grand_html);
+
+  })
+
+  $('#ct_box_h_k').mouseleave(function() {
+    $('#grand_box').remove()
+  })
+  })
+
+  $(function() {
+    if($('.category_inner_box_c_k').length){
+
+    }else{
+      $('#child_box').remove()
+      $('#grand_box').remove()
+    }
   })
 })
 
