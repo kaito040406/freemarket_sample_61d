@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'progress'
       get 'log_out'
+      get 'mypage'
     end
   end
   
@@ -50,13 +51,14 @@ Rails.application.routes.draw do
   #ここまで長谷川記入
 
   resources :categories
-  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+  resources "users",only: [:index,:profile, :progress, :cards], path: 'mypage' do
 
     collection do
       get 'profile'
       get 'identification'
       get 'progress'
-      get 'card'
+      get 'cards'
+      get 'credit'
     end
   end
 

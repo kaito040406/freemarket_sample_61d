@@ -258,6 +258,7 @@ path[Attributes Style] {
   transform: scale(1);
   transition: all 0.3s ease-out 0s;
   width: 129px;
+  margin-left: 10px;
   &:hover {
     color: #0099e8;
   }
@@ -310,7 +311,7 @@ path[Attributes Style] {
 }
 
 .header_second_right_my_icon {
-  margin-right: 10px;
+  margin-left: 20px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -318,7 +319,7 @@ path[Attributes Style] {
 }
 
 
-h3:hover {
+h4:hover {
   color: #0099e8;
 }
 
