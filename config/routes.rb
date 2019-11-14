@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :credit_cards, only: [:index, :new, :show] do
+  resources :cards, only: [:index, :new, :show] do
     collection do
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'
