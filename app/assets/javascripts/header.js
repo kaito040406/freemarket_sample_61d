@@ -63,12 +63,21 @@ $(document).on('turbolinks:load', function(){
 $(function() {
   $(document).on('mouseover', '.category_inner_box_k', function(e){
     parent_id = $(this).attr("id")
-    console.log(parent_id)
+    user_id = 1
+    $.ajax({
+      type: 'GET',
+      url: "/users/" + user_id + "/api/products/child",
+      data: {id: parent_id},
+      dataType: 'json'
+  })
+  .done(function(categories){
     if($('.category_inner_box_c_k').length){
   
     }else{
 
     }
+  })
+    
   })
 })
 
