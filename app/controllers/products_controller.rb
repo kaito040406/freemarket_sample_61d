@@ -18,6 +18,8 @@ class ProductsController < ApplicationController
     @product = Product.new
 
     10.times { @product.product_images.build }
+
+    @user = current_user
   end
 
   def create

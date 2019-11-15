@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   //newフォームからは実行されない
   let pathSelf =location.pathname;
   if (pathSelf.match(/new/) != null) {
@@ -213,6 +213,7 @@ function youngestInputIndex(){
   return nextIndex;
 }
 function readLabelIndex(){
+  path = location.pathname
   let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
   labelIndex = Number(labelIndex);//数値型へ変換
   return labelIndex;
