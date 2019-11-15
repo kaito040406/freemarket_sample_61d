@@ -37,6 +37,8 @@
                     %i.fa.fa-comment-alt
                     %span 0
                   .mypage-item-status.bold.awaiting
+                    = f.fields_for :image do |im|
+                      = im.hidden_field :id, value: image.id
                     = f.hidden_field :id, value: product.id
                     = f.hidden_field :seller_id, value: product.id
                     = f.submit '出品中',method: :post

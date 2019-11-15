@@ -75,7 +75,8 @@ class ProductsController < ApplicationController
   end  
 
   def my_details
-    binding.pry
+    @image = ProductImage.find(params[:product][:image][:id])
+    @product = Product.find(params[:id])
   end
 
   def purchase_confirmation
