@@ -2,10 +2,87 @@
   %header.sc-eilVRo.gwgMhX.sc-epnACN.dPkCkl
     = render 'shared/header'
     = render 'shared/bread_bar'
-  %main.l-container.clearfix
+%main.l-container.clearfix
+  %section.h-single-container
+    %h1.item-name
+      =@product.name
+    .item-main-contentclearfix
+      .item-photo
+        .owl-carousel
+          .owl-item-inner 
+            -# = image_tag("#{@image.product_image}")
+      .item-price-box.text-center.visible-sp
+        %span.item-price.bold 
+          ¥
+          = @product.price
+        %span.item-tax (税込)
+        %span.item-shipping-fee 送料込み
+      %section.visible-sp
+        .item-btn-float-area item-buy-btn
+        = link_to '購入画面に進む', 'https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC'     
+      %table.item-detail-table
+        %tr
+          %th 出品者
+          %td
+            -# = link_to "#{@user.nick_name}"
+            %div
+              .item-user-ratings
+                %i.fa.fa-good
+                %span 26
+              .item-user-ratings
+                %i.fa.fa-normal
+                %span 0
+              .item-user-ratings
+                %i.fa.fa-bad
+                %span 0
+        %tr
+          %th カテゴリー
+          %td.ct_bo_k
+            %div.ct_1_k 
+              = @product.parent
+            %div.ct_2_k
+              = @product.child
+            %div.ct_3_k
+              = @product.grand
+          -# = link_to 'https://www.mercari.com/jp/category/75/'
+            .item-detail-table-sub-category
+              %i.fa.fa-arrow-right
+              CD
+          -#   = link_to 'https://www.mercari.com/jp/category/696/'
+            .item-detail-table-sub-sub-category
+              %i.fa.fa-arrow-right
+              アニメ
+        %tr
+          %th ブランド
+          %td
+        %tr
+          %th 商品の状態
+          %td=@product.status
+        %tr
+          %th 配送料の負担
+          %td=@product.delivery_fee
+        %tr
+          %th 配送の方法
+          %td=@product.delivery_method
+        %tr
+          %th 配送元地域
+          %td
+            = link_to(@product.delivery_from)
+        %tr
+          %th 発送日の目安
+          %td 1~2日で発送
+    .item-price-box.text-center
+      %span.item-price.bold 
+        ¥
+        = @product.price
+      %span.item-tax (税込)
+      %span.item-shipping-fee 送料込み
+    = link_to(purchase_confirmation_product_path(@product.id), method: :get) do
+      .item-buy-btn
+        購入画面に進む
     .l-content
       .listing-item-change-box
-        =link_to "商品の編集","https://www.mercari.com/jp/sell/edit/m69617298882/",class:"btn-default btn-red"
+        =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
         %p.text-center or
         %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
           %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/

@@ -1,0 +1,16 @@
+.done__modal__content
+  %h2 購入完了しました
+  .done__modal__content__info
+    .done__modal__content__info__inner
+      .done__modal__content__info__inner__product
+        %h3
+        .done__modal__content__info__inner__product--name
+          = @product.name
+      .done__modal__content__info__inner__price
+        %h3 支払い金額
+        .done__modal__content__info__inner__price--num
+          %h3
+          = "¥ #{@product.price}"
+          %span (税込)
+  %button.done__modal--btn 
+    =link_to "トップに戻る",root_path
