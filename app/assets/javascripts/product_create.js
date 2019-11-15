@@ -207,15 +207,11 @@ function readLabelIndex(){
   labelIndex = Number(labelIndex);//数値型へ変換
   return labelIndex;
 }
-//updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
-/////////////////////////////////////
-/////本体ここから//////////////////////
-/////////////////////////////////////
-// $(document).on('turbolinks:load', function(){
-  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
 
+////////ここからイメージボックス関連
+  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndex();
@@ -229,9 +225,10 @@ function readLabelIndex(){
       return false;
     }
 
-    //サムネイル・編集削除ボタン・hidden属性によるcount値生成//
-    //(関数として切り出すとサムネイルが表示されなくなったため保留)//
-    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
+    //ファイルリーダーがファイルを読めた時に
+    //サムネイル生成などファイル関連で必要な処理を行う事を定義しておく
+    //(関数として切り出すとサムネイルが表示されなくなったため保留//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)//
     let reader = new FileReader();
     let changedInput = $(e.target);
     //を付与
@@ -250,18 +247,18 @@ function readLabelIndex(){
         </div>
         `;
       $(changedInput).after(imageThumbnail);
-
       $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+        //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
-        //プレースホルダの表示・非表示処理
+        //プレースホルダ非表示
         $('.img-uploader-dropbox pre').hide();
         
       });
     };
-    //次のchangeイベントでのinputタグ(product_model)を更新
 
+    ///ファイル読み込み 上記サムネイル・編集削除ボタン・hidden属性によるcount値生成が実行される
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
@@ -281,7 +278,6 @@ function readLabelIndex(){
     $(btnBox).remove();
     //最後の1枚削除によりアップローダーが空になった場合
 
-    
     labelIndex = youngestInputIndex();
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
