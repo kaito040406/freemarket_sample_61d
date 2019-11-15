@@ -59,11 +59,13 @@ class ProductsController < ApplicationController
   end
 
 
-  def updete
-    @product = Product.updete(params[:id])
-    @product.product_id.each do |product|
-      product.destroy
-    end  
+  def update
+    @product = Product.find(params[:id])
+      if @product.seller_id == current_user.id
+        @product.updete(product_params)
+        flash[:notice] = "変更が完了しました"
+      redirect_to root_path
+    end   
   end  
 
   def my_details
