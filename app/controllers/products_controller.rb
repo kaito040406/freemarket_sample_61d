@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     #@product.user = current_user
+
     if @product.save!(validate: false)
 
       redirect_to :root
@@ -63,11 +64,12 @@ class ProductsController < ApplicationController
   end
 
 
-  def updete
-    @product = Product.updete(params[:id])
-    @product.product_id.each do |product|
-      product.destroy
-    end  
+  def update
+    @product = Product.find(params[:id])
+      if @product.seller_id == current_user.id
+        @product.update!(product_params)
+        redirect_to root_path
+    end   
   end  
 
   def my_details
