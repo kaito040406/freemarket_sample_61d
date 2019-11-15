@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
   $('#my_page_k').mouseover(function(){
-    if($('wrapper_user__icon').length){
+    if($('.wrapper_user__icon').length){
 
     }else{
       parent_html = `
@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
               <img width="60" alt="" height="60" src="https://static.mercdn.net/images/member_photo_noimage_thumb.png">
             </figure>
             <h2 class="name">
-              頭
+              <%= current_user.nick_name %>
             </h2>
             <div class="mypage-number">
             <div>
@@ -91,3 +91,14 @@ $(document).on('turbolinks:load', function(){
     $('#mypage_wrapper').remove()
   })
 })
+
+$(function(){
+  $(document).on('mouseover', '.wrapper_user__icon', function(e){
+    parent_id = $(this).attr("id")
+    $("#"+ parent_id).css({
+      backgroundColor: "rgb(234, 53, 45)",
+      color: "white"
+    })
+  })
+})
+
