@@ -32,6 +32,9 @@
           color: white;
           border-radius: 4px;
           line-height: 50px;
+          h1{
+            margin-right: 30px;
+          }
           .icon_box_m_k{
             font-size: 16px;
             float: left;
@@ -48,6 +51,9 @@
           border-radius: 4px;
           border: 1px solid;
           line-height: 48px;
+          h1{
+            margin-right: 30px;
+          }
           .icon_box_f_k{
             font-size: 16px;
             float: left;
@@ -55,6 +61,8 @@
             padding-top: 6px;
             .fa.fa-facebook-square{
               font-size: 3.0rem;
+              margin: 0;
+              
             }
           }
         }
@@ -63,11 +71,13 @@
           border-radius: 4px;
           border: 1px solid;
           line-height: 48px;
-          .icon_box_g_k{
+          h1{
+            margin-right: 30px;
+          }
+          img {
             float: left;
-            padding-left: 16px;
-            padding-top: 5px;
-            font-size: 20px;
+            margin-left: 16px;
+            margin-top: 12px;
           }
           
         }
