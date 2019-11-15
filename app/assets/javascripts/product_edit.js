@@ -213,6 +213,8 @@ function readLabelIndex(){
 ////////ここからイメージボックス関連
   let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+    //1枚以上の画像はあるため最初はプレースホルダ非表示
+    $('.img-uploader-dropbox pre').hide();
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndex();
     // 11枚目なら中断
