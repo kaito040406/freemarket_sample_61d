@@ -5,7 +5,6 @@
   border-right: 60px solid transparent;
   border-bottom: 60px solid transparent;
   border-left: 60px solid #ea352d ;
-  z-index:100;
   position: relative;
   top:-320px;
   &__inner{
@@ -33,7 +32,7 @@
   border-right: 50px solid transparent;
   border-bottom: 50px solid transparent;
   border-left: 50px solid #ea352d ;
-  z-index:100;
+  
   margin-top: 68px;
   &__inner{
     transform: rotate(-45deg);
