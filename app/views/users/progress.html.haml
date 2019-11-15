@@ -41,7 +41,7 @@
                       = im.hidden_field :id, value: image.id
                     = f.hidden_field :id, value: product.id
                     = f.hidden_field :seller_id, value: product.id
-                    = f.submit '出品中',method: :post
+                    = f.submit '出品中', class: "up_bottan" ,method: :post
               .fa.fa-chevron-right
       %ul.mypage-history.pager
         %li.pager-prev.pager-cell
