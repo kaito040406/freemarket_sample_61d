@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   def progress
     @products = Product.where(seller_id: current_user.id)
     @image = ProductImage.where(product_id: @products.ids)
-    binding.pry
   end
 
   def my_details
