@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
-  belongs_to :card
   accepts_nested_attributes_for :product_images, allow_destroy: true
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
@@ -19,7 +18,16 @@ class Product < ApplicationRecord
                                     "チケット": 1027,
                                     "自動車・オートバイ": 1318,
                                     "その他": 10}
- 
+  enum size:                       {"xxs以下": 1,
+                                    "xs(ss)": 2,
+                                    "s": 3,
+                                    "M": 4,
+                                    "L": 5,
+                                    "XL(LL)": 6,
+                                    "2XL(3L)": 7,
+                                    "3XL(4L)": 8,
+                                    "4XL(5L)以上": 9,
+                                    "FREE SIZE": 10}
   enum status:                     {"新品、未使用": 1,
                                     "未使用に近い": 2, 
                                     "目立った傷や汚れなし": 3,

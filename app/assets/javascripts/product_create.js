@@ -1,31 +1,3 @@
-// let CategorySelectBoxHTML = `
-// <div class="select-wrap">
-//   <i class="fa fa-chevron-down"></i>
-//   <select class="category_parent">
-//   <option value="0">---</option>
-//   <option value="1">レディース</option>
-//   <option value="200">メンズ</option>
-//   <option value="345">ベビー・キッズ</option>
-//   <option value="480">インテリア・住まい・小物</option>
-//   <option value="623">本・音楽・ゲーム</option>
-//   <option value="683">おもちゃ・ホビー・グッズ</option>
-//   <option value="796">コスメ・香水・美容</option>
-//   <option value="896">家電・スマホ・カメラ</option>
-//   <option value="982">スポーツ・レジャー</option>
-//   <option value="1091">ハンドメイド</option>
-//   <option value="1143">チケット</option>
-//   <option value="1202">自動車・オートバイ</option>
-//   <option value="1264">その他</option>
-//   </select>
-// </div>`
-
-
-
-// カテゴリ選択
-
-
-
-
 $(function(){
   function appendCategory(ct){
     var html = `
@@ -180,47 +152,14 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
-// function //generateProductImageForm(inputIndex){
-//   let ProductImageInputHTML = `
-//     <div class="product_image_box">
-//       <input type="file" 
-//       name="product[product_images_attributes][${inputIndex}][product_image]" 
-//       id="product_product_images_attributes_${inputIndex}_product_image" 
-//       style="display:none;"
-//       >
-//     </div>`;
-//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
-//   $(ProductImageInputHTML).hide();
-// }
-
-//////あえてnameの値を不正にし、あとから正確にすることでnullエラーを回避したい。このhtmlで
-/////////ファイルロード後nameの最初にproduct追加でいけるはず
-////productStr = '"product';
-////correctNameAttr =  productStr + $(changedInput).attr('name');
-///$(changedInput).attr() = correctNameAttr;
-
-// function //generateProductImageForm(inputIndex){
-//   let ProductImageInputHTML = `
-//     <div class="product_image_box">
-//       <input type="file" 
-//       name=[product_images_attributes][${inputIndex}][product_image]" 
-//       id="product_product_images_attributes_${inputIndex}_product_image" 
-//       style="display:none;"
-//       >
-//     </div>`;
-
-//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
-//   $(ProductImageInputHTML).hide();
-// }
-
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
 //出品ごとの画像の通し番号
-//inputタグのインデックス（=product_image配列のインデックス）は画像の削除で途中が抜けたりするので
-//画像が何枚目か、全部で何枚あるかはこちらで管理
+//inputタグのインデックス（=product_image配列のインデックス）は削除で途中が抜けたりするので
+//画像が何枚目か全部で何枚あるかこちらで管理
 function overwriteHiddenCountAll(){
   let count = 1;
   $('.img-uploader-dropbox input[type="hidden"]').each(function(){
@@ -232,8 +171,9 @@ function overwriteHiddenCountEach(hiddenTag, count){
   $(hiddenTag).attr('value', count);
 }
 
-//inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
-//
+//候補画像枚数が変化した時に呼び出され、labelタグの番号を取得・更新する
+//（はずだったが他の処理も一部まとめた
+//"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
 function youngestInputIndex(){
   //サムネイルとセットのhidden要素を全て取得
   let allImgs = $('.hiddenCount');
@@ -244,6 +184,7 @@ function youngestInputIndex(){
     return "";//labelが機能しないようにする
   }
   //0ならばプレースホルダを再表示し、終了
+  //最後の1枚削除によりアップローダーが空になった場合
   else if(nextIndex ==0){
     $('.img-uploader-dropbox pre').show();
     return nextIndex;
@@ -268,16 +209,11 @@ function readLabelIndex(){
   labelIndex = Number(labelIndex);//数値型へ変換
   return labelIndex;
 }
-//updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
-/////////////////////////////////////
-/////本体ここから//////////////////////
-/////////////////////////////////////
-// $(document).on('turbolinks:load', function(){
-  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
-  //generateProductImageForm(labelIndex);
 
+////////ここからイメージボックス関連
+  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndex();
@@ -291,9 +227,9 @@ function readLabelIndex(){
       return false;
     }
 
-    //サムネイル・編集削除ボタン・hidden属性によるcount値生成//
-    //(関数として切り出すとサムネイルが表示されなくなったため保留)//
-    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
+    //ファイルリーダーがファイルを読み終わったら行うサムネイル生成などの関連処理
+    //(関数として切り出すとサムネイルが表示されなくなったため保留//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
     let reader = new FileReader();
     let changedInput = $(e.target);
     //を付与
@@ -312,19 +248,18 @@ function readLabelIndex(){
         </div>
         `;
       $(changedInput).after(imageThumbnail);
-
       $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+        //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
+
         overwriteLabel(labelIndex);
-        //generateProductImageForm(labelIndex);
         overwriteHiddenCountAll();
-        //プレースホルダの表示・非表示処理
+        //プレースホルダ非表示
         $('.img-uploader-dropbox pre').hide();
         
       });
     };
-    //次のchangeイベントでのinputタグ(product_model)を更新
-
+    ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
@@ -332,34 +267,20 @@ function readLabelIndex(){
 
   //削除ボタンを押した時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
     let inputHidden =$(btnBox).prev();
     let imgThumbnail = $(inputHidden).prev();
     let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null);
+    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
     $(imgThumbnail).remove();
     $(inputHidden).remove();
     $(btnBox).remove();
-    //最後の1枚削除によりアップローダーが空になった場合
-
-    
     labelIndex = youngestInputIndex();
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
   });
-
-
-  // $('#product_categry').change(function() {
-  //   let selection = $('option:selected').val();
-  //   console.log(selection);
-  //   $('#product_categry').after(CategorySelectBoxHTML);
-  //   if (!selection) {
-  //     console.log('default');
-  //   }
-  // });
-
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();

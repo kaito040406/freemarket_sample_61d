@@ -5,7 +5,7 @@
 %main.product-new-main-T
   %h2.product-new-formtitle-T
     商品の情報を入力
-  = form_for @product, url: user_products_path(@product.id), method: :post , html: { class: "product-new-form"} do |f|
+  = form_for @product, url: "/products/#{@product.id}/update", method: :get , html: { class: "product-new-form"} do |f|
     .form-sub-image-uploader-t
       %h3
         出品画像
@@ -52,6 +52,23 @@
             .select-wrap
               %i.fa.fa-chevron-down
               = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .form-input-t
+          %label
+            サイズ
+            %span.must-filled-mark-t
+              必須
+          %div
+            .select-wrap
+              %i.fa.fa-chevron-down
+              = f.select :size, Product.sizes.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+        .form-input-t
+          %label
+            ブランド
+            %span.must-filled-mark-h
+              任意
+          %div
+            .select-wrap
+              = f.text_field :brand, placeholder: "例) シャネル", class: "select-default-h"
         .form-input-t
           %label
             商品の状態
