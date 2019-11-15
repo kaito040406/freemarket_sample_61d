@@ -36,40 +36,97 @@
           %ul.sc-sdtwF.cmQcPI
             %li.sc-iYUSvU.gUHLnE
               .sc-cHSUfg.sc-cTjmhe.emrFJX
-                = link_to "レディース",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
-                = link_to "メンズ",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
-                = link_to "ベビー・キッズ",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
-                = link_to "インテリア・住まい・小物",""
+                = link_to "トップス",""
       .sc-gkFcWv.lcfgps
-        - @category_top.each do |category|
-          .sc-hUfwpO.kyoAKq
-            .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-              %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn 
-                = category.name
-                新着アイテム
-              .sc-dyGzUR.kfbxDu
-                = link_to"もっと見る",""
-            .main.products.content
-              %ul.products.content.box
-                - @products.zip(@images).each do |product, image|
-                  %li.products.content.boxes
-                    %div.products.content.boxes.inner
-                      =link_to "","", class:"products.link"
-                      %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
-                        %figcaption
-                          %span
-                            =product.name
-                        .style_thumbnail__N_xAi
-                          %span{"aria-label": "Price"}
-                            ¥
-                            =product.price 
-                          = link_to "/products/#{product.id}" do
-                            %img.style_thumbnail__N_xAi
-                            = image_tag "#{image.product_image}"
-          
-          
+        .sc-hUfwpO.kyoAKq
+          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn レディース新着アイテム
+            .sc-dyGzUR.kfbxDu
+              = link_to"もっと見る",""
+          .main.products.content
+            %ul.products.content.box
+              - @category_women.zip(@images).each do |product, image|
+                %li.products.content.boxes
+                  %div.products.content.boxes.inner
+                    =link_to "","", class:"products.link"
+                    %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                      %figcaption
+                        %span
+                          =product.name
+                      .style_thumbnail__N_xAi
+                        %span{"aria-label": "Price"}
+                          ¥
+                          =product.price 
+                        = link_to "/products/#{product.id}" do
+                          %img.style_thumbnail__N_xAi
+                          = image_tag "#{image.product_image}"
+        .sc-hUfwpO.kyoAKq
+          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn メンズ新着アイテム
+            .sc-dyGzUR.kfbxDu
+              = link_to"もっと見る",""
+          .main.products.content
+            %ul.products.content.box
+              - @category_men.zip(@images).each do |product, image|
+                %li.products.content.boxes
+                  %div.products.content.boxes.inner
+                    =link_to "","", class:"products.link"
+                    %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                      %figcaption
+                        %span
+                          =product.name
+                      .style_thumbnail__N_xAi
+                        %span{"aria-label": "Price"}
+                          ¥
+                          =product.price 
+                        = link_to "/products/#{product.id}" do
+                          %img.style_thumbnail__N_xAi
+                          = image_tag "#{image.product_image}"
+        .sc-hUfwpO.kyoAKq
+          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn ベビーキッズ新着アイテム
+            .sc-dyGzUR.kfbxDu
+              = link_to"もっと見る",""
+          .main.products.content
+            %ul.products.content.box
+              - @category_kids.zip(@images).each do |product, image|
+                %li.products.content.boxes
+                  %div.products.content.boxes.inner
+                    =link_to "","", class:"products.link"
+                    %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                      %figcaption
+                        %span
+                          =product.name
+                      .style_thumbnail__N_xAi
+                        %span{"aria-label": "Price"}
+                          ¥
+                          =product.price 
+                        = link_to "/products/#{product.id}" do
+                          %img.style_thumbnail__N_xAi
+                          = image_tag "#{image.product_image}"
+        .sc-hUfwpO.kyoAKq
+          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
+            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn インテリア・住まい・小物新着アイテム
+            .sc-dyGzUR.kfbxDu
+              = link_to"もっと見る",""
+          .main.products.content
+            %ul.products.content.box
+              - @category_items.zip(@images).each do |product, image|
+                %li.products.content.boxes
+                  %div.products.content.boxes.inner
+                    =link_to "","", class:"products.link"
+                    %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                      %figcaption
+                        %span
+                          =product.name
+                      .style_thumbnail__N_xAi
+                        %span{"aria-label": "Price"}
+                          ¥
+                          =product.price 
+                        = link_to "/products/#{product.id}" do
+                          %img.style_thumbnail__N_xAi
+                          = image_tag "#{image.product_image}"
+                    
+                          
     =render 'shared/cameraicon'
     =render 'shared/footer'

@@ -5,12 +5,12 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
+  before_action :set_category, only: [:index]
 
   def index
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
-    @category_top = Category.where(ancestry: nil).limit(4)
   end
 
   def new
@@ -141,4 +141,12 @@ end
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_category
+    @category = Category.where(ancestry: nil).limit(4)
+    @category_men = Product.where(parent: "メンズ" ).limit(10)
+    @category_women = Product.where(parent: "レディース" ).limit(10)
+    @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
+    @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
