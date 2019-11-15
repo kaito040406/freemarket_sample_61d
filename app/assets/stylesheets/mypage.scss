@@ -2,6 +2,8 @@
   width: 280px;
   height: 500px;
   background-color: #FFFFFF;
+  z-index: 100;
+  position: absolute;
   &_user {
     position: relative;
     padding: 20px;
