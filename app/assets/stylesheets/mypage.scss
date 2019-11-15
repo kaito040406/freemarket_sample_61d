@@ -1,12 +1,16 @@
 .wrapper {
-  width: 280px;
-  height: 480px;
-  background-color: red;
+  width: 320px;
+  height: 560px;
+  background-color: #FFFFFF;
+  z-index: 100;
+  position: absolute;
+  top: 44px;
+  right: 0;
   &_user {
     position: relative;
     padding: 20px;
     width: 100%;
-    height: 16%;
+    height: 14%;
     background: url(/images/user.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,10 +18,86 @@
   }
 }
 
-.wrapper_user__icon {
+.wrapper_user__icon figure{
   overflow: hidden;
   width: 60px;
   height: 60px;
   margin: 0 auto;
   border-radius: 50%;
 }
+
+.name {
+  font-weight: normal;
+}
+
+.my-sold {
+  width: 320px;
+  position: absolute;
+  left: 0;
+}
+
+.my-sold__money {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 45px;
+  margin: 15px 10px 0 10px;
+  background: #eee;
+  line-height: 45px;
+  text-align: center;
+  border: solid 1px;
+  color: #ccc;
+  p {
+    color: #333;
+    float: left;
+    margin-left: 5px;
+  }
+  h1 {
+    color: #333;
+    float: right;
+    margin-right: 25px;
+  }
+}
+
+.my-sold__point {
+  position: relative;
+  display: block;
+  width: 300px;
+  height: 45px;
+  background: #eee;
+  margin: 0 10px 15px 10px;
+  line-height: 45px;
+  text-align: center;
+  color: #ccc;
+  border: solid 1px;
+  p {
+    color: #333;
+    float: left;
+    margin-left: 5px;
+  }
+  h1 {
+    color: #333;
+    float: right;
+    margin-right: 25px;
+  }
+}
+
+i.fa.fa-chevron-right.my {
+  float: right;
+  line-height: 45px;
+  position: absolute;
+  right: 0;
+  right: 5px;
+}
+
+
+.mypage-nav-list-item {
+  position: relative;
+  display: block;
+  min-height: 48px;
+  padding: 16px;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+}
+

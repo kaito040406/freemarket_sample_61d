@@ -44,7 +44,7 @@
               =link_to "やることリスト",""
           %li.header_second_right_box_four
             .header_second_right_box_inner{id: "my_page_k"}
-              .header_second_right_my_icon
+              .header_second_right_my_icon{id: "#{current_user.nick_name}"}
                 - if current_user.icon_image == nil
                   = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "32", alt: "", height: "32"
                 - else
@@ -61,3 +61,4 @@
             .log_in_k
               .link_box_2k
                 = link_to "ログイン", new_user_session_path, method: :get
+                
