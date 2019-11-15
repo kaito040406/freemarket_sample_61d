@@ -158,8 +158,8 @@ function overwriteLabel(inputIndex){
 }
 
 //出品ごとの画像の通し番号
-//inputタグのインデックス（=product_image配列のインデックス）は画像の削除で途中が抜けたりするので
-//画像が何枚目か、全部で何枚あるかはこちらで管理
+//inputタグのインデックス（=product_image配列のインデックス）は削除で途中が抜けたりするので
+//画像が何枚目か全部で何枚あるかこちらで管理
 function overwriteHiddenCountAll(){
   let count = 1;
   $('.img-uploader-dropbox input[type="hidden"]').each(function(){
@@ -171,8 +171,9 @@ function overwriteHiddenCountEach(hiddenTag, count){
   $(hiddenTag).attr('value', count);
 }
 
-//inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
-//
+//候補画像枚数が変化した時に呼び出され、labelタグの番号を取得・更新する
+//（はずだったが他の処理も一部まとめた
+//"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
 function youngestInputIndex(){
   //サムネイルとセットのhidden要素を全て取得
   let allImgs = $('.hiddenCount');
@@ -183,6 +184,7 @@ function youngestInputIndex(){
     return "";//labelが機能しないようにする
   }
   //0ならばプレースホルダを再表示し、終了
+  //最後の1枚削除によりアップローダーが空になった場合
   else if(nextIndex ==0){
     $('.img-uploader-dropbox pre').show();
     return nextIndex;
@@ -225,10 +227,9 @@ function readLabelIndex(){
       return false;
     }
 
-    //ファイルリーダーがファイルを読めた時に
-    //サムネイル生成などファイル関連で必要な処理を行う事を定義しておく
+    //ファイルリーダーがファイルを読み終わったら行うサムネイル生成などの関連処理
     //(関数として切り出すとサムネイルが表示されなくなったため保留//
-    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
     let reader = new FileReader();
     let changedInput = $(e.target);
     //を付与
@@ -250,6 +251,7 @@ function readLabelIndex(){
       $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
         //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
+
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
@@ -257,8 +259,7 @@ function readLabelIndex(){
         
       });
     };
-
-    ///ファイル読み込み 上記サムネイル・編集削除ボタン・hidden属性によるcount値生成が実行される
+    ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
@@ -266,18 +267,16 @@ function readLabelIndex(){
 
   //削除ボタンを押した時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
     let inputHidden =$(btnBox).prev();
     let imgThumbnail = $(inputHidden).prev();
     let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null);
+    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
     $(imgThumbnail).remove();
     $(inputHidden).remove();
     $(btnBox).remove();
-    //最後の1枚削除によりアップローダーが空になった場合
-
     labelIndex = youngestInputIndex();
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
