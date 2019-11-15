@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
-  belongs_to :category
   accepts_nested_attributes_for :product_images, allow_destroy: true
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
