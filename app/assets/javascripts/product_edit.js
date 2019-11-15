@@ -97,7 +97,6 @@ $(document).on('turbolinks:load', function(){
   $(this).on("change", "#category_child", function() {
     var child_name = $(this).val();
     if(child_name != "---"){
-    console.log(child_name)
       $.ajax({
           type: 'GET',
           url: "/users/" + user_id + "/api/products/grand_child",
@@ -217,7 +216,6 @@ function readLabelIndex(){
   product_id = $(".select-wrap").attr("id")
   if(path == "/products/" + product_id + "/edit"){
     var parent_name = $(".select-wrap").attr("value");
-    console.log(parent_name)
     user_id = $(".select-wrap").attr("id");
       if(parent_name == "レディース"){
         parent_id = 1;
@@ -307,7 +305,6 @@ function readLabelIndex(){
 
       var child_name = $(".form-input-list-t").attr("value");
       if(child_name != "---"){
-      console.log(child_name)
         $.ajax({
             type: 'GET',
             url: "/users/" + 1 + "/api/products/grand_child",
