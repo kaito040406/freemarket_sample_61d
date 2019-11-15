@@ -1,31 +1,3 @@
-// let CategorySelectBoxHTML = `
-// <div class="select-wrap">
-//   <i class="fa fa-chevron-down"></i>
-//   <select class="category_parent">
-//   <option value="0">---</option>
-//   <option value="1">レディース</option>
-//   <option value="200">メンズ</option>
-//   <option value="345">ベビー・キッズ</option>
-//   <option value="480">インテリア・住まい・小物</option>
-//   <option value="623">本・音楽・ゲーム</option>
-//   <option value="683">おもちゃ・ホビー・グッズ</option>
-//   <option value="796">コスメ・香水・美容</option>
-//   <option value="896">家電・スマホ・カメラ</option>
-//   <option value="982">スポーツ・レジャー</option>
-//   <option value="1091">ハンドメイド</option>
-//   <option value="1143">チケット</option>
-//   <option value="1202">自動車・オートバイ</option>
-//   <option value="1264">その他</option>
-//   </select>
-// </div>`
-
-
-
-// カテゴリ選択
-
-
-
-
 $(function(){
   function appendCategory(ct){
     var html = `
@@ -314,17 +286,6 @@ function readLabelIndex(){
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
   });
-
-
-  // $('#product_categry').change(function() {
-  //   let selection = $('option:selected').val();
-  //   console.log(selection);
-  //   $('#product_categry').after(CategorySelectBoxHTML);
-  //   if (!selection) {
-  //     console.log('default');
-  //   }
-  // });
-
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();
