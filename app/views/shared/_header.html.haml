@@ -44,7 +44,7 @@
                 %path{d: "M6.682 12.657L1.67 7.642 0 9.313 6.682 16 21 1.672 19.33 0z", fill: "currentColor", "fill-rule": "nonzero"}
               =link_to "やることリスト",""
           %li.header_second_right_box_four
-            .header_second_right_box_inner
+            .header_second_right_box_inner{id: "my_page_k"}
               .header_second_right_my_icon
                 - if current_user.icon_image == nil
                   = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "32", alt: "", height: "32"
