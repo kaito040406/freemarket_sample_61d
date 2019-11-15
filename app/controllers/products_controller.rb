@@ -63,11 +63,11 @@ class ProductsController < ApplicationController
   end
 
 
-  def updete
-    @product = Product.updete(params[:id])
+  def update
+    @product = Product.update(params[:id])
     @product.product_id.each do |product|
       product.destroy
-    end  
+    end 
   end  
 
   def my_details
