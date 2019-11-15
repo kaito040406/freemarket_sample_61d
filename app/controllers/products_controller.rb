@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
+    @category_top = Category.where(ancestry: nil).limit(4)
   end
 
   def new
@@ -80,7 +81,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
     @users = User.find(current_user.id)
-    @prefecture = Prefecture.find(@users.address_ken).name
+    @users_prefecture = Prefecture.find(@users.address_ken).name
   end
 
 
