@@ -55,7 +55,7 @@
       %h3.sub-title-t
         商品の詳細
       .form-input-list-t{value: @product.child}
-        .ct_box_k
+        .ct_box_k{value: @product.grand}
           .form-input-t{value: "ct_no_1"}
             %label
               カテゴリー
@@ -64,7 +64,7 @@
             %div
               .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
-                = f.select :categry , Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
+                = f.select :categry, Product.categries.keys.to_a, {include_blank: "---", selected: @product.parent}, {class: "select-default", id: "category_parent"}
 
           -# .form-input-t_2{value: "ct_no_1" , value: "ct_no_1"}
 

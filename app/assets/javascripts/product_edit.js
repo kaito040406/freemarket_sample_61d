@@ -268,17 +268,29 @@ function readLabelIndex(){
         if($('#ct_no_3').val() != null){
           $('#ct_no_3').remove();
         }
+        cha_name = $(".form-input-list-t").attr("value")
+
+        categories.forEach(function(category){
+          if(category.name == cha_name){
+            start_name = category.name
+            start_id = category.name
+          }
+        })
+
         html_head = `
                     <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_child" id="category_child" name="child">
+                    <option value="${start_name}" id = "s${start_id}">${start_name}</option>
                     <option value="---" id = "---">---</option>
                     `
         ap_html = html_head
         categories.forEach(function(category){
-          ct_html = appendCategory(category)
-          ap_html = ap_html + ct_html
+          if(category.name != cha_name){
+            ct_html = appendCategory(category)
+            ap_html = ap_html + ct_html
+          }
         })
         html_foot=`
                     </select>
@@ -306,11 +318,22 @@ function readLabelIndex(){
           if($('#ct_no_3').val() != null){
             $('#ct_no_3').remove();
           }
+
+          gra_name = $(".ct_box_k").attr("value")
+
+          categories.forEach(function(category){
+            if(category.name == gra_name){
+              start_name_g = category.name
+              start_id_g = category.name
+            }
+          })
+
           html_head_g = `
                       <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
                         <div class="select-wrap" id="1">
                         <i class="fa fa-chevron-down"></i>
                       <select class="category_grand_child" id="category_grand_child" name="grand" >
+                      <option value="${start_name_g}" id = "s${start_id_g}">${start_name_g}</option>
                       <option value="---" id = "---">---</option>
                       `
           ap_html_g = html_head_g
@@ -332,35 +355,6 @@ function readLabelIndex(){
       if(child_name == "---"){
         $('#ct_no_3').remove();
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
