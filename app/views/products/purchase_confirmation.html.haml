@@ -27,22 +27,19 @@
         .payment-price
           ¥
           = @product.price
-      =f.submit("購入する", method: :get, class: "btn-default btn-red bold .form-buy-bottan_k") do
+      =link_to( buy_product_path,class: "btn-default btn-red bold.form-buy-bottan_k") do
         購入する
-        = form_with url: purchase_item_path do :plain
-          %script.payjp-button{"data-key" => "pk_test_4f3ae755f35fe892d5290eba", :src => "https://checkout.pay.jp", :type => "text/javascript"}
-
   %section.purchese-confirm-sections.buyer-address
     %h3
       配送先
     %address
-      〒600-8892
+      = @users.address_number
       %br
-      京都府 下京区西七条西八反田町
-      7
-      ウエストエイト206
+      = @users.address_ken
+      = @users.address_city
+      = @users.address_banch
       %br
-      中島 知子
+      = @users.nick_name
     %p.buy-user-info-text
     =link_to "", class:"change-link-purchase-confirm" do
       %span
@@ -52,9 +49,9 @@
     %h3
       支払い方法
     %p.buy-user-info-text
-      ************1049
+      カード番号
       %br
-      07 / 26
+      有効期限
     %figure
       =image_tag "/assets/jcb-logomark-img-01.gif", alt: "jcb",  width: "26", height: "20"
     %p

@@ -24,6 +24,8 @@
 // カテゴリ選択
 
 
+
+
 $(function(){
   function appendCategory(ct){
     var html = `
@@ -155,8 +157,6 @@ $(function(){
   });
 
 
-
-
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
   <label>
@@ -180,62 +180,109 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
-function appendProductImageForm(inputIndex){
-  let ProductImageInputHTML = `
-    <div class="product_image_box">
-      <input type="file" 
-      name="product[product_images_attributes][${inputIndex}][product_image]" 
-      id="product_product_images_attributes_${inputIndex}_product_image" 
-      style="display:none;"
-      >
-    </div>`;
+// function //generateProductImageForm(inputIndex){
+//   let ProductImageInputHTML = `
+//     <div class="product_image_box">
+//       <input type="file" 
+//       name="product[product_images_attributes][${inputIndex}][product_image]" 
+//       id="product_product_images_attributes_${inputIndex}_product_image" 
+//       style="display:none;"
+//       >
+//     </div>`;
+//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
+//   $(ProductImageInputHTML).hide();
+// }
 
-  $('.img-uploader-dropbox').append(ProductImageInputHTML);
-  $(ProductImageInputHTML).hide();
-}
-//画像inputフォームの識別数字（削除で通し番号ではなくなる）
-//と思ったがproduct_imgオブジェクトが10個、それに対応するフォームが10個までインデックスで9まで、であるため
-//結局番号の振り直し必須、10個のフォームには区別要かもしれない
-//labelのfor属性の属性値内の番号（＝クリックで起動するinputの番号）を引数に更新
+//////あえてnameの値を不正にし、あとから正確にすることでnullエラーを回避したい。このhtmlで
+/////////ファイルロード後nameの最初にproduct追加でいけるはず
+////productStr = '"product';
+////correctNameAttr =  productStr + $(changedInput).attr('name');
+///$(changedInput).attr() = correctNameAttr;
+
+// function //generateProductImageForm(inputIndex){
+//   let ProductImageInputHTML = `
+//     <div class="product_image_box">
+//       <input type="file" 
+//       name=[product_images_attributes][${inputIndex}][product_image]" 
+//       id="product_product_images_attributes_${inputIndex}_product_image" 
+//       style="display:none;"
+//       >
+//     </div>`;
+
+//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
+//   $(ProductImageInputHTML).hide();
+// }
+
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
 
-function youngestInputIndex(){
-  let inputIndex;
-  inputIndex = countImgForm();
-  return inputIndex;
-}
-function countImgForm(){//今アップロード候補に入ってる画像の総数を数える
-  let imgFormCount = 0;//並べる時の順番作成にも必要と思われる
-  $('.img-uploader-dropbox input[type="file"]').each(function(){
-    imgFormCount = imgFormCount + 1;
+//出品ごとの画像の通し番号
+//inputタグのインデックス（=product_image配列のインデックス）は画像の削除で途中が抜けたりするので
+//画像が何枚目か、全部で何枚あるかはこちらで管理
+function overwriteHiddenCountAll(){
+  let count = 1;
+  $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+    overwriteHiddenCountEach(this, count)
+    count = count + 1;
   });
-  return imgFormCount;//DBに記録される画像の総数);
+}
+function overwriteHiddenCountEach(hiddenTag, count){
+  $(hiddenTag).attr('value', count);
 }
 
-function getLabelForIndex(){
-  let labelForIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-  labelForIndex = Number(labelForIndex);//数値型へ変換
-  return labelForIndex;
+//inputタグのインデックス（=product_image配列のインデックス）にの処理はこちら
+//
+function youngestInputIndex(){
+  //サムネイルとセットのhidden要素を全て取得
+  let allImgs = $('.hiddenCount');
+  //youngestInputIndexの最大値
+  let nextIndex = $(allImgs).length;
+  //10ならば最大枚数アップされている
+  if (nextIndex == 10){
+    return "";//labelが機能しないようにする
   }
+  //0ならばプレースホルダを再表示し、終了
+  else if(nextIndex ==0){
+    $('.img-uploader-dropbox pre').show();
+    return nextIndex;
+  }
+
+  //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
+  let inputTagCounter = nextIndex - 1;
+    while(0 <= inputTagCounter){
+      //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
+      let filledInputSelecter = "#hiddenCount" + inputTagCounter;
+        //lengthメソッドの返り値が0なら要素が存在しない
+      if ($(filledInputSelecter).length ==0){
+        //サムネイルの無い番号だったならその値へ更新
+        nextIndex = inputTagCounter;
+      }
+      inputTagCounter = inputTagCounter -1;
+    }
+  return nextIndex;
+}
+function readLabelIndex(){
+  let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+  labelIndex = Number(labelIndex);//数値型へ変換
+  return labelIndex;
+}
 //updateImgCount()
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
 /////////////////////////////////////
 /////本体ここから//////////////////////
 /////////////////////////////////////
-
-$(document).on('turbolinks:load', function(){
-  let labelForIndex = getLabelForIndex(); //new.html.hamlで定義される"0"
-  appendProductImageForm(labelForIndex);
+// $(document).on('turbolinks:load', function(){
+  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
+  //generateProductImageForm(labelIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    let labelForIndex = getLabelForIndex();
+    labelIndex = readLabelIndex();
     // 11枚目なら中断
-    if(labelForIndex >= 10){//inputタグで検出するのでダイアログは表示される
+    if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
     }
     let file = e.target.files[0];
@@ -244,51 +291,63 @@ $(document).on('turbolinks:load', function(){
       return false;
     }
 
-    //サムネイルと編集削除ボタン生成//
+    //サムネイル・編集削除ボタン・hidden属性によるcount値生成//
     //(関数として切り出すとサムネイルが表示されなくなったため保留)//
+    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる//
     let reader = new FileReader();
     let changedInput = $(e.target);
-    //hidden属性でproduct_image:[:count]の値を付与
+    //を付与
     reader.onload = function (e){
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
         class="thumbnail" title="${file.name}" >
         <input type="hidden" 
-          name="product[product_images_attributes][${labelForIndex}][count]" 
-        value=${labelForIndex}>
+          name="product[product_images_attributes][${labelIndex}][count]" 
+          value="${labelIndex}"
+          id = "hiddenCount${labelIndex}"
+          class = "hiddenCount">
         <div class="btn-box">
           <div class="img-edit-btn">編集</div>
           <div class="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
+
+      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+        labelIndex = youngestInputIndex();
+        overwriteLabel(labelIndex);
+        //generateProductImageForm(labelIndex);
+        overwriteHiddenCountAll();
+        //プレースホルダの表示・非表示処理
+        $('.img-uploader-dropbox pre').hide();
+        
+      });
     };
+    //次のchangeイベントでのinputタグ(product_model)を更新
+
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
-    //次のchangeイベントでのinputタグ(product_model)を更新
-    labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
-    appendProductImageForm(labelForIndex);
-
-    //プレースホルダの表示・非表示処理
-    $('.img-uploader-dropbox pre').hide();
-    if(labelForIndex== 0){
-      $('.img-uploader-dropbox pre').show();
-    }
   });
-  //画像選択により生成された要素の削除
-  $('.product_image_box').on('click', '.img-delete-btn', function(e) {
-    e.preventDefault();
-    let box =e.target.closest('.product_image_box');
-    $(box).remove();
-    let labelForIndex = youngestInputIndex();
-    overwriteLabel(labelForIndex);
-    console.log(labelForIndex);
-    if(labelForIndex== 0){
 
-      $('.img-uploader-dropbox pre').show();
-    }
+  //削除ボタンを押した時の処理
+  $(document).off('click');//イベント多重化防止
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$(document)だといけたのか未理解
+    e.preventDefault();
+    let btnBox =e.target.closest('.btn-box');
+    let inputHidden =$(btnBox).prev();
+    let imgThumbnail = $(inputHidden).prev();
+    let inputFile = $(inputHidden).prev();
+    $(inputFile).val(null);
+    $(imgThumbnail).remove();
+    $(inputHidden).remove();
+    $(btnBox).remove();
+    //最後の1枚削除によりアップローダーが空になった場合
+
+    
+    labelIndex = youngestInputIndex();
+    overwriteLabel(labelIndex);
+    overwriteHiddenCountAll();
   });
 
 
@@ -319,5 +378,4 @@ $(document).on('turbolinks:load', function(){
     $('#product-fee').html(product_fee);
     $('#product-gain').html(product_gain);
   });
-});
 });

@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
+  belongs_to :card
   accepts_nested_attributes_for :product_images, allow_destroy: true
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
@@ -54,7 +54,7 @@ class Product < ApplicationRecord
   # validation
   validates :name,                      presence: true, length: { in: 1..40}
   validates :text,                      presence: true, length: { in: 1..1000}
-  validates :price,                     numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+  validates :price,                     numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
   validates :seller_id,                 presence: true, numericality: { only_integer: true}
   validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
   validates :status,                    presence: true

@@ -14,7 +14,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_oauth(request.env['omniauth.auth'])
     check = Snscredential.find_by(token: request.env['omniauth.auth'][:uid])
     if check != nil
-      binding.pry
       sign_in User.find(check.mid) unless user_signed_in?
       redirect_to root_path
     else

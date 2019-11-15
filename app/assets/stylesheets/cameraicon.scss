@@ -1,4 +1,4 @@
-.eUokWJ {
+.camera-main-box {
   bottom: 32px;
   font-size: 22px;
   height: 160px;
@@ -9,44 +9,30 @@
   z-index: 2;
 }
 
-.judNJS {
+.camera-main-link {
   display: block;
 }
 
-@media (min-width: 768px){
-  .cEMgYD {
-  width: 160px;
-  height: 160px;
-  padding-top: 32px;
-  }
-}
-
-.cEMgYD {
+.camera-box-inner {
   text-align: center;
   background-color: rgb(234, 53, 45);
   border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  padding-top: 32px;
 }
-@media (min-width: 768px){
-.jsMoaY {
+
+.camera-description {
   font-size: 22px;
-  }
-}
-.jsMoaY {
   color: rgb(255, 255, 255);
 }
 
-
-@media (min-width: 768px){
-.bMYJEZ {
-  width: 60px;
-  height: 54px;
-  margin-top: 8px;
-  }
-}
-.bMYJEZ {
+.camera-icon {
   max-width: 100%;
   max-height: 100%;
   color: rgb(255, 255, 255);
   display: block;
   margin: 5px auto 0px;
+  width: 60px;
+  height: 54px;
 }

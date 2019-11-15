@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users,controllers: { registrations: 'registrations'} #ロボットではない認証に使用
+  devise_for :users,controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks'} #ロボットではない認証に使用
   root 'products#index'
-  resources :products, only: [:show, :destroy, :create, :edit] do
+  resources :products, only: [:show, :destroy, :create, :edit, :buy] do
+
     member do
-      get 'buy'
       get 'my_details'
       get 'purchase_confirmation'
+      get 'buy'
       get 'mypage'
       get 'update'
     end
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'progress'
       get 'log_out'
+      get 'mypage'
     end
   end
   
@@ -48,17 +50,26 @@ Rails.application.routes.draw do
   #ここまで長谷川記入
 
   resources :categories
-  resources "users",only: [:index,:profile, :progress], path: 'mypage' do
+  resources "users",only: [:index,:profile, :progress, :cards], path: 'mypage' do
 
     collection do
       get 'profile'
       get 'identification'
       get 'progress'
-      get 'card'
+      get 'cards'
+      get 'credit'
     end
   end
 
-  resources :credit_cards, only: [:index, :new, :show] do
+  resources :cards, only: [:cards, :credit], path: '/mypage/cards' do
+    collection do
+      get 'cards'
+      get 'credit'
+    end
+  end
+  
+
+  resources :cards, only: [:index, :new, :show] do
     collection do
       post 'pay', to: 'cards#pay'
       post 'delete', to: 'cards#delete'

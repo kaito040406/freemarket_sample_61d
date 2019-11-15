@@ -2,7 +2,7 @@
   %ul.mypage-nav-list 
     %li
       .mypage-nav-list-item.active
-        =link_to "マイページ", users_path
+        =link_to "マイページ", "#{current_user.id}"
         .fa.fa-chevron-right
     %li
       .mypage-nav-list-item

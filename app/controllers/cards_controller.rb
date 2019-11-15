@@ -2,7 +2,6 @@ class CardsController < ApplicationController
   require "date"
   require "payjp"
 
-
   def index
   end
 
@@ -51,5 +50,6 @@ class CardsController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end
+
 end
 

@@ -1,12 +1,17 @@
 class ProductsController < ApplicationController
+
+  require 'payjp'
+
+
   before_action :authenticate_user!, except: [:index]
-  before_action :set_product, only: [:destroy, :show, :my_details, :updete]
+  before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
+
   def index
+    @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
   end
 
-  
   def new
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
@@ -17,10 +22,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     #@product.user = current_user
-    
+
     if @product.save!(validate: false)
 
-      flash[:notice] = "出品が完了しました"
       redirect_to :root
     else
       #render :new
@@ -47,6 +51,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
+    @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
   def buy
@@ -73,12 +78,43 @@ class ProductsController < ApplicationController
   def purchase_confirmation
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
+    @users = User.find(current_user.id)
   end
 
+
+  def buy #クレジット購入
+    @product = Product.find(params[:id])
+    unless user_signed_in?
+      redirect_to registration_users_path
+      flash[:alert] = '購入には新規登録が必要です'
+    else
+      card = Cards.find_by(user_id: current_user.id)
+      if card.blank?
+        redirect_to action: "new"
+        flash[:alert] = '購入にはクレジットカード登録が必要です'
+      else
+        card = Cards.find_by(user_id: current_user.id)
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        Payjp::Charge.create(
+        amount: @product.price, #支払金額
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy', #日本円
+        )
+        if @product.update_attribute(:finished, 1)
+          @product.update_attribute(:buyer_id, current_user.id)
+          redirect_to controller: "products", action: 'show'
+        else
+          flash[:alert] = '購入に失敗しました。'
+          redirect_to controller: "products", action: 'show'
+        end
+      end
+    end
+  end
+end
   private
 
   def set_product
-    
+    @product = Product.find(params[:product_id])
   end
   
   def product_image_params
@@ -126,10 +162,9 @@ class ProductsController < ApplicationController
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent,:child, :grand, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, product_images_attributes: [:product_image, :count])
   end
 
   def set_product
     @product = Product.find(params[:id])
   end
-end

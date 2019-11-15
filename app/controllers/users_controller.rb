@@ -5,23 +5,24 @@ class UsersController < ApplicationController
   end
 
   def show
-    
-  end  
+  end
+
+  def edit
+  end
 
   def log_out
-
   end
 
   def profile
   end
-
+  
   def identification
     @data = Prefecture.all
     @user = current_user
   end
 
   def progress
-    @product=Product.all
+    @products = Product.all
     @image = ProductImage.all
     @user = User.all
   end
@@ -32,6 +33,5 @@ class UsersController < ApplicationController
     @user = User.all
   end
 
-  def edit
-  end  
+  
 end
