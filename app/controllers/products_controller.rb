@@ -54,7 +54,8 @@ class ProductsController < ApplicationController
     @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
-  def buy
+  def done
+    @product = Product.find(params[:id])
   end
 
   def my_details
@@ -102,7 +103,7 @@ class ProductsController < ApplicationController
         )
         if @product.update_attribute(:finished, 1)
           @product.update_attribute(:buyer_id, current_user.id)
-          redirect_to controller: "products", action: 'show'
+          redirect_to controller: "products", action: 'done'
         else
           flash[:alert] = '購入に失敗しました。'
           redirect_to controller: "products", action: 'show'
