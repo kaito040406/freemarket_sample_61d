@@ -22,9 +22,8 @@ class UsersController < ApplicationController
   end
 
   def progress
-    @products = Product.all
-    @image = ProductImage.all
-    @user = User.all
+    @products = Product.where(seller_id: current_user.id)
+    @image = ProductImage.where(product_id: @products.ids)
   end
 
   def my_details

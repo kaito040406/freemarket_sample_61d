@@ -75,6 +75,7 @@ class ProductsController < ApplicationController
   end  
 
   def my_details
+    binding.pry
   end
 
   def purchase_confirmation
