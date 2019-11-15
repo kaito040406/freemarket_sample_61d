@@ -180,39 +180,6 @@ let DeliveryMethodSelectBoxHTML = `
   </div>
 </div>`
 
-// function //generateProductImageForm(inputIndex){
-//   let ProductImageInputHTML = `
-//     <div class="product_image_box">
-//       <input type="file" 
-//       name="product[product_images_attributes][${inputIndex}][product_image]" 
-//       id="product_product_images_attributes_${inputIndex}_product_image" 
-//       style="display:none;"
-//       >
-//     </div>`;
-//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
-//   $(ProductImageInputHTML).hide();
-// }
-
-//////あえてnameの値を不正にし、あとから正確にすることでnullエラーを回避したい。このhtmlで
-/////////ファイルロード後nameの最初にproduct追加でいけるはず
-////productStr = '"product';
-////correctNameAttr =  productStr + $(changedInput).attr('name');
-///$(changedInput).attr() = correctNameAttr;
-
-// function //generateProductImageForm(inputIndex){
-//   let ProductImageInputHTML = `
-//     <div class="product_image_box">
-//       <input type="file" 
-//       name=[product_images_attributes][${inputIndex}][product_image]" 
-//       id="product_product_images_attributes_${inputIndex}_product_image" 
-//       style="display:none;"
-//       >
-//     </div>`;
-
-//   $('.img-uploader-dropbox').append(ProductImageInputHTML);
-//   $(ProductImageInputHTML).hide();
-// }
-
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
@@ -276,7 +243,6 @@ function readLabelIndex(){
 /////////////////////////////////////
 // $(document).on('turbolinks:load', function(){
   let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
-  //generateProductImageForm(labelIndex);
 
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
@@ -316,7 +282,6 @@ function readLabelIndex(){
       $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
         labelIndex = youngestInputIndex();
         overwriteLabel(labelIndex);
-        //generateProductImageForm(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダの表示・非表示処理
         $('.img-uploader-dropbox pre').hide();
