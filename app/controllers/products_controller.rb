@@ -60,10 +60,12 @@ class ProductsController < ApplicationController
 
 
   def update
+    binding.pry
     @product = Product.find(params[:id])
       if @product.seller_id == current_user.id
-        @product.updete(product_params)
+        @product.update(product_params)
         flash[:notice] = "変更が完了しました"
+      else  
       redirect_to root_path
     end   
   end  
