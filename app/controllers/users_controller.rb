@@ -32,4 +32,6 @@ class UsersController < ApplicationController
     @image = ProductImage.all
     @user = User.all
   end
+
+  
 end
