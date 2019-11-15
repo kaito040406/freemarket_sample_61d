@@ -351,7 +351,7 @@ h6 {
 
 .item-detail-message {
   width: 700px;
-  margin: 8px auto 35px auto;
+  margin: 8px 0 35px 40px;
   
 }
 
@@ -782,4 +782,17 @@ h6 {
   font-weight: 600;
   /* -webkit-transition: all ease-out .3s; */
   transition: all ease-out .3s;
+}
+
+
+.item-detail-message2 {
+  width: 700px;
+  margin: 25px auto 25px auto;
+  background-color: white;
+}
+
+.listing-item-change-box2 {
+  background: #fff;
+  padding: 8px 16px 8px 16px;
+  width: 700px;
 }

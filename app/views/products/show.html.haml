@@ -125,7 +125,7 @@
   .item-detail-message2
     .message-container
       .l-content
-        .listing-item-change-box
+        .listing-item-change-box2
           =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
           %p.text-center or
           %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
@@ -135,7 +135,7 @@
             = link_to 'この商品を削除する', product_path(@product), method: :delete
 
 
-.item-detail-message
+.item-detail-message2
   .message-container
     .message-content
       %form.message-form{action: "https://www.mercari.com/jp/comment/add/", method: "POST"}
