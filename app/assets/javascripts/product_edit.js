@@ -1,4 +1,14 @@
 $(function(){
+  //newフォームからは実行されない
+  let pathSelf =location.pathname;
+  if (pathSelf.match(/new/) != null) {
+    // console.log('edit doesnt work');
+    return false;
+  }
+  
+  //1枚以上の画像はあるため最初はプレースホルダ非表示
+  $('.img-uploader-dropbox pre.edit-form').hide();
+
   function appendCategory(ct){
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
@@ -234,7 +244,7 @@ function readLabelIndex(){
     reader.onload = function (e){
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
-        class="thumbnail" title="${file.name}" >
+          class="thumbnail" title="${file.name}" >
         <input type="hidden" 
           name="product[product_images_attributes][${labelIndex}][count]" 
           value="${labelIndex}"

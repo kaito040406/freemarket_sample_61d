@@ -1,4 +1,11 @@
 $(function(){
+  // editフォームからは実行されない
+  let pathSelf =location.pathname;
+  if (pathSelf.match(/edit/) != null) {
+      // console.log('create doesnt work');
+      return false;
+  }
+
   function appendCategory(ct){
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
