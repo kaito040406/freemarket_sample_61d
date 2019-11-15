@@ -29,13 +29,8 @@
       %nav.mypage-nav
         %ul.mypage-nav-list 
           %li
-            .mypage-nav-list-item_my
-              =link_to "いいね！一覧", ""
-              .fa.fa-chevron-right
-          %li
             .mypage-nav-list-item
-              =link_to(new_user_product_path(current_user), method: :get) do
-                出品する
+              =link_to "いいね！一覧", ""
               .fa.fa-chevron-right
           %li
             .mypage-nav-list-item
