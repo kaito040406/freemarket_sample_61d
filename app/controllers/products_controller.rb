@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     #@product.user = current_user
 
-    if @product.save!(validate: false)
+    if @product.save!
 
       redirect_to :root
     else
@@ -130,35 +130,6 @@ end
     params[:product][:child] = params[:child]
     params[:product][:grand] = params[:grand]
     params[:product][:parent] = params[:product][:categry]
-
-
-    # if params[:product][:categry] == 1 
-    #   params[:product][:parent] = "レディース"
-    # elsif params[:product][:categry] == 2 
-    #   params[:product][:parent] = "メンズ"
-    # elsif params[:product][:categry] == 3 
-    #   params[:product][:parent] = "ベビー・キッズ"
-    # elsif params[:product][:categry] == 4 
-    #   params[:product][:parent] = "インテリア・住まい・小物"
-    # elsif params[:product][:categry] == 5 
-    #   params[:product][:parent] = "本・音楽・ゲーム"
-    # elsif params[:product][:categry] == 1328 
-    #   params[:product][:parent] = "本・音楽・ゲーム"
-    # elsif params[:product][:categry] == 6 
-    #   params[:product][:parent] = "おもちゃ・ホビー・グッズ"
-    # elsif params[:product][:categry] == 7 
-    #   params[:product][:parent] = "コスメ・香水・美容"
-    # elsif params[:product][:categry] == 8 
-    #   params[:product][:parent] = "家電・スマホ・カメラ"
-    # elsif params[:product][:categry] == 9 
-    #   params[:product][:parent] = "スポーツ・レジャー"
-    # elsif params[:product][:categry] == 1027 
-    #   params[:product][:parent] = "チケット"
-    # elsif params[:product][:categry] == 1318 
-    #   params[:product][:parent] = "自動車・オートバイ"
-    # elsif params[:product][:categry] == 10 
-    #   params[:product][:parent] = "その他"
-    # end
 
 
 
