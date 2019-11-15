@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :mypage do
-  link "マイページ", "/users/#{current_user.id}"
+  link "マイページ", "#{current_user.id}"
 end
 
 
@@ -23,7 +23,7 @@ crumb :progress do
 end
 
 crumb :cards do
-  link "支払い方法", cards_users_path
+  link "支払い方法", "/cards"
   parent :mypage
 end
 
