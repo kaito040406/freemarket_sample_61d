@@ -80,6 +80,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @images = ProductImage.find_by(product_id: params[:id])
     @users = User.find(current_user.id)
+    @prefecture = Prefecture.find(@users.address_ken).name
   end
 
 
