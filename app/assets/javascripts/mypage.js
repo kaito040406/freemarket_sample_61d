@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
 
     }else{
       parent_html = `
-      <div class="wrapper">
+      <div class="wrapper" id="mypage_wrapper">
         <div class="wrapper_user">
           <div class="wrapper_user__icon">
             <figure>
@@ -83,7 +83,11 @@ $(document).on('turbolinks:load', function(){
         </div>
       </div>
       `
-
+      $('#my_page_k').append(parent_html);
     }
+  })
+
+  $('#my_page_k').mouseleave(function(){
+    $('#mypage_wrapper').remove()
   })
 })
