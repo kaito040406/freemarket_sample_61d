@@ -62,6 +62,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cards, only: [:cards, :credit], path: '/mypage/cards' do
+    collection do
+      get 'cards'
+      get 'credit'
+    end
+  end
+  
+
   resources :cards, only: [:index, :new, :show] do
     collection do
       post 'pay', to: 'cards#pay'
