@@ -13,6 +13,13 @@ $(function(){
     return html;
     }
 
+    function appendCategory_g(ct){
+      var html = `
+                  <option value="${ct.id}" id = "${ct.id}">${ct.name}</option>
+                  `
+      return html;
+      }
+
 
 
   $('#category_parent').change(function() {
@@ -94,6 +101,7 @@ $(function(){
   });
   
   $(this).on("change", "#category_child", function() {
+    console.log("ok")
     var child_name = $(this).val();
     if(child_name != "---"){
     console.log(child_name)
@@ -116,7 +124,7 @@ $(function(){
                     `
         ap_html_g = html_head_g
         categories.forEach(function(category){
-          ct_html_g = appendCategory(category)
+          ct_html_g = appendCategory_g(category)
           ap_html_g = ap_html_g + ct_html_g
         })
         html_foot_g=`
@@ -134,6 +142,11 @@ $(function(){
       $('#ct_no_3').remove();
     }
   });
+
+
+
+
+
 
 
 let DeliveryMethodSelectBoxHTML = `

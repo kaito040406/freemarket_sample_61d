@@ -20,6 +20,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :parent
       t.string :child
       t.string :grand
+      t.integer :grand_id
       t.timestamps
     end
   end

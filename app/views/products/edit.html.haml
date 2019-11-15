@@ -37,7 +37,7 @@
         -#   %div{class: "product_image_box"}
         -#     =img.file_field :product_image
         -#       %img src: "${e.target.result}" width: "114px" height: "116px" class: "thumbnail" title: "${file.name}"
-    .form-sub-t
+    .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
           商品名
