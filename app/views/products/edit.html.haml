@@ -17,14 +17,26 @@
         %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
           %pre
             :preserve
-      
-      
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera
-          =f.fields_for :product_images do |img|
-            %div{class: "product_image_box"}
-              =img.file_field :product_image
+          %div{class: "product_image_box"}
+            =@product.product_images.each do |existing_img|
+              =image_tag("#{existing_img.product_image}", width: "114px", height: "116px", class: "thumbnail")
+              .btn-box
+                .img-edit-btn
+                  編集
+                .img-delete-btn
+                  削除
+          %div{class: "product_image_box"}
+            =f.fields_for :product_images do |added_img|
+              =added_img.file_field :product_image
+        -# = image_tag("#{product.product_image.product_image}")
+        -#   %f.hidden {name: "product[product_images_attributes][${labelIndex}][count]" value: "${labelIndex}" id: "hiddenCount${labelIndex}" class = "hiddenCount}
+        -# =f.fields_for :product_images do |img| #1~9枚のproduct_imageを受け取る
+        -#   %div{class: "product_image_box"}
+        -#     =img.file_field :product_image
+        -#       %img src: "${e.target.result}" width: "114px" height: "116px" class: "thumbnail" title: "${file.name}"
     .form-sub-t
       .form-input-t
         %label
