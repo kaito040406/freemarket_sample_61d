@@ -50,6 +50,7 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    @images = ProductImage.where(product_id: @product.id)
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
     @prefecture = Prefecture.find(@product.delivery_from).name

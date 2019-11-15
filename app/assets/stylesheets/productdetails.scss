@@ -796,3 +796,16 @@ h6 {
   padding: 8px 16px 8px 16px;
   width: 700px;
 }
+
+
+.other_image_box_k{
+  position: absolute;
+  height: 70px;
+  width: 300px;
+  top:300px;
+  .other_image_nimi_box_k{
+    float: left;
+    height: 70px;
+    width: 70px;
+  }
+}

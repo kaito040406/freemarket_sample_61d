@@ -15,6 +15,10 @@
           .owl-carousel
             .owl-item-inner 
               = image_tag("#{@image.product_image}")
+          .other_image_box_k
+            - @images.each do |image|
+              .other_image_nimi_box_k
+                = image_tag("#{image.product_image}",width: "55" )
             - unless @product.finished == 0
               .items__sold
                 .items__sold__inner SOLD
