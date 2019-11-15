@@ -21,7 +21,7 @@
       - @products.zip(@image).each do |product, image|
         .tab-content
 
-        - @product.each do |product|
+        - @products.each do |product|
           = form_for product, url: my_details_product_path(product), method: :get do |f|
             %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
               %li
