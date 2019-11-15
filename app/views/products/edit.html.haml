@@ -20,16 +20,16 @@
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera
-          %div{class: "product_image_box"}
-            =@product.product_images.each do |existing_img|
+          =@product.product_images.each do |existing_img|
+            %div{class: "product_image_box"}
               =image_tag("#{existing_img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
               .btn-box
                 .img-edit-btn
                   編集
                 .img-delete-btn
                   削除
-          %div{class: "product_image_box"}
-            =f.fields_for :product_images do |added_img|
+          =f.fields_for :product_images do |added_img|
+            %div{class: "product_image_box"}
               =added_img.file_field (:product_image)
         -# = image_tag("#{product.product_image.product_image}")
         -#   %f.hidden {name: "product[product_images_attributes][${labelIndex}][count]" value: "${labelIndex}" id: "hiddenCount${labelIndex}" class = "hiddenCount}

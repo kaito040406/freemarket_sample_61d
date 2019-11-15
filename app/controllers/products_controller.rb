@@ -46,6 +46,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    10.times {@product.product_images.build}
   end
   
   def show
