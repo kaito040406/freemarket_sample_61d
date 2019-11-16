@@ -86,6 +86,7 @@ class ProductsController < ApplicationController
         @product.update!(product_params)
         redirect_to root_path
     end   
+
   end  
 
   def purchase_confirmation

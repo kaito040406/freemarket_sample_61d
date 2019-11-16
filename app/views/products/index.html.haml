@@ -79,7 +79,7 @@
                         %span{"aria-label": "Price"}
                           ¥
                           =product.price 
-                        = link_to product_path(product) do
+                        = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
                           = image_tag "#{image.product_image}"
         .sc-hUfwpO.kyoAKq
