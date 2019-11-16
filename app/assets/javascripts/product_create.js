@@ -91,15 +91,15 @@ $(function(){
                     `
         ap_html = html_head
         categories.forEach(function(category){
-          ct_html = appendCategory(category)
-          ap_html = ap_html + ct_html
+          let ct_html = appendCategory(category)
+          let ap_html = ap_html + ct_html;
         })
         html_foot=`
                     </select>
                     </div>
                     </div>
                   `
-        html = ap_html + html_foot;
+        let html = ap_html + html_foot;
         $('.ct_box_k').append(html);
       })
       .fail((data) => {
@@ -110,7 +110,7 @@ $(function(){
   
   $(this).on("change", "#category_child", function() {
     console.log("ok")
-    var child_name = $(this).val();
+    let child_name = $(this).val();
     if(child_name != "---"){
     console.log(child_name)
       $.ajax({
