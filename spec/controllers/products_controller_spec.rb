@@ -15,18 +15,11 @@ RSpec.describe ProductsController, type: :controller do
     #   end    
     # end
 
-  describe 'get #update' do 
-    let(:login_user) { user_a }
-   context 'login' do 
-      before do
-        visit edit_product_path(product_id)
-        fill_in 'update', with: 'edit'
-        click_button 'update'
-      end
-
-      it 'renders to root_path' do 
-        expect(response).to have_content 'edit'
+    describe 'get #update' do 
+      it "renders the :update template" do
+        product = create(:product)
+        get :update, params: {id: product}
+        expect(response).to render_template :update
       end
     end
-  end
-end
+end    
