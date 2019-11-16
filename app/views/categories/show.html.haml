@@ -1,10 +1,12 @@
 = render 'shared/header'
+= render 'shared/bread_bar'
+
 
 .category-list
   %p.category-list__title
     = @category.name
     の商品一覧
     .items-box-content__others__box
-
+    
 = render 'shared/footer'
 = render "shared/cameraicon"
