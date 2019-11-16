@@ -4,14 +4,14 @@ $(document).on('turbolinks:load', function(){
 
     }else{
       parent_html = `
-      <div class="wrapper" id="mypage_wrapper">
-        <div class="wrapper_user">
+      <div class="wrapper" >
+        <div class="wrapper_user" id="aho">
           <div class="wrapper_user__icon">
             <figure>
               <img width="60" alt="" height="60" src="https://static.mercdn.net/images/member_photo_noimage_thumb.png">
             </figure>
             <h2 class="name">
-              <%= current_user.nick_name %>
+              ひじ
             </h2>
             <div class="mypage-number">
             <div>
@@ -88,17 +88,9 @@ $(document).on('turbolinks:load', function(){
   })
 
   $('#my_page_k').mouseleave(function(){
-    $('#mypage_wrapper').remove()
+    $('#aho').remove()
   })
 })
 
-$(function(){
-  $(document).on('mouseover', '.wrapper_user__icon', function(e){
-    parent_id = $(this).attr("id")
-    $("#"+ parent_id).css({
-      backgroundColor: "rgb(234, 53, 45)",
-      color: "white"
-    })
-  })
-})
+
 
