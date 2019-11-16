@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
-  enum categry:                    {"レディース": 1, ##ancestory使用へ置き換えてく
+  enum category:                    {"レディース": 1, ##ancestory使用へ置き換えてく
                                     "メンズ": 2, 
                                     "ベビー・キッズ": 3,
                                     "インテリア・住まい・小物": 4,
@@ -55,10 +55,10 @@ class Product < ApplicationRecord
   validates :text,                      presence: true, length: { in: 1..1000}
   validates :price,                     numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
   validates :seller_id,                 presence: true, numericality: { only_integer: true}
-  validates :categry,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
+  validates :category,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
   #validates :brand, brandsテーブルとの連動必要
-  #validates :size,                      presence: true categryに依存、DBには設定あるためコントローラで挿入
+  #validates :size,                      presence: true categoryに依存、DBには設定あるためコントローラで挿入
   validates :date,                      presence: true
   validates :delivery_fee,              presence: true
   validates :delivery_method,           presence: true #presenceDBカラム未設定

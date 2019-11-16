@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
           match_id << c.id
         end
       end
-      @products = Product.where(category_id: match_id).order("id DESC")
+      @products = Product.where(category: match_id).order("id DESC")
     elsif anc.match(/\//)
       @products = Product.where(category_id: cat.id).order("id DESC")
     else

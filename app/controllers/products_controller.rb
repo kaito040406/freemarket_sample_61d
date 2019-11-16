@@ -133,11 +133,11 @@ end
 
     params[:product][:child] = params[:child]
     params[:product][:grand] = params[:grand]
-    params[:product][:parent] = params[:product][:categry]
+    params[:product][:parent] = params[:product][:category]
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, product_images_attributes: [:product_image, :count])
   end
 
   def set_product
