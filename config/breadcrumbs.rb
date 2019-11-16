@@ -22,6 +22,12 @@ crumb :progress do
   parent :mypage
 end
 
+crumb :my_details do
+  link "出品商品画面", progress_users_path
+  parent :progress
+end
+
+
 crumb :cards do
   link "支払い方法", "/cards"
   parent :mypage
@@ -38,3 +44,6 @@ crumb :credit do
   parent :cards
 end
 
+crumb :privacy do
+  link "プライバシーポリシー", privacy_users_path
+end
