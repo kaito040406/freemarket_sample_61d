@@ -25,10 +25,10 @@ class CategoriesController < ApplicationController
       not_null_categories = Category.where.not("ancestry IS NULL")
       not_null_categories.each do |c|
         if c[:ancestry].match(reg)
-          match_id << c.id
+          match_id << (c.id-1)
         end
       end
-      @products = Product.where(category: match_id).order("id DESC")
+      @products = Product.where(category: match_id).order("id DESC") 
     elsif anc.match(/\//)
       @products = Product.where(category_id: cat.id).order("id DESC")
     else
