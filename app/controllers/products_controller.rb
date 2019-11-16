@@ -64,7 +64,6 @@ class ProductsController < ApplicationController
     # @images = ProductImage.where(product_id: @product.id)
     # @image = ProductImage.find_by(product_id: params[:id])
     @prefecture = Prefecture.find(@product.delivery_from).name
-    binding.pry
   end  
 
   def done
