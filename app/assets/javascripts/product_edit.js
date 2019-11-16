@@ -25,78 +25,6 @@ function readLabelIndex(){
   path = location.pathname
   product_id = $(".select-wrap").attr("id")
   if(path == "/products/" + product_id + "/edit"){
-    img_number = $(".thumbnail").length
-    if(img_number != 0){
-      $(".img-uploader-dropbox").remove()
-
-
-      $.ajax({
-        type: 'GET',
-        url: "/users/" + 1 + "/api/products/number",
-        dataType: 'json',
-        data: {id: product_id}
-      })
-
-      imag_box_html =
-      `<label class="img-uploader-dropbox" for="product_product_images_attributes_0_product_image">
-  
-      <div class="product_image_box">
-      <img width="114px" height="116px" class="thumbnail" src="/uploads/product_image/product_image/1/IMG_6257.JPG">
-      </div>
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27af751c0>" type="hidden" name="product[product_images_attributes][0][product_image]" id="product_product_images_attributes_0_product_image">
-      </div>
-      <input type="hidden" value="1" name="product[product_images_attributes][0][id]" id="product_product_images_attributes_0_id"><div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27af6d268>" type="hidden" name="product[product_images_attributes][1][product_image]" id="product_product_images_attributes_1_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27af65e00>" type="hidden" name="product[product_images_attributes][2][product_image]" id="product_product_images_attributes_2_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27a8e3460>" type="hidden" name="product[product_images_attributes][3][product_image]" id="product_product_images_attributes_3_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27af5fe38>" type="hidden" name="product[product_images_attributes][4][product_image]" id="product_product_images_attributes_4_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27af5d4d0>" type="hidden" name="product[product_images_attributes][5][product_image]" id="product_product_images_attributes_5_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27a8df5b8>" type="hidden" name="product[product_images_attributes][6][product_image]" id="product_product_images_attributes_6_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27a8dcf20>" type="hidden" name="product[product_images_attributes][7][product_image]" id="product_product_images_attributes_7_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27b26a650>" type="hidden" name="product[product_images_attributes][8][product_image]" id="product_product_images_attributes_8_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27b268a08>" type="hidden" name="product[product_images_attributes][9][product_image]" id="product_product_images_attributes_9_product_image">
-      </div>
-      <div class="product_image_box">
-      <input value="#<ActionView::Helpers::FormBuilder:0x00007fe27b262950>" type="hidden" name="product[product_images_attributes][10][product_image]" id="product_product_images_attributes_10_product_image">
-      </div>
-      </label>`
-
-      $('.dropbox-container').append(imag_box_html);
-      console.log("ok")
-    }
-    console.log(img_number)
-    product_id = $(".edit-form").attr("value")
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
     parent_name = $(".select-wrap").attr("value");
     user_id = $(".select-wrap").attr("id");
     if(parent_name == "レディース"){
@@ -283,6 +211,7 @@ $(document).on('turbolinks:load', function(){
     let changedInput = $(e.target);
     //を付与
     reader.onload = function (e){
+      console.log("ok")
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
           class="thumbnail" title="${file.name}" >

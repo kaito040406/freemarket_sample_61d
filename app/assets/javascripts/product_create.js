@@ -228,9 +228,13 @@ function youngestInputIndex(){
   return nextIndex;
 }
 function readLabelIndex(){
-  let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-  labelIndex = Number(labelIndex);//数値型へ変換
-  return labelIndex;
+  path = location.pathname
+  product_id = $(".select-wrap").attr("id")
+  if(path == "/products/" + product_id + "/edit"){
+    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelIndex = Number(labelIndex);//数値型へ変換
+    return labelIndex;
+  }
 }
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
