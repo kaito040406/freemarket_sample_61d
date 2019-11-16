@@ -25,13 +25,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     #@product.user = current_user
+    if user_signed_in?
+      if @product.save!
+        redirect_to :root
+      else
+        #render :new
+      end
 
-    if @product.save!
-
-      redirect_to :root
-    else
-      #render :new
-    end
   end
 
   def destroy
@@ -64,6 +64,9 @@ class ProductsController < ApplicationController
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
     @prefecture = Prefecture.find(@product.delivery_from).name
+    @counts = Product.where(seller_id: current_user.id)
+    @count = @counts.length
+    binding.pry
   end  
 
   def done
@@ -166,3 +169,4 @@ end
     @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
     @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
+end
