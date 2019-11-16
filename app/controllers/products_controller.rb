@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
       if @product.save!
         redirect_to :root
       else
-        #render :new
+        redirect_to :failkure
       end
     
   end
