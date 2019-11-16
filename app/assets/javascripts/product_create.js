@@ -258,8 +258,9 @@ function readLabelIndex(){
     //を付与
     reader.onload = function (e){
       let imageThumbnail =`
-        <img src="${e.target.result}" width="114px" height="116px" 
-        class="thumbnail" title="${file.name}" >
+        <div class="thumbnail-size">
+          <img src="${e.target.result} class="thumbnail" title="${file.name}" >
+        </div>
         <input type="hidden" 
           name="product[product_images_attributes][${labelIndex}][count]" 
           value="${labelIndex}"

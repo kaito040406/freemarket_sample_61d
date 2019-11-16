@@ -170,6 +170,9 @@ label {
 .product-img-box input{
   display: none;
 }
+.product-img-box .thumbnail{
+  object-fit: contain;
+}
 /////////
 .btn-box {
   width:114px;

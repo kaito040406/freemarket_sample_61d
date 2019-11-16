@@ -23,6 +23,7 @@ Things you may want to cover:
 
 * ...
 
+
 ## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -33,6 +34,7 @@ Things you may want to cover:
 |postal_code|integer|null: false|
 |created_at|datetime|null: false|
 |updated_at|datetime|null: false|
+
 
 ## brandsテーブル
 |Column|Type|Options|
@@ -45,6 +47,7 @@ Things you may want to cover:
 |created_at|datetime|null: false|
 |updated_at|datetime|null: false|
 
+
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -53,6 +56,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
+
 
 ## cardsテーブル
 |Column|Type|Options|
@@ -66,7 +70,8 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 
-## categories
+
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -78,7 +83,8 @@ Things you may want to cover:
 ### Association
 - has_many :products
 
-## merkers
+
+## merkersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string||
@@ -87,7 +93,8 @@ Things you may want to cover:
 |created_at|datetime|null: false|
 |updated_at|datetime|null: false|
 
-## product_images
+
+## product_imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false|
@@ -99,8 +106,8 @@ Things you may want to cover:
 ### Association
 - belongs_to :product
 
-## productsテーブル
 
+## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |seller_id|integer|null: false|
@@ -130,8 +137,8 @@ Things you may want to cover:
 - has_many :product_images
 - belongs_to :user
 
-## snscredentialsテーブル
 
+## snscredentialsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |providerstring|||
@@ -145,7 +152,6 @@ Things you may want to cover:
 
 
 ## usersテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |email|string||default: |null: false|
@@ -184,8 +190,8 @@ Things you may want to cover:
 - has_many :produst_images
 - has_many :cards
 
-## user_bookmarks_productsテーブル
 
+## user_bookmarks_productsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false
@@ -193,8 +199,8 @@ Things you may want to cover:
 |created_at|datetime|null: false|
 |updated_at|datetime|null: false|
 
-## user_product_comments
 
+## user_product_commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false|
