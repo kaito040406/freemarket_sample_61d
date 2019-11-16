@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
+    if user_signed_in? == current_user
+      @user = current_user
+    end
   end
 
   def new
@@ -31,7 +34,7 @@ class ProductsController < ApplicationController
       else
         #render :new
       end
-
+    end
   end
 
   def destroy
@@ -161,4 +164,3 @@ end
     @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
     @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
-end
