@@ -27,11 +27,5 @@ class UsersController < ApplicationController
     @image = ProductImage.where(product_id: @products.ids)
   end
 
-  def my_details
-    @product=Product.all
-    @image = ProductImage.all
-    @user = User.all
-  end
-
   
 end

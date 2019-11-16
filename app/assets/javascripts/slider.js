@@ -1,3 +1,4 @@
+
 $(function(){
   $('.slick').slick({
     autoplay:true,  
@@ -10,3 +11,4 @@ $(function(){
     nextArrow: '<img src="" class="slide-arrow next-arrow">'
   });
 });
+

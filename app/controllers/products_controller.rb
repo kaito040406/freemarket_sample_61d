@@ -71,9 +71,9 @@ class ProductsController < ApplicationController
   end
 
   def my_details
+    @image = ProductImage.find(params[:product][:image][:id])
+    
     @product = Product.find(params[:id])
-    @image = ProductImage.all
-    @user = User.all
   end
 
 
@@ -84,11 +84,6 @@ class ProductsController < ApplicationController
         redirect_to root_path
     end   
   end  
-
-  def my_details
-    @image = ProductImage.find(params[:product][:image][:id])
-    @product = Product.find(params[:id])
-  end
 
   def purchase_confirmation
     @product = Product.find(params[:id])
