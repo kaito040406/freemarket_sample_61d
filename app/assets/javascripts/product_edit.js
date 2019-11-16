@@ -321,7 +321,7 @@ function readLabelIndex(){
           categories.forEach(function(category){
             if(category.name == gra_name){
               start_name_g = category.name
-              start_id_g = category.name
+              start_id_g = category.id
             }
           })
 
@@ -330,7 +330,7 @@ function readLabelIndex(){
                         <div class="select-wrap" id="1">
                         <i class="fa fa-chevron-down"></i>
                       <select class="category_grand_child" id="category_grand_child" name="grand" >
-                      <option value="${start_name_g}" id = "s${start_id_g}">${start_name_g}</option>
+                      <option value="${start_id_g}" id = "s${start_id_g}">${start_name_g}</option>
                       <option value="---" id = "---">---</option>
                       `
           ap_html_g = html_head_g
