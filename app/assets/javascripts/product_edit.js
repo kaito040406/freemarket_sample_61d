@@ -7,7 +7,14 @@ function appendCategory(ct){
   return html;
 }
 //値段に合わせ手数料と利益を更新する関数
-
+function calcFeeGain(){
+  let product_fee_rate = 0.1
+  let product_price = $('#product_price').val();
+  let product_fee = Math.floor(product_price * product_fee_rate);
+  let product_gain = product_price - product_fee;
+  $('#product-fee').html(product_fee);
+  $('#product-gain').html(product_gain);
+}
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
@@ -57,7 +64,6 @@ function youngestInputIndex(){
 
 //////////////ここから本体
 $(document).on('turbolinks:load', function(){
-  "use strict";
   //newフォームからは実行されない
   let pathSelf =location.pathname;
   if (pathSelf.match(/new/) != null) {
@@ -67,7 +73,7 @@ $(document).on('turbolinks:load', function(){
   //画像があるためイメージボックスのプレースホルダ非表示
   $('.img-uploader-dropbox pre.edit-form').hide();
   //手数料と利益を表示
-  window.productsLib.calcFeeGain();
+  calcFeeGain();
 
   //出品内容の親子孫のカテゴリセレクタを生成
 
@@ -447,6 +453,6 @@ function readLabelIndex(){
   });
   //出品価格が変化したら手数料と利益を更新
   $('#product_price').on('keyup', function(e){
-    window.productsLib.calcFeeGain();
+    calcFeeGain();
   });
 });
