@@ -65,19 +65,6 @@
               .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
                 = f.select :category, Product.categories.keys.to_a, {include_blank: "---", selected: @product.parent}, {class: "select-default", id: "category_parent"}
-
-          -# .form-input-t_2{value: "ct_no_1" , value: "ct_no_1"}
-
-
-        -# .form-input-t
-        -#   %label
-        -#     サイズ
-        -#     %span.must-filled-mark-t
-        -#       必須
-        -#   %div
-        -#     .select-wrap
-        -#       %i.fa.fa-chevron-down
-        -#       = f.select :size, Product.sizes.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
             ブランド
