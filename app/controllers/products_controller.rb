@@ -33,8 +33,9 @@ class ProductsController < ApplicationController
       if @product.save!
         redirect_to :root
       else
-        redirect_to :failkure
+        #render :new
       end
+    end
   end
 
   def destroy
