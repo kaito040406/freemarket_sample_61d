@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
+    if user_signed_in? == current_user
+      @user = current_user
+    end
   end
 
   def new
