@@ -1,12 +1,5 @@
 //値段に合わせ手数料と利益を更新する関数
-function calcFeeGain(){
-  let product_fee_rate = 0.1
-  let product_price = $('#product_price').val();
-  let product_fee = Math.floor(product_price * product_fee_rate);
-  let product_gain = product_price - product_fee;
-  $('#product-fee').html(product_fee);
-  $('#product-gain').html(product_gain);
-}
+
 function appendCategory(ct){
   var html = `
               <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
@@ -23,6 +16,7 @@ function appendCategory_g(ct){
 ////////////////////////////
 //////////////ここから本体
 $(function(){
+  "use strict";
   // editフォームからは実行されない
   let pathSelf =location.pathname;
   if (pathSelf.match(/edit/) != null) {
@@ -31,8 +25,9 @@ $(function(){
   }
 
   $('#category_parent').change(function() {
-      var parent_name = $(this).val();
-      user_id = $(".select-wrap").attr("id");
+      let parent_name = $(this).val();
+      let user_id = $(".select-wrap").attr("id");
+      let parent_id = -1;
       if(parent_name == "レディース"){
         parent_id = 1;
       }
@@ -82,14 +77,14 @@ $(function(){
         if($('#ct_no_3').val() != null){
           $('#ct_no_3').remove();
         }
-        html_head = `
+        let html_head = `
                     <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_child" id="category_child" name="child">
                     <option value="---" id = "---">---</option>
                     `
-        ap_html = html_head
+        let ap_html = html_head
         categories.forEach(function(category){
           ct_html = appendCategory(category)
           ap_html = ap_html + ct_html
@@ -313,6 +308,6 @@ function readLabelIndex(){
   });
   //出品価格が変化したら手数料と利益を更新
   $('#product_price').on('keyup', function(e){
-    calcFeeGain();
+    window.productsLib.calcFeeGain();
   });
 });
