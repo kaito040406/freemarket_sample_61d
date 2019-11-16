@@ -18,6 +18,8 @@ class ProductsController < ApplicationController
     @product = Product.new
 
     10.times { @product.product_images.build }
+
+    @user = current_user
   end
 
   def create
@@ -47,6 +49,13 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     10.times {@product.product_images.build}
+    grand_name = @product.grand
+    if grand_name != nil
+
+    else
+      @category_grand = "no_data"
+    end
+    @user = current_user
   end
   
   def show
@@ -134,13 +143,16 @@ end
     params[:product][:size] = 1
     params[:product][:date] = Date.current
 
+
     params[:product][:child] = params[:child]
-    params[:product][:grand] = params[:grand]
+    category = Category.find(params[:grand])
+    params[:product][:grand] = category.name
     params[:product][:parent] = params[:product][:categry]
+    params[:product][:grand_id] = params[:grand]
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
   end
 
   def set_product

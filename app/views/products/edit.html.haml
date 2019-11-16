@@ -37,7 +37,7 @@
         -#   %div{class: "product_image_box"}
         -#     =img.file_field :product_image
         -#       %img src: "${e.target.result}" width: "114px" height: "116px" class: "thumbnail" title: "${file.name}"
-    .form-sub-t
+    .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
           商品名
@@ -54,25 +54,30 @@
     .form-sub-t.flexcontainer
       %h3.sub-title-t
         商品の詳細
-      .form-input-list-t
-        .form-input-t
-          %label
-            カテゴリー
-            %span.must-filled-mark-t
-              必須
-          %div
-            .select-wrap
-              %i.fa.fa-chevron-down
-              = f.select :categry, Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
-          %label
-            サイズ
-            %span.must-filled-mark-t
-              必須
-          %div
-            .select-wrap
-              %i.fa.fa-chevron-down
-              = f.select :size, Product.sizes.keys.to_a, {include_blank: "---"}, {class: "select-default"}
+      .form-input-list-t{value: @product.child}
+        .ct_box_k{value: @product.grand}
+          .form-input-t{value: "ct_no_1"}
+            %label
+              カテゴリー
+              %span.must-filled-mark-t
+                必須
+            %div
+              .select-wrap{id: @product.id ,value: @product.parent}
+                %i.fa.fa-chevron-down
+                = f.select :categry, Product.categries.keys.to_a, {include_blank: "---", selected: @product.parent}, {class: "select-default", id: "category_parent"}
+
+          -# .form-input-t_2{value: "ct_no_1" , value: "ct_no_1"}
+
+
+        -# .form-input-t
+        -#   %label
+        -#     サイズ
+        -#     %span.must-filled-mark-t
+        -#       必須
+        -#   %div
+        -#     .select-wrap
+        -#       %i.fa.fa-chevron-down
+        -#       = f.select :size, Product.sizes.keys.to_a, {include_blank: "---"}, {class: "select-default"}
         .form-input-t
           %label
             ブランド
