@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'progress'
       get 'log_out'
       get 'mypage'
+      get 'failkure'
     end
   end
   
