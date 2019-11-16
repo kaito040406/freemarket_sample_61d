@@ -64,9 +64,6 @@ class ProductsController < ApplicationController
     @image = ProductImage.find_by(product_id: params[:id])
     @user = User.find_by(id: @product.seller_id)
     @prefecture = Prefecture.find(@product.delivery_from).name
-    @counts = Product.where(seller_id: current_user.id)
-    @count = @counts.length
-    binding.pry
   end  
 
   def done

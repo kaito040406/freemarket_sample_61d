@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @count = Product.where(seller_id: current_user.id).length
   end
 
   def edit
