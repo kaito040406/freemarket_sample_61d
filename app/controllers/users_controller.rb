@@ -27,5 +27,8 @@ class UsersController < ApplicationController
     @image = ProductImage.where(product_id: @products.ids)
   end
 
+  def privacy
+  end
+
   
 end

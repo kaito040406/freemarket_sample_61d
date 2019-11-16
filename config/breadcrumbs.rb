@@ -22,9 +22,9 @@ crumb :progress do
   parent :mypage
 end
 
-crumb :progress do
+crumb :my_details do
   link "出品商品画面", progress_users_path
-  parent :mypage
+  parent :progress
 end
 
 
@@ -44,3 +44,6 @@ crumb :credit do
   parent :cards
 end
 
+crumb :privacy do
+  link "プライバシーポリシー", privacy_users_path
+end

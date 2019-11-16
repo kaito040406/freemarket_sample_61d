@@ -1,0 +1,28 @@
+.static-page {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .static-page h2 {
+    padding: 20px 40px 0;
+  }
+}
+
+.static-page h2 {
+  padding: 20px 4.6875% 0;
+}
+
+@media screen and (min-width: 768px) {
+  .static-page-content {
+    padding: 40px;
+  }
+}
+
+.static-page-content {
+  margin: 20px 0;
+  padding: 40px 4.6875%;
+  background: #fff;
+}
+
