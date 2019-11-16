@@ -1,11 +1,13 @@
 .wrapper
   .wrapper_user
     .wrapper_user__icon
-      %figure
-        - if current_user.icon_image == nil
-          = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60", alt: "", height: "60"
-        - else
-          = image_tag current_user.icon_image, width: "60", alt: "", height: "60"
+      .opi
+        %figure
+          - if current_user.icon_image == nil
+            = image_tag "https://static.mercdn.net/images/member_photo_noimage_thumb.png", width: "60", alt: "", height: "60"
+          - else
+            = image_tag current_user.icon_image, width: "60", alt: "", height: "60"
+    
       %h2.name
         = current_user.nick_name
       .mypage-number
