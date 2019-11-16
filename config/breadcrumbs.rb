@@ -22,6 +22,12 @@ crumb :progress do
   parent :mypage
 end
 
+crumb :progress do
+  link "出品商品画面", progress_users_path
+  parent :mypage
+end
+
+
 crumb :cards do
   link "支払い方法", "/cards"
   parent :mypage

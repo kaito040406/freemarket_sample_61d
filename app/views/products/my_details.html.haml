@@ -9,8 +9,7 @@
       .item-photo
         .owl-carousel
           .owl-item-inner 
-            -# = image_tag("#{@image.product_image}")
-          
+            = image_tag("#{@image.product_image}")
       .item-price-box.text-center.visible-sp
         %span.item-price.bold 
           ¥
@@ -41,17 +40,11 @@
             %div.ct_1_k 
               = @product.parent
             %div.ct_2_k
+              %i.fa.fa-arrow-right
               = @product.child
             %div.ct_3_k
+              %i.fa.fa-arrow-right
               = @product.grand
-          -# = link_to 'https://www.mercari.com/jp/category/75/'
-            .item-detail-table-sub-category
-              %i.fa.fa-arrow-right
-              CD
-          -#   = link_to 'https://www.mercari.com/jp/category/696/'
-            .item-detail-table-sub-sub-category
-              %i.fa.fa-arrow-right
-              アニメ
         %tr
           %th ブランド
           %td
