@@ -49,13 +49,13 @@ class Product < ApplicationRecord
                                     "2~3日で発送": 2,
                                     "4~7日で発送": 3}
 
-  ## enum定義より後にしないとundefined method `categries'エラー
+  ## enum定義より後にしないとundefined method `categories'エラー
   # validation
   validates :name,                      presence: true, length: { in: 1..40}
   validates :text,                      presence: true, length: { in: 1..1000}
   validates :price,                     numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
   validates :seller_id,                 presence: true, numericality: { only_integer: true}
-  validates :category,                   presence: true, inclusion: {in: Product.categries.keys} #presenceDBカラム未設定
+  validates :category,                   presence: true, inclusion: {in: Product.categories.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
   #validates :brand, brandsテーブルとの連動必要
   #validates :size,                      presence: true categoryに依存、DBには設定あるためコントローラで挿入
