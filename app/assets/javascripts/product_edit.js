@@ -1,3 +1,11 @@
+//関数群
+/////カテゴリ生成
+function appendCategory(ct){
+  var html = `
+              <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
+              `
+  return html;
+}
 //値段に合わせ手数料と利益を更新する関数
 function calcFeeGain(){
   let product_fee_rate = 0.1
@@ -7,59 +15,10 @@ function calcFeeGain(){
   $('#product-fee').html(product_fee);
   $('#product-gain').html(product_gain);
 }
-/////カテゴリ生成
-function appendCategory(ct){
-  var html = `
-              <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
-              `
-  return html;
-}
-
-//////////////ここから本体
-$(document).on('turbolinks:load', function(){
-  //newフォームからは実行されない
-  let pathSelf =location.pathname;
-  if (pathSelf.match(/new/) != null) {
-    // console.log('edit doesnt work');
-    return false;
-  }
-  
-  //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.edit-form').hide();
-  
-  //手数料と利益を表示
-  calcFeeGain();
-
-  //出品内容の親子孫のカテゴリセレクタを生成
-
-let DeliveryMethodSelectBoxHTML = `
-<div class="form-input-t">
-  <label>
-    配送の方法
-    <span class="must-filled-mark-t">
-      必須
-    </span>
-  </label>
-  <div class="select-wrap">
-    <i class="icon-arrow-bottom"></i>
-    <select class="select-default" name="product[delivery_method]" id="product_delivery_method">
-    <option value="未定">未定</option>
-    <option value="らくらくメルカリ便">らくらくメルカリ便</option>
-    <option value="ゆうメール">ゆうメール</option>
-    <option value="レターパック">レターパック</option>
-    <option value="普通郵便(定形、定形外)">普通郵便(定形、定形外)</option>
-    <option value="クロネコヤマト">クロネコヤマト</option>
-    <option value="ゆうパック">ゆうパック</option>
-    <option value="クリックポスト">クリックポスト</option>
-    <option value="ゆうパケット">ゆうパケット</option></select>
-  </div>
-</div>`
-
 function overwriteLabel(inputIndex){
   let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
   $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
 }
-
 //出品ごとの画像の通し番号
 //inputタグのインデックス（=product_image配列のインデックス）は削除で途中が抜けたりするので
 //画像が何枚目か全部で何枚あるかこちらで管理
@@ -73,10 +32,6 @@ function overwriteHiddenCountAll(){
 function overwriteHiddenCountEach(hiddenTag, count){
   $(hiddenTag).attr('value', count);
 }
-
-//候補画像枚数が変化した時に呼び出され、labelタグの番号を取得・更新する
-//（はずだったが他の処理も一部まとめた
-//"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
 function youngestInputIndex(){
   //サムネイルとセットのhidden要素を全て取得
   let allImgs = $('.hiddenCount');
@@ -92,7 +47,6 @@ function youngestInputIndex(){
     $('.img-uploader-dropbox pre').show();
     return nextIndex;
   }
-
   //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
   let inputTagCounter = nextIndex - 1;
     while(0 <= inputTagCounter){
@@ -107,6 +61,26 @@ function youngestInputIndex(){
     }
   return nextIndex;
 }
+
+//////////////ここから本体
+$(document).on('turbolinks:load', function(){
+  //newフォームからは実行されない
+  let pathSelf =location.pathname;
+  if (pathSelf.match(/new/) != null) {
+    // console.log('edit doesnt work');
+    return false;
+  }
+  //画像があるためイメージボックスのプレースホルダ非表示
+  $('.img-uploader-dropbox pre.edit-form').hide();
+  //手数料と利益を表示
+  calcFeeGain();
+
+  //出品内容の親子孫のカテゴリセレクタを生成
+
+  //候補画像枚数が変化した時に呼び出され、labelタグの番号を取得・更新する
+  //（はずだったが他の処理も一部まとめた
+  //"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
+
 function readLabelIndex(){
   path = location.pathname
   product_id = $(".select-wrap").attr("id")
@@ -198,7 +172,6 @@ function readLabelIndex(){
         //失敗した場合の処理
         console.log(data.responseText);  //レスポンス文字列を表示
       })
-
       var child_name = $(".form-input-list-t").attr("value");
       if(child_name != "---"){
         $.ajax({
@@ -446,9 +419,33 @@ function readLabelIndex(){
       $('#ct_no_3').remove();
     }
   });
+
   //送料負担が選択されたら発送方法セレクトボックス出現
+  //!修正要!無限に増えてしまっている
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();
+    let DeliveryMethodSelectBoxHTML = `
+      <div class="form-input-t">
+        <label>
+          配送の方法
+          <span class="must-filled-mark-t">
+            必須
+          </span>
+        </label>
+        <div class="select-wrap">
+          <i class="icon-arrow-bottom"></i>
+          <select class="select-default" name="product[delivery_method]" id="product_delivery_method">
+          <option value="未定">未定</option>
+          <option value="らくらくメルカリ便">らくらくメルカリ便</option>
+          <option value="ゆうメール">ゆうメール</option>
+          <option value="レターパック">レターパック</option>
+          <option value="普通郵便(定形、定形外)">普通郵便(定形、定形外)</option>
+          <option value="クロネコヤマト">クロネコヤマト</option>
+          <option value="ゆうパック">ゆうパック</option>
+          <option value="クリックポスト">クリックポスト</option>
+          <option value="ゆうパケット">ゆうパケット</option></select>
+        </div>
+      </div>`
     $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
     if (!selection) {//<-??忘れてしまった
       //
@@ -458,5 +455,4 @@ function readLabelIndex(){
   $('#product_price').on('keyup', function(e){
     calcFeeGain();
   });
-
 });

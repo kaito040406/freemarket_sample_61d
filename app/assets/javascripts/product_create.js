@@ -1,3 +1,27 @@
+//値段に合わせ手数料と利益を更新する関数
+function calcFeeGain(){
+  let product_fee_rate = 0.1
+  let product_price = $('#product_price').val();
+  let product_fee = Math.floor(product_price * product_fee_rate);
+  let product_gain = product_price - product_fee;
+  $('#product-fee').html(product_fee);
+  $('#product-gain').html(product_gain);
+}
+function appendCategory(ct){
+  var html = `
+              <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
+              `
+  return html;
+  }
+function appendCategory_g(ct){
+  var html = `
+              <option value="${ct.id}" id = "${ct.id}">${ct.name}</option>
+              `
+  return html;
+}
+
+////////////////////////////
+//////////////ここから本体
 $(function(){
   // editフォームからは実行されない
   let pathSelf =location.pathname;
@@ -5,22 +29,6 @@ $(function(){
       // console.log('create doesnt work');
       return false;
   }
-
-  function appendCategory(ct){
-    var html = `
-                <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
-                `
-    return html;
-    }
-
-    function appendCategory_g(ct){
-      var html = `
-                  <option value="${ct.id}" id = "${ct.id}">${ct.name}</option>
-                  `
-      return html;
-      }
-
-
 
   $('#category_parent').change(function() {
       var parent_name = $(this).val();
@@ -62,12 +70,12 @@ $(function(){
         parent_id = 1264;
       }
       $.ajax({
-          type: 'GET',
-          url: "/users/" + user_id + "/api/products/child",
-          dataType: 'json',
-          data: {id: parent_id}
+        type: 'GET',
+        url: "/users/" + user_id + "/api/products/child",
+        dataType: 'json',
+        data: {id: parent_id}
       })
-      .done(function(categories){
+      .done(function (categories){
         if($('#ct_no_2').val() != null){
           $('#ct_no_2').remove();
         }
@@ -142,12 +150,6 @@ $(function(){
       $('#ct_no_3').remove();
     }
   });
-
-
-
-
-
-
 
 let DeliveryMethodSelectBoxHTML = `
 <div class="form-input-t">
@@ -225,13 +227,9 @@ function youngestInputIndex(){
   return nextIndex;
 }
 function readLabelIndex(){
-  path = location.pathname
-  user_id = $(".form-sub-t").attr("id")
-  if(path == "/users/" + user_id + "/products/new"){
-    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelIndex = Number(labelIndex);//数値型へ変換
-    return labelIndex;
-  }
+  let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+  labelIndex = Number(labelIndex);//数値型へ変換
+  return labelIndex;
 }
 //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
 
@@ -313,14 +311,8 @@ function readLabelIndex(){
       //
     }
   });
-
-  //手数料と利益の計算
+  //出品価格が変化したら手数料と利益を更新
   $('#product_price').on('keyup', function(e){
-    let product_fee_rate = 0.1
-    let product_price = $('#product_price').val();
-    let product_fee = Math.floor(product_price * product_fee_rate);
-    let product_gain = product_price - product_fee;
-    $('#product-fee').html(product_fee);
-    $('#product-gain').html(product_gain);
+    calcFeeGain();
   });
 });
