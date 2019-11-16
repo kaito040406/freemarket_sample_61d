@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @count = Product.where(seller_id: current_user.id).length
   end
 
   def edit
@@ -24,12 +25,6 @@ class UsersController < ApplicationController
   def progress
     @products = Product.where(seller_id: current_user.id)
     @image = ProductImage.where(product_id: @products.ids)
-  end
-
-  def my_details
-    @product=Product.all
-    @image = ProductImage.all
-    @user = User.all
   end
 
   

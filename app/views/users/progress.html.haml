@@ -20,7 +20,7 @@
               =link_to "売却済み", "/jp/mypage/listings/completed/"
       - @products.zip(@image).each do |product, image|
         .tab-content
-        = form_for product, url: my_details_product_path(product), method: :get do |f|
+        = form_for product, url: my_details_product_path(product.id), method: :get do |f|
           %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
             %li
             .mypage-item-link
@@ -37,9 +37,11 @@
                     %i.fa.fa-comment-alt
                     %span 0
                   .mypage-item-status.bold.awaiting
+                    = f.fields_for :image do |im|
+                      = im.hidden_field :id, value: image.id
                     = f.hidden_field :id, value: product.id
                     = f.hidden_field :seller_id, value: product.id
-                    = f.submit '出品中',method: :post
+                    = f.submit '出品中', class: "up_bottan" ,method: :post
               .fa.fa-chevron-right
       %ul.mypage-history.pager
         %li.pager-prev.pager-cell

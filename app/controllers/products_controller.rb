@@ -14,21 +14,24 @@ class ProductsController < ApplicationController
   end
 
   def new
+    
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
     10.times { @product.product_images.build }
+
+    @user = current_user
   end
 
   def create
     @product = Product.new(product_params)
     #@product.user = current_user
-
-    if @product.save!
-
-      redirect_to :root
-    else
-      #render :new
+    if user_signed_in?
+      if @product.save!
+        redirect_to :root
+      else
+        #render :new
+      end
     end
   end
 
@@ -36,9 +39,9 @@ class ProductsController < ApplicationController
     if @product.seller_id == current_user.id
       if @product.destroy
           redirect_to root_path
-        else
-          redirect_to show_products_path(product)
-        end 
+      else
+        redirect_to show_products_path(product)
+      end 
     else
       redirect_to show_products_path(product)
     end
@@ -46,13 +49,22 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    10.times {@product.product_images.build}
+    grand_name = @product.grand
+    if grand_name != nil
+
+    else
+      @category_grand = "no_data"
+    end
+    @user = current_user
   end
   
   def show
     @product = Product.find(params[:id])
-    @image = ProductImage.find_by(product_id: params[:id])
-    @user = User.find_by(id: @product.seller_id)
+    # @images = ProductImage.where(product_id: @product.id)
+    # @image = ProductImage.find_by(product_id: params[:id])
     @prefecture = Prefecture.find(@product.delivery_from).name
+    binding.pry
   end  
 
   def done
@@ -60,9 +72,9 @@ class ProductsController < ApplicationController
   end
 
   def my_details
+    @image = ProductImage.find(params[:product][:image][:id])
+    
     @product = Product.find(params[:id])
-    @image = ProductImage.all
-    @user = User.all
   end
 
 
@@ -73,10 +85,6 @@ class ProductsController < ApplicationController
         redirect_to root_path
     end   
   end  
-
-  def my_details
-    binding.pry
-  end
 
   def purchase_confirmation
     @product = Product.find(params[:id])
@@ -131,13 +139,16 @@ end
     params[:product][:size] = 1
     params[:product][:date] = Date.current
 
+
     params[:product][:child] = params[:child]
-    params[:product][:grand] = params[:grand]
-    params[:product][:parent] = params[:product][:category]
+    category = Category.find(params[:grand])
+    params[:product][:grand] = category.name
+    params[:product][:parent] = params[:product][:categry]
+    params[:product][:grand_id] = params[:grand]
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
   end
 
   def set_product

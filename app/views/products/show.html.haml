@@ -14,8 +14,12 @@
         .item-photo
           .owl-carousel
             .owl-item-inner 
-              = image_tag("#{@image.product_image}")
-            - unless @product.finished == 0
+          -#     = image_tag("#{@image.product_images}")
+          -# .other_image_box_k
+          -#   - @images.each do |image|
+          -#     .other_image_nimi_box_k
+          -#       = image_tag("#{image.product_images}",width: "55" )
+          -#   - unless @product.finished == 0
               .items__sold
                 .items__sold__inner SOLD
         .item-price-box.text-center.visible-sp
@@ -32,7 +36,7 @@
             %th 出品者
             %td
               %h6
-                = link_to "#{@user.nick_name}"
+                -# = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
                   %img{src: "/images/smile.png", alt: "", width: "20px", height: "20px"}
@@ -125,17 +129,17 @@
   .item-detail-message2
     .message-container
       .l-content
-        .listing-item-change-box
+        .listing-item-change-box2
           =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
           %p.text-center or
           %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
             %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
             %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
           %button.btn-default.btn-gray
-            = link_to 'この商品を削除する', product_path(@product), method: :delete
+            = link_to 'この商品を削除する', "/products/#{@product.id}", method: :delete
 
 
-.item-detail-message
+.item-detail-message2
   .message-container
     .message-content
       %form.message-form{action: "https://www.mercari.com/jp/comment/add/", method: "POST"}
