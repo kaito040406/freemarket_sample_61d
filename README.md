@@ -64,7 +64,7 @@ Things you may want to cover:
 |updated_at|datetime|null: false|
 
 ### Association
--belongs_to :user
+- belongs_to :user
 
 ## categories
 |Column|Type|Options|
