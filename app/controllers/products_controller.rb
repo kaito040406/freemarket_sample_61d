@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    binding.pry
     #@product.user = current_user
     if user_signed_in?
       if @product.save!

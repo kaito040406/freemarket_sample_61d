@@ -110,7 +110,6 @@ $(function(){
   });
   
   $(this).on("change", "#category_child", function() {
-    console.log("ok")
     child_name = $(this).val();
     if(child_name != "---"){
     console.log(child_name)
