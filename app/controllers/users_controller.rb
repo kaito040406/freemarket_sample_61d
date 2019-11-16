@@ -22,9 +22,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def failkure
-  end
-
   def progress
     @products = Product.where(seller_id: current_user.id)
     @image = ProductImage.where(product_id: @products.ids)
