@@ -51,7 +51,7 @@
             %div
               .select-wrap
                 %i.fa.fa-chevron-down
-                = f.select :categry , Product.categries.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
+                = f.select :category , Product.categories.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
 
               
         .form-input-t

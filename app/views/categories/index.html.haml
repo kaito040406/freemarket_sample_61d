@@ -8,8 +8,9 @@
           カテゴリー一覧
       .category-list-nav.slide-nav-parent.text-center.clearfix
         -  @category_parent.each do |parent|
-          .white.category-root-category-link-name
-            =parent.name
+          =link_to category_path(parent) do
+            .white.category-root-category-link-name
+              =parent.name
       .category-list-box
         -  @category_parent.each do |parent|
           .category-list-individual-box.white.clearfix

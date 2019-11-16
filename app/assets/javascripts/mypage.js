@@ -3,15 +3,19 @@ $(document).on('turbolinks:load', function(){
     if($('.wrapper_user__icon').length){
 
     }else{
+      name = $(".header_second_right_box").attr("id")
+      
       parent_html = `
-      <div class="wrapper" >
-        <div class="wrapper_user" id="aho">
+      <div class="wrapper">
+        <div class="wrapper_user" id="mypage">
           <div class="wrapper_user__icon">
+            <div class="opi">
             <figure>
               <img width="60" alt="" height="60" src="https://static.mercdn.net/images/member_photo_noimage_thumb.png">
             </figure>
+            </div>
             <h2 class="name">
-              ひじ
+            ${name}
             </h2>
             <div class="mypage-number">
             <div>
@@ -88,9 +92,10 @@ $(document).on('turbolinks:load', function(){
   })
 
   $('#my_page_k').mouseleave(function(){
-    $('#aho').remove()
+    $('#mypage').remove()
   })
 })
 
+name = $('.current_user_name').val();
 
 

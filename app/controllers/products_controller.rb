@@ -11,9 +11,13 @@ class ProductsController < ApplicationController
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     @images = ProductImage.limit(10).order("created_at DESC")
+    if user_signed_in? == current_user
+      @user = current_user
+    end
   end
 
   def new
+    
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
@@ -31,16 +35,15 @@ class ProductsController < ApplicationController
       else
         redirect_to :failkure
       end
-    
   end
 
   def destroy
     if @product.seller_id == current_user.id
       if @product.destroy
           redirect_to root_path
-        else
-          redirect_to show_products_path(product)
-        end 
+      else
+        redirect_to show_products_path(product)
+      end 
     else
       redirect_to show_products_path(product)
     end
@@ -60,9 +63,8 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    @images = ProductImage.where(product_id: @product.id)
-    @image = ProductImage.find_by(product_id: params[:id])
-    @user = User.find_by(id: @product.seller_id)
+    # @images = ProductImage.where(product_id: @product.id)
+    # @image = ProductImage.find_by(product_id: params[:id])
     @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
@@ -83,6 +85,7 @@ class ProductsController < ApplicationController
         @product.update!(product_params)
         redirect_to root_path
     end   
+
   end  
 
   def purchase_confirmation
@@ -142,12 +145,12 @@ end
     params[:product][:child] = params[:child]
     category = Category.find(params[:grand])
     params[:product][:grand] = category.name
-    params[:product][:parent] = params[:product][:categry]
+    params[:product][:parent] = params[:product][:category]
     params[:product][:grand_id] = params[:grand]
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :categry, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
   end
 
   def set_product
@@ -161,4 +164,3 @@ end
     @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
     @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
-end

@@ -17,148 +17,188 @@ Things you may want to cover:
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services (job queues|cache servers|search engines|etc.)
 
 * Deployment instructions
 
 * ...
+
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
+|prefecture|string|null: false|
+|below_city_or_ward|string|null: false|
+|below_house_number|string||
+|postal_code|integer|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+
+## brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
+|prefecture|string|null: false|
+|below_city_or_ward|string|null: false|
+|below_house_number|string||
+|postal_code|integer|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+
+## categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string||null: false|
+|parent_id|integer|null: true|foreign_key: false|
+
+### Association
+- has_many :products
+
+## cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false|
+|customer_id|string|null: false|
+|card_id|string|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+
+### Association
+- belongs_to :user
+
+## categories
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+|ancestry|string||
+|index ["ancestry"]|name|index_categories_on_ancestry||
+
+### Association
+- has_many :products
+
+## merkers
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
+|genre|string||
+|genre_number|integer||
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+
+## product_images
+|Column|Type|Options|
+|------|----|-------|
+|product_id|integer|null: false|
+|count|integer||
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+|product_image|string||
+
+### Association
+- belongs_to :product
+
+## productsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|seller_id|integer|null: false|
+|name|string|null: false|
+|text|text|null: false|
+|price|integer|null: false|
+|category|string||
+|status|integer|null: false|
+|brand|integer||
+|size|integer|null: false|
+|date|date|null: false|
+|delivery_fee|integer|null: false|
+|delivery_method|integer||
+|delivery_from|integer||
+|estimated_delivery_date|integer||
+|condition|integer||
+|buyer_id|integer||
+|finished|integer|default: 0|null: false|
+|parent|string||
+|child|string||
+|grand|string||
+|grand_id|integer||
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+
+### Association
+- has_many :product_images
+- belongs_to :user
+
+## snscredentialsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|providerstring|||
+|uid|text||
+|mid|integer||
+|token|text||
+|pass_token|text||
+|email|text||
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
 
 
 ## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|nick_name|string|null: false|
-|sur_name|string|null: false|
-|first_name|string|null: false|
-|sur_name_yomi|string|null: false|
-|first_name_yomi|string|null: false|
-|introduction|string|null: true|
-|birthday|date|null: false|
-|email|string|null: false|
-|password|string|null: false|
-|tel_number|string|null: false|
-|account|integer|null:false|
-|sales_money|integer|null: false|
-|point|integer|null: false|
-|icon_image|string|null: true|
-
+|email|string||default: |null: false|
+|encrypted_password|string||default: |null: false|
+|reset_password_token|string|
+|reset_password_sent_at|datetime||
+|remember_created_at|datetime|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
+|nick_name|string||null: false|
+|sur_name|string||null: false|
+|fr_name|string||null: false|
+|sur_name_yomi|string||null: false|
+|first_name_yomi|string||null: false|
+|introduction|string|
+|birthday_year|integer||
+|birthday_manth|integer||
+|birthday_day|integer||
+|tel_number|string||null: false|
+|certification|string||null: false|
+|account|integer||
+|sales_money|integer||
+|point|integer||
+|icon_image|string|
+|address_number|string||null: false|
+|address_ken|string||null: false|
+|address_city|string||null: false|
+|address_banch|string||null: false|
+|building_name|string|
+|evaluation|integer|default: 0|
+|exhibits_number|integer|default: 0|
+|provider|string|
 
 ### Association
 - has_many :products
-- has_many :address
-- has_many :credit_cards
-- has_many :user_prduct_comments
-- has_many :user_bookmark_prducts
-
-
-## productsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|ingeter|null: false, foreign_key: true|
-|name|string|null: false|
-|text|string|null: true|
-|price|ingeter|null: false|
-|status|string|null: true|
-|categry|string|null: false|
-|brand|string|null: true|
-|size|string|null: false|
-|date|date|null: false|
-|delivery_fee|string|null: false|
-|delivery_method|string|null: false|
-|delivery_from|string|null: true|
-|estimated_delivery_date|date|null: true|
-|user_id(buiyer)|ingeter|null: true, foreign_key: true|
-|finished|boolian|null: false|
-
-### Association
-- belongs_to :user
-- has_many :product_images
-- has_many :user_product_comments
-- has_many :user_bookmarks_products
-- belongs_to :brand
-- belongs_to :category
-
-
-## credit_cardsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|number|integer|null: false|
-|expiration_date|date|null: false|
-
-### Association
-- belongs_to :user
-
-
-## addressesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|prefecture|string|null: false|
-|below_city_or_ward|string|null: false|
-|below_house_number|string|null: true|
-|postal_code|integer|null: false|
-
-### Association
-- belongs_to :user
-
-
-## product_imagesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
-|count|integer|null: false|
-
-### Association
-- belongs_to :product
-
+- has_many :produst_images
+- has_many :cards
 
 ## user_bookmarks_productsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|product_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false
+|product_id|integer|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
 
-### Association
-- belongs_to :user
-- belongs_to :product
-
-
-## user_product_commentsテーブル
+## user_product_comments
 
 |Column|Type|Options|
 |------|----|-------|
-|product_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false|
+|user_id|integer|null: false|
 |text|text|null: false|
-
-### Association
-- belongs_to :user
-- belongs_to :product
-
-
-## categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|parent_id|integer|null: true, foreign_key: false|
-
-### Association
-- has_many :products
-
-
-## brandsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :products
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|

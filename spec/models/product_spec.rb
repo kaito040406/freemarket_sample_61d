@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Product do
   describe '#create' do
-    #1 seller_id, name, text, price, categry, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finishedにはバリデーションがかかっている
-    it "is valid with a seller_id, name, text, price, categry, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished" do
+    #1 seller_id, name, text, price, category, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finishedにはバリデーションがかかっている
+    it "is valid with a seller_id, name, text, price, category, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished" do
       product = build(:product)
       expect(product).to be_valid
     end
@@ -32,11 +32,11 @@ describe Product do
       expect(product.errors[:price]).to include("is not a number")
     end
 
-    #5 categryが空だと登録ができない
+    #5 categoryが空だと登録ができない
     it "is invalid without a price" do
-      product = build(:product, categry: nil)
+      product = build(:product, category: nil)
       product.valid?
-      expect(product.errors[:categry]).to include("can't be blank")
+      expect(product.errors[:category]).to include("can't be blank")
     end
 
     #6 statusが空だと登録ができない
