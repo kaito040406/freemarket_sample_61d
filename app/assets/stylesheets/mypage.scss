@@ -1,19 +1,15 @@
 .wrapper {
-  width: 320px;
-  height: 560px;
-  background-color: #FFFFFF;
   z-index: 1;
   position: absolute;
   top: 44px;
   right: 0;
   &_user {
     position: relative;
+    bottom: 0;
     padding: 20px;
-    width: 100%;
-    height: 14%;
-    background: url(/images/user.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 320px;
+    height: 560px;
+    background-color: #FFFFFF;
     text-align: center;
   }
 }
@@ -23,19 +19,34 @@
   width: 60px;
   height: 60px;
   margin: 0 auto;
+  margin-top: 30px;
   border-radius: 50%;
+  
+}
+.opi {
+  background: url(/images/user.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 14%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .name {
   font-weight: normal;
+  margin-top: 70px;
 }
-
+.mypage-number {
+  margin-top: 70px;
+}
 .my-sold {
   width: 320px;
   position: absolute;
   left: 0;
+  bottom: 0;
 }
-
 .my-sold__money {
   position: relative;
   display: block;
@@ -58,7 +69,6 @@
     margin-right: 25px;
   }
 }
-
 .my-sold__point {
   position: relative;
   display: block;
@@ -81,7 +91,6 @@
     margin-right: 25px;
   }
 }
-
 i.fa.fa-chevron-right.my {
   float: right;
   line-height: 45px;
@@ -89,8 +98,6 @@ i.fa.fa-chevron-right.my {
   right: 0;
   right: 5px;
 }
-
-
 .mypage-nav-list-item {
   position: relative;
   display: block;
@@ -99,5 +106,8 @@ i.fa.fa-chevron-right.my {
   background: #fff;
   font-size: 14px;
   color: #333;
+  a {
+    float: left;
+  }
 }
 
