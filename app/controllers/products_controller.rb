@@ -164,3 +164,4 @@ end
     @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
     @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
+end
