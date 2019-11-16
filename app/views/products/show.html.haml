@@ -14,12 +14,12 @@
         .item-photo
           .owl-carousel
             .owl-item-inner 
-              = image_tag("#{@image.product_image}")
-          .other_image_box_k
-            - @images.each do |image|
-              .other_image_nimi_box_k
-                = image_tag("#{image.product_image}",width: "55" )
-            - unless @product.finished == 0
+          -#     = image_tag("#{@image.product_images}")
+          -# .other_image_box_k
+          -#   - @images.each do |image|
+          -#     .other_image_nimi_box_k
+          -#       = image_tag("#{image.product_images}",width: "55" )
+          -#   - unless @product.finished == 0
               .items__sold
                 .items__sold__inner SOLD
         .item-price-box.text-center.visible-sp
@@ -36,7 +36,7 @@
             %th 出品者
             %td
               %h6
-                = link_to "#{@user.nick_name}"
+                -# = link_to "#{@user.nick_name}"
               %div
                 .item-user-ratings
                   %img{src: "/images/smile.png", alt: "", width: "20px", height: "20px"}

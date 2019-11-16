@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
@@ -23,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    
     @product = Product.new(product_params)
     #@product.user = current_user
     if user_signed_in?
@@ -35,6 +37,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    
     if @product.seller_id == current_user.id
       if @product.destroy
           redirect_to root_path
@@ -60,9 +63,9 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    @images = ProductImage.where(product_id: @product.id)
-    @image = ProductImage.find_by(product_id: params[:id])
-    @user = User.find_by(id: @product.seller_id)
+    # @images = ProductImage.where(product_id: @product.id)
+    # @image = ProductImage.find_by(product_id: params[:id])
+    ・
     @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
