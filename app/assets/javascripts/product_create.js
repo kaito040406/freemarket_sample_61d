@@ -24,13 +24,14 @@ function appendCategory_g(ct){
 //////////////ここから本体
 $(function(){
   // editフォームからは実行されない
-  let pathSelf =location.pathname;
+  pathSelf =location.pathname;
   if (pathSelf.match(/edit/) != null) {
       // console.log('create doesnt work');
       return false;
   }
 
   $('#category_parent').change(function() {
+    console.log("ok")
       var parent_name = $(this).val();
       user_id = $(".select-wrap").attr("id");
       if(parent_name == "レディース"){
@@ -91,15 +92,15 @@ $(function(){
                     `
         ap_html = html_head
         categories.forEach(function(category){
-          let ct_html = appendCategory(category)
-          let ap_html = ap_html + ct_html;
+          ct_html = appendCategory(category)
+          ap_html = ap_html + ct_html;
         })
         html_foot=`
                     </select>
                     </div>
                     </div>
                   `
-        let html = ap_html + html_foot;
+        html = ap_html + html_foot;
         $('.ct_box_k').append(html);
       })
       .fail((data) => {
@@ -110,7 +111,7 @@ $(function(){
   
   $(this).on("change", "#category_child", function() {
     console.log("ok")
-    let child_name = $(this).val();
+    child_name = $(this).val();
     if(child_name != "---"){
     console.log(child_name)
       $.ajax({
