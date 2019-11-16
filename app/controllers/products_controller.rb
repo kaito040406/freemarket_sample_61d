@@ -24,7 +24,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    
     @product = Product.new(product_params)
     #@product.user = current_user
     if user_signed_in?
@@ -33,17 +32,16 @@ class ProductsController < ApplicationController
       else
         #render :new
       end
-
+    end
   end
 
   def destroy
-    
     if @product.seller_id == current_user.id
       if @product.destroy
           redirect_to root_path
-        else
-          redirect_to show_products_path(product)
-        end 
+      else
+        redirect_to show_products_path(product)
+      end 
     else
       redirect_to show_products_path(product)
     end
@@ -65,8 +63,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     # @images = ProductImage.where(product_id: @product.id)
     # @image = ProductImage.find_by(product_id: params[:id])
-    ・
     @prefecture = Prefecture.find(@product.delivery_from).name
+    binding.pry
   end  
 
   def done
@@ -164,4 +162,3 @@ end
     @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
     @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
   end
-end
