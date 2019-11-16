@@ -198,6 +198,7 @@ $(function() {
 $(function() {
   $(document).on('mouseover', '.category_inner_box_g_k', function(e){
     cttt_id = $(this).attr("value")
+    console.log(cttt_id)
     $("#"+ cttt_id).css({
         backgroundColor: "rgb(204, 204, 204)"
     })
@@ -206,7 +207,7 @@ $(function() {
 
 
 $(function() {
-  $(document).on('mousleave', ".category_inner_box_g_k", function(e){
+  $(document).on('mouseleave', ".category_inner_box_g_k", function(e){
     $("#"+ cttt_id).css({
       backgroundColor: ""
     })
