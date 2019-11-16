@@ -66,6 +66,12 @@ $(document).on('turbolinks:load', function(){
 $(function() {
 $(document).on('mouseover', '.category_inner_box_k', function(e){
   parent_id = $(this).attr("id")
+
+  $(".category_inner_box_k").css({
+    backgroundColor: "",
+    color: ""
+  })
+
   $("#"+ parent_id).css({
     backgroundColor: "rgb(234, 53, 45)",
     color: "white"
@@ -122,6 +128,9 @@ $(function() {
 $(document).on('mouseover', '.category_inner_box_c_k', function(e){
   ct_id = $(this).attr("id")
 
+  $(".category_inner_box_c_k").css({
+    backgroundColor: "",
+  })
 
   $("#"+ parent_id).css({
     backgroundColor: "rgb(234, 53, 45)",
@@ -206,7 +215,7 @@ $(function() {
 
 
 $(function() {
-  $(document).on('mousleave', ".category_inner_box_g_k", function(e){
+  $(document).on('mouseleave', ".category_inner_box_g_k", function(e){
     $("#"+ cttt_id).css({
       backgroundColor: ""
     })
