@@ -15,64 +15,17 @@ function calcFeeGain(){
   $('#product-fee').html(product_fee);
   $('#product-gain').html(product_gain);
 }
-function overwriteLabel(inputIndex){
-  let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
-  $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
-}
+
 //出品ごとの画像の通し番号
 //inputタグのインデックス（=product_image配列のインデックス）は削除で途中が抜けたりするので
 //画像が何枚目か全部で何枚あるかこちらで管理
-function overwriteHiddenCountAll(){
-  let count = 1;
-  $('.img-uploader-dropbox input[type="hidden"]').each(function(){
-    overwriteHiddenCountEach(this, count)
-    count = count + 1;
-  });
-}
-function overwriteHiddenCountEach(hiddenTag, count){
-  $(hiddenTag).attr('value', count);
-}
-function youngestInputIndex(){
-  //サムネイルとセットのhidden要素を全て取得
-  let allImgs = $('.hiddenCount');
-  //youngestInputIndexの最大値
-  let nextIndex = $(allImgs).length;
-  //10ならば最大枚数アップされている
-  if (nextIndex == 10){
-    return "";//labelが機能しないようにする
-  }
-  //0ならばプレースホルダを再表示し、終了
-  //最後の1枚削除によりアップローダーが空になった場合
-  else if(nextIndex ==0){
-    $('.img-uploader-dropbox pre').show();
-    return nextIndex;
-  }
-  //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
-  let inputTagCounter = nextIndex - 1;
-    while(0 <= inputTagCounter){
-      //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
-      let filledInputSelecter = "#hiddenCount" + inputTagCounter;
-        //lengthメソッドの返り値が0なら要素が存在しない
-      if ($(filledInputSelecter).length ==0){
-        //サムネイルの無い番号だったならその値へ更新
-        nextIndex = inputTagCounter;
-      }
-      inputTagCounter = inputTagCounter -1;
-    }
-  return nextIndex;
-}
+
 
 function readLabelIndex(){
-  let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-  labelIndex = Number(labelIndex);//数値型へ変換
-  return labelIndex;
-}
-
-function categoryAjax(){
   path = location.pathname
   product_id = $(".select-wrap").attr("id")
   if(path == "/products/" + product_id + "/edit"){
-    var parent_name = $(".select-wrap").attr("value");
+    parent_name = $(".select-wrap").attr("value");
     user_id = $(".select-wrap").attr("id");
     if(parent_name == "レディース"){
       parent_id = 1;
@@ -124,7 +77,6 @@ function categoryAjax(){
         $('#ct_no_3').remove();
       }
       cha_name = $(".form-input-list-t").attr("value")
-
       categories.forEach(function(category){
         if(category.name == cha_name){
           start_name = category.name
@@ -143,22 +95,73 @@ function categoryAjax(){
       ap_html = html_head
       categories.forEach(function(category){
         if(category.name != cha_name){
-          let ct_html = appendCategory(category)
-          let ap_html = ap_html + ct_html
+          ct_html = appendCategory(category)
+          ap_html = ap_html + ct_html
         }
       })
-      let html_foot=`
+      html_foot=`
                   </select>
                   </div>
                   </div>
                 `
-      let html = ap_html + html_foot;
+      html = ap_html + html_foot;
       $('.ct_box_k').append(html);
     })
     .fail((data) => {
       //失敗した場合の処理
-      console.log(data.responseText);  //レスポンス文字列を表示
+      // console.log(data.responseText);  //レスポンス文字列を表示
     })
+
+    child_name = $(".form-input-list-t").attr("value");
+
+    if(child_name != "---"){
+      $.ajax({
+          type: 'GET',
+          url: "/users/" + 1 + "/api/products/grand_child",
+          data: {id: child_name},
+          dataType: 'json'
+      })
+      .done(function(categories) {
+        if($('#ct_no_3').val() != null){
+          $('#ct_no_3').remove();
+        }
+
+        gra_name = $(".ct_box_k").attr("value")
+        ap_html_g = ""
+        categories.forEach(function(category){
+          if(category.name == gra_name){
+            start_name_g = category.name
+            start_id_g = category.id
+          }
+        })
+
+        html_head_g = `
+                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
+                      <div class="select-wrap" id="1">
+                      <i class="fa fa-chevron-down"></i>
+                    <select class="category_grand_child" id="category_grand_child" name="grand" >
+                    <option value="${start_id_g}" id = "s${start_id_g}">${start_name_g}</option>
+                    <option value="---" id = "---">---</option>
+                    `
+        ap_html_g = html_head_g
+        categories.forEach(function(category){
+          ct_html_g = appendCategory(category)
+          ap_html_g = ap_html_g + ct_html_g
+        })
+        html_foot_g=`
+                    </select>
+                    </div>
+                    </div>
+                  `
+        html_g = ap_html_g + html_foot_g;
+        $('.ct_box_k').append(html_g);
+      })
+      .fail(function() {
+      });
+    }
+    if(child_name == "---"){
+      $('#ct_no_3').remove();
+    }
   }
 }
 
@@ -181,56 +184,8 @@ $(document).on('turbolinks:load', function(){
   //（はずだったが他の処理も一部まとめた
   //"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
 
-  var child_name = $(".form-input-list-t").attr("value");
-  if(child_name != "---"){
-    $.ajax({
-        type: 'GET',
-        url: "/users/" + 1 + "/api/products/grand_child",
-        data: {id: child_name},
-        dataType: 'json'
-    })
-    .done(function(categories) {
-      if($('#ct_no_3').val() != null){
-        $('#ct_no_3').remove();
-      }
+  
 
-      gra_name = $(".ct_box_k").attr("value")
-
-      categories.forEach(function(category){
-        if(category.name == gra_name){
-          start_name_g = category.name
-          start_id_g = category.id
-        }
-      })
-
-      html_head_g = `
-                  <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
-                    <div class="select-wrap" id="1">
-                    <i class="fa fa-chevron-down"></i>
-                  <select class="category_grand_child" id="category_grand_child" name="grand" >
-                  <option value="${start_id_g}" id = "s${start_id_g}">${start_name_g}</option>
-                  <option value="---" id = "---">---</option>
-                  `
-      ap_html_g = html_head_g
-      categories.forEach(function(category){
-        ct_html_g = appendCategory(category)
-        ap_html_g = ap_html_g + ct_html_g
-      })
-      html_foot_g=`
-                  </select>
-                  </div>
-                  </div>
-                `
-      html_g = ap_html_g + html_foot_g;
-      $('.ct_box_k').append(html_g);
-    })
-    .fail(function() {
-    });
-  }
-  if(child_name == "---"){
-    $('#ct_no_3').remove();
-  }
-}
 ///////ここまでカテゴリ関連/////////
 
 
@@ -256,6 +211,7 @@ $(document).on('turbolinks:load', function(){
     let changedInput = $(e.target);
     //を付与
     reader.onload = function (e){
+      console.log("ok")
       let imageThumbnail =`
         <img src="${e.target.result}" width="114px" height="116px" 
           class="thumbnail" title="${file.name}" >
@@ -305,7 +261,8 @@ $(document).on('turbolinks:load', function(){
     overwriteHiddenCountAll();
   });
   ///カテゴリセレクトボックス:親->子->孫と出現する
-  $('#category_parent').change(function() {
+  $('#categry_parent').change(function() {
+
     var parent_name = $(this).val();
     user_id = $(".select-wrap").attr("id");
     if(parent_name == "レディース"){
@@ -379,7 +336,7 @@ $(document).on('turbolinks:load', function(){
     })
     .fail((data) => {
       //失敗した場合の処理
-      console.log(data.responseText);  //レスポンス文字列を表示
+      // console.log(data.responseText);  //レスポンス文字列を表示
     })
   });
   $(this).on("change", "#category_child", function() {

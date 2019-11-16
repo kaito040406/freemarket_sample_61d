@@ -21,4 +21,8 @@ class Api::ProductsController < ApplicationController
       end
     end
   end
+
+  def number
+    @images = ProductImage.where(product_id: params[:id])
+  end
 end

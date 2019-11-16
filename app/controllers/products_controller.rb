@@ -28,6 +28,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    binding.pry
     #@product.user = current_user
     if user_signed_in?
       if @product.save!
@@ -54,6 +55,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     10.times {@product.product_images.build}
     grand_name = @product.grand
+    @image = ProductImage.where(product_id: @product.id)
     if grand_name != nil
 
     else

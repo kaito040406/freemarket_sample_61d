@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         collection do
           get 'child'
           get 'grand_child'
+          get 'number'
         end
       end
     end
