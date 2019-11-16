@@ -61,7 +61,7 @@ Things you may want to cover:
 |text|string|null: true|
 |price|ingeter|null: false|
 |status|string|null: true|
-|categry|string|null: false|
+|category|string|null: false|
 |brand|string|null: true|
 |size|string|null: false|
 |date|date|null: false|

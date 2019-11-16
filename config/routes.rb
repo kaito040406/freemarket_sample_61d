@@ -49,7 +49,8 @@ Rails.application.routes.draw do
   end
   #ここまで長谷川記入
 
-  resources :categories
+  resources :categories, only: [:index, :show]
+  
   resources "users",only: [:index,:profile, :progress, :cards], path: 'mypage' do
 
     collection do

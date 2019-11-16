@@ -4,7 +4,7 @@ FactoryBot.define do
     name                        {"テスト"}
     text                        {"テスト用"}
     price                       {1000}
-    categry                     {"レディース"}
+    category                     {"レディース"}
     status                      {"新品、未使用"}
     brand                       {1}
     size                        {1}
