@@ -28,21 +28,36 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
+|email|string|default: "", null: false|
+|encrypted_password|string|default: "", null: false|
+|reset_password_token|string||
+|reset_password_sent_at|datetime||
+|remember_created_at|datetime|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
 |nick_name|string|null: false|
 |sur_name|string|null: false|
-|first_name|string|null: false|
+|fr_name|string|null: false|
 |sur_name_yomi|string|null: false|
 |first_name_yomi|string|null: false|
-|introduction|string|null: true|
-|birthday|date|null: false|
-|email|string|null: false|
-|password|string|null: false|
+|introduction|string||
+|birthday_year|integer||
+|birthday_manth|integer||
+|birthday_day|integer||
 |tel_number|string|null: false|
-|account|integer|null:false|
-|sales_money|integer|null: false|
-|point|integer|null: false|
-|icon_image|string|null: true|
-
+|certification|string|null: false|
+|account|integer||
+|sales_money|integer||
+|point|integer||
+|icon_image|string||
+|address_number|string|null: false|
+|address_ken|string|null: false|
+|address_city|string|null: false|
+|address_banch|string|null: false|
+|building_name|string||
+|evaluation|integer|default: 0|
+|exhibits_number|integer|default: 0|
+|provider|string||
 
 ### Association
 - has_many :products
