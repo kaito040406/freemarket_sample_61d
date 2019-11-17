@@ -117,7 +117,7 @@ function readLabelIndex(){
     if(child_name != "---"){
       $.ajax({
           type: 'GET',
-          url: "/users/" + 1 + "/api/products/grand_child",
+          url: "/users/" + 1 + "/api/products/grand_child", //引数：子カテゴリ名（空チェック付き）
           data: {id: child_name},
           dataType: 'json'
       })
@@ -170,9 +170,10 @@ $(document).on('turbolinks:load', function(){
   //newフォームからは実行されない
   let pathSelf =location.pathname;
   if (pathSelf.match(/new/) != null) {
-    // console.log('edit doesnt work');
+    console.log('edit doesnt work');
     return false;
   }
+  console.log('hoge');
   //画像があるためイメージボックスのプレースホルダ非表示
   // $('.img-uploader-dropbox pre.edit-form').hide();
   //手数料と利益を表示
