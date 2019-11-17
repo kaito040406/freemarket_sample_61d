@@ -239,74 +239,75 @@ function readLabelIndex(){
 
 
 ////////ここからイメージボックス関連
-  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
-  $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
-    //inputタグのインデックスを取得する
-    labelIndex = readLabelIndex();
-    // 11枚目なら中断
-    if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
-      return false;
-    }
-    let file = e.target.files[0];
-    // 画像ファイル以外なら中断
-    if(file.type.indexOf("image") < 0){
-      return false;
-    }
+  // let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
+  // $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+  //   //inputタグのインデックスを取得する
+  //   labelIndex = readLabelIndex();
+  //   // 11枚目なら中断
+    
+  //   if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
+  //     return false;
+  //   }
+  //   let file = e.target.files[0];
+  //   // 画像ファイル以外なら中断
+  //   if(file.type.indexOf("image") < 0){
+  //     return false;
+  //   }
 
-    //ファイルリーダーがファイルを読み終わったら行うサムネイル生成などの関連処理
-    //(関数として切り出すとサムネイルが表示されなくなったため保留//
-    //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
-    let reader = new FileReader();
-    let changedInput = $(e.target);
-    //を付与
-    reader.onload = function (e){
-      let imageThumbnail =`
-       <img src="${e.target.result}" width="114px" height="116px" 
-          class="thumbnail" title="${file.name}" >
-        <input type="hidden" 
-          name="product[product_images_attributes][${labelIndex}][count]" 
-          value="${labelIndex}"
-          id = "hiddenCount${labelIndex}"
-          class = "hiddenCount">
-        <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn">削除</div>
-        </div>
-        `;
-      $(changedInput).after(imageThumbnail);
-      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
-        //次のchangeイベントでのinputタグ(product_model)を更新
-        labelIndex = youngestInputIndex();
+  //   //ファイルリーダーがファイルを読み終わったら行うサムネイル生成などの関連処理
+  //   //(関数として切り出すとサムネイルが表示されなくなったため保留//
+  //   //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
+  //   let reader = new FileReader();
+  //   let changedInput = $(e.target);
+  //   //を付与
+  //   reader.onload = function (e){
+  //     let imageThumbnail =`
+  //      <img src="${e.target.result}" width="114px" height="116px" 
+  //         class="thumbnail" title="${file.name}" >
+  //       <input type="hidden" 
+  //         name="product[product_images_attributes][${labelIndex}][count]" 
+  //         value="${labelIndex}"
+  //         id = "hiddenCount${labelIndex}"
+  //         class = "hiddenCount">
+  //       <div class="btn-box">
+  //         <div class="img-edit-btn">編集</div>
+  //         <div class="img-delete-btn">削除</div>
+  //       </div>
+  //       `;
+  //     $(changedInput).after(imageThumbnail);
+  //     $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+  //       //次のchangeイベントでのinputタグ(product_model)を更新
+  //       labelIndex = youngestInputIndex();
 
-        overwriteLabel(labelIndex);
-        overwriteHiddenCountAll();
-        //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+  //       overwriteLabel(labelIndex);
+  //       overwriteHiddenCountAll();
+  //       //プレースホルダ非表示
+  //       $('.img-uploader-dropbox pre').hide();
         
-      });
-    };
-    ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる
-    reader.readAsDataURL(file);
-    //サムネイルと編集削除ボタン生成ここまで//
+  //     });
+  //   };
+  //   ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる
+  //   reader.readAsDataURL(file);
+  //   //サムネイルと編集削除ボタン生成ここまで//
 
-  });
+  // });
 
-  //削除ボタンを押した時の処理
-  $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
-    e.preventDefault();
-    let btnBox =e.target.closest('.btn-box');
-    let inputHidden =$(btnBox).prev();
-    let imgThumbnail = $(inputHidden).prev();
-    let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
-    $(imgThumbnail).remove();
-    $(inputHidden).remove();
-    $(btnBox).remove();
-    labelIndex = youngestInputIndex();
-    overwriteLabel(labelIndex);
-    overwriteHiddenCountAll();
-  });
+  // //削除ボタンを押した時の処理
+  // $(document).off('click');//イベント多重化防止
+  // $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  //   e.preventDefault();
+  //   let btnBox =e.target.closest('.btn-box');
+  //   let inputHidden =$(btnBox).prev();
+  //   let imgThumbnail = $(inputHidden).prev();
+  //   let inputFile = $(inputHidden).prev();
+  //   $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
+  //   $(imgThumbnail).remove();
+  //   $(inputHidden).remove();
+  //   $(btnBox).remove();
+  //   labelIndex = youngestInputIndex();
+  //   overwriteLabel(labelIndex);
+  //   overwriteHiddenCountAll();
+  // });
 
   $('#product_delivery_fee').change(function() {
     let selection = $('option:selected').val();
