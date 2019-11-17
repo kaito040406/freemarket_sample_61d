@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   belongs_to :user,optional: true
-  accepts_nested_attributes_for :product_images, allow_destroy: true, , reject_if: :reject_image,
+  accepts_nested_attributes_for :product_images, allow_destroy: true #, reject_if: :reject_image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
@@ -69,7 +69,7 @@ class Product < ApplicationRecord
 
   # def   def reject_image(attributes)
   #   ###empty = attributes[:email].blank?
-  #   attributes.merge!(_destroy: 1) if attributes[:_delete].present?
+  #   attributes.merge!(_destroy: 1) if attributes[:_destroy].present?
   #   !exists && empty
   # end
 end

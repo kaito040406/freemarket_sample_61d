@@ -157,7 +157,7 @@ end
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
+    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy])
   end
 
   def set_product

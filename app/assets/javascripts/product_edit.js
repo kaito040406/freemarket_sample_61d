@@ -225,7 +225,7 @@ $(document).on('turbolinks:load', function(){
   }
 
   ////////ここからイメージボックス関連
-  let labelIndex = readLabelIndex(); //new.html.hamlで定義される"0"
+  let labelIndex = readLabelIndexEdit(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndex();
@@ -436,13 +436,13 @@ $(document).on('turbolinks:load', function(){
   $(document).off('click');//イベント多重化防止
   $(document).on('click', '.exist-img .img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    console.log('exist-img was deleted');
-    //if (削除フラグ==on){
-      //削除フラグon
-      //$(this).closest('img')
-    // }else{
-      //削除フラグoff
-      //画像を元の表示に
-    // }
+    console.log($(this).closest('.btn-box').prev().attr('value'));
+    if ($(this).closest('.btn-box').prev().attr('value') == 0){
+      $(this).closest('.btn-box').prev().attr({'value': 1});
+      console.log('delete selected');
+    }else{
+      $(this).closest('.btn-box').prev().attr({'value': 0});
+      console.log('delete cancel');
+    }
   });
 });

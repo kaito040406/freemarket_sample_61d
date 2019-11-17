@@ -19,13 +19,22 @@
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          -f.fields_for :product_images |img| do
-            = img.label :_destroy, "削除" 
+          -# = f.fields_for :product_images do |img| 
+          -#   %div{class: "product_image_box exist-img"}
+          -#     -# = image_tag (product_image.product_image.url if product_image.product_image?)
+          -#     = img.file_field :product_image
+          -#     = img.check_box :_destroy
+          -#     = img.label :_destroy
+          -#     .btn-box
+          -#       .img-edit-btn
+          -#         編集
+          -#       .img-delete-btn
+          -#         削除
           -@product.product_images.each_with_index do |img, i|
             -if(img.count)
               %div{class: "product_image_box exist-img"}
                 =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_delete]"}
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_delete]", value: 0}
                 .btn-box
                   .img-edit-btn
                     編集
