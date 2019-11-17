@@ -4,7 +4,7 @@
 %main.product-new-main-T
   %h2.product-new-formtitle-T
     商品の情報を入力
-  = form_for @product, url: "/products/#{@product.id}/update", method: :get , html: { class: "product-new-form"} do |f|
+  = form_for @product, url: "/products/#{@product.id}", method: :patch , html: { class: "product-new-form"} do |f|
     .form-sub-image-uploader-t
       %h3
         出品画像

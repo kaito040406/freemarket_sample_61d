@@ -52,9 +52,11 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+
     @product.product_images.build
     grand_name = @product.grand
     @image = ProductImage.where(product_id: @product.id)
+
     if grand_name != nil
 
     else
@@ -65,8 +67,8 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    # @images = ProductImage.where(product_id: @product.id)
-    # @image = ProductImage.find_by(product_id: params[:id])
+    @images = ProductImage.where(product_id: @product.id)
+    @image = ProductImage.find_by(product_id: params[:id])
     @prefecture = Prefecture.find(@product.delivery_from).name
   end  
 
@@ -83,8 +85,9 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    count =ProductImage.where(id: params[:id]).length
-    ids =ProductImage.where(id: params[:id])
+    # count =ProductImage.where(id: params[:id]).length
+    # ids =ProductImage.where(id: params[:id])
+    
     if @product.seller_id == current_user.id
       @product.update(product_params_up)
     #   k = 0
@@ -97,7 +100,7 @@ class ProductsController < ApplicationController
     #     @image.save!
     #     k = k + 1
     #     end   
-    #   redirect_to root_path
+      redirect_to root_path
     end   
   end  
 
