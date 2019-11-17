@@ -438,10 +438,10 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
     console.log($(this).closest('.btn-box').prev().attr('value'));
     if ($(this).closest('.btn-box').prev().attr('value') == 0){
-      $(this).closest('.btn-box').prev().attr({'value': 1});
+      $(this).closest('.btn-box').prev().attr({'value': "1"});
       console.log('delete selected');
     }else{
-      $(this).closest('.btn-box').prev().attr({'value': 0});
+      $(this).closest('.btn-box').prev().attr({'value': "0"});
       console.log('delete cancel');
     }
   });

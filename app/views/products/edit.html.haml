@@ -34,7 +34,8 @@
             -if(img.count)
               %div{class: "product_image_box exist-img"}
                 =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_delete]", value: 0}
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}}
                 .btn-box
                   .img-edit-btn
                     編集
