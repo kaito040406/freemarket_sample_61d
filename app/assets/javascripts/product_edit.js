@@ -174,9 +174,9 @@ $(document).on('turbolinks:load', function(){
     return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.edit-form').hide();
+  // $('.img-uploader-dropbox pre.edit-form').hide();
   //手数料と利益を表示
-  calcFeeGain();
+  // calcFeeGain();
 
   //出品内容の親子孫のカテゴリセレクタを生成
 
@@ -211,31 +211,31 @@ $(document).on('turbolinks:load', function(){
     let changedInput = $(e.target);
     //を付与
     reader.onload = function (e){
-      console.log("ok")
-      let imageThumbnail =`
-        <img src="${e.target.result}" width="114px" height="116px" 
-          class="thumbnail" title="${file.name}" >
-        <input type="hidden" 
-          name="product[product_images_attributes][${labelIndex}][count]" 
-          value="${labelIndex}"
-          id = "hiddenCount${labelIndex}"
-          class = "hiddenCount">
-        <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn">削除</div>
-        </div>
-        `;
-      $(changedInput).after(imageThumbnail);
-      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+      // console.log("ok")
+      // let imageThumbnail =`
+      //   <img src="${e.target.result}" width="114px" height="116px" 
+      //     class="thumbnail" title="${file.name}" >
+      //   <input type="hidden" 
+      //     name="product[product_images_attributes][${labelIndex}][count]" 
+      //     value="${labelIndex}"
+      //     id = "hiddenCount${labelIndex}"
+      //     class = "hiddenCount">
+      //   <div class="btn-box">
+      //     <div class="img-edit-btn">編集</div>
+      //     <div class="img-delete-btn">削除</div>
+      //   </div>
+      //   `;
+      // $(changedInput).after(imageThumbnail);
+      // $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
         //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
 
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+        // $('.img-uploader-dropbox pre').hide();
         
-      });
+      // });
     };
     ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる
     reader.readAsDataURL(file);
@@ -245,21 +245,21 @@ $(document).on('turbolinks:load', function(){
 
   //////要素ごとのイベント応答群
   //画像サムネイルの削除ボタンを押した時の処理
-  $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
-    e.preventDefault();
-    let btnBox =e.target.closest('.btn-box');
-    let inputHidden =$(btnBox).prev();
-    let imgThumbnail = $(inputHidden).prev();
-    let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
-    $(imgThumbnail).remove();
-    $(inputHidden).remove();
-    $(btnBox).remove();
-    labelIndex = youngestInputIndex();
-    overwriteLabel(labelIndex);
-    overwriteHiddenCountAll();
-  });
+  // $(document).off('click');//イベント多重化防止
+  // $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  //   e.preventDefault();
+  //   let btnBox =e.target.closest('.btn-box');
+  //   let inputHidden =$(btnBox).prev();
+  //   let imgThumbnail = $(inputHidden).prev();
+  //   let inputFile = $(inputHidden).prev();
+  //   $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
+  //   $(imgThumbnail).remove();
+  //   $(inputHidden).remove();
+  //   $(btnBox).remove();
+  //   labelIndex = youngestInputIndex();
+  //   overwriteLabel(labelIndex);
+  //   overwriteHiddenCountAll();
+  // });
   ///カテゴリセレクトボックス:親->子->孫と出現する
   $('#categry_parent').change(function() {
 
