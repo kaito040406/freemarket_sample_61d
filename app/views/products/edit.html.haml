@@ -15,10 +15,10 @@
       .dropbox-container.flexcontainer
         %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
           .edit-form{value: @product.id}
-            :preserve
-                ドラッグアンドドロップ
-                またはクリックしてファイルをアップロード
-            %i.icon-camera{value: @product.id}
+            -# :preserve
+            -#     ドラッグアンドドロップ
+            -#     またはクリックしてファイルをアップロード
+            -# %i.icon-camera{value: @product.id}
           -# = @image.each do |existing_img|
           -#   .product_image_box
               -# =image_tag("#{existing_img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
@@ -29,7 +29,7 @@
               -#     削除
           =f.fields_for :product_images do |added_img|
             %div{class: "product_image_box"}
-              =added_img.file_field :product_image, value: added_img
+              =added_img.file_field :product_image 
 
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
