@@ -52,8 +52,10 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    10.times {@product.product_images.build}
+    # 10.times {@product.product_images.build}
     # @product.product_images.each do |product_image| 
+    t=10-@product.product_images.size.to_i
+    t.times{@product.product_images.build }
 
     grand_name = @product.grand
     @image = ProductImage.where(product_id: @product.id)
