@@ -21,7 +21,7 @@ function calcFeeGain(){
 //画像が何枚目か全部で何枚あるかこちらで管理
 
 
-function readLabelIndex(){
+function readLabelIndex(){//???こちらの処理とcreatejs内のとどちらを呼びたいのか？createCategory()なり機能にあった名前の新関数になぜしないのか？
   path = location.pathname
   product_id = $(".select-wrap").attr("id")
   if(path == "/products/" + product_id + "/edit"){
@@ -164,6 +164,7 @@ function readLabelIndex(){
     }
   }
 }
+///////ここまでカテゴリ関連/////////
 
 //////////////ここから本体
 $(document).on('turbolinks:load', function(){
@@ -175,9 +176,9 @@ $(document).on('turbolinks:load', function(){
   }
   console.log('hoge');
   //画像があるためイメージボックスのプレースホルダ非表示
-  // $('.img-uploader-dropbox pre.edit-form').hide();
+  $('.img-uploader-dropbox pre').hide();
   //手数料と利益を表示
-  // calcFeeGain();
+  calcFeeGain();
 
   //出品内容の親子孫のカテゴリセレクタを生成
 
@@ -187,7 +188,6 @@ $(document).on('turbolinks:load', function(){
 
   
 
-///////ここまでカテゴリ関連/////////
 
 
 ////////ここからイメージボックス関連
@@ -384,32 +384,32 @@ $(document).on('turbolinks:load', function(){
   //送料負担が選択されたら発送方法セレクトボックス出現
   //!修正要!無限に増えてしまっている
   $('#product_delivery_fee').change(function() {
-    let selection = $('option:selected').val();
-    let DeliveryMethodSelectBoxHTML = `
-      <div class="form-input-t">
-        <label>
-          配送の方法
-          <span class="must-filled-mark-t">
-            必須
-          </span>
-        </label>
-        <div class="select-wrap">
-          <i class="icon-arrow-bottom"></i>
-          <select class="select-default" name="product[delivery_method]" id="product_delivery_method">
-          <option value="未定">未定</option>
-          <option value="らくらくメルカリ便">らくらくメルカリ便</option>
-          <option value="ゆうメール">ゆうメール</option>
-          <option value="レターパック">レターパック</option>
-          <option value="普通郵便(定形、定形外)">普通郵便(定形、定形外)</option>
-          <option value="クロネコヤマト">クロネコヤマト</option>
-          <option value="ゆうパック">ゆうパック</option>
-          <option value="クリックポスト">クリックポスト</option>
-          <option value="ゆうパケット">ゆうパケット</option></select>
-        </div>
-      </div>`
-    $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
-    if (!selection) {//<-??忘れてしまった
-      //
+    $('#product_delivery_method').remove();
+    let selection = $(this).val();
+    if (selection!="") {
+      let DeliveryMethodSelectBoxHTML = `
+        <div class="form-input-t" id ="product_delivery_method">
+          <label>
+            配送の方法
+            <span class="must-filled-mark-t">
+              必須
+            </span>
+          </label>
+          <div class="select-wrap">
+            <i class="icon-arrow-bottom"></i>
+            <select class="select-default" name="product[delivery_method]" id="product_delivery_method">
+            <option value="未定">未定</option>
+            <option value="らくらくメルカリ便">らくらくメルカリ便</option>
+            <option value="ゆうメール">ゆうメール</option>
+            <option value="レターパック">レターパック</option>
+            <option value="普通郵便(定形、定形外)">普通郵便(定形、定形外)</option>
+            <option value="クロネコヤマト">クロネコヤマト</option>
+            <option value="ゆうパック">ゆうパック</option>
+            <option value="クリックポスト">クリックポスト</option>
+            <option value="ゆうパケット">ゆうパケット</option></select>
+          </div>
+        </div>`
+      $('#product_delivery_fee').after(DeliveryMethodSelectBoxHTML);
     }
   });
   //出品価格が変化したら手数料と利益を更新

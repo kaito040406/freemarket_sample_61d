@@ -53,6 +53,8 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     10.times {@product.product_images.build}
+    # @product.product_images.each do |product_image| 
+
     grand_name = @product.grand
     @image = ProductImage.where(product_id: @product.id)
     if grand_name != nil
@@ -145,8 +147,8 @@ end
 
 
     params[:product][:child] = params[:child]
-    category = Category.find(params[:grand])
-    params[:product][:grand] = category.name
+    #category = Category.find(params[:grand])
+    #params[:product][:grand] = category.name
     params[:product][:parent] = params[:product][:category]
     params[:product][:grand_id] = params[:grand]
 

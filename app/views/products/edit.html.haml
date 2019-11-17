@@ -14,23 +14,23 @@
         最大10枚までアップロードできます
       .dropbox-container.flexcontainer
         %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
-          .edit-form{value: @product.id}
+          %pre
             :preserve
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          -# = @image.each do |existing_img|
-          -#   .product_image_box
-              -# =image_tag("#{existing_img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-              -# .btn-box
-              -#   .img-edit-btn
-              -#     編集
-              -#   .img-delete-btn
-              -#     削除
-          =f.fields_for :product_images do |added_img|
-            %div{class: "product_image_box"}
-              =added_img.file_field :product_image, value: added_img
-
+            =@product.product_images
+          -# -while @product.product_images != nil do
+            .product_image_box
+              -# =image_tag("#{@product.product_images.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+              .btn-box
+                .img-edit-btn
+                  編集
+                .img-delete-btn
+                  削除
+          -# =f.fields_for :product_images do |added_img|
+          -#   %div{class: "product_image_box"}
+          -#     =added_img.file_field :product_image, value: added_img
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
