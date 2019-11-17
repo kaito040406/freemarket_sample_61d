@@ -1,75 +1,4 @@
-function overwriteLabel(inputIndex){
-  let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
-  $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
-}
-//hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
-//画像が何枚あるか何枚目かはこの値で管理
-function overwriteHiddenCountAll(){
-  let count = 1;
-  $('.img-uploader-dropbox input[type="hidden"]').each(function(){
-    $(this).attr('value', count);
-    count = count + 1;
-  });
-}
-//次の画像のインデックスとしてlabelタグのForに入れるべき番号を取得する
-//（はずだったが他の処理も一部まとめた
-//"画像枚数が変化する(しようとする)際の処理"としてまとめた方がいいかもしれない）
-function youngestInputIndex(){
-  //サムネイルとセットのhidden要素を全て取得
-  let allImgs = $('.hiddenCount');
-  console.log('thisisYII, nextIndex is');
-  //返り値の取りうる最大値
-  let nextIndex = $(allImgs).length;
-  console.log(nextIndex);
-  //10ならば最大枚数アップ済、labelが機能しなくなる値""を返す
-  if (nextIndex == 10){
-    return "";//
-  }
-  //0ならばプレースホルダを再表示し0を返す
-  //最後の1枚削除によりアップローダーが空になった場合
-  else if(nextIndex ==0){
-    $('.img-uploader-dropbox pre').show();
-    return nextIndex;
-  }
-
-  //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
-  let inputTagCounter = nextIndex-1;
-    while(0 <= inputTagCounter){
-      //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
-      let filledInputSelecter = "#hiddenCount" + inputTagCounter;
-        //lengthメソッドの返り値が0なら要素が存在しない
-        console.log('filledInputSelecter');
-        console.log(filledInputSelecter);
-      if ($(filledInputSelecter).length ==0){
-        //サムネイルの無い番号だったならその値へ更新
-        nextIndex = inputTagCounter;
-        console.log('rewritten');
-        console.log($(filledInputSelecter));
-        console.log($('#hiddenCount0'));
-      }
-      inputTagCounter = inputTagCounter -1;
-    }
-  console.log('last of YII, nextIndex is');
-  console.log(nextIndex);
-  return nextIndex;
-}
-//labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
-function readLabelIndex(){
-  path = location.pathname
-  product_id = $(".select-wrap").attr("id")
-  if(path == "/products/" + product_id + "/edit"){
-    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelIndex = Number(labelIndex);//数値型へ変換
-    return labelIndex;
-  }
-}
-//応急処置（たぶん）
-function readLabelIndexCreate(){
-    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelIndex = Number(labelIndex);//数値型へ変換
-    return labelIndex;
-}
-
+$(function(){
 //値段に合わせ手数料と利益を更新する関数
 function calcFeeGain(){
   let product_fee_rate = 0.1
@@ -113,10 +42,70 @@ let DeliveryMethodSelectBoxHTML = `
       <option value="ゆうパケット">ゆうパケット</option></select>
     </div>
   </div>`
+  function overwriteLabel(inputIndex){
+    console.log('here is createjs overwriteLabel');
+    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
+  }
+  //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
+  //画像が何枚あるか何枚目かはこの値で管理
+  function overwriteHiddenCountAll(){
+    console.log('here is createjs overwriteHiddenCountAll');
+    let count = 1;
+    $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+      $(this).attr('value', count);
+      count = count + 1;
+    });
+  }
+  //次の画像のインデックスとしてlabelタグのForに入れるべき番号を取得する
+  //（はずだったが他の処理も一部まとめた
+  //"画像枚数が変化する(しようとする)際の処理"としてまとめた方がいいかもしれない）
+  function youngestInputIndex(){
+    console.log('here is createjs youngestInputIndex');
+    //サムネイルとセットのhidden要素を全て取得
+    let allImgs = $('.hiddenCount');
+    //返り値の取りうる最大値
+    let nextIndex = $(allImgs).length;
+    //10ならば最大枚数アップ済、labelが機能しなくなる値""を返す
+    if (nextIndex == 10){
+      return "";//
+    }
+    //0ならばプレースホルダを再表示し0を返す
+    //最後の1枚削除によりアップローダーが空になった場合
+    else if(nextIndex ==0){
+      $('.img-uploader-dropbox pre').show();
+      return nextIndex;
+    }
+  
+    //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
+    let inputTagCounter = nextIndex-1;
+      while(0 <= inputTagCounter){
+        //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
+        let filledInputSelecter = "#hiddenCount" + inputTagCounter;
+          //lengthメソッドの返り値が0なら要素が存在しない
+          console.log('filledInputSelecter');
+          console.log(filledInputSelecter);
+        if ($(filledInputSelecter).length ==0){
+          //サムネイルの無い番号だったならその値へ更新
+          nextIndex = inputTagCounter;
+          console.log('rewritten');
+          console.log($(filledInputSelecter));
+          console.log($('#hiddenCount0'));
+        }
+        inputTagCounter = inputTagCounter -1;
+      }
+    console.log('last of YII, nextIndex is');
+    console.log(nextIndex);
+    return nextIndex;
+  }
+  //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
+  //応急処置（たぶん）
+  function readLabelIndexCreate(){
+      let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+      labelIndex = Number(labelIndex);//数値型へ変換
+      return labelIndex;
+  }
 
-////////////////////////////
-//////////////ここから本体
-$(function(){
   // editフォームからは実行されない
   pathSelf =location.pathname;
   if (pathSelf.match(/edit/) != null) {
@@ -124,7 +113,6 @@ $(function(){
       return false;
   }
   console.log('create');
-
   //カテゴリーセレクトボックス関連処理
   //ct_no_1＝親カテゴリ、ct_no_2＝子カテゴリ、ct_no_3＝孫カテゴリ
   $('#category_parent').change(function() {
@@ -254,7 +242,6 @@ $(function(){
   //カテゴリーセレクトボックス関連処理ここまで
 
   //////ここからイメージボックス関連
-
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する

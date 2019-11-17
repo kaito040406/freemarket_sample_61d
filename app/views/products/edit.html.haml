@@ -13,32 +13,32 @@
       %p
         最大10枚までアップロードできます
       .dropbox-container.flexcontainer
-        %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
+        %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "img-uploader-dropbox"}
           %pre
             :preserve
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-            -# =f.fields_for :product_images do |img|
-              -# = img.label :product_image
-              -# = img.file_field :product_image
-              -# -if(img.product_image)
-              -#   .product_image_box
-              -#     =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-              -#     .btn-box
-              -#       .img-edit-btn
-              -#         編集
-              -#       .img-delete-btn
-              -#         削除
-              -# -else
-          -@product.product_images.each do |img|
-            %div{class: "product_image_box"}
-              =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-              .btn-box
-                .img-edit-btn
-                  編集
-                .img-delete-btn
-                  削除
+          -f.fields_for :product_images |img| do
+            = img.label :_destroy, "削除" 
+          -@product.product_images.each_with_index do |img, i|
+            -if(img.count)
+              %div{class: "product_image_box exist-img"}
+                =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_delete]"}
+                .btn-box
+                  .img-edit-btn
+                    編集
+                  .img-delete-btn
+                    削除
+            -else
+              %div{class: "product_image_box added-img"}
+                %input{type:"file", name:"product[product_images_attributes][#{i}][product_image]", id:"product_product_images_attributes_#{i}_product_image"}
+                .btn-box
+                  .img-edit-btn
+                    編集
+                  .img-delete-btn
+                    削除
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
