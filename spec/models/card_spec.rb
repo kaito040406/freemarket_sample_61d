@@ -21,10 +21,15 @@ describe Cards do
       expect(card.errors[:card_id]).to include("を入力してください")
     end
     # 4 card_idが16文字以上の場合登録できない
-    it "is invalid with a name that has more than 40 characters" do
+    it "is invalid with a name that has more than 16 characters" do
       card = build(:cards, card_id: 11111111111111111)
       card.valid?
-      binding.pry
+      expect(card.errors[:card_id]).to include("は16文字で入力してください")
+    end
+    # 5 card_idが16文字以下の場合登録できない
+    it "is invalid with a name that has less than 16 characters" do
+      card = build(:cards, card_id: 111111111111111)
+      card.valid?
       expect(card.errors[:card_id]).to include("は16文字で入力してください")
     end
   end
