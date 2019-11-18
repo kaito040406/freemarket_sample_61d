@@ -197,6 +197,23 @@ svg:not(:root) {
   white-space: nowrap;
 }
 
+.header_second__box {
+  cursor: pointer;
+  width: 159.45px;
+  height: 44px;
+  position: relative;
+  z-index: 3;
+  padding: 0px 10px;
+}
+
+.header_second__box_inner {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 36px;
+  white-space: nowrap;
+}
+
 .header_second_category_icon {
   max-width: 100%;
   max-height: 100%;
@@ -361,3 +378,24 @@ h4:hover {
   }
 }
 
+.brand_box{
+  position: absolute;
+  top: 44px;
+  width: 230px;
+  height: 252px;
+  z-index: 3;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  .brand_inner_box{
+    padding-left: 20px;
+    width: 100%;
+    height: 42px;
+    font: 66.66667% sans-serif;
+    font-size: 14px;
+    padding-top: 11px;
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+}
