@@ -13,11 +13,11 @@ describe Product do
       product.valid?
       expect(product.errors[:seller_id]).to include("を入力してください", "は数値で入力してください")
     end
-    #2 nameが空だと登録ができない
-    it "is invalid without a name" do
+    #2 nameが空, 1文字以下だと登録ができない
+    it "is invalid without a name and less than 1 characters" do
       product = build(:product, name: nil)
       product.valid?
-      expect(product.errors[:name]).to include("can't be blank")
+      expect(product.errors[:name]).to include("を入力してください", "は1文字以上で入力してください")
     end
     # #3 textが空だと登録ができない
     # it "is invalid without a text" do
