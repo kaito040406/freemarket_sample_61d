@@ -55,18 +55,12 @@
                   = @product.parent
               %div.ct_2_k
                 %h6
-                  = @product.child
+                  %i.fa.fa-arrow-right
+                    = @product.child
               %div.ct_3_k
                 %h6
-                  = @product.grand
-            -# = link_to 'https://www.mercari.com/jp/category/75/'
-              .item-detail-table-sub-category
-                %i.fa.fa-arrow-right
-                CD
-            -#   = link_to 'https://www.mercari.com/jp/category/696/'
-              .item-detail-table-sub-sub-category
-                %i.fa.fa-arrow-right
-                アニメ
+                  %i.fa.fa-arrow-right
+                    = @product.grand
           %tr
             %th ブランド
             %td
@@ -104,27 +98,22 @@
             .item-sold-btn
               売り切れました
       - else
-
       .item-description.f14
         %p.item-description-inner
           =@product.text
       .item-button-container.clearfix
         .item-button-left
-          %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m49716933620", "data-toggle" => "like", name: "like!", type: "button"}
+          %button.item-button.item-button-like
             %i.fa.fa-heart
             %span いいね!
             %span.fade-in-down{"data-num" => "like"} 1
-          %button.item-button.item-button-like{"data-ga" => "element", "data-ga-category" => "LIKE", "data-ga-label" => "like!", "data-id" => "m49716933620", "data-toggle" => "like", name: "like!", type: "button"}
+          %button.item-button.item-button-like
             %i.fa.fa-flag
             %span 不適切な商品の報告
-          %input{name: "like_add_url", type: "hidden", value: "https://www.mercari.com/jp/like/add/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
-          %input{name: "like_del_url", type: "hidden", value: "https://www.mercari.com/jp/like/delete/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC"}/
-          %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}/
         .item-button-right
           %i.fa.fa-lock
           %span 
             %h6 あんしん・あんぜんへの取り組み
-
 - if current_user.id == @product.seller_id
   .item-detail-message2
     .message-container
@@ -137,8 +126,6 @@
             %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
           %button.btn-default.btn-gray
             = link_to 'この商品を削除する', "/products/#{@product.id}", method: :delete
-
-
 .item-detail-message2
   .message-container
     .message-content
@@ -150,22 +137,7 @@
         %textarea.textarea-default{name: "body", type: "text", value: ""}
         %button.message-submit.btn-default.btn-gray{type: "submit"}
           %span コメントする
-    %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
-      .modal-inner.modal-banner
-        .modal-body
-          .modal-head.bold 確認
-          %div{"data-comment" => "body"}
-          %br/
-          本当にこのコメントを削除してよろしいですか？
-        %form{action: "https://www.mercari.com/jp/comment/delete/", method: "POST"}
-          .clearfix
-            .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
-            %button.modal-btn.modal-btn-submit{type: "submit"}
-              削除する
-          %input{name: "item_id", type: "hidden", value: "m49716933620"}
-          %input{name: "comment_id", type: "hidden", value:  ""}
-          %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}
-          %input{name: "__csrf_value", type: "hidden", value: "3da33186e1167f7770a2c4888a708062973aa0a30a01bc8be7651a26a668eef421d9b30a874bf25c2fa082bdc912617a310e1a2b1b599324ee2f08a862b6b64c1"}
+    
 
 %footer.sc-dTdPqK.hvtMHp.sc-gbzWSY.tMFrx
   =render 'shared/footer'
