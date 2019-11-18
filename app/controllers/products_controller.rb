@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
   end
 
   def new
-    
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
@@ -27,6 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    binding.pry
     @product = Product.new(product_params)
     #@product.user = current_user
     if user_signed_in?
@@ -87,7 +87,6 @@ class ProductsController < ApplicationController
 
 
   def update
-    binding.pry
     @product = Product.find(params[:id])
       if @product.seller_id == current_user.id
         @product.update!(product_params)
@@ -158,7 +157,7 @@ end
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:id, :product_image, :count, :_destroy])
+    params.require(:product).permit(:seller_id, :name, :text, :category, :brand, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:id, :product_image, :count, :_destroy])
   end
 
   def set_product

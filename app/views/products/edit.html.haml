@@ -19,36 +19,20 @@
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          -# = f.fields_for :product_images do |img| 
-          -#   %div{class: "product_image_box exist-img"}
-          -#     -# = image_tag (product_image.product_image.url if product_image.product_image?)
-          -#     = img.file_field :product_image
-          -#     = img.check_box :_destroy
-          -#     = img.label :_destroy
-          -#     .btn-box
-          -#       .img-edit-btn
-          -#         編集
-          -#       .img-delete-btn
-          -#         削除
           -@product.product_images.each_with_index do |img, i|
             -if(img.count)
-              %div{class: "product_image_box exist-img"}
+              %div{class: "product-img-box exist-img"}
                 =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
                 %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}}
                 .btn-box
                   .img-edit-btn
                     編集
                   .img-delete-btn
                     削除
-            -else
-              %div{class: "product_image_box added-img"}
-                %input{type:"file", name:"product[product_images_attributes][#{i}][product_image]", id:"product_product_images_attributes_#{i}_product_image"}
-                .btn-box
-                  .img-edit-btn
-                    編集
-                  .img-delete-btn
-                    削除
+          -# =f.fields_for :product_images do |img| //サムネは表示されたが画像がparamsに入らない
+          -#   %div{class: "product-img-box"} またupdateであるためproduct_imageのidがそのproductに存在していないとエラー
+          -#     =img.file_field :product_image #cssで非表示（削除方法）
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label

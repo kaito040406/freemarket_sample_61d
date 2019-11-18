@@ -18,7 +18,7 @@ $(document).on('turbolinks:load', function(){
   //"画像枚数が変化する際の処理"としてまとめた方がいいかもしれない）
   /////カテゴリ生成
   function youngestInputIndex(){
-    console.log('here is createjs youngestInputIndex');
+    console.log('here is editjs youngestInputIndex');
     //サムネイルとセットのhidden要素を全て取得
     let allImgs = $('.hiddenCount');
     //返り値の取りうる最大値
@@ -65,6 +65,14 @@ $(document).on('turbolinks:load', function(){
   //出品ごとの画像の通し番号
   //inputタグのインデックス（=product_image配列のインデックス）は削除で途中が抜けたりするので
   //画像が何枚目か全部で何枚あるかこちらで管理
+  function overwriteHiddenCountAll(){
+    console.log('here is editjs overwriteHiddenCountAll');
+    let count = 1;
+    $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+      $(this).attr('value', count);
+      count = count + 1;
+    });
+  }
   function generateCategories(){
     path = location.pathname
     product_id = $(".select-wrap").attr("id")
@@ -208,6 +216,13 @@ $(document).on('turbolinks:load', function(){
       }
     }
   }
+
+  function overwriteLabel(inputIndex){
+    console.log('here is editjs overwriteLabel');
+    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
+  }
+
   function appendCategory(ct){
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
@@ -228,7 +243,7 @@ $(document).on('turbolinks:load', function(){
   let labelIndex = readLabelIndexEdit(); //new.html.hamlで定義される"0"
   $('.img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    labelIndex = readLabelIndex();
+    labelIndex = readLabelIndexEdit();
     // 11枚目なら中断
     if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
@@ -277,7 +292,7 @@ $(document).on('turbolinks:load', function(){
   });
 
   ///出品内容の親子孫のカテゴリセレクタを生成
-  ///カテゴリセレクトボックス:親セレクタが選択された子カテゴリを取得・セレクタ生成
+  ///カテゴリセレクトボックス:親セレクタが選択されたら子カテゴリを取得・セレクタ生成
   $('#categry_parent').change(function() {
 
     var parent_name = $(this).val();
@@ -438,10 +453,10 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
     console.log($(this).closest('.btn-box').prev().attr('value'));
     if ($(this).closest('.btn-box').prev().attr('value') == 0){
-      $(this).closest('.btn-box').prev().attr({'value': "1"});
+      $(this).closest('.btn-box').prev().attr({'value': 1});
       console.log('delete selected');
     }else{
-      $(this).closest('.btn-box').prev().attr({'value': "0"});
+      $(this).closest('.btn-box').prev().attr({'value': 0});
       console.log('delete cancel');
     }
   });
