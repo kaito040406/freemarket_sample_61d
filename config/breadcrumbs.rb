@@ -47,3 +47,8 @@ end
 crumb :privacy do
   link "プライバシーポリシー", privacy_users_path
 end
+
+crumb :tos do
+  link "メルカリ利用規約", tos_users_path
+end
+

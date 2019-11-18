@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'done'
       get 'mypage'
       get 'buy'
+      get 'tos'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
       get 'log_out'
       get 'mypage'
       get 'privacy'
+      get 'tos'
     end
   end
   
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
       get 'progress'
       get 'cards'
       get 'credit'
+      get 'tos'
     end
   end
 

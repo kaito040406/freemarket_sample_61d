@@ -19,7 +19,7 @@
         %span.item-shipping-fee 送料込み
       %section.visible-sp
         .item-btn-float-area item-buy-btn
-        = link_to '購入画面に進む', 'https://www.mercari.com/jp/transaction/buy/m49716933620/?_s=U2FsdGVkX19WUCsaI82wKoewuz1PDFSdWk4jJVE8rQ61A29D217q0A2R5i4J7GypQ4yrQyKxpF_bkVpRYieHjFcJkcGb2A1rNqbXrV01s-uxwDyP_2SX38i0cC5pY3JC'     
+        = link_to '購入画面に進む', ''     
       %table.item-detail-table
         %tr
           %th 出品者
@@ -86,7 +86,7 @@
       .item-detail-message
         .message-container
           .message-content
-            %form.message-form{action: "https//www.mercari.com/jp/comment/add/", method: "POST"}
+            %form.message-form
               %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
               %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
               %input{name: "item_id", type: "hidden", value: "m69617298882"}/
@@ -94,6 +94,3 @@
               %textarea.textarea-default{name: "body", type: "text", value: ""}
               %button.message-submit.btn-default.btn-gray{type: "submit"}
                 %span コメントする
-          
-
-
