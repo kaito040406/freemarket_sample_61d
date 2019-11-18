@@ -79,7 +79,6 @@
         =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
         %p.text-center or
         %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
-          %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
           %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
         %button.btn-default.btn-gray
           = link_to 'この商品を削除する', "/products/#{@product.id}", method: :delete
@@ -87,10 +86,7 @@
         .message-container
           .message-content
             %form.message-form
-              %input{name: "__csrf_value", type: "hidden", value: "660199b05a53a259c77d0fb7e37799b4b86158f7db09d59cb578d6c5d30783de110c788cbb6800f42ed81d8f0f9762f11c523ca063b44588d32a33e6a5fec13df"}/
               %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-              %input{name: "item_id", type: "hidden", value: "m69617298882"}/
-              %input{name: "redirect_url_key", type: "hidden", value: "items_show"}/
               %textarea.textarea-default{name: "body", type: "text", value: ""}
               %button.message-submit.btn-default.btn-gray{type: "submit"}
                 %span コメントする
