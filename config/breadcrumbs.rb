@@ -52,3 +52,6 @@ crumb :tos do
   link "メルカリ利用規約", tos_users_path
 end
 
+crumb :categories do
+  link "カテゴリー一覧", "/categories"
+end
