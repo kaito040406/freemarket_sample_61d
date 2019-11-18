@@ -13,7 +13,6 @@
     text-align: center;
   }
 }
-
 .wrapper_user__icon figure{
   overflow: hidden;
   width: 60px;
@@ -21,7 +20,6 @@
   margin: 0 auto;
   margin-top: 30px;
   border-radius: 50%;
-  
 }
 .opi {
   background: url(/images/user.png);
@@ -37,12 +35,15 @@
 .name {
   font-weight: normal;
   margin-top: 70px;
+  color: #333;
 }
 .mypage-number {
   margin-top: 70px;
+  color: #333;
 }
 .my-sold {
   width: 320px;
+  color: #333;
   position: absolute;
   left: 0;
   bottom: 0;
