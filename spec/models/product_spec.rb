@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Product do
   describe '#create' do
-    #1 seller_id, name, text, price, category, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finishedにはバリデーションがかかっている
-    it "is valid with a seller_id, name, text, price, category, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished" do
+    #1 以下にはバリデーションがかかっている
+    it "is valid with a seller_id, name, text, price, category, status, date, delivery_fee, delivery_method, delivery_from, estimated_delivery_date, finished, parent, child, grand, grand_id" do
       product = build(:product)
       expect(product).to be_valid
     end

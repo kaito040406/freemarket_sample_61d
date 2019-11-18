@@ -66,4 +66,8 @@ class Product < ApplicationRecord
   validates :estimated_delivery_date,   presence: true #presenceDBカラム未設定
   #validates :buyer_id
   validates :finished,                  presence: true #, DBではdefault: 0
+  validates :parent,                    presence: true
+  validates :child,                     presence: true
+  validates :grand,                     presence: true
+  validates :grand_id,                  presence: true
 end
