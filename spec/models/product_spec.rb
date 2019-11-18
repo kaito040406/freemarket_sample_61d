@@ -8,7 +8,7 @@ describe Product do
       expect(product).to be_valid
     end
     #2 seller_idが空,数値以外の場合登録ができない
-    it "is invalid without a name" do
+    it "is invalid without a seller_id" do
       product = build(:product, seller_id: nil)
       product.valid?
       expect(product.errors[:seller_id]).to include("を入力してください", "は数値で入力してください")
@@ -25,13 +25,12 @@ describe Product do
       product.valid?
       expect(product.errors[:price]).to include("を入力してください","は数値で入力してください")
     end
-
-    # #5 categoryが空だと登録ができない
-    # it "is invalid without a price" do
-    #   product = build(:product, category: nil)
-    #   product.valid?
-    #   expect(product.errors[:category]).to include("can't be blank")
-    # end
+    #5 categoryが空だと登録ができない
+    it "is invalid without a price" do
+      product = build(:product, category: nil)
+      product.valid?
+      expect(product.errors[:category]).to include("を入力してください", "は一覧にありません")
+    end
 
     # #6 statusが空だと登録ができない
     # it "is invalid without a status" do
