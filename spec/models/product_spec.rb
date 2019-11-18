@@ -7,77 +7,77 @@ describe Product do
       product = build(:product)
       expect(product).to be_valid
     end
-    #2 seller_idが空,数値以外の場合登録ができない
+    #2 seller_idが空の場合登録ができない
     it "is invalid without a seller_id" do
       product = build(:product, seller_id: nil)
       product.valid?
       expect(product.errors[:seller_id]).to include("を入力してください", "は数値で入力してください")
     end
-    #3 nameが空, 1文字以下の場合登録ができない
-    it "is invalid without a name and less than 1 characters" do
+    #3 nameが空の場合登録ができない
+    it "is invalid without a name" do
       product = build(:product, name: nil)
       product.valid?
       expect(product.errors[:name]).to include("を入力してください", "は1文字以上で入力してください")
     end
-    #4 priceが空,数値でない場合登録ができない
+    #4 priceが空の場合登録ができない
     it "is invalid without a price" do
       product = build(:product, price: nil)
       product.valid?
       expect(product.errors[:price]).to include("を入力してください","は数値で入力してください")
     end
-    #5 categoryが空だと登録ができない
+    #5 categoryが空の場合登録ができない
     it "is invalid without a price" do
       product = build(:product, category: nil)
       product.valid?
       expect(product.errors[:category]).to include("を入力してください", "は一覧にありません")
     end
-    #6 statusが空だと登録ができない
+    #6 statusが空の場合登録ができない
     it "is invalid without a status" do
       product = build(:product, status: nil)
       product.valid?
       expect(product.errors[:status]).to include("を入力してください")
     end
-    #7 dateが空だと登録ができない
+    #7 dateが空の場合登録ができない
     it "is invalid without a date" do
       product = build(:product, date: nil)
       product.valid?
       expect(product.errors[:date]).to include("を入力してください")
     end
 
-    #8 delivery_feeが空だと登録ができない
+    #8 delivery_feeが空の場合登録ができない
     it "is invalid without a delivery_fee" do
       product = build(:product, delivery_fee: nil)
       product.valid?
       expect(product.errors[:delivery_fee]).to include("を入力してください")
     end
 
-    #9 delivery_methodが空だと登録ができない
+    #9 delivery_methodが空の場合登録ができない
     it "is invalid without a delivery_method" do
       product = build(:product, delivery_method: nil)
       product.valid?
       expect(product.errors[:delivery_method]).to include("を入力してください")
     end
 
-    #10 delivery_fromが空だと登録ができない
+    #10 delivery_fromが空の場合登録ができない
     it "is invalid without a delivery_from" do
       product = build(:product, delivery_from: nil)
       product.valid?
       expect(product.errors[:delivery_from]).to include("を入力してください")
     end
 
-    # #11 estimated_delivery_dateが空だと登録できない
-    # it "is invalid without a estimated_delivery_date" do
-    #   product = build(:product, estimated_delivery_date: nil)
-    #   product.valid?
-    #   expect(product.errors[:estimated_delivery_date]).to include("can't be blank")
-    # end
+    #11 estimated_delivery_dateが空の場合登録できない
+    it "is invalid without a estimated_delivery_date" do
+      product = build(:product, estimated_delivery_date: nil)
+      product.valid?
+      expect(product.errors[:estimated_delivery_date]).to include("を入力してください")
+    end
 
-    # #12 finishedが空だと登録ができない
-    # it "is invalid without a finished" do
-    #   product = build(:product, finished: nil)
-    #   product.valid?
-    #   expect(product.errors[:finished]).to include("can't be blank")
-    # end
+    #12 finishedが空の場合登録ができない
+    it "is invalid without a finished" do
+      product = build(:product, finished: nil)
+      product.valid?
+      expect(product.errors[:finished]).to include("を入力してください")
+    end
 
     # #13 nameが1文字未満だと登録できない
     # it "is invalid with a name that has less than 1 characters " do
