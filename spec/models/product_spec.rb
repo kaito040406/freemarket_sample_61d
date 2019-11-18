@@ -7,36 +7,42 @@ describe Product do
       product = build(:product)
       expect(product).to be_valid
     end
+
     #2 seller_idが空の場合登録ができない
     it "is invalid without a seller_id" do
       product = build(:product, seller_id: nil)
       product.valid?
       expect(product.errors[:seller_id]).to include("を入力してください", "は数値で入力してください")
     end
+
     #3 nameが空の場合登録ができない
     it "is invalid without a name" do
       product = build(:product, name: nil)
       product.valid?
       expect(product.errors[:name]).to include("を入力してください", "は1文字以上で入力してください")
     end
+
     #4 priceが空の場合登録ができない
     it "is invalid without a price" do
       product = build(:product, price: nil)
       product.valid?
       expect(product.errors[:price]).to include("を入力してください","は数値で入力してください")
     end
+
     #5 categoryが空の場合登録ができない
     it "is invalid without a price" do
       product = build(:product, category: nil)
       product.valid?
       expect(product.errors[:category]).to include("を入力してください", "は一覧にありません")
     end
+
     #6 statusが空の場合登録ができない
     it "is invalid without a status" do
       product = build(:product, status: nil)
       product.valid?
       expect(product.errors[:status]).to include("を入力してください")
     end
+
     #7 dateが空の場合登録ができない
     it "is invalid without a date" do
       product = build(:product, date: nil)
@@ -77,6 +83,34 @@ describe Product do
       product = build(:product, finished: nil)
       product.valid?
       expect(product.errors[:finished]).to include("を入力してください")
+    end
+
+    #13 parentが空の場合登録ができない
+    it "is invalid without a parent" do
+      product = build(:product, parent: nil)
+      product.valid?
+      expect(product.errors[:parent]).to include("を入力してください")
+    end
+
+    #14 childが空の場合登録ができない
+    it "is invalid without a child" do
+      product = build(:product, child: nil)
+      product.valid?
+      expect(product.errors[:child]).to include("を入力してください")
+    end
+
+    #15 grandが空の場合登録ができない
+    it "is invalid without a grand" do
+      product = build(:product, grand: nil)
+      product.valid?
+      expect(product.errors[:grand]).to include("を入力してください")
+    end
+
+    #16 grandが空の場合登録ができない
+    it "is invalid without a grand_id" do
+      product = build(:product, grand_id: nil)
+      product.valid?
+      expect(product.errors[:grand_id]).to include("を入力してください")
     end
 
     # #13 nameが1文字未満だと登録できない
