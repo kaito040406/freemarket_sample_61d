@@ -113,26 +113,27 @@ describe Product do
       expect(product.errors[:grand_id]).to include("を入力してください")
     end
 
-    # #13 nameが1文字未満だと登録できない
-    # it "is invalid with a name that has less than 1 characters " do
-    #   product = build(:product, name: "")
-    #   product.valid?
-    #   expect(product.errors[:name]).to include("is too short (minimum is 1 character)")
-    # end
+    #17 nameが1文字未満だと登録できない
+    it "is invalid with a name that has less than 1 characters " do
+      product = build(:product, name: "")
+      product.valid?
+      expect(product.errors[:name]).to include("は1文字以上で入力してください")
+    end
 
-    # #14 nameが41文字以上だと登録できない
-    # it "is invalid with a name that has more than 40 characters " do
-    #   product = build(:product, name: "abcdefghijabcdefghijabcdefghijabcdefghija")
-    #   product.valid?
-    #   expect(product.errors[:name]).to include("is too long (maximum is 40 characters)")
-    # end
-    # #15 passwordが7文字以上で登録できること
+    #18 nameが41文字以上だと登録できない
+    it "is invalid with a name that has more than 40 characters " do
+      product = build(:product, name: "abcdefghijabcdefghijabcdefghijabcdefghija")
+      product.valid?
+      expect(product.errors[:name]).to include("は40文字以内で入力してください")
+    end
+
+    # #19 passwordが7文字以上で登録できること
     # it "is valid for passwords longer than 7 characters " do
     #   product = build(:product, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
     #   expect(product).to be_valid
     # end
 
-    # #10 sur_name_yomiが漢字では登録ができないこと
+    # #20 sur_name_yomiが漢字では登録ができないこと
     # it "is invalid sur_name_yomi for kanji" do
     #   product = build(:product, sur_name_yomi: "長谷川")
     #   product.valid?
