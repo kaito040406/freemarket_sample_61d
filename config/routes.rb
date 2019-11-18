@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get 'mypage'
       get 'privacy'
       get 'tos'
+      get 'brand'
     end
   end
   
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
       get 'cards'
       get 'credit'
       get 'tos'
+      get 'brand'
     end
   end
 

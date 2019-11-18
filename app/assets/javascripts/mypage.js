@@ -96,6 +96,5 @@ $(document).on('turbolinks:load', function(){
   })
 })
 
-name = $('.current_user_name').val();
 
 
