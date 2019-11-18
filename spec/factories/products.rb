@@ -15,5 +15,9 @@ FactoryBot.define do
     estimated_delivery_date     {"1~2日で発送"}
     buyer_id                    {1}  
     finished                    {1}
+    parent                      {"レディース"}
+    child                       {"トップス"}
+    grand                       {"Tシャツ/カットソー(半袖/袖なし)"}
+    grand_id                    {3}
   end
 end

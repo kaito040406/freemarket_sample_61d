@@ -53,7 +53,7 @@ class Product < ApplicationRecord
   # validation
   validates :name,                      presence: true, length: { in: 1..40}
   validates :text,                      presence: true, length: { in: 1..1000}
-  validates :price,                     numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
+  validates :price,                     presence: true, numericality: { only_integer: true, greater_than: 299, less_than: 9999999}
   validates :seller_id,                 presence: true, numericality: { only_integer: true}
   validates :category,                   presence: true, inclusion: {in: Product.categories.keys} #presenceDBカラム未設定
   validates :status,                    presence: true
@@ -66,4 +66,8 @@ class Product < ApplicationRecord
   validates :estimated_delivery_date,   presence: true #presenceDBカラム未設定
   #validates :buyer_id
   validates :finished,                  presence: true #, DBではdefault: 0
+  validates :parent,                    presence: true
+  validates :child,                     presence: true
+  validates :grand,                     presence: true
+  validates :grand_id,                  presence: true
 end
