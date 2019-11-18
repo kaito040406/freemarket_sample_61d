@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
       if @product.save!
         redirect_to :root
       else
-        #render :new
+        redirect_to :failkure
       end
     end
   end
@@ -51,12 +51,14 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
-
-    @product.product_images.build
-    grand_name = @product.grand
-    @image = ProductImage.where(product_id: @product.id)
-
+      @product = Product.find(params[:id])
+      if @product.seller_id == current_user.id
+      @product.product_images.build
+      grand_name = @product.grand
+      @image = ProductImage.where(product_id: @product.id)
+    else
+      redirect_to root_path
+    end
     if grand_name != nil
 
     else
