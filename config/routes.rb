@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     end
   end
   #ここまで長谷川記入
-
+  resource :products, only: [:search]
   resources :categories, only: [:index, :show]
   
   resources "users",only: [:index,:profile, :progress, :cards], path: 'mypage' do
@@ -78,4 +78,5 @@ Rails.application.routes.draw do
       post 'show', to: 'cards#show'
     end
   end
+
 end

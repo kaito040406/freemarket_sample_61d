@@ -141,6 +141,10 @@ class ProductsController < ApplicationController
     end
   end
 end
+
+def search
+end
+
   private
 
   def set_product
