@@ -44,26 +44,26 @@ describe Product do
       expect(product.errors[:date]).to include("を入力してください")
     end
 
-    # #8 delivery_feeが空だと登録ができない
-    # it "is invalid without a delivery_fee" do
-    #   product = build(:product, delivery_fee: nil)
-    #   product.valid?
-    #   expect(product.errors[:delivery_fee]).to include("can't be blank")
-    # end
+    #8 delivery_feeが空だと登録ができない
+    it "is invalid without a delivery_fee" do
+      product = build(:product, delivery_fee: nil)
+      product.valid?
+      expect(product.errors[:delivery_fee]).to include("を入力してください")
+    end
 
-    # #9 delivery_methodが空だと登録ができない
-    # it "is invalid without a delivery_method" do
-    #   product = build(:product, delivery_method: nil)
-    #   product.valid?
-    #   expect(product.errors[:delivery_method]).to include("can't be blank")
-    # end
+    #9 delivery_methodが空だと登録ができない
+    it "is invalid without a delivery_method" do
+      product = build(:product, delivery_method: nil)
+      product.valid?
+      expect(product.errors[:delivery_method]).to include("を入力してください")
+    end
 
-    # #10 delivery_fromが空だと登録ができない
-    # it "is invalid without a delivery_from" do
-    #   product = build(:product, delivery_from: nil)
-    #   product.valid?
-    #   expect(product.errors[:delivery_from]).to include("can't be blank")
-    # end
+    #10 delivery_fromが空だと登録ができない
+    it "is invalid without a delivery_from" do
+      product = build(:product, delivery_from: nil)
+      product.valid?
+      expect(product.errors[:delivery_from]).to include("を入力してください")
+    end
 
     # #11 estimated_delivery_dateが空だと登録できない
     # it "is invalid without a estimated_delivery_date" do
