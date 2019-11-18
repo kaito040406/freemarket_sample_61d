@@ -6,6 +6,15 @@ function appendCategory(ct){
               `
   return html;
 }
+
+function appendCategory_g(ct){
+  console.log(ct.id)
+  var html = `
+              <option value="${ct.id}" id = "${ct.id}">${ct.name}</option>
+              `
+  return html;
+}
+
 //値段に合わせ手数料と利益を更新する関数
 function calcFeeGain(){
   let product_fee_rate = 0.1
@@ -145,6 +154,7 @@ function readLabelIndex(){
                     `
         ap_html_g = html_head_g
         categories.forEach(function(category){
+          console.log(category)
           ct_html_g = appendCategory(category)
           ap_html_g = ap_html_g + ct_html_g
         })
@@ -361,7 +371,7 @@ $(document).on('turbolinks:load', function(){
                     `
         ap_html_g = html_head_g
         categories.forEach(function(category){
-          ct_html_g = appendCategory(category)
+          ct_html_g = appendCategory_g(category)
           ap_html_g = ap_html_g + ct_html_g
         })
         html_foot_g=`
