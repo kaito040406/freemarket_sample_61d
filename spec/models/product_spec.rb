@@ -185,11 +185,16 @@ describe Product do
 
     # finishedが文字の場合登録できない
     it "is invalid without a finished for charactor" do
-      product = build(:product,finished: "aaa")
+      product = build(:product, finished: "aaa")
       product.valid?
       expect(product.errors[:finished]).to include("は数値で入力してください")
     end
 
-
+    # grand_idが文字の場合登録できない
+    it "is invalid without a grand_id for charactor" do
+      product = build(:product, grand_id: "aaa")
+      product.valid?
+      expect(product.errors[:grand_id]).to include("は数値で入力してください")
+    end
   end
 end
