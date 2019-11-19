@@ -1,48 +1,55 @@
 require 'rails_helper'
 describe User do
   describe '#create' do
-    #1 バリテーションがかかっている全ての情報があれば登録できること
+    # バリテーションがかかっている全ての情報があれば登録できること
     it "is valid with a nick_name, email, password, password_confirmation, sur_name, fr_name, sur_name_yomi, first_name_yomi, birthday_year, birthday_manth, birthday_day, tel_number, certification, address_number ,address_ken, address_city, address_banch" do
       user = build(:user)
       expect(user).to be_valid
     end
 
-    #2 nick_nameが空では登録ができないこと
+    # nick_nameが空では登録ができないこと
     it "is invalid without a nick_name" do
       user = build(:user, nick_name: nil)
       user.valid?
       expect(user.errors[:nick_name]).to include("を入力してください")
     end
 
-    #3 emailが空だと登録ができない
+    # emailが空だと登録ができない
     it "is invalid without a email" do
       user = build(:user, email: nil)
       user.valid?
       expect(user.errors[:email]).to include("を入力してください")
     end
 
-    #4 passwordが空では登録ができないこと
+    # passwordが空では登録ができないこと
     it "is invalid without a password" do
       user = build(:user, password: nil)
       user.valid?
       expect(user.errors[:password]).to include("を入力してください")
     end
 
-    #8 sur_nameが空では登録ができないこと
+    # sur_nameが空では登録ができないこと
     it "is invalid without a sur_name" do
       user = build(:user, sur_name: nil)
       user.valid?
       expect(user.errors[:sur_name]).to include("を入力してください")
     end
 
-    #9 fr_nameが空では登録ができないこと
+    # fr_nameが空では登録ができないこと
     it "is invalid without a fr_name" do
       user = build(:user, fr_name: nil)
       user.valid?
       expect(user.errors[:fr_name]).to include("を入力してください")
     end
 
-    #9 sur_name_yomiが空では登録ができないこと
+    # fr_name_yomiが空では登録ができないこと
+    it "is invalid without a first_name_yomi" do
+      user = build(:user, first_name_yomi: nil)
+      user.valid?
+      expect(user.errors[:first_name_yomi]).to include("を入力してください")
+    end
+
+    # sur_name_yomiが空では登録ができないこと
     it "is invalid without a sur_name yomi" do
       user = build(:user, sur_name_yomi: nil)
       user.valid?
@@ -56,6 +63,12 @@ describe User do
       expect(user.errors[:certification]).to include("を入力してください")
     end
 
+    #22郵便番号が空だと登録できない
+    it "is invalid without a address_number" do
+      user = build(:user, address_number: nil)
+      user.valid?
+      expect(user.errors[:address_number]).to include("を入力してください")
+    end
 
     #24県名が空だと登録できない
     it "is invalid without a address_ken" do
@@ -76,6 +89,13 @@ describe User do
       user = build(:user, address_banch: nil)
       user.valid?
       expect(user.errors[:address_banch]).to include("を入力してください")
+    end
+
+    #12 first_name_yomiが空では登録ができないこと
+    it "is invalid without a first_name" do
+      user = build(:user, first_name_yomi: nil)
+      user.valid?
+      expect(user.errors[:first_name_yomi]).to include("を入力してください")
     end
 
     # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
@@ -110,13 +130,6 @@ describe User do
     # it "is registration in Hiragana is valid" do
     #   user = build(:user, sur_name_yomi: "はせがわ")
     #   expect(user).to be_valid
-    # end
-
-    # #12 first_name_yomiが空では登録ができないこと
-    # it "is invalid without a first_name" do
-    #   user = build(:user, first_name_yomi: nil)
-    #   user.valid?
-    #   expect(user.errors[:first_name_yomi]).to include("can't be blank")
     # end
     
     # #13 first_name_yomiが漢字では登録ができないこと
@@ -173,12 +186,7 @@ describe User do
     #   expect(user.errors[:certification]).to include("is not a number")
     # end
 
-    # #22郵便番号が空だと登録できない
-    # it "is invalid without a address_number" do
-    #   user = build(:user, address_number: nil)
-    #   user.valid?
-    #   expect(user.errors[:address_number]).to include("can't be blank")
-    # end
+    
 
     # #23郵便番号が形式外だと登録できない
     # it "is valid if out of format" do
