@@ -118,30 +118,28 @@ describe User do
       expect(user.errors[:address_banch]).to include("を入力してください")
     end
 
+    # passwordが存在してもpassword_confirmationが空では登録できないこと
+    it "is invalid without a password_confirmation although with a password" do
+      user = build(:user, password_confirmation: "")
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
+    end
+
+    # passwordが6文字以下だと登録できないこと
+    it "is invalid with a password that has less than 6 characters " do
+      user = build(:user, password: "aaaaa", password_confirmation: "aaaaa")
+      user.valid?
+      expect(user.errors[:password]).to include("は6文字以上で入力してください")
+    end
+
+    # passwordが7文字以上で登録できること
+    it "is valid for passwords longer than 7 characters " do
+      user = build(:user, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+      expect(user).to be_valid
+    end
 
 
-    # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
-    # it "is invalid without a password_confirmation although with a password" do
-    #   user = build(:user, password_confirmation: "")
-    #   user.valid?
-    #   expect(user.errors[:password_confirmation]).to include("doesn't match Password")
-    # end
-
-    # #6 passwordが6文字以下だと登録できないこと
-    # it "is invalid with a password that has less than 6 characters " do
-    #   user = build(:user, password: "aaaaa", password_confirmation: "aaaaa")
-    #   user.valid?
-    #   expect(user.errors[:password]).to include("is too short (minimum is 7 characters)")
-    # end
-
-    # #7 passwordが7文字以上で登録できること
-    # it "is valid for passwords longer than 7 characters " do
-    #   user = build(:user, password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
-    #   expect(user).to be_valid
-    # end
-
-
-    # #10 sur_name_yomiが漢字では登録ができないこと
+    # # sur_name_yomiが漢字では登録ができないこと
     # it "is invalid sur_name_yomi for kanji" do
     #   user = build(:user, sur_name_yomi: "長谷川")
     #   user.valid?
