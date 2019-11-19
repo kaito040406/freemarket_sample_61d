@@ -10,8 +10,11 @@ Rails.application.routes.draw do
       get 'buy'
       get 'tos'
       get 'failkure'
+    end
+    collection do
       get 'search'
     end
+
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # devise_for :users
@@ -24,7 +27,6 @@ Rails.application.routes.draw do
           get 'child'
           get 'grand_child'
           get 'number'
-          get 'search'
         end
       end
     end

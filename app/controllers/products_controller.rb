@@ -112,6 +112,10 @@ class ProductsController < ApplicationController
     @users_prefecture = Prefecture.find(@users.address_ken).name
   end
 
+  def set_search
+    @search = Product.ransack(name: params[:name_cont])
+  end
+
 
   def buy #クレジット購入
     @product = Product.find(params[:id])
@@ -218,6 +222,4 @@ end
     params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy, :id])
   end
 
-  def set_search
-    @search = Product.ransack(params[:name])
-  end
+ 
