@@ -201,12 +201,20 @@ describe User do
     
 
 
-    # #15 電話番号が11文字以外だと登録できないこと
-    # it "is invalid for phone number other than 11 digits" do
-    #   user = build(:user, tel_number: "000")
-    #   user.valid?
-    #   expect(user.errors[:tel_number]).to include("is the wrong length (should be 11 characters)")
-    # end
+    # 電話番号が11文字以上だと登録できないこと
+    it "is invalid for phone number longer than 11 digits" do
+      user = build(:user, tel_number: "000000000000")
+      user.valid?
+      expect(user.errors[:tel_number]).to include("は11文字以内で入力してください")
+    end
+
+    # 電話番号が10文字未満だと登録できないこと
+    it "is invalid for phone number more than 10 digits" do
+      user = build(:user, tel_number: "000000000")
+      user.valid?
+      expect(user.errors[:tel_number]).to include("は10文字以上で入力してください")
+    end
+
     # 電話番号が10文字だと登録できること
     it "is 10 digit phone number is valid " do
       user = build(:user, tel_number: "0000000000")
