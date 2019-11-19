@@ -19,7 +19,7 @@ describe Product do
     it "is invalid without a name" do
       product = build(:product, name: nil)
       product.valid?
-      expect(product.errors[:name]).to include("を入力してください", )
+      expect(product.errors[:name]).to include("を入力してください")
     end
 
     # textが空の場合登録できない
@@ -40,7 +40,7 @@ describe Product do
     it "is invalid without a price" do
       product = build(:product, category: nil)
       product.valid?
-      expect(product.errors[:category]).to include("を入力してください", "は一覧にありません")
+      expect(product.errors[:category]).to include("を入力してください")
     end
 
     # statusが空の場合登録ができない
@@ -154,20 +154,41 @@ describe Product do
       product.valid?
       expect(product.errors[:price]).to include("は数値で入力してください")
     end
-    # priceが10000000以上の場合登録できない
+
+    # priceが10000000円以上の場合登録できない
     it "is invalid without a price that has more than 9999999 price " do
       product = build(:product, price: "10000000")
       product.valid?
       expect(product.errors[:price]).to include("は9999999より小さい値にしてください")
     end
 
-    # priceが299未満の場合登録できない
+    # priceが299円未満の場合登録できない
     it "is invalid without a price that has less than 299 price " do
       product = build(:product, price: "298")
       product.valid?
       expect(product.errors[:price]).to include("は299より大きい値にしてください")
     end
 
+    # seller_idが文字の場合登録できない
+    it "is invalid without a seller_id for charactor" do
+      product = build(:product, seller_id: "aaa")
+      product.valid?
+      expect(product.errors[:seller_id]).to include("は数値で入力してください")
+    end
+
+    # categoryがproductの一覧にないものの場合登録できない
+    it "is invalid without a category includes product " do
+      product = build(:product, category: "")
+      product.valid?
+      expect(product.errors[:category]).to include("は一覧にありません")
+    end
+
+    # finishedが文字の場合登録できない
+    it "is invalid without a finished for charactor" do
+      product = build(:product,finished: "aaa")
+      product.valid?
+      expect(product.errors[:finished]).to include("は数値で入力してください")
+    end
 
 
   end
