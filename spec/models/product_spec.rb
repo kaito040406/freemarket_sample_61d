@@ -154,6 +154,21 @@ describe Product do
       product.valid?
       expect(product.errors[:price]).to include("は数値で入力してください")
     end
+    # priceが10000000以上の場合登録できない
+    it "is invalid without a price that has more than 9999999 price " do
+      product = build(:product, price: "10000000")
+      product.valid?
+      expect(product.errors[:price]).to include("は9999999より小さい値にしてください")
+    end
+
+    # priceが299未満の場合登録できない
+    it "is invalid without a price that has less than 299 price " do
+      product = build(:product, price: "298")
+      product.valid?
+      expect(product.errors[:price]).to include("は299より大きい値にしてください")
+    end
+
+
 
   end
 end
