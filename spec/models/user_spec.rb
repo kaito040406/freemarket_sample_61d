@@ -138,19 +138,26 @@ describe User do
       expect(user).to be_valid
     end
 
+    # sur_name_yomiが漢字では登録ができないこと
+    it "is invalid sur_name_yomi for kanji" do
+      user = build(:user, sur_name_yomi: "長谷川")
+      user.valid?
+      expect(user.errors[:sur_name_yomi][0]).to include("は不正な値です")
+    end
 
-    # # sur_name_yomiが漢字では登録ができないこと
-    # it "is invalid sur_name_yomi for kanji" do
-    #   user = build(:user, sur_name_yomi: "長谷川")
-    #   user.valid?
-    #   expect(user.errors[:sur_name_yomi][0]).to include("is invalid")
-    # end
+    # sur_name_yomiが平仮名では登録ができないこと
+    it "is invalid sur_name_yomi for kanji" do
+      user = build(:user, sur_name_yomi: "はせがわ")
+      user.valid?
+      expect(user.errors[:sur_name_yomi][0]).to include("は不正な値です")
+    end
 
-    # #11 sur_name_yomiがひらがなでは登録ができること
-    # it "is registration in Hiragana is valid" do
-    #   user = build(:user, sur_name_yomi: "はせがわ")
-    #   expect(user).to be_valid
-    # end
+
+    # sur_name_yomiがカタカナでは登録ができること
+    it "is registration in Hiragana is valid" do
+      user = build(:user, sur_name_yomi: "ハセガワ")
+      expect(user).to be_valid
+    end
     
     # #13 first_name_yomiが漢字では登録ができないこと
     # it "is invalid sur_name for kanji" do
