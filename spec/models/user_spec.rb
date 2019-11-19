@@ -178,6 +178,28 @@ describe User do
       expect(user).to be_valid
     end
 
+    # birthday_yearが数字以外では登録ができないこと
+    it "is invalid without a birthday_year" do
+      user = build(:user, birthday_year: "aaa")
+      user.valid?
+      expect(user.errors[:birthday_year]).to include("は数値で入力してください")
+    end
+
+    # birthday_manthが数字以外登録ができないこと
+    it "is invalid without a birthday_manth" do
+      user = build(:user, birthday_manth: "aaa")
+      user.valid?
+      expect(user.errors[:birthday_manth]).to include("は数値で入力してください")
+    end
+    # birthday_dayが数字以外登録ができないこと
+    it "is invalid without a birthday_day" do
+      user = build(:user, birthday_day: "aaa")
+      user.valid?
+      expect(user.errors[:birthday_day]).to include("は数値で入力してください")
+    end
+    
+
+
     # #15 電話番号が11文字以外だと登録できないこと
     # it "is invalid for phone number other than 11 digits" do
     #   user = build(:user, tel_number: "000")
