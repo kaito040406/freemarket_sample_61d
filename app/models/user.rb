@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :birthday_year,     presence: true, numericality: true
   validates :birthday_manth,    presence: true, numericality: true
   validates :birthday_day,      presence: true, numericality: true
-  validates :tel_number,        presence: true, length: {minimum: 10,  maximum: 11 }, numericality: true
+  validates :tel_number,        presence: true, length: {minimum: 10,  maximum: 11}, numericality: true
   validates :certification,     presence: true, length: { is: 4 }, numericality: true
   validates :address_number,    presence: true, format: {with: /\A\d{3}[-]\d{4}\z/}
   validates :address_ken,       presence: true
