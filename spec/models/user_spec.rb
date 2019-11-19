@@ -42,7 +42,7 @@ describe User do
       expect(user.errors[:fr_name]).to include("を入力してください")
     end
 
-    # fr_name_yomiが空では登録ができないこと
+    # first_name_yomiが空では登録ができないこと
     it "is invalid without a first_name_yomi" do
       user = build(:user, first_name_yomi: nil)
       user.valid?
@@ -56,46 +56,60 @@ describe User do
       expect(user.errors[:sur_name_yomi]).to include("を入力してください")
     end
 
-    # 18 認証番号が空だと登録できないこと    
+    # birthday_yearが空では登録ができないこと
+    it "is invalid without a birthday_year" do
+      user = build(:user, birthday_year: nil)
+      user.valid?
+      expect(user.errors[:birthday_year]).to include("を入力してください")
+    end
+
+    # birthday_manthが空では登録ができないこと
+    it "is invalid without a birthday_manth" do
+      user = build(:user, birthday_manth: nil)
+      user.valid?
+      expect(user.errors[:birthday_manth]).to include("を入力してください")
+    end
+    # birthday_dayが空では登録ができないこと
+    it "is invalid without a birthday_day" do
+      user = build(:user, birthday_day: nil)
+      user.valid?
+      expect(user.errors[:birthday_day]).to include("を入力してください")
+    end
+
+
+    # 認証番号が空だと登録できないこと    
     it "is invalid without a certification" do
       user = build(:user, certification: nil)
       user.valid?
       expect(user.errors[:certification]).to include("を入力してください")
     end
 
-    #22郵便番号が空だと登録できない
+    # 郵便番号が空だと登録できない
     it "is invalid without a address_number" do
       user = build(:user, address_number: nil)
       user.valid?
       expect(user.errors[:address_number]).to include("を入力してください")
     end
 
-    #24県名が空だと登録できない
+    # 県名が空だと登録できない
     it "is invalid without a address_ken" do
       user = build(:user, address_ken: nil)
       user.valid?
       expect(user.errors[:address_ken]).to include("を入力してください")
     end
 
-    #25市町村が空だと登録できない
+    # 市町村が空だと登録できない
     it "is invalid without a address_city" do
       user = build(:user, address_city: nil)
       user.valid?
       expect(user.errors[:address_city]).to include("を入力してください")
     end
 
-    #26番地が空だと登録できない
+    # 番地が空だと登録できない
     it "is invalid without a address_banch" do
       user = build(:user, address_banch: nil)
       user.valid?
       expect(user.errors[:address_banch]).to include("を入力してください")
-    end
-
-    #12 first_name_yomiが空では登録ができないこと
-    it "is invalid without a first_name" do
-      user = build(:user, first_name_yomi: nil)
-      user.valid?
-      expect(user.errors[:first_name_yomi]).to include("を入力してください")
     end
 
     # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
