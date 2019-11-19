@@ -191,6 +191,7 @@ describe User do
       user.valid?
       expect(user.errors[:birthday_manth]).to include("は数値で入力してください")
     end
+
     # birthday_dayが数字以外登録ができないこと
     it "is invalid without a birthday_day" do
       user = build(:user, birthday_day: "aaa")
@@ -206,19 +207,24 @@ describe User do
     #   user.valid?
     #   expect(user.errors[:tel_number]).to include("is the wrong length (should be 11 characters)")
     # end
+    # 電話番号が10文字だと登録できること
+    it "is 10 digit phone number is valid " do
+      user = build(:user, tel_number: "0000000000")
+      expect(user).to be_valid
+    end
 
-    # #16 電話番号が11文字だと登録できること
-    # it "is 11 digit phone number is valid " do
-    #   user = build(:user, tel_number: "00000000000")
-    #   expect(user).to be_valid
-    # end
+    # 電話番号が11文字だと登録できること
+    it "is 11 digit phone number is valid " do
+      user = build(:user, tel_number: "00000000000")
+      expect(user).to be_valid
+    end
 
-    # #17 電話番号が文字だと登録できないこと
-    # it "is invalid tel_number for charactor " do
-    #   user = build(:user, tel_number: "aaaaaaaaaaa")
-    #   user.valid?
-    #   expect(user.errors[:tel_number]).to include("is not a number")
-    # end
+    # 電話番号が文字だと登録できないこと
+    it "is invalid tel_number for charactor " do
+      user = build(:user, tel_number: "aaaaaaaaaaa")
+      user.valid?
+      expect(user.errors[:tel_number]).to include("は数値で入力してください")
+    end
 
 
     # #19 認証番号が4桁だと登録できること
