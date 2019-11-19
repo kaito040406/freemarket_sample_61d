@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
   before_action :set_category, only: [:index]
+  before_action :set_search
 
   def index
     @product = Product.where(finished: 0).length
@@ -144,8 +145,10 @@ class ProductsController < ApplicationController
   end
 end
 
-def search
-end
+  def set_search
+    @search = Product.ransack(params[:name])
+
+  end
 
   private
 
