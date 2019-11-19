@@ -152,25 +152,31 @@ describe User do
       expect(user.errors[:sur_name_yomi][0]).to include("は不正な値です")
     end
 
-
     # sur_name_yomiがカタカナでは登録ができること
     it "is registration in Hiragana is valid" do
       user = build(:user, sur_name_yomi: "ハセガワ")
       expect(user).to be_valid
     end
     
-    # #13 first_name_yomiが漢字では登録ができないこと
-    # it "is invalid sur_name for kanji" do
-    #   user = build(:user, first_name_yomi: "海斗")
-    #   user.valid?
-    #   expect(user.errors[:first_name_yomi]).to include("is invalid")
-    # end
+    # first_name_yomiが漢字では登録ができないこと
+    it "is invalid sur_name for kanji" do
+      user = build(:user, first_name_yomi: "海斗")
+      user.valid?
+      expect(user.errors[:first_name_yomi]).to include("は不正な値です")
+    end
 
-    # #14 first_name_yomiがひらがなで登録ができること
-    # it "is registration in Hiragana is valid" do
-    #   user = build(:user, first_name_yomi: "かいと")
-    #   expect(user).to be_valid
-    # end
+    # first_name_yomiが漢平仮名では登録ができないこと
+    it "is invalid sur_name for kanji" do
+      user = build(:user, first_name_yomi: "かいと")
+      user.valid?
+      expect(user.errors[:first_name_yomi]).to include("は不正な値です")
+    end
+
+    # first_name_yomiがひらがなで登録ができること
+    it "is registration in Hiragana is valid" do
+      user = build(:user, first_name_yomi: "カイト")
+      expect(user).to be_valid
+    end
 
     # #15 電話番号が11文字以外だと登録できないこと
     # it "is invalid for phone number other than 11 digits" do
