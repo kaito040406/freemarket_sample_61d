@@ -5,11 +5,12 @@
         .header_mercari
           .header_top_link
             =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg",alt: "Mercari"), root_path
-      %form.header_serch
-        %input.header_serch_box{name: "keyword", placeholder: "何かお探しですか\n？", type: "search", value: ""}/
-        %button.header_serch_button
+      .header_serch
+        = search_form_for @search, url: "/products/search" do |f|
+          = f.text_field :name_cont, placeholder: "何かお探しですか\n？", value: "", class: "header_serch_box"
           %svg.header_serch_button_icon{"aria-hidden": "true", height: "16", viewbox: "0 0 16 16", width: "16"}
             %path{d: "M11.435 10.063h-.723l-.256-.247a5.92 5.92 0 0 0 1.437-3.87 5.946 5.946 0 1 0-5.947 5.947 5.92 5.92 0 0 0 3.87-1.437l.247.256v.723L14.637 16 16 14.637l-4.565-4.574zm-5.489 0A4.111 4.111 0 0 1 1.83 5.946 4.111 4.111 0 0 1 5.946 1.83a4.111 4.111 0 0 1 4.117 4.116 4.111 4.111 0 0 1-4.117 4.117z", fill: "currentColor", "fill-rule": "nonzero"}
+          = f.submit "", class: "header_serch_button"
     .header_second_box
       .header_second_left_box
         .header_second_w_box{id: "ct_box_h_k"}

@@ -154,6 +154,10 @@ img {
   height: 14px;
   margin-top: 2px;
   width: 14px;
+  position: absolute;
+  bottom: 0;
+  right: 18px;
+  top: 10px;
 }
 
 svg:not(:root) {

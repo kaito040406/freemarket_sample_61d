@@ -2,10 +2,10 @@ class ProductsController < ApplicationController
 
   require 'payjp'
 
-
   before_action :authenticate_user!, except: [:index]
   before_action :set_product, only: [:destroy, :show, :my_details, :purchase_confirmation, :buy]
   before_action :set_category, only: [:index]
+  before_action :set_search
 
   def index
     @product = Product.where(finished: 0).length
@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
   end
 
   def new
-    
     @category_parent = Category.where(ancestry: nil)
     @product = Product.new
 
@@ -113,6 +112,10 @@ class ProductsController < ApplicationController
     @users_prefecture = Prefecture.find(@users.address_ken).name
   end
 
+  def set_search
+    @search = Product.ransack(name: params[:name_cont])
+  end
+
 
   def buy #クレジット購入
     @product = Product.find(params[:id])
@@ -144,8 +147,7 @@ class ProductsController < ApplicationController
   end
 end
 
-def search
-end
+  
 
   private
 
@@ -211,14 +213,13 @@ end
     params[:product][:size] = 1
     params[:product][:date] = Date.current
 
-
     params[:product][:child] = params[:child]
     category = Category.find(params[:grand])
     params[:product][:grand] = category.name
     params[:product][:parent] = params[:product][:category]
     params[:product][:grand_id] = params[:grand]
 
-
-
     params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy, :id])
   end
+
+ 

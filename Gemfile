@@ -112,4 +112,4 @@ gem 'jquery-rails'
 gem 'roo'#CSV読み込みよう
 gem 'ancestry'
 gem 'jquery-turbolinks'
-
+gem 'ransack'#検索機能 木山
