@@ -28,6 +28,27 @@ describe User do
       expect(user.errors[:password]).to include("を入力してください")
     end
 
+    #8 sur_nameが空では登録ができないこと
+    it "is invalid without a sur_name" do
+      user = build(:user, sur_name: nil)
+      user.valid?
+      expect(user.errors[:sur_name]).to include("を入力してください")
+    end
+
+    #9 fr_nameが空では登録ができないこと
+    it "is invalid without a fr_name" do
+      user = build(:user, fr_name: nil)
+      user.valid?
+      expect(user.errors[:fr_name]).to include("を入力してください")
+    end
+
+    #9 sur_name_yomiが空では登録ができないこと
+    it "is invalid without a sur_name yomi" do
+      user = build(:user, sur_name_yomi: nil)
+      user.valid?
+      expect(user.errors[:sur_name_yomi]).to include("を入力してください")
+    end
+
     # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
     # it "is invalid without a password_confirmation although with a password" do
     #   user = build(:user, password_confirmation: "")
@@ -48,26 +69,6 @@ describe User do
     #   expect(user).to be_valid
     # end
 
-    # #8 sur_nameが空では登録ができないこと
-    # it "is invalid without a sur_name" do
-    #   user = build(:user, sur_name: nil)
-    #   user.valid?
-    #   expect(user.errors[:sur_name]).to include("can't be blank")
-    # end
-
-    # #9 fr_nameが空では登録ができないこと
-    # it "is invalid without a fr_name" do
-    #   user = build(:user, fr_name: nil)
-    #   user.valid?
-    #   expect(user.errors[:fr_name]).to include("can't be blank")
-    # end
-
-    # #9 sur_name_yomiが空では登録ができないこと
-    # it "is invalid without a sur_name yomi" do
-    #   user = build(:user, sur_name_yomi: nil)
-    #   user.valid?
-    #   expect(user.errors[:sur_name_yomi]).to include("can't be blank")
-    # end
 
     # #10 sur_name_yomiが漢字では登録ができないこと
     # it "is invalid sur_name_yomi for kanji" do
