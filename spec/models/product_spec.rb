@@ -33,7 +33,7 @@ describe Product do
     it "is invalid without a price" do
       product = build(:product, price: nil)
       product.valid?
-      expect(product.errors[:price]).to include("を入力してください","は数値で入力してください")
+      expect(product.errors[:price]).to include("を入力してください")
     end
 
     # categoryが空の場合登録ができない
@@ -127,26 +127,33 @@ describe Product do
       expect(product.errors[:name]).to include("は1文字以上で入力してください")
     end
 
-    # nameが41文字以上だと登録できない
+    # nameが41文字以上の場合登録できない
     it "is invalid with a name that has more than 40 characters " do
       product = build(:product, name: "abcdefghijabcdefghijabcdefghijabcdefghija")
       product.valid?
       expect(product.errors[:name]).to include("は40文字以内で入力してください")
     end
 
-    # textが1文字未満だと登録できない
+    # textが1文字未満の場合登録できない
     it "is invalid with a text that has less than 1 characters " do
       product = build(:product, text: "")
       product.valid?
       expect(product.errors[:text]).to include("は1文字以上で入力してください")
     end
 
+    # textが1000文字以上の場合登録できない
     it "is invalid with a text that has more than 1000 characters " do
       product = build(:product, text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       product.valid?
       expect(product.errors[:text]).to include("は1000文字以内で入力してください")
     end
-
     
+    # priceが文字の場合登録できない
+    it "is invalid without a price for charactor" do
+      product = build(:product, price: "aaa")
+      product.valid?
+      expect(product.errors[:price]).to include("は数値で入力してください")
+    end
+
   end
 end
