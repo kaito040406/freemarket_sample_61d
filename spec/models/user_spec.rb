@@ -245,6 +245,12 @@ describe User do
       expect(user.errors[:certification]).to include("は4文字で入力してください")
     end
 
+    it "is invalid for certification other than 4 digits" do
+      user = build(:user, certification: "111")
+      user.valid?
+      expect(user.errors[:certification]).to include("は4文字で入力してください")
+    end
+
     # 認証番号が文字だと登録できないこと
     it "is invalid certification for charactor " do
       user = build(:user, certification: "aaaa")
@@ -252,14 +258,11 @@ describe User do
       expect(user.errors[:certification]).to include("は数値で入力してください")
     end
 
-    
-
-    # #郵便番号が形式外だと登録できない
-    # it "is valid if out of format" do
-    #   user = build(:user, address_number: "5330022")
-    #   user.valid?
-    #   expect(user.errors[:address_number]).to include("is invalid")
-    # end
-
+    #郵便番号が形式外だと登録できない
+    it "is valid if out of format" do
+      user = build(:user, address_number: "5330022")
+      user.valid?
+      expect(user.errors[:address_number]).to include("は不正な値です")
+    end
   end
 end
