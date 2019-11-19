@@ -49,6 +49,35 @@ describe User do
       expect(user.errors[:sur_name_yomi]).to include("を入力してください")
     end
 
+    # 18 認証番号が空だと登録できないこと    
+    it "is invalid without a certification" do
+      user = build(:user, certification: nil)
+      user.valid?
+      expect(user.errors[:certification]).to include("を入力してください")
+    end
+
+
+    #24県名が空だと登録できない
+    it "is invalid without a address_ken" do
+      user = build(:user, address_ken: nil)
+      user.valid?
+      expect(user.errors[:address_ken]).to include("を入力してください")
+    end
+
+    #25市町村が空だと登録できない
+    it "is invalid without a address_city" do
+      user = build(:user, address_city: nil)
+      user.valid?
+      expect(user.errors[:address_city]).to include("を入力してください")
+    end
+
+    #26番地が空だと登録できない
+    it "is invalid without a address_banch" do
+      user = build(:user, address_banch: nil)
+      user.valid?
+      expect(user.errors[:address_banch]).to include("を入力してください")
+    end
+
     # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
     # it "is invalid without a password_confirmation although with a password" do
     #   user = build(:user, password_confirmation: "")
@@ -123,12 +152,6 @@ describe User do
     #   expect(user.errors[:tel_number]).to include("is not a number")
     # end
 
-    # #18 認証番号が空だと登録できること    
-    # it "is invalid without a certification" do
-    #   user = build(:user, certification: nil)
-    #   user.valid?
-    #   expect(user.errors[:certification]).to include("can't be blank")
-    # end
 
     # #19 認証番号が4桁だと登録できること
     # it "is 4 digit certification is valid" do
@@ -162,27 +185,6 @@ describe User do
     #   user = build(:user, address_number: "5330022")
     #   user.valid?
     #   expect(user.errors[:address_number]).to include("is invalid")
-    # end
-
-    # #24県名が空だと登録できない
-    # it "is invalid without a address_ken" do
-    #   user = build(:user, address_ken: nil)
-    #   user.valid?
-    #   expect(user.errors[:address_ken]).to include("can't be blank")
-    # end
-
-    # #25市町村が空だと登録できない
-    # it "is invalid without a address_city" do
-    #   user = build(:user, address_city: nil)
-    #   user.valid?
-    #   expect(user.errors[:address_city]).to include("can't be blank")
-    # end
-
-    # #26番地が空だと登録できない
-    # it "is invalid without a address_banch" do
-    #   user = build(:user, address_banch: nil)
-    #   user.valid?
-    #   expect(user.errors[:address_banch]).to include("can't be blank")
     # end
 
   end
