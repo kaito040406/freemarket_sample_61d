@@ -75,7 +75,13 @@ describe User do
       user.valid?
       expect(user.errors[:birthday_day]).to include("を入力してください")
     end
-
+    
+    # 電話番号が空では登録できない
+    it "is invalid without a tel_number" do
+      user = build(:user, tel_number: nil)
+      user.valid?
+      expect(user.errors[:tel_number]).to include("を入力してください")
+    end
 
     # 認証番号が空だと登録できないこと    
     it "is invalid without a certification" do
@@ -111,6 +117,8 @@ describe User do
       user.valid?
       expect(user.errors[:address_banch]).to include("を入力してください")
     end
+
+
 
     # #5 passwordが存在してもpassword_confirmationが空では登録できないこと
     # it "is invalid without a password_confirmation although with a password" do
