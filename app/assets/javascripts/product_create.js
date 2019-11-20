@@ -1,6 +1,5 @@
-
-
 $(function(){
+  console.log('create');
   // editフォームからは実行されない
   pathSelf =location.pathname;
   if (pathSelf.match(/edit/) != null) {
@@ -49,10 +48,6 @@ $(function(){
         <option value="ゆうパケット">ゆうパケット</option></select>
       </div>
     </div>`
-  function overwriteLabel(inputIndex){
-    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
-    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
-  }
   //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
   //画像が何枚あるか何枚目かはこの値で管理
   function overwriteHiddenCountAll(){
@@ -66,9 +61,8 @@ $(function(){
   //（はずだったが他の処理も一部まとめた
   //"画像枚数が変化する(しようとする)際の処理"としてまとめた方がいいかもしれない）
   function youngestInputIndex(){
-    //サムネイルとセットのhidden要素を全て取得
+    //サムネイルとセットのhiddenCount要素を全て取得
     let allImgs = $('.hiddenCount');
-    //返り値の取りうる最大値
     let nextIndex = $(allImgs).length;
     //10ならば最大枚数アップ済、labelが機能しなくなる値""を返す
     if (nextIndex == 10){
@@ -80,9 +74,9 @@ $(function(){
       $('.img-uploader-dropbox pre').show();
       return nextIndex;
     }
-  
-    //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
-    let inputTagCounter = nextIndex-1;
+    //この時点でnextIndexは返り値の取りうる最大値
+    //Whileを最大値->0へと回しinputが空白だったもので一番小さな値にセット
+    let inputTagCounter = nextIndex;
       while(0 <= inputTagCounter){
         //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
         let filledInputSelecter = "#hiddenCount" + inputTagCounter;
@@ -101,6 +95,10 @@ $(function(){
       let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
       labelIndex = Number(labelIndex);//数値型へ変換
       return labelIndex;
+  }
+  function overwriteLabel(inputIndex){
+    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
   }
   //カテゴリーセレクトボックス関連処理
   //ct_no_1＝親カテゴリ、ct_no_2＝子カテゴリ、ct_no_3＝孫カテゴリ
@@ -231,7 +229,7 @@ $(function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.create-img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+  $('.form-sub-image-uploader-t').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
@@ -261,7 +259,7 @@ $(function(){
           class = "hiddenCount">
         <div class="btn-box">
           <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn">削除</div>
+          <div class="img-delete-btn added-img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
@@ -282,10 +280,8 @@ $(function(){
   });
 
   //削除ボタンを押した時の処理
-  $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $('.create-img-uploader-dropbox').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    console.log(this);
     let btnBox =e.target.closest('.btn-box');
     let inputHidden =$(btnBox).prev();
     let imgThumbnail = $(inputHidden).prev();
