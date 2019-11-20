@@ -349,6 +349,7 @@ $(document).on('turbolinks:load', function(){
       // console.log(data.responseText);  //レスポンス文字列を表示
     })
   });
+
   $(this).on("change", "#category_child", function() {
     var child_name = $(this).val();
     if(child_name != "---"){
@@ -361,3 +362,4 @@ $(document).on('turbolinks:load', function(){
     };
   });
 });
+
