@@ -131,5 +131,4 @@ function appendCategory_g(ct){
       })
     };
   });
-});
 
