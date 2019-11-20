@@ -19,8 +19,8 @@
           %li.active_k5
             完了
             .progress-status_k
-        .line_st4_on
-        .line_st4_off
+        .line_st2_r
+        .line_st2_g
         
   .single-main-st1_k
     .l-single-container_k
@@ -99,19 +99,7 @@
               .form-bottan-set-k
                 = f.submit '次へ進む', class: 'submit-btn_k',method: :post
   %footer.product-new-footer-T
-    %nav
-      %ul.flexcontainer
-        %li
-          =link_to "プライバシーポリシー", privacy_users_path
-        %li
-          =link_to "メルカリ利用規約", tos_users_path
-        %li
-          =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-    =link_to "https://www.mercari.com/jp/", class: "product-new-footer-LOGO-t" do
-      =image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65"
-    %p
-      %small &copy; 2019 Mercari
-  
+    = render 'shared/simple_footer'
   
   
   
