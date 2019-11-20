@@ -1,5 +1,4 @@
-$(function(){
-  console.log('create');
+$(document).on('turbolinks:load', function(){
   // editフォームからは実行されない
   pathSelf =location.pathname;
   if (pathSelf.match(/edit/) != null) {
@@ -92,6 +91,7 @@ $(function(){
   //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
   //応急処置（たぶん）
   function readLabelIndexCreate(){
+    
       let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
       labelIndex = Number(labelIndex);//数値型へ変換
       return labelIndex;
@@ -102,7 +102,7 @@ $(function(){
   }
   //カテゴリーセレクトボックス関連処理
   //ct_no_1＝親カテゴリ、ct_no_2＝子カテゴリ、ct_no_3＝孫カテゴリ
-  $('#category_parent').change(function() {
+  $(document).on("change", "#category_parent", function() {
       //選択された親カテゴリのDB categoriesテーブル上のidである parent_idを用意
       var parent_name = $(this).val();
       user_id = $(".select-wrap").attr("id");
@@ -178,14 +178,13 @@ $(function(){
       })
       .fail((data) => {
         //失敗した場合の処理
-        console.log(data.responseText);  //レスポンス文字列を表示
+        // console.log(data.responseText);  //レスポンス文字列を表示
       })
   });
   //孫カテゴリセレクトボックス生成
   $(this).on("change", "#category_child", function() {
     child_name = $(this).val();
     if(child_name != "---"){
-    console.log(child_name)
       $.ajax({
           type: 'GET',
           url: "/users/" + user_id + "/api/products/grand_child",
