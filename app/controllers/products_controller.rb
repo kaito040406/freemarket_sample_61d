@@ -218,8 +218,8 @@ end
     params[:product][:date] = Date.current
 
     params[:product][:child] = params[:child]
-    category = Category.find(params[:grand])
-    params[:product][:grand] = category.name
+    # category = Category.find(params[:grand])
+    # params[:product][:grand] = category.name
     params[:product][:parent] = params[:product][:category]
     params[:product][:grand_id] = params[:grand]
 

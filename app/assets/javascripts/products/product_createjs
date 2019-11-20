@@ -58,7 +58,7 @@ $(function(){
     function overwriteHiddenCountAll(){
       console.log('here is createjs overwriteHiddenCountAll');
       let count = 1;
-      $('.img-uploader-dropbox input[type="hidden"]').each(function(){
+      $('.hiddenCount'').each(function(){
         $(this).attr('value', count);
         count = count + 1;
       });
