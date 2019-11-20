@@ -30,9 +30,10 @@ $(function(){
       return false;
   }
 
-  $('#category_parent').change(function() {
-    console.log("ok")
-      var parent_name = $(this).val();
+  $(document).on("change", "#category_parent", function() {
+  // $('#category_parent').change(function() {
+    console.log("ok12")
+      parent_name = $(this).val();
       user_id = $(".select-wrap").attr("id");
       if(parent_name == "レディース"){
         parent_id = 1;
@@ -112,7 +113,6 @@ $(function(){
   $(this).on("change", "#category_child", function() {
     child_name = $(this).val();
     if(child_name != "---"){
-    console.log(child_name)
       $.ajax({
           type: 'GET',
           url: "/users/" + user_id + "/api/products/grand_child",
