@@ -94,7 +94,7 @@ class ProductsController < ApplicationController
     # ids =ProductImage.where(id: params[:id])
     
     if @product.seller_id == current_user.id
-      @product.update(product_params_up)
+      @product.update!(product_params_up)
     #   k = 0
     #   for i in ids do
     #     @image = ProductImage.find_by(product_id: ids[k][:id])
