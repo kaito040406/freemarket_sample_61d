@@ -4,7 +4,7 @@
 %main.product-new-main-T
   %h2.product-new-formtitle-T
     商品の情報を入力
-  = form_for @product, url: "/products/#{@product.id}", method: :patch , html: { class: "product-new-form"} do |f|
+  = form_for @product, url: "/products/#{@product.id}/update", method: :get , html: { class: "product-new-form"} do |f|
     .form-sub-image-uploader-t
       %h3
         出品画像
@@ -13,24 +13,26 @@
       %p
         最大10枚までアップロードできます
       .dropbox-container.flexcontainer
-        %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox"}
-          .edit-form{value: @product.id}
+        %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "img-uploader-dropbox"}
+          %pre
             :preserve
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          = @image.each do |existing_img|
-            .product_image_box
-              =image_tag("#{existing_img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-              .btn-box
-                .img-edit-btn
-                  編集
-                .img-delete-btn
-                  削除
-          =f.fields_for :product_images do |added_img|
-            %div{class: "product_image_box"}
-              =added_img.file_field :product_image 
-
+          -@product.product_images.each_with_index do |img, i|
+            -if(img.count)
+              %div{class: "product-img-box exist-img"}
+                =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
+                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
+                .btn-box
+                  .img-edit-btn
+                    編集
+                  .img-delete-btn
+                    削除
+          -# =f.fields_for :product_images do |img| //サムネは表示されたが画像がparamsに入らない
+          -#   %div{class: "product-img-box"} またupdateであるためproduct_imageのidがそのproductに存在していないとエラー
+          -#     =img.file_field :product_image #cssで非表示（削除方法）
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
@@ -139,9 +141,9 @@
   %nav
     %ul.flexcontainer
       %li
-        =link_to "プライバシーポリシー", privacy_users_path
+        =link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
       %li
-        =link_to "メルカリ利用規約", tos_users_path
+        =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
       %li
         =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
   =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65" ,class: "product-new-footer-LOGO-t"), root_path
