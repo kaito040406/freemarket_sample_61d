@@ -9,9 +9,8 @@
           カテゴリー一覧
       .category-list-nav.slide-nav-parent.text-center.clearfix
         -  @category_parent.each do |parent|
-          =link_to category_path(parent) do
-            .white.category-root-category-link-name
-              =parent.name
+          .white.category-root-category-link-name
+            =parent.name
       .category-list-box
         -  @category_parent.each do |parent|
           .category-list-individual-box.white.clearfix
@@ -20,18 +19,18 @@
                 =parent.name
             .category-list-individual-box-inner-box
               %p
-                =link_to "すべて", ""
+                =link_to "すべて", "#{category_path(parent)}"
               .category-list-individual-box-sub-category-name
                 - parent.children.each do |children|
                   %h11
                     = children.name
                   .grand-child-all
-                    =link_to "すべて", ""
+                    =link_to "すべて", "#{category_path(parent)}"
                     .clearfix.category-list-individual-box-sub-sub-category-box
                     - children.children.each do |grandchild|
                       .category-list-individual-box-sub-sub-category-name
                         %p
                           %h12
-                            =link_to "#{grandchild.name}",""
+                            =link_to "#{grandchild.name}","#{category_path(parent)}"
   =render  'shared/cameraicon'
   =render 'shared/footer'
