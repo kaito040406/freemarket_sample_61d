@@ -51,16 +51,20 @@ class ProductsController < ApplicationController
   end
 
   def edit
-      @product = Product.find(params[:id])
-      if @product.seller_id == current_user.id
-      @product.product_images.build
+    @product = Product.find(params[:id])
+    if @product.seller_id == current_user.id
       grand_name = @product.grand
-      @image = ProductImage.where(product_id: @product.id)
+      # 10.times {@product.product_images.build}
+      @exising_img_count = @product.product_images.size.to_i
+      t = 10 - @exising_img_count
+      t.times{@product.product_images.build }
+      @user = current_user
+      # @image = ProductImage.where(product_id: @product.id)フォームオブジェクト
     else
       redirect_to root_path
     end
     if grand_name != nil
-
+      grand_name = @product.grand
     else
       @category_grand = "no_data"
     end
@@ -94,7 +98,7 @@ class ProductsController < ApplicationController
     # ids =ProductImage.where(id: params[:id])
     
     if @product.seller_id == current_user.id
-      @product.update(product_params_up)
+      @product.update!(product_params_up)
     #   k = 0
     #   for i in ids do
     #     @image = ProductImage.find_by(product_id: ids[k][:id])
@@ -104,7 +108,7 @@ class ProductsController < ApplicationController
     #     # @image.update_attribute(:product_image, params[:product][:product_images_attributes][l][:product_image])
     #     @image.save!
     #     k = k + 1
-    #     end   
+    #   end   
       redirect_to root_path
     end   
   end  
@@ -153,79 +157,75 @@ class ProductsController < ApplicationController
   end
 end
 
-  
 
-  private
+private
 
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
-  
-  def product_image_params
-    params.require(:product_image).permit(:product_id, :product_image)
-  end
+def set_product
+  @product = Product.find(params[:product_id])
+end
 
-  def product_params
-    params[:product][:seller_id] = current_user.id
-    # バリデーションエラー回避のため適当なデータ挿入
-    params[:product][:size] = 1
-    params[:product][:date] = Date.current
+def product_image_params
+  params.require(:product_image).permit(:product_id, :product_image)
+end
 
+def product_params
+  params[:product][:seller_id] = current_user.id
+  # バリデーションエラー回避のため適当なデータ挿入
+  params[:product][:size] = 1
+  params[:product][:date] = Date.current
 
-    params[:product][:child] = params[:child]
-    category = Category.find(params[:grand])
-    params[:product][:grand] = category.name
-    params[:product][:parent] = params[:product][:category]
-    params[:product][:grand_id] = params[:grand]
+  params[:product][:child] = params[:child]
+  category = Category.find(params[:grand])
+  params[:product][:grand] = category.name
+  params[:product][:parent] = params[:product][:category]
+  params[:product][:grand_id] = params[:grand]
 
 
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
-  end
+  params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
+end
 
-  def set_product
-    @product = Product.find(params[:id])
-  end
+def set_product
+  @product = Product.find(params[:id])
+end
 
-  def set_category
-    @category = Category.where(ancestry: nil).limit(4)
-    @category_men = Product.where(parent: "メンズ" ).limit(10)
-    @category_women = Product.where(parent: "レディース" ).limit(10)
-    @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
-    @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
-  end
+def set_category
+  @category = Category.where(ancestry: nil).limit(4)
+  @category_men = Product.where(parent: "メンズ" ).limit(10)
+  @category_women = Product.where(parent: "レディース" ).limit(10)
+  @category_kids = Product.where(parent: "ベビー・キッズ" ).limit(10)
+  @category_items = Product.where(parent: "インテリア・住まい・小物" ).limit(10)
+end
 
-  def product_params
-    params[:product][:seller_id] = current_user.id
-    # バリデーションエラー回避のため適当なデータ挿入
-    params[:product][:size] = 1
-    params[:product][:date] = Date.current
-
-
-    params[:product][:child] = params[:child]
-    category = Category.find(params[:grand])
-    params[:product][:grand] = category.name
-    params[:product][:parent] = params[:product][:category]
-    params[:product][:grand_id] = params[:grand]
+def product_params
+  params[:product][:seller_id] = current_user.id
+  # バリデーションエラー回避のため適当なデータ挿入
+  params[:product][:size] = 1
+  params[:product][:date] = Date.current
 
 
+  params[:product][:child] = params[:child]
+  category = Category.find(params[:grand])
+  params[:product][:grand] = category.name
+  params[:product][:parent] = params[:product][:category]
+  params[:product][:grand_id] = params[:grand]
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
-  end
 
-  def product_params_up
-    params[:product][:seller_id] = current_user.id
-    # バリデーションエラー回避のため適当なデータ挿入
-    params[:product][:size] = 1
-    params[:product][:date] = Date.current
 
-    params[:product][:child] = params[:child]
-    category = Category.find(params[:grand])
-    params[:product][:grand] = category.name
-    params[:product][:parent] = params[:product][:category]
-    params[:product][:grand_id] = params[:grand]
+  params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
+end
 
-    params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy, :id])
-  end
+def product_params_up
+  params[:product][:seller_id] = current_user.id
+  # バリデーションエラー回避のため適当なデータ挿入
+  params[:product][:size] = 1
+  params[:product][:date] = Date.current
 
- 
+  params[:product][:child] = params[:child]
+  # category = Category.find(params[:grand])
+  # params[:product][:grand] = category.name
+  params[:product][:parent] = params[:product][:category]
+  params[:product][:grand_id] = params[:grand]
+
+  params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :brand, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy, :id])
+end
