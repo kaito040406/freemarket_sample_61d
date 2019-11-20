@@ -246,8 +246,9 @@ $(document).on('turbolinks:load', function(){
       return nextIndex;
     }
   
-    //Whileを最大値-1->0へと回しinputが空白だったもので一番小さな値にセット
-    let inputTagCounter = nextIndex-1;
+    //この時点でnextIndexは返り値の取りうる最大値
+    //Whileを最大値->0へと回しinputが空白だったもので一番小さな値にセット
+    let inputTagCounter = nextIndex;
       while(0 <= inputTagCounter){
         //hidden要素にはidに`hiddenCount${inputのインデックス番号}`が付けられている
         let filledInputSelecter = "#hiddenCount" + inputTagCounter;
