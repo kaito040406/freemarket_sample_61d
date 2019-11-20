@@ -1,4 +1,10 @@
 $(function(){
+  // editフォームからは実行されない
+  pathSelf =location.pathname;
+  if (pathSelf.match(/edit/) != null) {
+      console.log('edit doesnt work');
+      return false;
+  }
   //値段に合わせ手数料と利益を更新する関数
   function calcFeeGain(){
     let product_fee_rate = 0.1
@@ -104,13 +110,6 @@ $(function(){
         let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
         labelIndex = Number(labelIndex);//数値型へ変換
         return labelIndex;
-    }
-  
-    // editフォームからは実行されない
-    pathSelf =location.pathname;
-    if (pathSelf.match(/edit/) != null) {
-        console.log('create doesnt work');
-        return false;
     }
     console.log('create');
     //カテゴリーセレクトボックス関連処理

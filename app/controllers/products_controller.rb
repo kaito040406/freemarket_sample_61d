@@ -50,27 +50,23 @@ class ProductsController < ApplicationController
   end
 
   def edit
-      @product = Product.find(params[:id])
-      if @product.seller_id == current_user.id
-        # 10.times {@product.product_images.build}
-        # @product.product_images.each do |product_image|
-        @exising_img_count = @product.product_images.size.to_i
-        t = 10 - @exising_img_count
-        t.times{@product.product_images.build }
-    
-        grand_name = @product.grand
-        # @image = ProductImage.where(product_id: @product.id)
-        @user = current_user
-      end
+    @product = Product.find(params[:id])
+    if @product.seller_id == current_user.id
+      # 10.times {@product.product_images.build}
+      # @product.product_images.each do |product_image|
+      @exising_img_count = @product.product_images.size.to_i
+      t = 10 - @exising_img_count
+      t.times{@product.product_images.build }
+      # @image = ProductImage.where(product_id: @product.id)フォームオブジェクト
+      @user = current_user
     else
       redirect_to root_path
     end
-    if grand_name != nil
-
-    else
-      @category_grand = "no_data"
-    end
-    @user = current_user
+    # if grand_name != nil
+    #   grand_name = @product.grand
+    # else
+    #   @category_grand = "no_data"
+    # end
   end
   
   def show
