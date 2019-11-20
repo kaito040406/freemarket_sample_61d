@@ -16,8 +16,7 @@
     / End Google Tag Manager (noscrigt)
     .single-container
       %header.single-header
-        %h1
-          =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"), root_path
+       = render 'shared/simple_header01'
       %main.single-main
         %section.l-single-container
           %h2.l-single-headregistration 新規登録
@@ -42,15 +41,5 @@
         %input#google_client_id{type: "hidden", value: "238694260676-l0gp5j3hs9p8l2hjmnt126q0b4iin34r.apps.googleusercontent.com"}/
         %input#facebook_app_id{type: "hidden", value: "466308336793848"}/
       %footer.single-footer
-        %nav
-          %ul.clearfix
-            %li
-              =link_to "プライバシーポリシー", privacy_users_path
-            %li
-              %a{href: "https://www.mercari.com/jp/tos/"} メルカリ利用契約
-            %a{href: "https://www.mercari.com/jp/tokutei/"} 特定商取引に関する表記
-        %a.single-footer-logo{href: "https://www.mercari.com/jp/"}
-          %img{alt: "mercari", height: "65", src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", width: "80"}/
-        %p
-          %small ©︎2019 Mercari
+       = render 'shared/simple_footer'
     = yield
