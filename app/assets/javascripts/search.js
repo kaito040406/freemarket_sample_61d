@@ -349,13 +349,13 @@ $(document).on('turbolinks:load', function(){
       // console.log(data.responseText);  //レスポンス文字列を表示
     })
   });
-  $(this).on("change", "#category_child", function() {
-    var child_name = $(this).val();
-    if(child_name != "---"){
-      $.ajax({
-          type: 'GET',
-          url: "/users/" + user_id + "/api/products/grand_child",
-          data: {id: child_name},
-          dataType: 'json'
-      })
+  // $(this).on("change", "#category_child", function() {
+  //   var child_name = $(this).val();
+  //   if(child_name != "---"){
+  //     $.ajax({
+  //         type: 'GET',
+  //         url: "/users/" + user_id + "/api/products/grand_child",
+  //         data: {id: child_name},
+  //         dataType: 'json'
+  //     })
     
