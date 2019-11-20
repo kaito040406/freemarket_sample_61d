@@ -47,6 +47,7 @@ class ProductsController < ApplicationController
     else
       redirect_to show_products_path(product)
     end
+    @search = Product.ransack(params[:id])
   end
 
   def edit
@@ -64,6 +65,7 @@ class ProductsController < ApplicationController
       @category_grand = "no_data"
     end
     @user = current_user
+    @search = Product.ransack(params[:id])
   end
   
   def show
@@ -71,6 +73,7 @@ class ProductsController < ApplicationController
     @images = ProductImage.where(product_id: @product.id)
     @image = ProductImage.find_by(product_id: params[:id])
     @prefecture = Prefecture.find(@product.delivery_from).name
+    @search = Product.ransack(params[:id])
   end  
 
   def done
@@ -81,6 +84,7 @@ class ProductsController < ApplicationController
     @image = ProductImage.find(params[:product][:image][:id])
     
     @product = Product.find(params[:id])
+    @search = Product.ransack(params[:id])
   end
 
 

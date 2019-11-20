@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   
 
   def index
+    @search = Product.ransack(params[:id])
   end
 
   def show
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @search = Product.ransack(params[:id])
   end
 
   def log_out
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def failkure
+    @search = Product.ransack(params[:id])
   end
 
   def progress
@@ -36,6 +39,11 @@ class UsersController < ApplicationController
   end
 
   def privacy
+    @search = Product.ransack(params[:id])
+  end
+
+  def tos
+    @search = Product.ransack(params[:id])
   end
 
   
