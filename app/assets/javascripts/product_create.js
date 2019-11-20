@@ -1,23 +1,18 @@
 $(function(){
   // editフォームからは実行されない
   pathSelf =location.pathname;
-  if (pathSelf.match(/create/) != null) {
+  if (pathSelf.match(/edit/) != null) {
       return false;
   }
-  //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.edit-form').hide();
-  //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
-    function calcFeeGain(){
-      let product_fee_rate = 0.1
-      let product_price = $('#product_price').val();
-      let product_fee = Math.floor(product_price * product_fee_rate);
-      let product_gain = product_price - product_fee;
-      $('#product-fee').html(product_fee);
-      $('#product-gain').html(product_gain);
+  function calcFeeGain(){
+    let product_fee_rate = 0.1
+    let product_price = $('#product_price').val();
+    let product_fee = Math.floor(product_price * product_fee_rate);
+    let product_gain = product_price - product_fee;
+    $('#product-fee').html(product_fee);
+    $('#product-gain').html(product_gain);
   }
-  calcFeeGain();
-
   function appendCategory(ct){//valueは子カテゴリの名前でajaxでの孫カテゴリ取得に用いられる
     var html = `
                 <option value="${ct.name}" id = "${ct.id}">${ct.name}</option>
@@ -56,8 +51,8 @@ $(function(){
     let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
     $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
   }
-    //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
-    //画像が何枚あるか何枚目かはこの値で管理
+  //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
+  //画像が何枚あるか何枚目かはこの値で管理
   function overwriteHiddenCountAll(){
     let count = 1;
     $('.hiddenCount').each(function(){
@@ -230,11 +225,11 @@ $(function(){
       $('#ct_no_3').remove();
     }
   });
-  ////ここまでカテゴリーのセレクトボックス関連
-
+  //カテゴリーセレクトボックス関連処理ここまで
+  
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.edit-img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+  $('.create-img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
@@ -284,18 +279,24 @@ $(function(){
 
   });
 
-  //既存画像の削除ボタンがクリックされた時の処理
+  //削除ボタンを押した時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.exist-img .img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    if ($(this).closest('.btn-box').prev().attr('value') == 0){
-      $(this).closest('.btn-box').prev().attr({'value': 1});
-      console.log('delete selected');
-    }else{
-      $(this).closest('.btn-box').prev().attr({'value': 0});
-      console.log('delete cancel');
-    }
+    console.log(this);
+    let btnBox =e.target.closest('.btn-box');
+    let inputHidden =$(btnBox).prev();
+    let imgThumbnail = $(inputHidden).prev();
+    let inputFile = $(inputHidden).prev();
+    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
+    $(imgThumbnail).remove();
+    $(inputHidden).remove();
+    $(btnBox).remove();
+    labelIndex = youngestInputIndex();
+    overwriteLabel(labelIndex);
+    overwriteHiddenCountAll();
   });
+
   $('#product_delivery_fee').change(function() {
     $('#product_delivery_method').remove();
     let selection = $(this).val();
