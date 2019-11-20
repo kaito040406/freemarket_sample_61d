@@ -88,6 +88,7 @@ class ProductsController < ApplicationController
 
 
   def update
+    binding.pry
     @product = Product.find(params[:id])
     # count =ProductImage.where(id: params[:id]).length
     # ids =ProductImage.where(id: params[:id])
@@ -225,5 +226,3 @@ end
 
     params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count, :_destroy, :id])
   end
-
- 
