@@ -30,9 +30,9 @@
                     編集
                   .img-delete-btn
                     削除
-          -# =f.fields_for :product_images do |img| //サムネは表示されたが画像がparamsに入らない
-          -#   %div{class: "product-img-box"} またupdateであるためproduct_imageのidがそのproductに存在していないとエラー
-          -#     =img.file_field :product_image #cssで非表示（削除方法）
+        =f.fields_for :product_images do |img|
+          %div{class: "product-img-box"}
+            =img.file_field :product_image #cssで非表示（削除方法）
     .form-sub-t{id: @user.id, value: @product.id}
       .form-input-t
         %label
