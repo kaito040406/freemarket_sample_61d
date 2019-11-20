@@ -177,6 +177,7 @@ function readLabelIndex(){
 
 //////////////ここから本体
 $(document).on('turbolinks:load', function(){
+  console.log("ok");
   //newフォームからは実行されない
   let pathSelf =location.pathname;
   if (pathSelf.match(/new/) != null) {
@@ -318,6 +319,7 @@ $(document).on('turbolinks:load', function(){
         data: {id: parent_id}
     })
     .done(function(categories){
+      console.log("ok11")
       if($('#ct_no_2').val() != null){
         $('#ct_no_2').remove();
       }
