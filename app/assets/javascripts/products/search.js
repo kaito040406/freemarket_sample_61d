@@ -358,4 +358,6 @@ $(document).on('turbolinks:load', function(){
           data: {id: child_name},
           dataType: 'json'
       })
-    
+    };
+  });
+});
