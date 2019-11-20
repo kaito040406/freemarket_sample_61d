@@ -88,7 +88,6 @@ class ProductsController < ApplicationController
 
 
   def update
-    binding.pry
     @product = Product.find(params[:id])
     # count =ProductImage.where(id: params[:id]).length
     # ids =ProductImage.where(id: params[:id])
@@ -168,7 +167,6 @@ def product_params
   # バリデーションエラー回避のため適当なデータ挿入
   params[:product][:size] = 1
   params[:product][:date] = Date.current
-
 
   params[:product][:child] = params[:child]
   category = Category.find(params[:grand])
