@@ -5,6 +5,10 @@ $(function(){
       console.log('create doesnt work');
       return false;
   }
+  //画像があるためイメージボックスのプレースホルダ非表示
+  $('.img-uploader-dropbox pre.edit-form').hide();
+  //手数料と利益を表示
+  calcFeeGain();
   //値段に合わせ手数料と利益を更新する関数
   function calcFeeGain(){
     let product_fee_rate = 0.1
@@ -238,7 +242,7 @@ $(function(){
       $('#ct_no_3').remove();
     }
   });
-  //カテゴリーセレクトボックス関連処理ここまで
+  ////ここまでカテゴリーのセレクトボックス関連
 
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
