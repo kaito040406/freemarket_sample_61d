@@ -1,3 +1,5 @@
+
+
 $(function(){
   // editフォームからは実行されない
   pathSelf =location.pathname;

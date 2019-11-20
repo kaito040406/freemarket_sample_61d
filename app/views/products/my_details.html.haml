@@ -78,8 +78,7 @@
       .listing-item-change-box
         =link_to "商品の編集","/products/#{@product.id}/edit",class:"btn-default btn-red"
         %p.text-center or
-        %form{action: "/jp/items/deactivate/m69617298882/", method: "POST", novalidate: "novalidate"}
-          %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
+        %button.btn-default.btn-gray{type: "submit"} 出品を一旦停止する
         %button.btn-default.btn-gray
           = link_to 'この商品を削除する', "/products/#{@product.id}", method: :delete
       .item-detail-message

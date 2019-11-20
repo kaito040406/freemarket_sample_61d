@@ -47,7 +47,7 @@
               %span.must-filled-mark-t
                 必須
             %div
-              .select-wrap
+              .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
                 = f.select :category , Product.categories.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
               

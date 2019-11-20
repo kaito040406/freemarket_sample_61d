@@ -3,6 +3,13 @@
     = render 'shared/header'
     %main.l-container.clearfix
       .l-content
+        %section.items-box-container.clearfix
+          %h2.search-result-head
+          =@search.name
+          %span.search-result-head-text の検索結果
+          .search-result-number
+          1 - 2件表示
+
       .l-side
         .search-sort
           .form-group
@@ -22,29 +29,33 @@
                   いいね!の多い順
           .search-dropdown-content.search-extend{"data-dropdown": "content", "data-dropdown-content-id": "extend"}
             %h3.visible-large 詳細検索
-            .form-group
+          = form_for @search, url: root_path do |f|
+            .form-group{value: "ct_no_1"}
               %label
-                %i.icon-plus
+                %i.fa.fa-plus
                 %span キーワードを追加する
               %input.input-default{name: "keyword", placeholder: "例）値下げ", type: "text", value: ""}
             .form-group
-              %label
-                %i.icon-list
-                %span カテゴリーを選択する
-              .select-wrap
-                %i.fa.fa-chevron-down
-                %select.select-default{name: "category_root"}
-                  %option{value: ""} すべて
+              .form-input-list-w{value: @search.child}
+                .ct_box_k{value: @search.grand}
+                  .form-input-t{value: "kw_no_1"}
+                    %label
+                      %i.fa.fa-list-ul
+                      %span カテゴリーを選択する
+                    %div
+                      .select-wrap{id: @search.id ,value: @search.parent}
+                        %i.fa.fa-chevron-down
+                        = f.select :category, Product.categories.keys.to_a, {include_blank: "すべて", selected: @search.parent}, {class: "select-default", id: "category_parent"}
             .form-group.search-extend-brand
               %label
-                %i.icon-tag
+                %i.fa.fa-tag
                 %span ブランド名から探す
               %input.input-default{"data-search" => "brand", name: "brand_name", placeholder: "例）シャネル", type:"text", value: ""}/
               %input{name: "brand_id", type: "hidden", value: "658"}/
               %ul{"data-search" => "brand-dom"}
             .form-group
               %label
-                %i.icon-size
+                %i.fa.fa-expand
                 %span サイズを指定する
               .select-wrap{"data-search" => "parent"}
                 %i.icon-arrow-bottom
