@@ -3,11 +3,13 @@ class CardsController < ApplicationController
   require "payjp"
 
   def index
+    @search = Product.ransack(params[:id])
   end
 
   def new
     card = Cards.where(user_id: current_user.id)
     redirect_to action: "show" if card.exists?
+    @search = Product.ransack(params[:id])
   end
 
   def pay #payjpとCardのデータベース作成を実施します。

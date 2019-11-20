@@ -114,7 +114,8 @@ class ProductsController < ApplicationController
 
   def set_search
     @search = Product.ransack(name: params[:name_cont])
-    @category_parent = Category.where(ancestry: nil)
+    @search_parent = Category.where(ancestry: nil)
+    
   end
 
 
