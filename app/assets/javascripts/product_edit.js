@@ -167,7 +167,7 @@ $(document).on('turbolinks:load', function(){
       return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.product-edit-form').hide();
+  $('.dropbox__placeholder.product-edit-form').hide();
   //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
     function calcFeeGain(){
@@ -242,7 +242,7 @@ $(document).on('turbolinks:load', function(){
     //0ならばプレースホルダを再表示し0を返す
     //最後の1枚削除によりアップローダーが空になった場合
     else if(nextIndex ==0){
-      $('.img-uploader-dropbox pre').show();
+      $('.dropbox__placeholder').show();
       return nextIndex;
     }
   
@@ -313,7 +313,7 @@ $(document).on('turbolinks:load', function(){
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+        $('.dropbox__placeholder').hide();
         
       });
     };

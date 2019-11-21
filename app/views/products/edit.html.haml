@@ -2,15 +2,15 @@
   %h1
     =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"), root_path
 %main.product-form-main
-  %h2.product-form-formtitle
+  %h2.product-form__title
     商品の情報を入力
   = form_for @product, url: "/products/#{@product.id}/", html: { class: "product-form"} do |f|
-    .form-section-image-uploader
-      %h3
+    .image-form
+      %h3.image-form__title
         出品画像
         %span.must-filled-input
           必須
-      %p
+      %p.image-form__text
         最大10枚までアップロードできます
       .dropbox-container.flexcontainer
         %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "img-uploader-dropbox edit-img-uploader-dropbox"}
@@ -21,7 +21,7 @@
             %i.icon-camera{value: @product.id}
           -@product.product_images.each_with_index do |img, i|
             -if(img.count)
-              %div{class: "product-img-box exist-img"}
+              %div.product-img-box.exist-img
                 =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
                 %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
                 %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}

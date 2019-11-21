@@ -70,7 +70,7 @@ $(document).on('turbolinks:load', function(){
     //0ならばプレースホルダを再表示し0を返す
     //最後の1枚削除によりアップローダーが空になった場合
     else if(nextIndex ==0){
-      $('.img-uploader-dropbox pre').show();
+      $('.dropbox__placeholder').show();
       return nextIndex;
     }
     //この時点でnextIndexは返り値の取りうる最大値
@@ -228,7 +228,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.form-section-image-uploader').on('change', 'input[type="file"]', function(e) {
+  $('.image-form').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
@@ -268,7 +268,7 @@ $(document).on('turbolinks:load', function(){
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+        $('.dropbox__placeholder').hide();
         
       });
     };

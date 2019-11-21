@@ -1,3 +1,5 @@
+$product-image-form-width: 620px;
+
 *{
   background-repeat: no-repeat;
   margin: 0;
@@ -120,14 +122,17 @@ label {
   width: 185px;
   height: 49px;
 }
-.form-section-image-uploader {
-  width: 620px;
+.image-form {
+  width: $product-image-form-width;
   padding: 40px;
 }
-.form-section-image-uploader label{
+.image-form label{
   width: 100%;
 }
-.form-section-image-uploader > p {
+.image-form__title{
+  font-size: 16px;
+}
+.image-form__text {
   margin: 8px 0 0;
   line-height: 1.5;
 }
@@ -136,7 +141,7 @@ label {
   display: flex;
   overflow: scroll;
   position: relative;
-  width: 620px;
+  width: $product-image-form-width;
   height: 162px;
   border: 1px dashed #ccc;
   background: #f5f5f5;
@@ -150,7 +155,7 @@ label {
 .img-uploader-dropbox::-webkit-scrollbar {
   display: none;
 }
-.img-uploader-dropbox pre {
+.dropbox__placeholder {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -182,7 +187,7 @@ label {
   color: 0099E8;
 }
 /////////
-.product-form-formtitle {
+.product-form__title {
   margin: 0;
   line-height: 1.5;
   text-align: center;
@@ -391,11 +396,9 @@ label {
 .button-container p {
   line-height: 1.5;
 }
-.form-section-image-uploader h3{
-  font-size: 16px;
-}
+
 .dropbox-container {
-  width: 620px;
+  width: $product-image-form-width;
   margin: 16px auto 0;
 }
 
