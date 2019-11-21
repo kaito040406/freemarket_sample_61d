@@ -90,12 +90,12 @@ label {
   font-size: 12px;
   vertical-align: top;
 }
-.form-sub {
+.form-section {
   padding: 40px;
   border-top: 1px solid #eee;
 }
 
-.sub-title {
+.form-section__title {
   font-weight: bold;
   color: #888;
   font-size: 14px;
@@ -120,14 +120,14 @@ label {
   width: 185px;
   height: 49px;
 }
-.form-sub-image-uploader {
+.form-section-image-uploader {
   width: 620px;
   padding: 40px;
 }
-.form-sub-image-uploader label{
+.form-section-image-uploader label{
   width: 100%;
 }
-.form-sub-image-uploader > p {
+.form-section-image-uploader > p {
   margin: 8px 0 0;
   line-height: 1.5;
 }
@@ -292,7 +292,7 @@ label {
 .form-input label+.textarea-default {
   margin: 8px 0 0;
 }
-.form-input-list {
+.form-section__content {
   width: 400px;
   margin: 0;
 }
@@ -391,7 +391,7 @@ label {
 .button-container p {
   line-height: 1.5;
 }
-.form-sub-image-uploader h3{
+.form-section-image-uploader h3{
   font-size: 16px;
 }
 .dropbox-container {
@@ -429,7 +429,7 @@ label {
 #product-gain{
   font-size: 34px;
 }
-.product-new-caution{
+.product-form-caution__reference{
   color: #0099e8;
 }
 .product-new-footer {

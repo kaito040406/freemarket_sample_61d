@@ -228,7 +228,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.form-sub-image-uploader').on('change', 'input[type="file"]', function(e) {
+  $('.form-section-image-uploader').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断

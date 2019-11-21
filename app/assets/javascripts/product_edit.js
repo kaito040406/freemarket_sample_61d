@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
       if($('#ct_no_3').val() != null){
         $('#ct_no_3').remove();
       }
-      cha_name = $(".form-input-list").attr("value")
+      cha_name = $(".form-section__content").attr("value")
       categories.forEach(function(category){
         if(category.name == cha_name){
           start_name = category.name
@@ -90,7 +90,7 @@ $(document).on('turbolinks:load', function(){
       // console.log(data.responseText);  //レスポンス文字列を表示
     })
 
-    child_name = $(".form-input-list").attr("value");
+    child_name = $(".form-section__content").attr("value");
 
     if(child_name != "---"){
       $.ajax({

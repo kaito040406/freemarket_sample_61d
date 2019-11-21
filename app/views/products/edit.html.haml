@@ -5,7 +5,7 @@
   %h2.product-form-formtitle
     商品の情報を入力
   = form_for @product, url: "/products/#{@product.id}/", html: { class: "product-form"} do |f|
-    .form-sub-image-uploader
+    .form-section-image-uploader
       %h3
         出品画像
         %span.must-filled-input
@@ -33,7 +33,7 @@
         =f.fields_for :product_images do |img|
           %div{class: "product-img-box"}
             =img.file_field :product_image #cssで非表示（削除方法）
-    .form-sub{id: @user.id, value: @product.id}
+    .form-section{id: @user.id, value: @product.id}
       .form-input
         %label
           商品名
@@ -47,10 +47,10 @@
           %span.must-filled-input
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         商品の詳細
-      .form-input-list{value: @product.child}
+      .form-section__content{value: @product.child}
         .ct_box_k{value: @product.grand}
           .form-input{value: "ct_no_1"}
             %label
@@ -77,11 +77,11 @@
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         配送について
         =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon"
-      .form-input-list
+      .form-section__content
         .form-input
           %label
             配送料の負担
@@ -106,11 +106,11 @@
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         販売価格(300〜9,999,999)
         =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon"
-      .form-input-list
+      .form-section__content
         %ul.price-field-list
           %li.form-input
             .flexcontainer.product-form-price
@@ -133,7 +133,7 @@
               販売利益
             #product-gain
               \-
-    %div.form-sub.button-container
+    .form-section.button-container
       %button.button-t.button-submit{type: "submit"}
         変更する
       =link_to "キャンセル", "xxx_path", class: "button-t button-cancel"

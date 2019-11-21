@@ -4,7 +4,7 @@
   %h2.product-form-formtitle
     商品の情報を入力
   =form_for @product, url: products_path, method: :post , html: { class: "product-form"} do |f|
-    .form-sub-image-uploader
+    .form-section-image-uploader
       %h3
         出品画像
         %span.must-filled-input
@@ -21,7 +21,7 @@
           =f.fields_for :product_images do |img|
             %div{class: "product-img-box"}
               =img.file_field :product_image #cssで非表示（削除方法）
-    .form-sub{id: @user.id}
+    .form-section{id: @user.id}
       .form-input
         %label
           商品名
@@ -35,10 +35,10 @@
           %span.must-filled-input
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         商品の詳細
-      .form-input-list
+      .form-section__content
         .ct_box_k
           .form-input{value: "ct_no_1"}
             %label
@@ -58,11 +58,11 @@
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         配送について
         =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon"
-      .form-input-list
+      .form-section__content
         .form-input
           %label
             配送料の負担
@@ -87,11 +87,11 @@
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub.flexcontainer
-      %h3.sub-title
+    .form-section.flexcontainer
+      %h3.form-section__title
         販売価格(300〜9,999,999)
         =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon"
-      .form-input-list
+      .form-section__content
         %ul.price-field-list
           %li.form-input
             .flexcontainer.product-form-price
@@ -114,19 +114,19 @@
               販売利益
             #product-gain
               \-
-    %div.form-sub.button-container
-      %div
+    .form-section.button-container
+      .product-form-caution
         %p
-          =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank", class: "product-new-caution"
-          =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank", class: "product-new-caution"
+          =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank", class: "product-form-caution__reference"
+          =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank", class: "product-form-caution__reference"
           を必ずご確認ください。
         %p
           またブランド品でシリアルナンバー等がある場合はご記載ください。
-          =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank", class: "product-new-caution"
+          =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank", class: "product-form-caution__reference"
           は犯罪であり処罰される可能性があります。
         %p
           また、出品をもちまして
-          =link_to "加盟店規約", "/jp/seller_terms/", class: "product-new-caution"
+          =link_to "加盟店規約", "/jp/seller_terms/", class: "product-form-caution__reference"
           に同意したことになります。
       %button.button-t.button-submit{type: "submit"}
         出品する
