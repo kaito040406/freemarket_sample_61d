@@ -5,7 +5,23 @@
 .category-list
   %p.category-list__title
     #{@category.name}の商品一覧
-    .items-box-content__others__box
-
+    .main.products.content
+      %ul.products.content.box
+        - @products.zip(@images).each do |product, image|
+          %li.products.content.boxes
+            %div.products.content.boxes.inner
+              =link_to "","", class:"products.link"
+              %figure.style_card__1SiAF.style_responsiveLv1__26FNN.common_fontFamily__3-3Si.style_fluid__19gwX
+                %figcaption
+                  %span
+                    =product.name
+                .style_thumbnail__N_xAi
+                  %span{"aria-label": "Price"}
+                    ¥
+                    =product.price 
+                  = link_to "/products/#{product.id}" do
+                    %img.style_thumbnail__N_xAi
+                    = image_tag "#{image.product_image}"
+                    
 = render 'shared/footer'
 = render "shared/cameraicon"
