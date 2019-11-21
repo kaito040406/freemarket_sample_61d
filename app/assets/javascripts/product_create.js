@@ -244,24 +244,26 @@ $(document).on('turbolinks:load', function(){
     //(関数として切り出すとサムネイルが表示されなくなったため保留//
     //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
     let reader = new FileReader();
-    let changedInput = $(e.target);
+    // let changedInput = $(e.target);
     //を付与
     reader.onload = function (e){
       let imageThumbnail =`
-        <img src="${e.target.result}" width="114px" height="116px" 
-          class="thumbnail" title="${file.name}" >
-        <input type="hidden" 
-          name="product[product_images_attributes][${labelIndex}][count]" 
-          value="${labelIndex}"
-          id = "hiddenCount${labelIndex}"
-          class = "hiddenCount">
-        <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn added-img-delete-btn">削除</div>
+        <div class="product-img-box">
+          <img src="${e.target.result}" width="114px" height="116px" 
+            class="thumbnail" title="${file.name}" >
+          <input type="hidden" 
+            name="product[product_images_attributes][${labelIndex}][count]" 
+            value="${labelIndex}"
+            id = "hiddenCount${labelIndex}"
+            class = "hiddenCount">
+          <div class="btn-box">
+            <div class="img-edit-btn">編集</div>
+            <div class="img-delete-btn added-img-delete-btn">削除</div>
+          </div>
         </div>
         `;
-      $(changedInput).after(imageThumbnail);
-      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+      $('.create-dropbox__label').before(imageThumbnail);
+      $('.create-dropbox__label').ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
         //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
         overwriteLabel(labelIndex);
