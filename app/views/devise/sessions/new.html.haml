@@ -23,7 +23,7 @@
               .text_g_k
                 Googleでログイン
               .icon_box_f_k_l
-                %i.fa.fa-google.k
+                %img{src: "/images/google.png", alt: "", width: "23px", height: "23px"}
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form_lavel_mail_k
               = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス'
