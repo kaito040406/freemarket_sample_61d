@@ -55,3 +55,7 @@ end
 crumb :categories do
   link "カテゴリー一覧", "/categories"
 end
+
+crumb :compliance do
+  link "コンプライアンスポリシー", compliance_users_path
+end

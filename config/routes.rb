@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'tos'
       get 'brand'
       get 'support'
+      get 'compliance'
     end
   end
   

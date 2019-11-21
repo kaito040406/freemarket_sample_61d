@@ -41,6 +41,9 @@ class UsersController < ApplicationController
   def support
   end
 
+  def compliance
+  end
+
   def set_search
     @search = Product.ransack(name: params[:name_cont])
     @search_parent = Category.where(ancestry: nil)
