@@ -58,10 +58,10 @@ label {
 .bold {
   font-weight: 600;
 }
-.product-new-form {
+.product-form {
   border-top: 1px solid #eee;
 }
-.help-link-icon-t {
+.help-link-icon {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -72,7 +72,7 @@ label {
   font-size: 12px;
   text-align: center;
 }
-.must-filled-mark {
+.must-filled-input {
   margin: 0 0 0 8px;
   padding: 2px 4px;
   border-radius: 2px;
@@ -81,7 +81,7 @@ label {
   vertical-align: top;
   background: #ea352d;
 }
-.must-filled-mark-h {
+.optional-input {
   margin: 0 0 0 8px;
   padding: 2px 4px;
   border-radius: 2px;
@@ -100,23 +100,23 @@ label {
   color: #888;
   font-size: 14px;
 }
-.product-new-header {
+.product-form-header {
   height: 128px;
   text-align: center;
   width: 100%;
 }
-.product-new-header a {
+.product-form-header a {
   display: inline-block;
   width: 185px;
   height: 49px;
   margin: 0 8px 0 0;
   line-height: 33px;
 }
-.product-new-header h1 {
+.product-form-header h1 {
   margin: 40px 0 0;
   display: inline-block;
 }
-.product-new-header img {
+.product-form-header img {
   width: 185px;
   height: 49px;
 }
@@ -182,14 +182,14 @@ label {
   color: 0099E8;
 }
 /////////
-.product-new-formtitle {
+.product-form-formtitle {
   margin: 0;
   line-height: 1.5;
   text-align: center;
   padding: 32px 16px;
   font-size: 22px;
 }
-.product-new-main {
+.product-form-main {
   width: 700px;
   margin: 0 auto;
   background: #fff;
@@ -399,18 +399,18 @@ label {
   margin: 16px auto 0;
 }
 
-.price-T {
+.product-form-price {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
-.price-T .price-input{
+.product-form-price .price-input{
   width: 50%;
 }
-.price-T .price-input>div{
+.product-form-price .price-input>div{
   margin: 0px 0px 0px 3px;
 }
-.price-T .input-default {
+.product-form-price .input-default {
   text-align: right;
 }
 .price-input {

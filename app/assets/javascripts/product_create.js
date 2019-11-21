@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', function(){
     <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark">
+        <span class="must-filled-input">
           必須
         </span>
       </label>

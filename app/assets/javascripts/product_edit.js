@@ -167,7 +167,7 @@ $(document).on('turbolinks:load', function(){
       return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.edit-form').hide();
+  $('.img-uploader-dropbox pre.product-edit-form').hide();
   //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
     function calcFeeGain(){
@@ -196,7 +196,7 @@ $(document).on('turbolinks:load', function(){
     <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark">
+        <span class="must-filled-input">
           必須
         </span>
       </label>

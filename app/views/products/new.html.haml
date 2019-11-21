@@ -1,13 +1,13 @@
-%header.product-new-header
+%header.single-header_k
   = render 'shared/simple_footer'
-%main.product-new-main
-  %h2.product-new-formtitle
+%main.product-form-main
+  %h2.product-form-formtitle
     商品の情報を入力
-  =form_for @product, url: products_path, method: :post , html: { class: "product-new-form"} do |f|
+  =form_for @product, url: products_path, method: :post , html: { class: "product-form"} do |f|
     .form-sub-image-uploader
       %h3
         出品画像
-        %span.must-filled-mark
+        %span.must-filled-input
           必須
       %p
         最大10枚までアップロードできます
@@ -25,14 +25,14 @@
       .form-input
         %label
           商品名
-          %span.must-filled-mark
+          %span.must-filled-input
             必須
         %div
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
       .form-input
         %label
           商品の説明
-          %span.must-filled-mark
+          %span.must-filled-input
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
     .form-sub.flexcontainer
@@ -43,7 +43,7 @@
           .form-input{value: "ct_no_1"}
             %label
               カテゴリー
-              %span.must-filled-mark
+              %span.must-filled-input
                 必須
             %div
               .select-wrap{id: @product.id ,value: @product.parent}
@@ -53,7 +53,7 @@
         .form-input
           %label
             商品の状態
-            %span.must-filled-mark
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
@@ -61,12 +61,12 @@
     .form-sub.flexcontainer
       %h3.sub-title
         配送について
-        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon-t"
+        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon"
       .form-input-list
         .form-input
           %label
             配送料の負担
-            %span.must-filled-mark
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
@@ -74,7 +74,7 @@
         .form-input
           %label
             発送元の地域
-            %span.must-filled-mark
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
@@ -82,7 +82,7 @@
         .form-input
           %label
             発送までの日数
-            %span.must-filled-mark
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
@@ -90,16 +90,16 @@
     .form-sub.flexcontainer
       %h3.sub-title
         販売価格(300〜9,999,999)
-        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon-t"
+        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon"
       .form-input-list
         %ul.price-field-list
           %li.form-input
-            .flexcontainer.price-T
+            .flexcontainer.product-form-price
               %label
                 価格
-                %span.must-filled-mark
+                %span.must-filled-input
                   必須
-              .flexcontainer.price-T.price-input
+              .flexcontainer.product-form-price.price-input
                 ¥
                 %div
                   =f.text_field :price, placeholder: "例）300", class: "input-default", id: "product_price"
