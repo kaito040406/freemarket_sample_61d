@@ -1,14 +1,14 @@
-%header.product-new-header-T
+%header.product-new-header
   %h1
     =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"), root_path
-%main.product-new-main-T
-  %h2.product-new-formtitle-T
+%main.product-new-main
+  %h2.product-new-formtitle
     商品の情報を入力
   = form_for @product, url: "/products/#{@product.id}/", html: { class: "product-new-form"} do |f|
-    .form-sub-image-uploader-t
+    .form-sub-image-uploader
       %h3
         出品画像
-        %span.must-filled-mark-t
+        %span.must-filled-mark
           必須
       %p
         最大10枚までアップロードできます
@@ -33,35 +33,35 @@
         =f.fields_for :product_images do |img|
           %div{class: "product-img-box"}
             =img.file_field :product_image #cssで非表示（削除方法）
-    .form-sub-t{id: @user.id, value: @product.id}
-      .form-input-t
+    .form-sub{id: @user.id, value: @product.id}
+      .form-input
         %label
           商品名
-          %span.must-filled-mark-t
+          %span.must-filled-mark
             必須
         %div
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
-      .form-input-t
+      .form-input
         %label
           商品の説明
-          %span.must-filled-mark-t
+          %span.must-filled-mark
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-sub.flexcontainer
+      %h3.sub-title
         商品の詳細
-      .form-input-list-t{value: @product.child}
+      .form-input-list{value: @product.child}
         .ct_box_k{value: @product.grand}
-          .form-input-t{value: "ct_no_1"}
+          .form-input{value: "ct_no_1"}
             %label
               カテゴリー
-              %span.must-filled-mark-t
+              %span.must-filled-mark
                 必須
             %div
               .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
                 = f.select :category, Product.categories.keys.to_a, {include_blank: "---", selected: @product.parent}, {class: "select-default", id: "category_parent"}
-        .form-input-t
+        .form-input
           %label
             ブランド
             %span.must-filled-mark-h
@@ -69,54 +69,54 @@
           %div
             .select-wrap
               = f.text_field :brand, placeholder: "例) シャネル", class: "select-default-h"
-        .form-input-t
+        .form-input
           %label
             商品の状態
-            %span.must-filled-mark-t
+            %span.must-filled-mark
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-sub.flexcontainer
+      %h3.sub-title
         配送について
         =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
-        .form-input-t
+      .form-input-list
+        .form-input
           %label
             配送料の負担
-            %span.must-filled-mark-t
+            %span.must-filled-mark
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送元の地域
-            %span.must-filled-mark-t
+            %span.must-filled-mark
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送までの日数
-            %span.must-filled-mark-t
+            %span.must-filled-mark
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-sub.flexcontainer
+      %h3.sub-title
         販売価格(300〜9,999,999)
         =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
+      .form-input-list
         %ul.price-field-list
-          %li.form-input-t
+          %li.form-input
             .flexcontainer.price-T
               %label
                 価格
-                %span.must-filled-mark-t
+                %span.must-filled-mark
                   必須
               .flexcontainer.price-T.price-input
                 ¥
@@ -133,11 +133,11 @@
               販売利益
             #product-gain
               \-
-    %div.form-sub-t.button-container-t
-      %button.button-t.button-submit-t{type: "submit"}
+    %div.form-sub.button-container
+      %button.button-t.button-submit{type: "submit"}
         変更する
-      =link_to "キャンセル", "xxx_path", class: "button-t button-cancel-t"
-%footer.product-new-footer-T
+      =link_to "キャンセル", "xxx_path", class: "button-t button-cancel"
+%footer.product-new-footer
   %nav
     %ul.flexcontainer
       %li

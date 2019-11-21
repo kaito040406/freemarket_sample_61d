@@ -26,10 +26,10 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
   let DeliveryMethodSelectBoxHTML = `
-    <div class="form-input-t" id="product_delivery_method">
+    <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark-t">
+        <span class="must-filled-mark">
           必須
         </span>
       </label>
@@ -157,7 +157,7 @@ $(document).on('turbolinks:load', function(){
           $('#ct_no_3').remove();
         }
         html_head = `
-                    <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
+                    <div class="form-input_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_child" id="category_child" name="child">
@@ -192,12 +192,12 @@ $(document).on('turbolinks:load', function(){
           dataType: 'json'
       })
       .done(function(categories) {
-        //孫カテゴリここでも重複防止必要
+        //孫カテゴリ重複防止
         if($('#ct_no_3').val() != null){
           $('#ct_no_3').remove();
         }
         html_head_g = `
-                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
+                    <div class="form-input_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_grand_child" id="category_grand_child" name="grand" >
@@ -219,7 +219,7 @@ $(document).on('turbolinks:load', function(){
       .fail(function() {
       });
     }
-    //子セレクトボックスがプレースホルダ状態の場合
+    //子セレクトボックスがプレースホルダなら孫セレクトボックスは表示しない
     if(child_name == "---"){
       $('#ct_no_3').remove();
     }
@@ -228,7 +228,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.form-sub-image-uploader-t').on('change', 'input[type="file"]', function(e) {
+  $('.form-sub-image-uploader').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断

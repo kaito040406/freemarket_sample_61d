@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
       if($('#ct_no_3').val() != null){
         $('#ct_no_3').remove();
       }
-      cha_name = $(".form-input-list-t").attr("value")
+      cha_name = $(".form-input-list").attr("value")
       categories.forEach(function(category){
         if(category.name == cha_name){
           start_name = category.name
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function(){
       })
 
       html_head = `
-                  <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
+                  <div class="form-input_2" id="ct_no_2" value="ct_no_2">
                     <div class="select-wrap" id="1">
                     <i class="fa fa-chevron-down"></i>
                   <select class="category_child" id="category_child" name="child">
@@ -90,7 +90,7 @@ $(document).on('turbolinks:load', function(){
       // console.log(data.responseText);  //レスポンス文字列を表示
     })
 
-    child_name = $(".form-input-list-t").attr("value");
+    child_name = $(".form-input-list").attr("value");
 
     if(child_name != "---"){
       $.ajax({
@@ -114,7 +114,7 @@ $(document).on('turbolinks:load', function(){
         })
 
         html_head_g = `
-                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
+                    <div class="form-input_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_grand_child" id="category_grand_child" name="grand" >
@@ -193,10 +193,10 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
   let DeliveryMethodSelectBoxHTML = `
-    <div class="form-input-t" id="product_delivery_method">
+    <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark-t">
+        <span class="must-filled-mark">
           必須
         </span>
       </label>
