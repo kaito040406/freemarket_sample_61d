@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(function () {
   var birthday_year = [];
   var birthday_manth = [];
   var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

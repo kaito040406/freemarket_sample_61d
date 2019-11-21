@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   require "date"
   require "payjp"
+  before_action :set_search
 
   def index
     @search = Product.ransack(params[:id])
@@ -51,6 +52,10 @@ class CardsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
+  end
+
+  def set_search
+    @search = Product.ransack(name: params[:name_cont])
   end
 
 end
