@@ -137,7 +137,7 @@ label {
   line-height: 1.5;
 }
 
-.img-uploader-dropbox {
+.dropbox__label {
   display: flex;
   overflow: scroll;
   position: relative;
@@ -152,7 +152,7 @@ label {
   transition: box-shadow ease-out .3s;
   transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
 }
-.img-uploader-dropbox::-webkit-scrollbar {
+.dropbox__label::-webkit-scrollbar {
   display: none;
 }
 .dropbox__placeholder {
@@ -397,7 +397,7 @@ label {
   line-height: 1.5;
 }
 
-.dropbox-container {
+.dropbox__container {
   width: $product-image-form-width;
   margin: 16px auto 0;
 }

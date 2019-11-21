@@ -91,10 +91,9 @@ $(document).on('turbolinks:load', function(){
   //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
   //応急処置（たぶん）
   function readLabelIndexCreate(){
-    
-      let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-      labelIndex = Number(labelIndex);//数値型へ変換
-      return labelIndex;
+    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelIndex = Number(labelIndex);//数値型へ変換
+    return labelIndex;
   }
   function overwriteLabel(inputIndex){
     let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
@@ -279,7 +278,7 @@ $(document).on('turbolinks:load', function(){
   });
 
   //削除ボタンを押した時の処理
-  $('.create-img-uploader-dropbox').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $('.create-dropbox__label').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
     let inputHidden =$(btnBox).prev();

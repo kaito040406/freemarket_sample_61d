@@ -167,7 +167,7 @@ $(document).on('turbolinks:load', function(){
       return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.dropbox__placeholder.product-edit-form').hide();
+  $('.dropbox__placeholder').hide();
   //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
     function calcFeeGain(){
@@ -273,7 +273,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.edit-img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+  $('.edit-dropbox__label').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
