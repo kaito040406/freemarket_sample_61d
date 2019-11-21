@@ -7,6 +7,8 @@ class CategoriesController < ApplicationController
   end
   
   def show
+    @products = Product.where(params[:id])
+    @images = ProductImage.where(params[:id])
 
   end
 
