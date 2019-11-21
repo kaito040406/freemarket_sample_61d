@@ -1,9 +1,9 @@
 %header.product-new-header-T
-  = render 'shared/simple_header01'
+  = render 'shared/simple_footer'
 %main.product-new-main-T
   %h2.product-new-formtitle-T
     商品の情報を入力
-  =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
+  =form_for @product, url: products_path, method: :post , html: { class: "product-new-form"} do |f|
     .form-sub-image-uploader-t
       %h3
         出品画像
