@@ -220,6 +220,7 @@ def product_params_up
   # バリデーションエラー回避のため適当なデータ挿入
   params[:product][:size] = 1
   params[:product][:date] = Date.current
+  params[:grand] = 100
 
   params[:product][:child] = params[:child]
   # category = Category.find(params[:grand])
