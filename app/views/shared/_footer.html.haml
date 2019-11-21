@@ -31,7 +31,7 @@
             =link_to "採用情報","" 
         %li.footer_main_top_left_text
           .footer_main_top_left_t
-            =link_to "プレリリース","https://about.mercari.com/press/news/" 
+            =link_to "プレスリリース","https://about.mercari.com/press/news/" 
         %li.footer_main_top_left_text
           .footer_main_top_left_t{target: "_blank"} 
             =link_to "公式ブログ","https://jp-news.mercari.com/"
@@ -115,6 +115,6 @@
     .footer_main_bottom_box
       =link_to "", ""
       .footer_main_bottom_box_m
-        =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/logo-white-1a0696cf557ee1ed6f3c3444661d21ad.svg", alt: "Mercari", class: "footer_main_bottom_box_m"
+        =link_to image_tag("https://web-jp-assets.mercdn.net/_next/static/images/logo-white-1a0696cf557ee1ed6f3c3444661d21ad.svg", alt: "Mercari"), root_path
     %span.footer_main_bottom_tag © 2019 Mercari
 
