@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       get 'privacy'
       get 'tos'
       get 'brand'
+      get 'support'
+      get 'compliance'
     end
   end
   
