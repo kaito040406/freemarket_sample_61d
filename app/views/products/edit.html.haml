@@ -13,23 +13,23 @@
       %p.image-form__text
         最大10枚までアップロードできます
       .dropbox__container.flexcontainer
+        -@product.product_images.each_with_index do |img, i|
+          -if(img.count)
+            .product-img-box.exist-img
+              =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+              %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
+              %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
+              .btn-box
+                .img-edit-btn
+                  編集
+                .img-delete-btn
+                  削除
         %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "dropbox__label edit-dropbox__label"}
           %pre.dropbox__placeholder
             :preserve
               ドラッグアンドドロップ
               またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          -@product.product_images.each_with_index do |img, i|
-            -if(img.count)
-              .product-img-box.exist-img
-                =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
-                .btn-box
-                  .img-edit-btn
-                    編集
-                  .img-delete-btn
-                    削除
         =f.fields_for :product_images do |img|
           %div{class: "product-img-box"}
             =img.file_field :product_image #cssで非表示（削除方法）
