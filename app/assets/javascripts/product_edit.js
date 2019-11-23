@@ -320,17 +320,18 @@ $(document).on('turbolinks:load', function(){
 
   //既存画像の削除ボタンがクリックされた時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.exist-img .img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    console.log($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value'));
+  //（画像が残り一枚なら機能しなくするif必要）
     if ($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value') == 0){
       $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 1});
-      console.log('delete selected');
+      $(this).closest('.product-img-box.exist-img').find('img').css('opacity', '0.5');
     }else{
       $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 0});
-      console.log('delete cancel');
+      $(this).closest('.product-img-box.exist-img').find('img').css('opacity', '1');
     }
   });
+
   $('#product_delivery_fee').change(function() {
     $('#product_delivery_method').remove();
     let selection = $(this).val();
