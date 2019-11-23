@@ -322,11 +322,12 @@ $(document).on('turbolinks:load', function(){
   $(document).off('click');//イベント多重化防止
   $(document).on('click', '.exist-img .img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    if ($(this).closest('.btn-box').prev().attr('value') == 0){
-      $(this).closest('.btn-box').prev().attr({'value': 1});
+    console.log($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value'));
+    if ($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value') == 0){
+      $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 1});
       console.log('delete selected');
     }else{
-      $(this).closest('.btn-box').prev().attr({'value': 0});
+      $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 0});
       console.log('delete cancel');
     }
   });
