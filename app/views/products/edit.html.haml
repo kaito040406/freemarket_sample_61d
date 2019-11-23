@@ -31,18 +31,18 @@
               またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
         =f.fields_for :product_images do |img|
-          %div{class: "product-img-box"}
+          .product-img-box.added-img
             =img.file_field :product_image #cssで非表示（削除方法）
     .form-section{id: @user.id, value: @product.id}
       .form-input
-        %label
+        %label.form-input__title
           商品名
           %span.must-filled-input
             必須
-        %div
+        .form-input__input
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
       .form-input
-        %label
+        %label.form-input__title
           商品の説明
           %span.must-filled-input
             必須
@@ -146,6 +146,6 @@
         =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
       %li
         =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-  =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65" ,class: "product-new-footer-LOGO-t"), root_path
+  =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65" ,class: "product-new-footer-LOGO"), root_path
   %p
     %small &copy; 2019 Mercari

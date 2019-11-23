@@ -1,4 +1,10 @@
 $product-image-form-width: 620px;
+$img-thumbnail-width: 114px;
+$img-thumbnail-height: 116px;
+$img-dropbox-color: #f5f5f5;
+$thumbnail-text-color: #0099E8;
+$thumbnails-per-row: 5;
+$thumbnail-horizontal-space: ($product-image-form-width - ($img-thumbnail-width*$thumbnails-per-row))/($thumbnails-per-row - 1);
 
 *{
   background-repeat: no-repeat;
@@ -144,7 +150,7 @@ label {
   width: $product-image-form-width;
   height: 162px;
   border: 1px dashed #ccc;
-  background: #f5f5f5;
+  background: $img-dropbox-color;
   cursor: pointer;
   text-align: center;
   -webkit-transition: -webkit-box-shadow ease-out .3s;
@@ -172,19 +178,36 @@ label {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.product-img-box{
+  background-color: $img-dropbox-color;
+  margin-right: $thumbnail-horizontal-space;
+
+}
 .product-img-box input{
   display: none;
 }
 .product-img-box .thumbnail{
   object-fit: contain;
 }
+
 /////////
 .btn-box {
   width:114px;
   height:15px;
+  color: $thumbnail-text-color;
   display:flex;
   justify-content:space-between;
   color: 0099E8;
+  .img-edit-btn, .img-delete-btn{
+    display:block;
+    height: 44px;
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }
 /////////
 .product-form__title {
@@ -434,6 +457,9 @@ label {
 }
 .product-form-caution__reference{
   color: #0099e8;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 .product-new-footer {
   width: 456px;
@@ -459,7 +485,8 @@ label {
   display: block;
   color: #333;
 }
-.product-new-footer-LOGO-t {
+
+.product-new-footer-LOGO {
   width: 80px;
   height: 65px;
   margin: 40px auto 0;

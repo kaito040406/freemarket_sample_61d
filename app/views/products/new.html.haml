@@ -19,18 +19,18 @@
               またはクリックしてファイルをアップロード
             -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
-            .product-img-box
+            .product-img-box.added-img
               =img.file_field :product_image #cssで非表示（削除方法）
     .form-section{id: @user.id}
       .form-input
-        %label
+        %label.form-input__title
           商品名
           %span.must-filled-input
             必須
-        %div
+        .form-input__input
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
       .form-input
-        %label
+        %label.form-input__title
           商品の説明
           %span.must-filled-input
             必須

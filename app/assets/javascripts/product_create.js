@@ -257,8 +257,8 @@ $(document).on('turbolinks:load', function(){
             id = "hiddenCount${labelIndex}"
             class = "hiddenCount">
           <div class="btn-box">
-            <div class="img-edit-btn">編集</div>
-            <div class="img-delete-btn added-img-delete-btn">削除</div>
+            <a href="" class="img-edit-btn">編集</a>
+            <a href="" class="img-delete-btn">削除</a>
           </div>
         </div>
         `;
