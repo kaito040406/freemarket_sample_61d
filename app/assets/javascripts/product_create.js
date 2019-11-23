@@ -279,7 +279,7 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  //削除ボタンを押した時の処理
+  //削除ボタンを押した時の処理///////修理要//////
   $('.create-dropbox__label').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
