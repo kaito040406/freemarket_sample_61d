@@ -142,10 +142,13 @@ label {
   margin: 8px 0 0;
   line-height: 1.5;
 }
-
+.dropbox__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
 .dropbox__label {
   display: flex;
-  overflow: scroll;
   position: relative;
   width: $product-image-form-width;
   height: 162px;
@@ -162,7 +165,7 @@ label {
   display: none;
 }
 .dropbox__placeholder {
-  position: absolute;
+  // position: absolute;
   top: 50%;
   left: 16px;
   right: 16px;
@@ -181,7 +184,13 @@ label {
 .product-img-box{
   background-color: $img-dropbox-color;
   margin-right: $thumbnail-horizontal-space;
-
+  margin-bottom: 10px;
+  &:nth-child(#{$thumbnails-per-row}){
+    margin-right: 0;
+  }
+  &:nth-child(10){
+    margin-right: 0;
+  }
 }
 .product-img-box input{
   display: none;
@@ -193,7 +202,6 @@ label {
 /////////
 .btn-box {
   width:114px;
-  height:15px;
   color: $thumbnail-text-color;
   display:flex;
   justify-content:space-between;
