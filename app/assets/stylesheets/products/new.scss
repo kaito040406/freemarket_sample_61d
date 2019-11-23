@@ -5,6 +5,7 @@ $img-dropbox-color: #f5f5f5;
 $thumbnail-text-color: #0099E8;
 $thumbnails-per-row: 5;
 $thumbnail-horizontal-space: ($product-image-form-width - ($img-thumbnail-width*$thumbnails-per-row))/($thumbnails-per-row - 1);
+$dropbox-width: $product-image-form-width;
 
 *{
   background-repeat: no-repeat;
@@ -131,93 +132,110 @@ label {
 .image-form {
   width: $product-image-form-width;
   padding: 40px;
-}
-.image-form label{
-  width: 100%;
-}
-.image-form__title{
-  font-size: 16px;
-}
-.image-form__text {
-  margin: 8px 0 0;
-  line-height: 1.5;
-}
-.dropbox__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-.dropbox__label {
-  display: flex;
-  position: relative;
-  width: $product-image-form-width;
-  height: 162px;
-  border: 1px dashed #ccc;
-  background: $img-dropbox-color;
-  cursor: pointer;
-  text-align: center;
-  -webkit-transition: -webkit-box-shadow ease-out .3s;
-  transition: -webkit-box-shadow ease-out .3s;
-  transition: box-shadow ease-out .3s;
-  transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
-}
-.dropbox__label::-webkit-scrollbar {
-  display: none;
-}
-.dropbox__placeholder {
-  // position: absolute;
-  top: 50%;
-  left: 16px;
-  right: 16px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: auto;
-  font-family: monospace,monospace;
-  -webkit-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  pointer-events: none;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-.product-img-box{
-  background-color: $img-dropbox-color;
-  margin-right: $thumbnail-horizontal-space;
-  margin-bottom: 10px;
-  &:nth-child(#{$thumbnails-per-row}){
-    margin-right: 0;
+  &__title{
+    font-size: 16px;
   }
-  &:nth-child(10){
-    margin-right: 0;
+  &__text {
+    margin: 8px 0 0;
+    line-height: 1.5;
   }
-}
-.product-img-box input{
-  display: none;
-}
-.product-img-box .thumbnail{
-  object-fit: contain;
-}
+  .dropbox__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: $dropbox-width;
+    margin: 16px auto 0;
+    .product-img-box{
+      background-color: $img-dropbox-color;
+      margin-right: $thumbnail-horizontal-space;
+      margin-bottom: 10px;
+      &:nth-child(#{$thumbnails-per-row}){//倍数書くやりかた使えたらそちらへ
+        margin-right: 0;
+      }
+      &:nth-child(#{$thumbnails-per-row * 2}){
+        margin-right: 0;
+      }
+      & input{
+        display: none;
+      }
+      & .thumbnail{
+        object-fit: contain;
+      }
+      .btn-box {
+        width:114px;
+        color: $thumbnail-text-color;
+        display:flex;
+        justify-content:space-between;
+        color: 0099E8;
+        .img-edit-btn, .img-delete-btn{
+          display:block;
+          height: 44px;
+          width: 50%;
+          text-align: center;
+          line-height: 44px;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .dropbox__label {
+      display: flex;
+      position: relative;
+      //width: 100%;ここだけnth-childで指定
+      height: 162px;
+      border: 1px dashed #ccc;
+      background: $img-dropbox-color;
+      cursor: pointer;
+      // text-align: center;
+      // -webkit-transition: -webkit-box-shadow ease-out .3s;
+      // transition: -webkit-box-shadow ease-out .3s;
+      // transition: box-shadow ease-out .3s;
+      // transition: box-shadow ease-out .3s, -webkit-box-shadow ease-out .3s;
+      &:nth-child(5n+1) {
+        background-color:red;
+        width: 110px;
+      }
+      &:nth-child(5n+2) {
+        background-color:yellow;
+        width: 120px;
+      }
+      &:nth-child(5n+3) {
+        background-color: purple;
+        width: 130px;
+      }
+      &:nth-child(5n+4) {
+        background-color: lime;
+        width: 150px;
 
-/////////
-.btn-box {
-  width:114px;
-  color: $thumbnail-text-color;
-  display:flex;
-  justify-content:space-between;
-  color: 0099E8;
-  .img-edit-btn, .img-delete-btn{
-    display:block;
-    height: 44px;
-    width: 50%;
-    text-align: center;
-    line-height: 44px;
-    &:hover{
-      text-decoration: underline;
+      }
+      &:nth-child(5n) {
+        background-color: pink;
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .dropbox__placeholder {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        right: 16px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        overflow: auto;
+        font-family: monospace,monospace;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        pointer-events: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     }
   }
 }
-/////////
+
 .product-form__title {
   margin: 0;
   line-height: 1.5;
@@ -426,11 +444,6 @@ label {
 }
 .button-container p {
   line-height: 1.5;
-}
-
-.dropbox__container {
-  width: $product-image-form-width;
-  margin: 16px auto 0;
 }
 
 .product-form-price {
