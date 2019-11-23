@@ -95,7 +95,7 @@ function appendCategory_g(ct){
         $('#kw_no_3').remove();
       }
       html_head = `
-                  <div class="form-input-t_2" id="kw_no_2" value="kw_no_2">
+                  <div class="form-input_2" id="kw_no_2" value="kw_no_2">
                     <div class="select-wrap" id="1">
                     <i class="fa fa-chevron-down"></i>
                   <select class="category_child" id="category_child" name="child">

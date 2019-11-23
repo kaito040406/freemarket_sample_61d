@@ -54,7 +54,7 @@ $(document).on('turbolinks:load', function(){
       if($('#ct_no_3').val() != null){
         $('#ct_no_3').remove();
       }
-      cha_name = $(".form-input-list-t").attr("value")
+      cha_name = $(".form-section__content").attr("value")
       categories.forEach(function(category){
         if(category.name == cha_name){
           start_name = category.name
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function(){
       })
 
       html_head = `
-                  <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
+                  <div class="form-input_2" id="ct_no_2" value="ct_no_2">
                     <div class="select-wrap" id="1">
                     <i class="fa fa-chevron-down"></i>
                   <select class="category_child" id="category_child" name="child">
@@ -90,7 +90,7 @@ $(document).on('turbolinks:load', function(){
       // console.log(data.responseText);  //レスポンス文字列を表示
     })
 
-    child_name = $(".form-input-list-t").attr("value");
+    child_name = $(".form-section__content").attr("value");
 
     if(child_name != "---"){
       $.ajax({
@@ -114,7 +114,7 @@ $(document).on('turbolinks:load', function(){
         })
 
         html_head_g = `
-                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
+                    <div class="form-input_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_grand_child" id="category_grand_child" name="grand" >
@@ -155,11 +155,6 @@ $(document).on('turbolinks:load', function(){
 
 
 
-
-
-
-
-
   
   // editフォームからは実行されない
   pathSelf =location.pathname;
@@ -167,7 +162,7 @@ $(document).on('turbolinks:load', function(){
       return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.img-uploader-dropbox pre.edit-form').hide();
+  $('.dropbox__placeholder.dropbox__placeholder--edit').hide();
   //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
     function calcFeeGain(){
@@ -193,10 +188,10 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
   let DeliveryMethodSelectBoxHTML = `
-    <div class="form-input-t" id="product_delivery_method">
+    <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark-t">
+        <span class="must-filled-input">
           必須
         </span>
       </label>
@@ -242,7 +237,7 @@ $(document).on('turbolinks:load', function(){
     //0ならばプレースホルダを再表示し0を返す
     //最後の1枚削除によりアップローダーが空になった場合
     else if(nextIndex ==0){
-      $('.img-uploader-dropbox pre').show();
+      $('.dropbox__placeholder').show();
       return nextIndex;
     }
   
@@ -273,7 +268,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.edit-img-uploader-dropbox').on('change', 'input[type="file"]', function(e) {
+  $('.edit-dropbox__label').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
@@ -302,8 +297,8 @@ $(document).on('turbolinks:load', function(){
           id = "hiddenCount${labelIndex}"
           class = "hiddenCount">
         <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn">削除</div>
+          <a href="" class="img-edit-btn">編集</div>
+          <a href="" class="img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
@@ -313,7 +308,7 @@ $(document).on('turbolinks:load', function(){
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+        $('.dropbox__placeholder').hide();
         
       });
     };
@@ -325,16 +320,18 @@ $(document).on('turbolinks:load', function(){
 
   //既存画像の削除ボタンがクリックされた時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.exist-img .img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
-    if ($(this).closest('.btn-box').prev().attr('value') == 0){
-      $(this).closest('.btn-box').prev().attr({'value': 1});
-      console.log('delete selected');
+  //（画像が残り一枚なら機能しなくするif必要）
+    if ($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value') == 0){
+      $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 1});
+      $(this).closest('.product-img-box.exist-img').find('img').css('opacity', '0.5');
     }else{
-      $(this).closest('.btn-box').prev().attr({'value': 0});
-      console.log('delete cancel');
+      $(this).closest('.btn-box').prev('[name *="destroy"]').attr({'value': 0});
+      $(this).closest('.product-img-box.exist-img').find('img').css('opacity', '1');
     }
   });
+
   $('#product_delivery_fee').change(function() {
     $('#product_delivery_method').remove();
     let selection = $(this).val();

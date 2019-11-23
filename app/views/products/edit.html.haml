@@ -1,124 +1,124 @@
-%header.product-new-header-T
+%header.product-form-header
   %h1
     =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"), root_path
-%main.product-new-main-T
-  %h2.product-new-formtitle-T
+%main.product-form-main
+  %h2.product-form__title
     商品の情報を入力
-  = form_for @product, url: "/products/#{@product.id}/", html: { class: "product-new-form"} do |f|
-    .form-sub-image-uploader-t
-      %h3
+  = form_for @product, url: "/products/#{@product.id}/", html: { class: "product-form"} do |f|
+    .image-form
+      %h3.image-form__title
         出品画像
-        %span.must-filled-mark-t
+        %span.must-filled-input
           必須
-      %p
+      %p.image-form__text
         最大10枚までアップロードできます
-      .dropbox-container.flexcontainer
-        %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "img-uploader-dropbox edit-img-uploader-dropbox"}
-          %pre.edit-form
+      .dropbox__container.flexcontainer
+        -@product.product_images.each_with_index do |img, i|
+          -if(img.count)
+            .product-img-box.exist-img
+              =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
+              %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
+              %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
+              .btn-box
+                .img-edit-btn
+                  編集
+                .img-delete-btn
+                  削除
+        %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "dropbox__label edit-dropbox__label"}
+          %pre.dropbox__placeholder.dropbox__placeholder--edit
             :preserve
-                ドラッグアンドドロップ
-                またはクリックしてファイルをアップロード
+              ドラッグアンドドロップ
+              またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
-          -@product.product_images.each_with_index do |img, i|
-            -if(img.count)
-              %div{class: "product-img-box exist-img"}
-                =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
-                %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
-                .btn-box
-                  .img-edit-btn
-                    編集
-                  .img-delete-btn
-                    削除
         =f.fields_for :product_images do |img|
-          %div{class: "product-img-box"}
+          .product-img-box.added-img
             =img.file_field :product_image #cssで非表示（削除方法）
-    .form-sub-t{id: @user.id, value: @product.id}
-      .form-input-t
-        %label
+    .form-section{id: @user.id, value: @product.id}
+      .form-input
+        %label.form-input__title
           商品名
-          %span.must-filled-mark-t
+          %span.must-filled-input
             必須
-        %div
+        .form-input__input
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
-      .form-input-t
-        %label
+      .form-input
+        %label.form-input__title
           商品の説明
-          %span.must-filled-mark-t
+          %span.must-filled-input
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         商品の詳細
-      .form-input-list-t{value: @product.child}
+      .form-section__content{value: @product.child}
         .ct_box_k{value: @product.grand}
-          .form-input-t{value: "ct_no_1"}
+          .form-input{value: "ct_no_1"}
             %label
               カテゴリー
-              %span.must-filled-mark-t
+              %span.must-filled-input
                 必須
             %div
               .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
                 = f.select :category, Product.categories.keys.to_a, {include_blank: "---", selected: @product.parent}, {class: "select-default", id: "category_parent"}
-        .form-input-t
+        .form-input
           %label
             ブランド
-            %span.must-filled-mark-h
+            %span.optional-input
               任意
           %div
             .select-wrap
               = f.text_field :brand, placeholder: "例) シャネル", class: "select-default-h"
-        .form-input-t
+        .form-input
           %label
             商品の状態
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         配送について
-        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
-        .form-input-t
+        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon"
+      .form-section__content
+        .form-input
           %label
             配送料の負担
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送元の地域
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送までの日数
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         販売価格(300〜9,999,999)
-        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
+        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon"
+      .form-section__content
         %ul.price-field-list
-          %li.form-input-t
-            .flexcontainer.price-T
+          %li.form-input
+            .flexcontainer.product-form-price
               %label
                 価格
-                %span.must-filled-mark-t
+                %span.must-filled-input
                   必須
-              .flexcontainer.price-T.price-input
+              .flexcontainer.product-form-price.price-input
                 ¥
                 %div
                   =f.text_field :price, placeholder: "例）300", class: "input-default", id: "product_price"
@@ -133,11 +133,11 @@
               販売利益
             #product-gain
               \-
-    %div.form-sub-t.button-container-t
-      %button.button-t.button-submit-t{type: "submit"}
+    .form-section.button-container
+      %button.button-t.button-submit{type: "submit"}
         変更する
-      =link_to "キャンセル", "xxx_path", class: "button-t button-cancel-t"
-%footer.product-new-footer-T
+      =link_to "キャンセル", "xxx_path", class: "button-t button-cancel"
+%footer.product-new-footer
   %nav
     %ul.flexcontainer
       %li
@@ -146,6 +146,6 @@
         =link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
       %li
         =link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-  =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65" ,class: "product-new-footer-LOGO-t"), root_path
+  =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?1248199994", alt: "mercari", width: "80", height: "65" ,class: "product-new-footer-LOGO"), root_path
   %p
     %small &copy; 2019 Mercari
