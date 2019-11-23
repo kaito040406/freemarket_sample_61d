@@ -184,7 +184,6 @@ label {
     .dropbox__label {
       display: flex;
       position: relative;
-      //width: 100%;ここだけnth-childで指定
       height: 162px;
       border: 1px dashed #ccc;
       background: $img-dropbox-color;
@@ -212,6 +211,7 @@ label {
       }
       .dropbox__placeholder {
         position: absolute;
+        display: block;
         top: 50%;
         left: 16px;
         right: 16px;

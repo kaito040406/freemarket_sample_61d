@@ -155,11 +155,6 @@ $(document).on('turbolinks:load', function(){
 
 
 
-
-
-
-
-
   
   // editフォームからは実行されない
   pathSelf =location.pathname;
@@ -167,7 +162,7 @@ $(document).on('turbolinks:load', function(){
       return false;
   }
   //画像があるためイメージボックスのプレースホルダ非表示
-  $('.dropbox__placeholder').hide();
+  $('.dropbox__placeholder.dropbox__placeholder--edit').hide();
   //手数料と利益を表示
   //値段に合わせ手数料と利益を更新する関数
     function calcFeeGain(){
