@@ -7,24 +7,6 @@
         %div
           =link_to "https://www.mercari.com/jp/featured/camp/" do
             =image_tag "/images/banner-camp.png", alt: "mercari", class:"slick.first"
-        -# %div
-        -#   .sc-dliRfk.lnMXqm
-        -#     .sc-iqzUVk.jAEZMX
-        -#       =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/top-banner-main-device-1f627e51e488f6ca35feaa6a08b79736.png", alt: "", class: "slick.second", width: "440px", height: "390px"
-        -#     .sc-qrIAp.PkUrY
-        -#       .sc-jtggT.bqsQJl
-        -#         スマホでかんたん
-        -#         %br
-        -#         フリマアプリ
-        -#         %p.sc-ebFjAB.SGfox
-        -#           メルカリはスマホカメラからすぐに出品できる
-        -#           %br
-        -#           購入時も安心な独自システムのアプリです
-        -#         %div.sc-iGrrsa.heyozC
-        -#           =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8" do
-        -#             =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg", alt: "", class: "gxiFBJ"
-        -#           =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
-        -#             =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg", alt: "", class: "jcELSQ"
       .sc-drKuOJ.ibydfh
         %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
         .sc-cmjSyW.hTgxLd
@@ -46,7 +28,7 @@
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
-              - @category_women.zip(@images).each do |product, image|
+              - @category_women.zip(@images_l).each do |product, image|
                 %li.products.content.boxes
                   %div.products.content.boxes.inner
                     =link_to "","", class:"products.link"
@@ -60,7 +42,8 @@
                           =product.price 
                         = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
-                          = image_tag "#{image.product_image}"
+                          - if image != nil
+                            = image_tag "#{image.product_image}"
         .sc-hUfwpO.kyoAKq
           .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
             %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn メンズ新着アイテム
@@ -68,7 +51,7 @@
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
-              - @category_men.zip(@images).each do |product, image|
+              - @category_men.zip(@images_m).each do |product, image|
                 %li.products.content.boxes
                   %div.products.content.boxes.inner
                     =link_to "","", class:"products.link"
@@ -82,7 +65,8 @@
                           =product.price 
                         = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
-                          = image_tag "#{image.product_image}"
+                          - if image != nil
+                            = image_tag "#{image.product_image}"
         .sc-hUfwpO.kyoAKq
           .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
             %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn ベビーキッズ新着アイテム
@@ -90,7 +74,7 @@
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
-              - @category_kids.zip(@images).each do |product, image|
+              - @category_kids.zip(@images_b).each do |product, image|
                 %li.products.content.boxes
                   %div.products.content.boxes.inner
                     =link_to "","", class:"products.link"
@@ -104,7 +88,8 @@
                           =product.price 
                         = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
-                          = image_tag "#{image.product_image}"
+                          - if image != nil
+                            = image_tag "#{image.product_image}"
         .sc-hUfwpO.kyoAKq
           .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
             %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn インテリア・住まい・小物新着アイテム
@@ -112,7 +97,7 @@
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
-              - @category_items.zip(@images).each do |product, image|
+              - @category_items.zip(@images_i).each do |product, image|
                 %li.products.content.boxes
                   %div.products.content.boxes.inner
                     =link_to "","", class:"products.link"
@@ -126,7 +111,8 @@
                           =product.price 
                         = link_to "/products/#{product.id}" do
                           %img.style_thumbnail__N_xAi
-                          = image_tag "#{image.product_image}"
+                          - if image != nil
+                            = image_tag "#{image.product_image}"
                     
                           
     =render 'shared/cameraicon'

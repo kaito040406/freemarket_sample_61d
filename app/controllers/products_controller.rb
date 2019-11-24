@@ -11,7 +11,14 @@ class ProductsController < ApplicationController
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
     # @images = ProductImage.order("created_at DESC")
-    @images = ProductImage.where(product_id: @products.ids).where.not("count > ?", 1)
+    @products_l = Product.where(parent: 'レディース').limit(10).order('created_at DESC')
+    @images_l = ProductImage.where(product_id: @products_l.ids).where.not("count > ?", 1)
+    @products_m = Product.where(parent: 'メンズ').limit(10).order('created_at DESC')
+    @images_m = ProductImage.where(product_id: @products_m.ids).where.not("count > ?", 1)
+    @products_b = Product.where(parent: 'ベビー・キッズ').limit(10).order('created_at DESC')
+    @images_b = ProductImage.where(product_id: @products_b.ids).where.not("count > ?", 1)
+    @products_i = Product.where(parent: 'インテリア・住まい・小物').limit(10).order('created_at DESC')
+    @images_i = ProductImage.where(product_id: @products_i.ids).where.not("count > ?", 1)
     if user_signed_in? == current_user
       @user = current_user
     end
