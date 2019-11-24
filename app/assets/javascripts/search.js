@@ -26,9 +26,9 @@ function appendCategory_g(ct){
   //////要素ごとのイベント応答群
   //画像サムネイルの削除ボタンを押した時の処理
   // $(document).off('click');//イベント多重化防止
-  // $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  // $(document).on('click', '.thumbnail__sub__btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
   //   e.preventDefault();
-  //   let btnBox =e.target.closest('.btn-box');
+  //   let btnBox =e.target.closest('.thumbnail__sub');
   //   let inputHidden =$(btnBox).prev();
   //   let imgThumbnail = $(inputHidden).prev();
   //   let inputFile = $(inputHidden).prev();

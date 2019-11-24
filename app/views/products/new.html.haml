@@ -20,8 +20,7 @@
               またはクリックしてファイルをアップロード
             -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
-            .product-img-box.added-img
-              =img.file_field :product_image #cssで非表示（削除方法）
+            =img.file_field :product_image #cssで非表示（削除方法）
     .form-section{id: @user.id}
       .form-input
         %label.form-input__title
