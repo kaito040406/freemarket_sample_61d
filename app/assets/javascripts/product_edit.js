@@ -142,20 +142,6 @@ $(document).on('turbolinks:load', function(){
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   // createフォームからは実行されない
   pathSelf =location.pathname;
   if (pathSelf.match(/create/) != null) {
