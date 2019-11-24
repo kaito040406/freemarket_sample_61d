@@ -1,11 +1,6 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
   console.log('form');
-  // editフォームからは実行されない
-  pathSelf =location.pathname;
-  if (pathSelf.match(/edit/) != null) {
-      return false;
-  }
-  //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
+    //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
   //画像が何枚あるか何枚目かはこの値で管理
   function overwriteHiddenCountAll(){
     let count = 1;
@@ -13,6 +8,16 @@ $(function(){
       $(this).attr('value', count);
       count = count + 1;
     });
+  }
+  //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し//応急処置（たぶん）
+  function readLabelIndexCreate(){
+    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelIndex = Number(labelIndex);//数値型へ変換
+    return labelIndex;
+  }
+  function overwriteLabel(inputIndex){
+    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
+    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
   }
   //次の画像のインデックスとしてlabelタグのForに入れるべき番号を取得する
   //（はずだったが他の処理も一部まとめた
@@ -46,34 +51,9 @@ $(function(){
       }
     return nextIndex;
   }
-  //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
-  //応急処置（たぶん）
-  function readLabelIndexCreate(){
-    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-    labelIndex = Number(labelIndex);//数値型へ変換
-    return labelIndex;
-  }
-  function overwriteLabel(inputIndex){
-    let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
-    $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
-  }
-  //削除ボタンを押した時の処理///////発火しない、原因がわからない修理要//////
-  $(document).off('click');
-  $(document).on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
-    console.log('added-img-delete-btn was clicked');
-    e.preventDefault();
-    let btnBox =e.target.closest('.thumbnail__sub');
-    let inputHidden =$(btnBox).prev();
-    let imgThumbnail = $(inputHidden).prev();
-    let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
-    $(imgThumbnail).remove();
-    $(inputHidden).remove();
-    $(btnBox).remove();
-    labelIndex = youngestInputIndex();
-    overwriteLabel(labelIndex);
-    overwriteHiddenCountAll();
-  });
+
+  ///////////////////////
+  //////ここから画像選択本体
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
   $('.image-form').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
@@ -125,5 +105,23 @@ $(function(){
     reader.readAsDataURL(file);
     //サムネイルと編集削除ボタン生成ここまで//
 
+  });
+
+  //削除ボタンを押した時の処理///////発火しない、原因がわからない修理要//////
+  $(document).off('click');
+  $(document).on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+    console.log('added-img-delete-btn was clicked');
+    e.preventDefault();
+    let btnBox =e.target.closest('.thumbnail__sub');
+    let inputHidden =$(btnBox).prev();
+    let imgThumbnail = $(inputHidden).prev();
+    let inputFile = $(inputHidden).prev();
+    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
+    $(imgThumbnail).remove();
+    $(inputHidden).remove();
+    $(btnBox).remove();
+    labelIndex = youngestInputIndex();
+    overwriteLabel(labelIndex);
+    overwriteHiddenCountAll();
   });
 });
