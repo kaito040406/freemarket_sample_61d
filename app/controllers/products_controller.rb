@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
   def index
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
-    @images = ProductImage.limit(10).order("created_at DESC")
+    # @images = ProductImage.order("created_at DESC")
+    @images = ProductImage.where(product_id: @products.ids).where.not("count > ?", 1)
     if user_signed_in? == current_user
       @user = current_user
     end
@@ -54,12 +55,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.seller_id == current_user.id
       grand_name = @product.grand
-      # 10.times {@product.product_images.build}
       @exising_img_count = @product.product_images.size.to_i
       t = 10 - @exising_img_count
       t.times{@product.product_images.build }
       @user = current_user
-      # @image = ProductImage.where(product_id: @product.id)フォームオブジェクト
     else
       redirect_to root_path
     end
