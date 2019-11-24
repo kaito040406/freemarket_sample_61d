@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function(){
-  console.log('form');
     //hidden属性で送られるcountの値を今あるimgの連番で振り直し（途中のイメージを削除された時のため）
   //画像が何枚あるか何枚目かはこの値で管理
   function overwriteHiddenCountAll(){
@@ -110,8 +109,7 @@ $(document).on('turbolinks:load', function(){
 
   //削除ボタンを押した時の処理
   $(document).off('click');
-  $(document).on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
-    console.log('added-img-delete-btn was clicked');
+  $(document).on('click', '.added-img-delete-btn', function(e) {
     e.preventDefault();
     let productImgBox =e.target.closest('.added-img');
     let fileInputName = returnfileInputName(productImgBox);
