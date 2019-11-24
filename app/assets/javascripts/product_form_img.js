@@ -15,6 +15,12 @@ $(document).on('turbolinks:load', function(){
     labelIndex = Number(labelIndex);//数値型へ変換
     return labelIndex;
   }
+  //サムネイルから空にするべきinputのindexを読み取る
+  function returnfileInputName(productImgBox){
+    let fileInputName = $(productImgBox).find('.hiddenCount').attr('name').replace(/count/g, 'product_image');//数字でない部分を空白へ置換=削除
+
+    return fileInputName;
+  }
   function overwriteLabel(inputIndex){
     let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
     $("[for ^='product_product_images_attributes_']").attr('for', updatedFor);
@@ -107,19 +113,16 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  //削除ボタンを押した時の処理///////発火しない、原因がわからない修理要//////
+  //削除ボタンを押した時の処理
   $(document).off('click');
   $(document).on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     console.log('added-img-delete-btn was clicked');
     e.preventDefault();
-    let btnBox =e.target.closest('.thumbnail__sub');
-    let inputHidden =$(btnBox).prev();
-    let imgThumbnail = $(inputHidden).prev();
-    let inputFile = $(inputHidden).prev();
-    $(inputFile).val(null); // TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
-    $(imgThumbnail).remove();
-    $(inputHidden).remove();
-    $(btnBox).remove();
+    let productImgBox =e.target.closest('.added-img');
+    let fileInputName = returnfileInputName(productImgBox);
+    let fleinputSelecter = '[name="'+ fileInputName + '"]';
+    $(fleinputSelecter).val(null);// TODO:アップロードされたファイルの削除 countをnull許可にすると途中で削除した画像も保存されてしまう
+    $(productImgBox).remove();
     labelIndex = youngestInputIndex();
     overwriteLabel(labelIndex);
     overwriteHiddenCountAll();
