@@ -257,7 +257,7 @@ $(document).on('turbolinks:load', function(){
             id = "hiddenCount${labelIndex}"
             class = "hiddenCount">
           <div class="btn-box">
-            <a href="" class="added-img-delete-btn, img-edit-btn">編集</a>
+            <a href="" class="img-edit-btn">編集</a>
             <a href="" class="img-delete-btn">削除</a>
           </div>
         </div>
@@ -279,7 +279,7 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  //削除ボタンを押した時の処理///////修理要//////
+  //削除ボタンを押した時の処理
   $('.create-dropbox__label').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
