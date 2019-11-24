@@ -1,27 +1,41 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
 
-Things you may want to cover:
+フリーマーケットアプリ「メルカリ」のクローンアプリケーション
 
-* Ruby version
+# アプリケーションの機能一覧
 
-* System dependencies
+Basic認証機能
+ユーザー新規登録機能
+新規登録時ロボット判定機能
+ユーザーログイン／ログアウト機能
+ユーザー情報編集機能
+マイページ表示機能
+出品中／売却済商品表示機能
+プロフィール表示
+クレジットカード登録／削除機能
+商品出品／編集／削除機能
+商品購入機能
+カテゴリ別商品表示機能
+パンくず表示機能
 
-* Configuration
+# アプリケーション内で使用している技術一覧
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues|cache servers|search engines|etc.)
-
-* Deployment instructions
-
-* ...
+|種別|名称|
+|----|---|
+|開発言語|Ruby(ver 2.5.1)|
+|フレームワーク|Ruby on Rails(ver 5.2.1)|
+|マークアップ|HTML(Haml),CSS(Sass)|
+|フロントエンド|JavaScript(jQuery)|
+|DB|MySQL|
+|本番環境|AWS EC2|
+|画像アップロード|carrierwave, AWS S3|
+|自動デプロイ|capistrano|
+|ロボット判定機能|reCAPTCHA|
+|ユーザー管理|devise|
+|クレジットカード管理|PayJP|
+|パンくず表示機能|gretel|
 
 
 ## addressesテーブル

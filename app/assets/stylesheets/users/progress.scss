@@ -184,7 +184,11 @@ i[class^='icon-'], i[class*='icon-'] {
   border-radius: 2px;
   font-size: 12px;
   color: #fff;
+  input{
+    cursor: pointer;
+  }
 }
+
 
 .mypage-tab-container+.pager {
   margin: 40px 0 0;

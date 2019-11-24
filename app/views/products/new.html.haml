@@ -1,105 +1,106 @@
-%header.product-new-header-T
-  = render 'shared/simple_header01'
-%main.product-new-main-T
-  %h2.product-new-formtitle-T
+%header.product-form-header
+  %h1
+    =link_to image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1248199994", alt: "mercari"), root_path
+%main.product-form-main
+  %h2.product-form__title
     商品の情報を入力
-  =form_for @product, url: user_products_path, method: :post , html: { class: "product-new-form"} do |f|
-    .form-sub-image-uploader-t
-      %h3
+  =form_for @product, url: products_path, method: :post , html: { class: "product-form"} do |f|
+    .image-form
+      %h3.image-form__title
         出品画像
-        %span.must-filled-mark-t
+        %span.must-filled-input
           必須
-      %p
+      %p.image-form__text
         最大10枚までアップロードできます
-      .dropbox-container.flexcontainer
-        %label{for: "product_product_images_attributes_0_product_image", class: "img-uploader-dropbox create-img-uploader-dropbox"}
-          %pre
+      .dropbox__container.flexcontainer
+        %label{for: "product_product_images_attributes_0_product_image", class: "dropbox__label create-dropbox__label"}
+          %pre.dropbox__placeholder
             :preserve
               ドラッグアンドドロップ
               またはクリックしてファイルをアップロード
             -# %i.icon-camera 表示できない 余裕あればウインドウ幅が狭くなった際テキストの代わりに表示
           =f.fields_for :product_images do |img|
-            %div{class: "product-img-box"}
+            .product-img-box.added-img
               =img.file_field :product_image #cssで非表示（削除方法）
-    .form-sub-t{id: @user.id}
-      .form-input-t
-        %label
+    .form-section{id: @user.id}
+      .form-input
+        %label.form-input__title
           商品名
-          %span.must-filled-mark-t
+          %span.must-filled-input
             必須
-        %div
+        .form-input__input
           =f.text_field :name, placeholder: "商品名（必須 40文字まで)", class: "input-default"
-      .form-input-t
-        %label
+      .form-input
+        %label.form-input__title
           商品の説明
-          %span.must-filled-mark-t
+          %span.must-filled-input
             必須
         = f.text_area :text, class: "input-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         商品の詳細
-      .form-input-list-t
+      .form-section__content
         .ct_box_k
-          .form-input-t{value: "ct_no_1"}
+          .form-input{value: "ct_no_1"}
             %label
               カテゴリー
-              %span.must-filled-mark-t
+              %span.must-filled-input
                 必須
             %div
               .select-wrap{id: @product.id ,value: @product.parent}
                 %i.fa.fa-chevron-down
                 = f.select :category , Product.categories.keys.to_a, {include_blank: "---"}, {class: "select-default", id: "category_parent"}
               
-        .form-input-t
+        .form-input
           %label
             商品の状態
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :status, Product.statuses.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         配送について
-        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
-        .form-input-t
+        =link_to "?", "/jp/help_center/article/68/", target: "_blank", class: "help-link-icon"
+      .form-section__content
+        .form-input
           %label
             配送料の負担
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :delivery_fee, Product.delivery_fees.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送元の地域
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.collection_select :delivery_from, Prefecture.all, :id, :name, {include_blank: "---"}, {class: "select-default"}
-        .form-input-t
+        .form-input
           %label
             発送までの日数
-            %span.must-filled-mark-t
+            %span.must-filled-input
               必須
           .select-wrap
             %i.fa.fa-chevron-down
             = f.select :estimated_delivery_date, Product.estimated_delivery_dates.keys.to_a, {include_blank: "---"}, {class: "select-default"}
-    .form-sub-t.flexcontainer
-      %h3.sub-title-t
+    .form-section.flexcontainer
+      %h3.form-section__title
         販売価格(300〜9,999,999)
-        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon-t"
-      .form-input-list-t
+        =link_to "?", "/jp/help_center/article/64/", target: "_blank", class: "help-link-icon"
+      .form-section__content
         %ul.price-field-list
-          %li.form-input-t
-            .flexcontainer.price-T
+          %li.form-input
+            .flexcontainer.product-form-price
               %label
                 価格
-                %span.must-filled-mark-t
+                %span.must-filled-input
                   必須
-              .flexcontainer.price-T.price-input
+              .flexcontainer.product-form-price.price-input
                 ¥
                 %div
                   =f.text_field :price, placeholder: "例）300", class: "input-default", id: "product_price"
@@ -114,22 +115,22 @@
               販売利益
             #product-gain
               \-
-    %div.form-sub-t.button-container-t
-      %div
+    .form-section.button-container
+      .product-form-caution
         %p
-          =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank", class: "product-new-caution"
-          =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank", class: "product-new-caution"
+          =link_to "禁止されている出品", "/jp/help_center/getting_started/prohibited_items/", target: "_blank", class: "product-form-caution__reference"
+          =link_to "行為", "/jp/help_center/getting_started/prohibited_conduct/", target: "_blank", class: "product-form-caution__reference"
           を必ずご確認ください。
         %p
           またブランド品でシリアルナンバー等がある場合はご記載ください。
-          =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank", class: "product-new-caution"
+          =link_to "偽ブランドの販売", "/jp/help_center/getting_started/counterfeit_goods/", target: "_blank", class: "product-form-caution__reference"
           は犯罪であり処罰される可能性があります。
         %p
           また、出品をもちまして
-          =link_to "加盟店規約", "/jp/seller_terms/", class: "product-new-caution"
+          =link_to "加盟店規約", "/jp/seller_terms/", class: "product-form-caution__reference"
           に同意したことになります。
-      %button.button-t.button-submit-t{type: "submit"}
+      %button.button-t.button-submit{type: "submit"}
         出品する
-      =link_to "もどる", "xxx_path", class: "button-t button-cancel-t"
-%footer.product-new-footer-T
+      =link_to "もどる", "xxx_path", class: "button-t button-cancel"
+%footer.product-new-footer
   = render 'shared/simple_footer'

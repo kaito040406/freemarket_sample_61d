@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       get 'done'
       get 'mypage'
       get 'buy'
-      get 'tos'
       get 'failkure'
     end
     collection do

@@ -26,10 +26,10 @@ $(document).on('turbolinks:load', function(){
     return html;
   }
   let DeliveryMethodSelectBoxHTML = `
-    <div class="form-input-t" id="product_delivery_method">
+    <div class="form-input" id="product_delivery_method">
       <label>
         配送の方法
-        <span class="must-filled-mark-t">
+        <span class="must-filled-input">
           必須
         </span>
       </label>
@@ -70,7 +70,7 @@ $(document).on('turbolinks:load', function(){
     //0ならばプレースホルダを再表示し0を返す
     //最後の1枚削除によりアップローダーが空になった場合
     else if(nextIndex ==0){
-      $('.img-uploader-dropbox pre').show();
+      $('.dropbox__placeholder').show();
       return nextIndex;
     }
     //この時点でnextIndexは返り値の取りうる最大値
@@ -91,10 +91,9 @@ $(document).on('turbolinks:load', function(){
   //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
   //応急処置（たぶん）
   function readLabelIndexCreate(){
-    
-      let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
-      labelIndex = Number(labelIndex);//数値型へ変換
-      return labelIndex;
+    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    labelIndex = Number(labelIndex);//数値型へ変換
+    return labelIndex;
   }
   function overwriteLabel(inputIndex){
     let updatedFor = 'product_product_images_attributes_'+inputIndex+'_product_image';
@@ -157,7 +156,7 @@ $(document).on('turbolinks:load', function(){
           $('#ct_no_3').remove();
         }
         html_head = `
-                    <div class="form-input-t_2" id="ct_no_2" value="ct_no_2">
+                    <div class="form-input_2" id="ct_no_2" value="ct_no_2">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_child" id="category_child" name="child">
@@ -192,12 +191,12 @@ $(document).on('turbolinks:load', function(){
           dataType: 'json'
       })
       .done(function(categories) {
-        //孫カテゴリここでも重複防止必要
+        //孫カテゴリ重複防止
         if($('#ct_no_3').val() != null){
           $('#ct_no_3').remove();
         }
         html_head_g = `
-                    <div class="form-input-t_3" id="ct_no_3" value="ct_no_3">
+                    <div class="form-input_3" id="ct_no_3" value="ct_no_3">
                       <div class="select-wrap" id="1">
                       <i class="fa fa-chevron-down"></i>
                     <select class="category_grand_child" id="category_grand_child" name="grand" >
@@ -219,7 +218,7 @@ $(document).on('turbolinks:load', function(){
       .fail(function() {
       });
     }
-    //子セレクトボックスがプレースホルダ状態の場合
+    //子セレクトボックスがプレースホルダなら孫セレクトボックスは表示しない
     if(child_name == "---"){
       $('#ct_no_3').remove();
     }
@@ -228,7 +227,7 @@ $(document).on('turbolinks:load', function(){
   
   //////ここからイメージボックス関連
   let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
-  $('.form-sub-image-uploader-t').on('change', 'input[type="file"]', function(e) {
+  $('.image-form').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
     labelIndex = readLabelIndexCreate();
     // 11枚目なら中断
@@ -245,30 +244,32 @@ $(document).on('turbolinks:load', function(){
     //(関数として切り出すとサムネイルが表示されなくなったため保留//
     //e.target.resultを変数に代入もできないためそのあたりの影響とかんがえられる)
     let reader = new FileReader();
-    let changedInput = $(e.target);
+    // let changedInput = $(e.target);
     //を付与
     reader.onload = function (e){
       let imageThumbnail =`
-        <img src="${e.target.result}" width="114px" height="116px" 
-          class="thumbnail" title="${file.name}" >
-        <input type="hidden" 
-          name="product[product_images_attributes][${labelIndex}][count]" 
-          value="${labelIndex}"
-          id = "hiddenCount${labelIndex}"
-          class = "hiddenCount">
-        <div class="btn-box">
-          <div class="img-edit-btn">編集</div>
-          <div class="img-delete-btn added-img-delete-btn">削除</div>
+        <div class="product-img-box">
+          <img src="${e.target.result}" width="114px" height="116px" 
+            class="thumbnail" title="${file.name}" >
+          <input type="hidden" 
+            name="product[product_images_attributes][${labelIndex}][count]" 
+            value="${labelIndex}"
+            id = "hiddenCount${labelIndex}"
+            class = "hiddenCount">
+          <div class="btn-box">
+            <a href="" class="img-edit-btn">編集</a>
+            <a href="" class="img-delete-btn">削除</a>
+          </div>
         </div>
         `;
-      $(changedInput).after(imageThumbnail);
-      $(changedInput).ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
+      $('.create-dropbox__label').before(imageThumbnail);
+      $('.create-dropbox__label').ready(function(){ //  この記述でDOM要素読み込まれるまで待つらしい
         //次のchangeイベントでのinputタグ(product_model)を更新
         labelIndex = youngestInputIndex();
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
         //プレースホルダ非表示
-        $('.img-uploader-dropbox pre').hide();
+        $('.dropbox__placeholder').hide();
         
       });
     };
@@ -278,8 +279,8 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  //削除ボタンを押した時の処理
-  $('.create-img-uploader-dropbox').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  //削除ボタンを押した時の処理///////修理要//////
+  $('.create-dropbox__label').on('click', '.added-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
     let btnBox =e.target.closest('.btn-box');
     let inputHidden =$(btnBox).prev();

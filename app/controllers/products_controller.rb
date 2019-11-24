@@ -210,8 +210,6 @@ def product_params
   params[:product][:parent] = params[:product][:category]
   params[:product][:grand_id] = params[:grand]
 
-
-
   params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
 end
 
@@ -220,6 +218,7 @@ def product_params_up
   # バリデーションエラー回避のため適当なデータ挿入
   params[:product][:size] = 1
   params[:product][:date] = Date.current
+  params[:grand] = 100
 
   params[:product][:child] = params[:child]
   # category = Category.find(params[:grand])

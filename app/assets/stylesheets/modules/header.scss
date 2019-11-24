@@ -242,8 +242,7 @@ svg:not(:root) {
 
 @media (min-width: 1068px){
   .header_second_right_box_four:first-child {
-  display: block;
-
+    display: block;
   }
 }
 
@@ -257,6 +256,12 @@ svg:not(:root) {
     color: #0099e8;
   }
 }
+.box__color {
+  margin: 0;
+  &:hover {
+    color: #0099e8;
+  }
+}
 
 .header_second_right_box_inner {
   -webkit-box-align: center;
@@ -265,13 +270,8 @@ svg:not(:root) {
   font-size: 14px;
   padding-bottom: 15px;
   height: 50px;
-  transform: scale(1);
-  transition: all 0.3s ease-out 0s;
   width: 129px;
   margin-left: 10px;
-  &:hover {
-    color: #0099e8;
-  }
 }
 
 .header_second_right_good_icon{

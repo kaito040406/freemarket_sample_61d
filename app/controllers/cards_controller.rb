@@ -4,6 +4,8 @@ class CardsController < ApplicationController
   before_action :set_search
 
   def index
+    card = Cards.where(user_id: current_user.id)
+    redirect_to action: "show" if card.exists?
     @search = Product.ransack(params[:id])
   end
 

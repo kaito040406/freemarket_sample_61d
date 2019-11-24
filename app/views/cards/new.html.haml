@@ -7,7 +7,7 @@
       %section.h-chapter-container
         %h2.h-chapter-zilyouhou クレジットカード情報入力
         = form_tag(pay_cards_path, method: :post, id: 'charge-form',  name: "inputForm") do
-          %input{name:  "__csrf_value", type: "hidden", value: ""}/
+          %input{name:  "__csrf_value", type: "hidden", value: ""}
           .h-single-content
             .h-form-group
               %label カード番号
@@ -34,8 +34,7 @@
               %span.form-require 必須
               %br
               .select-wrap.half-h
-                %select#exp_month{name: "exp_year", type: "text"}
-                  %option{value: ""} --
+                %select#exp_month{name: "exp_year", type: "text", class: "select-default"}
                   %option{value: "1"}01
                   %option{value: "2"}02
                   %option{value: "3"}03
@@ -51,8 +50,7 @@
                 %i.fa.fa-chevron-down
               %span 月
               .select-wrap.half-h
-                %select#exp_year{name: "exp_year", type: "text"}
-                  %option{value: ""} --
+                %select#exp_year{name: "exp_year", type: "text", class: "select-default"}
                   %option{value: "2019"}19
                   %option{value: "2020"}20
                   %option{value: "2021"}21
