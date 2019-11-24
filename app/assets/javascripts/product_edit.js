@@ -298,7 +298,7 @@ $(document).on('turbolinks:load', function(){
           class = "hiddenCount">
         <div class="btn-box">
           <a href="" class="img-edit-btn">編集</div>
-          <a href="" class="img-delete-btn">削除</div>
+          <a href="" class="added-img-delete-btn">削除</div>
         </div>
         `;
       $(changedInput).after(imageThumbnail);
@@ -320,7 +320,7 @@ $(document).on('turbolinks:load', function(){
 
   //既存画像の削除ボタンがクリックされた時の処理
   $(document).off('click');//イベント多重化防止
-  $(document).on('click', '.img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
+  $(document).on('click', '.exist-img-delete-btn', function(e) {//なぜ$()->$(document)だといけたのか未理解
     e.preventDefault();
   //（画像が残り一枚なら機能しなくするif必要）
     if ($(this).closest('.btn-box').prev('[name *="destroy"]').attr('value') == 0){
