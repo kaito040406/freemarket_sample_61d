@@ -19,10 +19,10 @@
               =image_tag("#{img.product_image}", width: "114px", height: "116px", class: "thumbnail") 
               %input{type: "hidden", name:"product[product_images_attributes][#{i}][id]", value: img.id}
               %input{type: "hidden", name:"product[product_images_attributes][#{i}][_destroy]", value: 0}
-              .btn-box
-                .img-edit-btn
+              .thumbnail__sub
+                .thumbnail__sub__btn
                   編集
-                .img-delete-btn
+                .exist-img-delete-btn.thumbnail__sub__btn
                   削除
         %label{for: "product_product_images_attributes_#{@exising_img_count}_product_image", class: "dropbox__label edit-dropbox__label"}
           %pre.dropbox__placeholder.dropbox__placeholder--edit
@@ -31,8 +31,7 @@
               またはクリックしてファイルをアップロード
             %i.icon-camera{value: @product.id}
         =f.fields_for :product_images do |img|
-          .product-img-box.added-img
-            =img.file_field :product_image #cssで非表示（削除方法）
+          =img.file_field :product_image #cssで非表示（削除方法）
     .form-section{id: @user.id, value: @product.id}
       .form-input
         %label.form-input__title
