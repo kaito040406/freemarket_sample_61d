@@ -34,12 +34,10 @@ $(document).on('turbolinks:load', function(){
     let nextIndex = $(allImgs).length;
     //10ならば最大枚数アップ済、labelが機能しなくなる値""を返す
     if (nextIndex == 10){
-      return "";//
+      return "";
     }
-    //0ならばプレースホルダを再表示し0を返す
-    //最後の1枚削除によりアップローダーが空になった場合
+    //0ならば0を返し終了
     else if(nextIndex ==0){
-      $('.dropbox__placeholder').show();
       return nextIndex;
     }
     //この時点でnextIndexは返り値の取りうる最大値
@@ -102,9 +100,6 @@ $(document).on('turbolinks:load', function(){
         labelIndex = youngestInputIndex();
         overwriteLabel(labelIndex);
         overwriteHiddenCountAll();
-        //プレースホルダ非表示
-        $('.dropbox__placeholder').hide();
-        
       });
     };
     ///ファイル読み込み 上記サムネイル・編集削除ボタン・count値のhidden input生成等が行われる

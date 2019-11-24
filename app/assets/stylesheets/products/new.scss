@@ -188,30 +188,9 @@ label {
       border: 1px dashed #ccc;
       background: $img-dropbox-color;
       cursor: pointer;
-      &:nth-child(5n+1) {
-        width: $product-image-form-width;
-      }
-      &:nth-child(5n+2) {
-        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 1;
-      }
-      &:nth-child(5n+3) {
-        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 2;
-      }
-      &:nth-child(5n+4) {
-        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 3;
-      }
-      &:nth-child(5n) {
-        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 4;
-      }
-      &:nth-child(n+11) {
-        display:none;
-      }
-      &::-webkit-scrollbar {
-        display: none;
-      }
       .dropbox__placeholder {
         position: absolute;
-        display: block;
+        // display: block;
         top: 50%;
         left: 16px;
         right: 16px;
@@ -226,6 +205,43 @@ label {
         pointer-events: none;
         white-space: pre-wrap;
         word-wrap: break-word;
+      }
+      &:nth-child(5n+1) {
+        width: $product-image-form-width;
+        .dropbox__placeholder {
+          position: absolute;
+          display: block;
+        }
+      }
+      &:nth-child(5n+2) {
+        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 1;
+        .dropbox__placeholder {
+          display: none;
+        }
+      }
+      &:nth-child(5n+3) {
+        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 2;
+        .dropbox__placeholder {
+          display: none;
+        }
+      }
+      &:nth-child(5n+4) {
+        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 3;
+        .dropbox__placeholder {
+          display: none;
+        }
+      }
+      &:nth-child(5n) {
+        width: $product-image-form-width - ($img-thumbnail-width + $thumbnail-horizontal-space) * 4;
+        .dropbox__placeholder {
+          display: none;
+        }
+      }
+      &:nth-child(n+11) {
+        display:none;
+      }
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
   }
