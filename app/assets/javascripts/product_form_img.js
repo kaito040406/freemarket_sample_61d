@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
   }
   //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し//応急処置（たぶん）
   function readLabelIndexCreate(){
-    let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+    let labelIndex = $('.create-dropbox__label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
     labelIndex = Number(labelIndex);//数値型へ変換
     return labelIndex;
   }
@@ -57,10 +57,9 @@ $(document).on('turbolinks:load', function(){
 
   ///////////////////////
   //////ここから画像選択本体
-  let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
   $('.image-form').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    labelIndex = readLabelIndexCreate();
+    let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
     // 11枚目なら中断
     if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;

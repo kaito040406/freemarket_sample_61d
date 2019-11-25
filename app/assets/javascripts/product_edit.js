@@ -245,7 +245,7 @@ $(document).on('turbolinks:load', function(){
   //labelのfor属性内の数値を返す、他所でも起動しているらしくDOMセレクタ見直し
   //応急処置（たぶん）
   function readLabelIndexCreate(){
-      let labelIndex = $('label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
+      let labelIndex = $('edit-dropbox__label').attr('for').replace(/[^0-9]/g, '');//数字でない部分を空白へ置換=削除
       labelIndex = Number(labelIndex);//数値型へ変換
       return labelIndex;
   }
@@ -253,10 +253,9 @@ $(document).on('turbolinks:load', function(){
   //ct_no_1＝親カテゴリ、ct_no_2＝子カテゴリ、ct_no_3＝孫カテゴリ
   
   //////ここからイメージボックス関連
-  let labelIndex = readLabelIndexCreate(); //new.html.hamlで定義される"0"
   $('.edit-dropbox__label').on('change', 'input[type="file"]', function(e) {
     //inputタグのインデックスを取得する
-    labelIndex = readLabelIndexCreate();
+    let labelIndex = readLabelIndexCreate(); //最初は既存画像枚数+1(edit.html.hamlで定義)
     // 11枚目なら中断
     if(labelIndex >= 10){//inputタグで検出するのでダイアログは表示される
       return false;
