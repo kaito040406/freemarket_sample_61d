@@ -1,4 +1,4 @@
-%div.sc-TFwJa.wYTWu
+%div.main-top-all
   = render 'shared/header'
   .main-top-content
     .top-content
@@ -7,24 +7,24 @@
         %div
           =link_to "https://www.mercari.com/jp/featured/camp/" do
             =image_tag "/images/banner-camp.png", alt: "mercari", class:"slick.first"
-      .sc-drKuOJ.ibydfh
-        %h2.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv1__3ygH4.sc-gRnDUn.bVIPta 人気のカテゴリー
-        .sc-cmjSyW.hTgxLd
-          %ul.sc-sdtwF.cmQcPI
-            %li.sc-iYUSvU.gUHLnE
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
+      .top-category-back-content
+        %h2.top-category-popular 人気のカテゴリー
+        .top-category-text-box
+          %ul.top-category-text-box-inner
+            %li.top-category-name-box
+              .top-category-name
                 = link_to "レディース",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
+              .top-category-name
                 = link_to "メンズ",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
+              .top-category-name
                 = link_to "ベビー・キッズ",""
-              .sc-cHSUfg.sc-cTjmhe.emrFJX
+              .top-category-name
                 = link_to "インテリア・住まい・小物",""
-      .sc-gkFcWv.lcfgps
-        .sc-hUfwpO.kyoAKq
-          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn レディース新着アイテム
-            .sc-dyGzUR.kfbxDu
+      .top-product-all-box
+        .top-product-category-box
+          .top-product-category-name-box{name: "scroll-1"}
+            %h3.top-category-new-product レディース新着アイテム
+            .top-product-category-more
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
@@ -44,10 +44,10 @@
                           %img.style_thumbnail__N_xAi
                           - if image != nil
                             = image_tag "#{image.product_image}"
-        .sc-hUfwpO.kyoAKq
-          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn メンズ新着アイテム
-            .sc-dyGzUR.kfbxDu
+        .top-product-category-box
+          .top-product-category-name-box{name: "scroll-1"}
+            %h3.top-category-new-product メンズ新着アイテム
+            .top-product-category-more
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
@@ -67,10 +67,10 @@
                           %img.style_thumbnail__N_xAi
                           - if image != nil
                             = image_tag "#{image.product_image}"
-        .sc-hUfwpO.kyoAKq
-          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn ベビーキッズ新着アイテム
-            .sc-dyGzUR.kfbxDu
+        .top-product-category-box
+          .top-product-category-name-box{name: "scroll-1"}
+            %h3.top-category-new-product ベビーキッズ新着アイテム
+            .top-product-category-more
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
@@ -90,10 +90,10 @@
                           %img.style_thumbnail__N_xAi
                           - if image != nil
                             = image_tag "#{image.product_image}"
-        .sc-hUfwpO.kyoAKq
-          .sc-dRFtgE.hEIctR.sc-cqpYsc.iyaAGP{name: "scroll-1"}
-            %h3.style_heading__3qSF6.common_fontFamily__3-3Si.style_responsiveLv2__3K0hn.sc-hBbWxd.exknGn インテリア・住まい・小物新着アイテム
-            .sc-dyGzUR.kfbxDu
+        .top-product-category-box
+          .top-product-category-name-box{name: "scroll-1"}
+            %h3.top-category-new-product インテリア・住まい・小物新着アイテム
+            .top-product-category-more
               = link_to"もっと見る",""
           .main.products.content
             %ul.products.content.box
