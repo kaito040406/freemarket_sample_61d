@@ -24,7 +24,7 @@
         .payment-price
           ¥
           = @product.price
-      =link_to( buy_product_path,class: "btn-default btn-red bold.form-buy-bottan_k") do
+      =link_to( "/products/#{@product.id}/buy",class: "btn-default btn-red bold.form-buy-bottan_k") do
         購入する
   %section.purchese-confirm-sections.buyer-address
     %h3
