@@ -141,7 +141,7 @@ class ProductsController < ApplicationController
     else
       card = Cards.find_by(user_id: current_user.id)
       if card.blank?
-        redirect_to action: "show"
+        redirect_to controller: "cards", action: "new"
         flash[:alert] = '購入にはクレジットカード登録が必要です'
       else
         card = Cards.find_by(user_id: current_user.id)
