@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
   def index
     @product = Product.where(finished: 0).length
     @products = Product.limit(10).order('created_at DESC')
-    # @images = ProductImage.order("created_at DESC")
     @products_l = Product.where(parent: 'レディース').limit(10).order('created_at DESC')
     @images_l = ProductImage.where(product_id: @products_l.ids).where.not("count > ?", 1)
     @products_m = Product.where(parent: 'メンズ').limit(10).order('created_at DESC')
@@ -19,7 +18,8 @@ class ProductsController < ApplicationController
     @images_b = ProductImage.where(product_id: @products_b.ids).where.not("count > ?", 1)
     @products_i = Product.where(parent: 'インテリア・住まい・小物').limit(10).order('created_at DESC')
     @images_i = ProductImage.where(product_id: @products_i.ids).where.not("count > ?", 1)
-    if user_signed_in? == current_user
+    # binding.pry
+    if user_signed_in?
       @user = current_user
     end
   end
@@ -35,12 +35,12 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    #@product.user = current_user
     if user_signed_in?
-      if @product.save!
+      if @product.save
         redirect_to :root
       else
-        redirect_to :failkure
+        # redirect_to :failkure
+        redirect_to new_product_path(current_user)
       end
     end
   end
@@ -205,30 +205,28 @@ end
 
 def product_params
   params[:product][:seller_id] = current_user.id
-  # バリデーションエラー回避のため適当なデータ挿入
   params[:product][:size] = 1
   params[:product][:date] = Date.current
 
 
   params[:product][:child] = params[:child]
-  category = Category.find(params[:grand])
+  if params[:grand] != nil
+    category = Category.find(params[:grand])
   params[:product][:grand] = category.name
   params[:product][:parent] = params[:product][:category]
   params[:product][:grand_id] = params[:grand]
+  end
 
   params.require(:product).permit(:seller_id, :name, :text, :category, :status, :size, :date, :delivery_fee, :delivery_method, :delivery_from, :estimated_delivery_date, :price, :parent, :child, :grand, :grand_id, product_images_attributes: [:product_image, :count])
 end
 
 def product_params_up
   params[:product][:seller_id] = current_user.id
-  # バリデーションエラー回避のため適当なデータ挿入
   params[:product][:size] = 1
   params[:product][:date] = Date.current
   params[:grand] = 100
 
   params[:product][:child] = params[:child]
-  # category = Category.find(params[:grand])
-  # params[:product][:grand] = category.name
   params[:product][:parent] = params[:product][:category]
   params[:product][:grand_id] = params[:grand]
 

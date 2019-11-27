@@ -130,6 +130,9 @@ GEM
     faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    file_validators (2.3.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -437,6 +440,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  file_validators
   fog-aws
   font-awesome-rails
   gretel
