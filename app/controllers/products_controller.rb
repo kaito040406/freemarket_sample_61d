@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
         redirect_to :root
       else
         # redirect_to :failkure
-        redirect_to :root
+        redirect_to new_user_product_path(current_user)
       end
     end
   end
