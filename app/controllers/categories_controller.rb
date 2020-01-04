@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
   @images_o = ProductImage.where(product_id: @products_o.ids).where.not("count > ?", 1)
   @products
   @images = ProductImage.where(params[:id])
-  binding.pry
+  # binding.pry
   end
 
   private
