@@ -36,8 +36,8 @@ class CategoriesController < ApplicationController
   @products_o = Product.where(parent: 'その他').limit(10).order('created_at DESC')
   @images_o = ProductImage.where(product_id: @products_o.ids).where.not("count > ?", 1)
   @products
-  @images = ProductImage.where(params[:id])
-  # binding.pry
+  @images = ProductImage.where(product_id: @products.ids).where.not("count > ?", 1)
+  binding.pry
   end
 
   private
