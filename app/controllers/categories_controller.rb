@@ -8,8 +8,27 @@ class CategoriesController < ApplicationController
   end
   
   def show
-  @products
+  @product = Product.where(finished: 0).length
+  @products = Product.limit(10).order('created_at DESC')
+  @products_l = Product.where(parent: 'レディース').limit(10).order('created_at DESC')
+  @images_l = ProductImage.where(product_id: @products_l.ids).where.not("count > ?", 1)
+  @products_m = Product.where(parent: 'メンズ').limit(10).order('created_at DESC')
+  @images_m = ProductImage.where(product_id: @products_m.ids).where.not("count > ?", 1)
+  @products_b = Product.where(parent: 'ベビー・キッズ').limit(10).order('created_at DESC')
+  @images_b = ProductImage.where(product_id: @products_b.ids).where.not("count > ?", 1)
+  @products_i = Product.where(parent: 'インテリア・住まい・小物').limit(10).order('created_at DESC')
+  @images_i = ProductImage.where(product_id: @products_i.ids).where.not("count > ?", 1)
+  @products_l = Product.where(parent: '本・音楽・ゲーム').limit(10).order('created_at DESC')
+  @images_l = ProductImage.where(product_id: @products_l.ids).where.not("count > ?", 1)
+  @products_m = Product.where(parent: 'おもちゃ・ホビー・グッズ').limit(10).order('created_at DESC')
+  @images_m = ProductImage.where(product_id: @products_m.ids).where.not("count > ?", 1)
+  @products_b = Product.where(parent: 'コスメ・香水・美容').limit(10).order('created_at DESC')
+  @images_b = ProductImage.where(product_id: @products_b.ids).where.not("count > ?", 1)
+  @products_i = Product.where(parent: '家電・スマホ・カメラ').limit(10).order('created_at DESC')
+  @images_i = ProductImage.where(product_id: @products_i.ids).where.not("count > ?", 1)
+  # @products
   @images = ProductImage.where(params[:id])
+  # binding.pry
   end
 
   private
@@ -29,6 +48,7 @@ class CategoriesController < ApplicationController
     @tickets = Product.where(parent: "チケット")
     @bikes = Product.where(parent: "自動車・オートバイ")
     @others = Product.where(parent: "その他")
+
   end
 
   def check_category
