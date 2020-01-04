@@ -14,8 +14,8 @@ class ProductsController < ApplicationController
     @images_l = ProductImage.where(product_id: @products_l.ids).where.not("count > ?", 1)
     @products_m = Product.where(parent: 'メンズ').limit(10).order('created_at DESC')
     @images_m = ProductImage.where(product_id: @products_m.ids).where.not("count > ?", 1)
-    @products_b = Product.where(parent: 'ベビー・キッズ').limit(10).order('created_at DESC')
-    @images_b = ProductImage.where(product_id: @products_b.ids).where.not("count > ?", 1)
+    @products_k = Product.where(parent: 'ベビー・キッズ').limit(10).order('created_at DESC')
+    @images_k = ProductImage.where(product_id: @products_k.ids).where.not("count > ?", 1)
     @products_i = Product.where(parent: 'インテリア・住まい・小物').limit(10).order('created_at DESC')
     @images_i = ProductImage.where(product_id: @products_i.ids).where.not("count > ?", 1)
     # binding.pry
